@@ -14,7 +14,7 @@ var TableTop = {//prototipe
 		this.iW = ( typeof uw.iW !== 'undefined')? uw.iW : 0; // ilend sizes
 		this.iL = ( typeof uw.iL !== 'undefined')? uw.iL : 0; //
 		this.iO = ( typeof uw.iO !== 'undefined')? uw.iO : (this.L - this.iL) * 0.5; //offeset from  corner
-		this.defr = ( typeof uw.ir !== 'undefined')? uw.ir : 80; //default radius for ilends
+		this.defr = ( typeof uw.ir !== 'undefined')? uw.ir : 50; //default radius for ilends
 
 		this.aD= aD;//array of N dragable sides [2,3]
 		this.S = 0; //area in sq m
@@ -55,7 +55,7 @@ var TableTop = {//prototipe
 		  // });
 		  Object.defineProperty(this, "S", {// S will be calculated automaticaly everytime
 		    get: function() {
-		      return (this.W * this.L * 0.000001).toFixed(2) //area in sq m . rounded
+		      return ((this.W * this.L + this.uwW * this.uwL + this.iW * this.iL) * 0.000001).toFixed(2) //area in sq m . rounded
 		    }
 		  });
 
@@ -114,38 +114,6 @@ distance4DimLines : [],		//array of distances betwin model an dimline. Are influ
   dragStrokeColor : 'red'
 	};
 	
-
-
-Object.defineProperty(wholeTable, "distance4DimLines", {
-    get: function() {
-    	var bade = wholeTable.bade;
-		    	var arr= new Array();
-						if ( typeof wholeTable.S[0] !== 'undefined') {
-								arr.push({shift : 2 * bade, color : 'tomato'}); // dimlines for tabletop
-								arr.push({shift : (2*bade + wholeTable.S[0].W) * (-1), color : 'magenta'}); // dimlines for tabletop
-
-								arr.push({shift : -2.5 * bade, color : 'tomato'}); // dimlines for winsills
-								arr.push({shift : (bade) * (-0.5), color : 'magenta'}); // dimlines for winsills
-								arr.push({shift : (bade) * (1), color : 'magenta'}); // dimlines for winsills
-
-								arr.push({shift : (bade) * (-1), color : 'magenta'}); // dimlines for ilend
-								arr.push({shift : (bade) * (-0.25), color : 'magenta'}); // dimlines for ilend
-								arr.push({shift : (bade) * (1), color : 'magenta'}); // dimlines for ilend
-
-							}
-						if ( typeof wholeTable.S[1] !== 'undefined') {
-								arr.push({shift : (bade * 2 + wholeTable.S[1].W), color : 'tomato'});
-								arr.push({shift : bade, color : 'magenta'});
-								// arr.push({shift : wholeTable.S[1].W*(1	), color : 'magenta'});
-							}
-						if ( typeof wholeTable.S[2] !== 'undefined') {
-								arr.push({shift : -1 * (bade * 2 + wholeTable.S[2].W), color : 'tomato'});
-								arr.push({shift :bade, color : 'magenta'});
-							}
-				return arr
-	    }
-});
-	
 Object.defineProperty(wholeTable, "tableCountur", {
     get: function() {
 // console.log(this.S[0].uwW);
@@ -183,47 +151,57 @@ Object.defineProperty(wholeTable, "tableCountur", {
 	    	R1 =  "v " + this.S[1].R + " a " + this.S[1].R + ", -" + this.S[1].R + " 0 0 1 -" + this.S[1].R + ", -" + this.S[1].R ;
 	    	r01 = '';
 	    	W0 = this.S[0].W;
-			tL = (W0 + L1 - this.S[1].uwL ) * 0.5, //temporary var
+			// tL = (W0 + L1 - this.S[1].uwL ) * 0.5, //temporary var
+			tL = W0 + this.S[1].uwO, //temporary var
 
-	    	leftSide = ' v ' + tL + ' h ' + this.S[1].uwW + ' v ' + this.S[1].uwL + ' h -' + this.S[1].uwW + 
-		    ' v ' + tL + ' ';
+	    	leftSide = ' v ' + tL
+			    	 + ' h ' + this.S[1].uwW + ' v ' + this.S[1].uwL + ' h -' + this.S[1].uwW
+			    	 + ' v ' + ( L1 - this.S[1].uwO - this.S[1].uwL ) + ' ';
 			var
-		    	iR = this.S[1].defr,//radiuses of ilend corners
 				iW = this.S[1].iW,
+		    	iR = (iW - 2 * this.S[1].defr) <= 0  ? iW * 0.5	: this.S[1].defr,//radiuses of ilend corners
+				iO = this.S[1].iO,
 			    iL = this.S[1].iL,//lenght of ilend
-			    tL = (L1 - iL) * 0.5 - iR - iR; //temporary var
-		    firstBack = ' v'+'-' + tL +
-		    ' q 0, -' + iR + ' -' + iR + ', -' +  iR +  ' h -' +  (iW - iR)  + ' q -' + iR + ', 0 -' + iR + ', -' + iR + 
-		    ' v -' + this.S[1].iL +
-		    ' q 0, -' + iR + ' ' + iR + ', -' +  iR +  ' h ' +  (iW - iR)  + ' q ' + iR + ', 0 ' + iR + ', -' + iR + 
-		    ' v -' + tL + ' ';
+			    tL1 = (iO  - this.S[1].r2) - iR, //temporary var
+			    tL2 = (L1 - iO - iL + this.S[1].r2) - iR; //temporary var
+
+		    firstBack = ' v'+'-' + tL1 +
+		    ' q 0, -' + iR + ' -' + iR + ', -' +  iR +  ' h -' +  (iW - iR  - iR )  + ' q -' + iR + ', 0 -' + iR + ', -' + iR + 
+		    ' v -' + (this.S[1].iL - iR - iR)  +
+		    ' q 0, -' + iR + ' ' + iR + ', -' +  iR +  ' h ' +  (iW - iR - iR )  + ' q ' + iR + ', 0 ' + iR + ', -' + iR + 
+		    ' v -' + tL2 + ' ';
 
 	    	X1 += this.S[1].R;
 	    	X1 -= this.S[1].W;
+	    // console.log(iW, iR);
 	    }
 	    if (typeof wholeTable.S[2] !== 'undefined') {
 			L2 = this.S[2].L - this.S[2].r1;
 	    	r22 = " a " + this.S[2].r2 + ", " + this.S[2].r2 + " 0 0 1 -" + this.S[2].r2 + ", " + this.S[2].r2;
 	    	r21 = " a " + this.S[2].r1 + ", " + this.S[2].r1 + " 0 0 1 -" + this.S[2].r1 + ", -" + this.S[2].r1 ;
 	    	W2 = this.S[2].W - this.S[2].r1 - this.S[2].r2;
-	    	R2 =  " a " + this.S[1].R + ", -" + this.S[1].R + " 0 0 1 -" + this.S[1].R + "," + this.S[1].R + "v -" + this.S[2].R ;
+	    	R2 =  " a " + this.S[2].R + ", -" + this.S[2].R + " 0 0 1 -" + this.S[2].R + "," + this.S[2].R + "v -" + this.S[2].R ;
 	    	r02 = '';
 
 			var
-		    	iR = this.S[2].defr,//radiuses of ilend corners
 				iW = this.S[2].iW,
+				iR = ((iW - 2 * this.S[2].defr) <= 0)  ? iW * 0.5 : this.S[2].defr,//radiuses of ilend corners
 			    iL = this.S[2].iL,//lenght of ilend
-			    tL = (L2 - iL) * 0.5 - iR - iR; //temporary var
-			secondFrwd = ' v' + tL +
-			' q 0, ' + iR + ' ' + iR + ', ' +  iR +  ' h ' + (iW - iR) + ' q ' + iR + ', 0 ' + iR + ', ' + iR + 
-			  ' v ' + this.S[2].iL +
-		    ' q 0, ' + iR + ' -' + iR + ', ' +  iR +  ' h -' +  (iW - iR) + ' q -' + iR + ', 0 -' + iR + ', ' + iR + 
-			' v ' + tL + ' ';
-	
-			tL = (L2 - iL) * 0.5 - iR;
+			    iO = this.S[2].iO,
+			    tL1 = (L2 - iO - iL); //temporary var
+			    tL2 = (iO  - this.S[2].r2) - iR, //temporary var
 
-			secondBack = ' v -' + tL + ' h -' + this.S[2].uwW + ' v -' + this.S[2].uwL + ' h ' + this.S[2].uwW + 
-		    ' v -' + tL + ' ';
+			secondFrwd = ' v' + tL1 +
+			' q 0, ' + iR + ' ' + iR + ', ' +  iR +  ' h ' + (iW - iR - iR) + ' q ' + iR + ', 0 ' + iR + ', ' + iR + 
+			  ' v ' + (this.S[2].iL - iR - iR) +
+		    ' q 0, ' + iR + ' -' + iR + ', ' +  iR +  ' h -' +  (iW - iR - iR) + ' q -' + iR + ', 0 -' + iR + ', ' + iR + 
+			' v ' + tL2 + ' ',
+
+			  // tL = (L2 - iL) * 0.5 - iR;
+			  tL1 = this.S[2].uwO - this.S[2].r1;
+			  tL2 = (L2 - this.S[2].uwO - this.S[2].uwL);
+
+			secondBack = ' v -' + tL1 + ' h -' + this.S[2].uwW + ' v -' + this.S[2].uwL + ' h ' + this.S[2].uwW + ' v -' + tL2 + ' ';
 
 	    	X2 -= this.S[0].r2;
 	    	X2 += this.S[2].W;
@@ -275,6 +253,49 @@ Object.defineProperty(wholeTable, "tableCountur", {
 		    }
 		  });
 
+Object.defineProperty(wholeTable, "distance4DimLines", {
+    get: function() {
+    	var bade = wholeTable.bade;
+		    	var arr= new Array();
+						if ( typeof wholeTable.S[0] !== 'undefined') {
+								arr.push({shift : 2 * bade, color : 'tomato'}); // dimlines for tabletop
+								arr.push({shift : (2*bade + wholeTable.S[0].W) * (-1), color : 'magenta'}); // dimlines for tabletop
+
+								arr.push({shift : -2.5 * bade, color : 'tomato'}); // dimlines for winsills
+								arr.push({shift : (bade) * (-0.5), color : 'magenta'}); // dimlines for winsills
+								arr.push({shift : (bade) * (1), color : 'magenta'}); // dimlines for winsills
+
+								arr.push({shift : (bade) * (-1), color : 'magenta'}); // dimlines for ilend
+								arr.push({shift : (bade) * (-0.25), color : 'magenta'}); // dimlines for ilend
+								arr.push({shift : (bade) * (1), color : 'magenta'}); // dimlines for ilend
+
+							}
+						if ( typeof wholeTable.S[1] !== 'undefined') {
+								arr.push({shift : (bade * 2 + wholeTable.S[1].W), color : 'tomato'});
+								arr.push({shift : bade, color : 'magenta'});
+								arr.push({shift : wholeTable.S[1].W*( -0.5 ), color : 'magenta'});
+								arr.push({shift : wholeTable.S[1].W*( 1 ), color : 'magenta'});
+
+								arr.push({shift : (bade) * (0.75), color : 'magenta'});
+								arr.push({shift : (bade) * (0.75), color : 'magenta'});
+								arr.push({shift : (bade) * (-0.5), color : 'magenta'});
+								arr.push({shift : (bade) * ( -0.5 ), color : 'magenta'});
+							}
+						if ( typeof wholeTable.S[2] !== 'undefined') {
+								arr.push({shift : -1 * (bade * 2 + wholeTable.S[2].W), color : 'tomato'});
+								arr.push({shift : bade, color : 'magenta'});
+
+								arr.push({shift : bade, color : 'magenta'});
+								arr.push({shift : bade * (0.75), color : 'magenta'});
+								arr.push({shift : bade * (0.75), color : 'magenta'});
+
+								arr.push({shift :  -0.5 * bade, color : 'magenta'});
+								arr.push({shift :  -0.5 * bade, color : 'magenta'});
+								arr.push({shift :  -0.5 * bade, color : 'magenta'});
+							}
+				return arr
+	    }
+});
 
 Object.defineProperty(wholeTable, "array4Drag", {
 	set: function(){
@@ -307,14 +328,41 @@ Object.defineProperty(wholeTable, "array4Drag", {
 						 wholeTable.S[1].Y0=wholeTable.S[0].W;
 						arr.push({x : wholeTable.S[1].X0-wholeTable.S[1].W, y : wholeTable.S[1].Y0, x1 : wholeTable.S[1].X0-wholeTable.S[1].W, y1 : wholeTable.S[1].Y0+wholeTable.S[1].L, cur : 'e-resize' , name : 'L',  infl2 : 'W', infl4 : '1'});
 						arr.push({x : wholeTable.S[1].X0, y : wholeTable.S[1].Y0+wholeTable.S[1].L, x1 : wholeTable.S[1].X0-wholeTable.S[1].W, y1 : wholeTable.S[1].Y0+wholeTable.S[1].L, cur : 'n-resize', name : 'W', infl2 : 'L', infl4 : '1'});
+
+						arr.push({x : wholeTable.S[1].X0, y : wholeTable.S[1].Y0 + wholeTable.S[1].uwO, x1 : wholeTable.S[1].X0 + wholeTable.S[1].uwW, y1 : wholeTable.S[1].Y0 + wholeTable.S[1].uwO, cur : 'n-resize', infl2 : 'uwO', infl4 : '1', name : 'uwW', direction : '1', 'display' : 1  });
+						arr.push({x : wholeTable.S[1].X0, y : wholeTable.S[1].Y0 + wholeTable.S[1].uwO + wholeTable.S[1].uwL, x1 : wholeTable.S[1].X0 + wholeTable.S[1].uwW, y1 : wholeTable.S[1].Y0 + wholeTable.S[1].uwO + wholeTable.S[1].uwL, cur : 'n-resize', infl2 : 'uwL', infl4 : '1', name : 'uwW', direction : '1', 'display' : 0  });
+						arr.push({x : wholeTable.S[1].X0 + wholeTable.S[1].uwW, y : wholeTable.S[1].Y0 + wholeTable.S[1].uwO, x1 : wholeTable.S[1].X0 + wholeTable.S[1].uwW, y1 : wholeTable.S[1].Y0 + wholeTable.S[1].uwO + wholeTable.S[1].uwL, cur : 'e-resize', infl2 : 'uwW', infl4 : '1', name : 'uwL', direction : '1', 'display' : 1  });
+
+						arr.push({x : wholeTable.S[1].X0 - wholeTable.S[1].W, y : wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO, x1 : wholeTable.S[1].X0 - wholeTable.S[1].W - wholeTable.S[1].iW, y1 :  wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO, cur : 'n-resize', name : 'iO', infl2 : 'iO', infl4 : '1', direction : '-1', 'display' : 0 });	
+
+						arr.push({x : wholeTable.S[1].X0 - wholeTable.S[1].W, y : wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO - wholeTable.S[1].iL, x1 : wholeTable.S[1].X0 - wholeTable.S[1].W - wholeTable.S[1].iW, y1 :  wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO - wholeTable.S[1].iL, cur : 'n-resize', name : 'iW', infl2 : 'iL', infl4 : '1', direction : '-1', });	
+
+						arr.push({x : wholeTable.S[1].X0 - wholeTable.S[1].W - wholeTable.S[1].iW, y : wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO, x1 : wholeTable.S[1].X0 - wholeTable.S[1].W - wholeTable.S[1].iW, y1 :  wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO - wholeTable.S[1].iL, cur : 'e-resize', name : 'iL', infl2 : 'iW', infl4 : '1', direction : '-1' });	
+
 					}
 				if ( typeof wholeTable.S[2] !== 'undefined') {
 						 // wholeTable.S[2].X0=wholeTable.S[2].W;
 						 wholeTable.S[2].Y0=wholeTable.S[0].W;
 						arr.push({x : wholeTable.S[2].X0+wholeTable.S[2].W, y : wholeTable.S[2].Y0, x1 : wholeTable.S[2].X0+wholeTable.S[2].W, y1 : wholeTable.S[2].Y0+wholeTable.S[2].L, cur : 'e-resize',  name : 'L', infl2 : 'W', infl4 : '2'});
 						arr.push({x : wholeTable.S[2].X0, y : wholeTable.S[2].Y0+wholeTable.S[2].L, x1 : wholeTable.S[2].X0+wholeTable.S[2].W, y1 : wholeTable.S[2].Y0+wholeTable.S[2].L, cur : 'n-resize', name : 'W',  infl2 : 'L', infl4 : '2'});
+
+
+						arr.push({x : wholeTable.S[2].X0 + wholeTable.S[2].W, y : wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO, x1 : wholeTable.S[2].X0 + wholeTable.S[2].W + wholeTable.S[2].iW, y1 :   wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO , cur : 'n-resize', name : 'iW', infl2 : 'iO', infl4 : '2', direction : '-1' });
+
+
+						arr.push({x : wholeTable.S[2].X0 + wholeTable.S[2].W, y : wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO - wholeTable.S[2].iL, x1 : wholeTable.S[2].X0 + wholeTable.S[2].W + wholeTable.S[2].iW, y1 :  wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO - wholeTable.S[2].iL , cur : 'n-resize', name : 'iW', infl2 : 'iL', infl4 : '2', direction : '-1', 'display' : 0  });
+
+						arr.push({x : wholeTable.S[2].X0 + wholeTable.S[2].W + wholeTable.S[2].iW, y : wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO, x1 : wholeTable.S[2].X0 + wholeTable.S[2].W + wholeTable.S[2].iW, y1 :  wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO - wholeTable.S[2].iL , cur : 'e-resize', name : 'iL', infl2 : 'iW', infl4 : '2', direction : '1' });
+
+						var x = -1 * wholeTable.S[2].uwW,
+							y = wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].uwO,
+							y1 = wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].uwO - wholeTable.S[2].uwL;
+
+						arr.push({x : x, y : y, x1 : x, y1 :  y1, cur : 'e-resize', name : 'uwL', infl2 : 'uwW', infl4 : '2', direction : '-1' });
+
+						arr.push({x : 0, y : y, x1 : x, y1 :  y, cur : 'n-resize', name : 'uwO', infl2 : 'uwO', infl4 : '2', direction : '-1', 'display' : 0   });
+						arr.push({x : 0, y : y1, x1 : x, y1 :  y1, cur : 'n-resize', name : 'uwW', infl2 : 'uwL', infl4 : '2', direction : '-1' });
 					}
-					// for (var i in arr) if (arr[i].display)	{ console.log(i,arr[i].display);}
 		return arr
 	    }
     });
@@ -358,8 +406,7 @@ Object.defineProperty(wholeTable, "dDimLines", {
 							  name : wholeTable.array4Drag[i].name,
 						   display : displ
 							};
-		    	 console.log(arr[i].text, wholeTable.array4Drag[i].infl2);
-
+		    	 // console.log(arr[i].text, wholeTable.array4Drag[i].infl2);
 
 		    	}
 		return arr
@@ -399,7 +446,7 @@ drawDimLines : function (canva, array4Drag, matrix) {//Draw dimlines to dragable
 						infl2 = wholeTable.dDimLines[i].infl2,
 						infl4 = wholeTable.dDimLines[i].infl4,
 						 name = wholeTable.dDimLines[i].name;
-						console.log(i,infl,infl2,infl4,dimText,name);
+						// console.log(i,infl,infl2,infl4,dimText,name);
 						 // alert(dimText,i,infl,infl2,infl4);
 					// var texT1 = canva.text( coordX+500, coordY+500, dimText).attr({ fontSize : '120px', 'text-anchor' : 'middle', 'letter-spacing' : 2, stroke : '#bbb', strokeWidth :1, fill : 'black', contenteditable:"true", contentEditable:"true"});
 
@@ -559,10 +606,11 @@ function initialisation(par){
 	var  string_= par.n+' ';
 
 	//check  whether need draw wings
-	if (~string_.indexOf('1')) {wholeTable.S[1]=Object.create(TableTop).constructor(wholeTable.S[0].L, wholeTable.S[0].W, 450, 2500, [2,3], 'Крыло 1', {Lmax : 4500, Lmin : 500, Wmax : 750, Wmin : 250}, {r1 : 150, r2 : 150, R : 100}, {uwW : 300, uwL : 800, iW : 100, iL : 600});	wholeTable.S[0].limits.Lmin = 750}
-	if (~string_.indexOf('2')) {wholeTable.S[2]=Object.create(TableTop).constructor(0, wholeTable.S[0].W, 600,1500, [2,3], 'Крыло 2', {Lmax : 4500, Lmin : 500, Wmax : 750, Wmin : 250}, {r1 : 50, r2 : 50, R : 100}, {uwW : 280, uwL : 500, ir:20, iW : 50, iL : 600}); wholeTable.S[0].limits.Lmin = 1500}
+	if (~string_.indexOf('1')) {wholeTable.S[1]=Object.create(TableTop).constructor(wholeTable.S[0].L, wholeTable.S[0].W, 450, 2500, [2,3], 'Крыло 1', {Lmax : 4500, Lmin : 500, Wmax : 750, Wmin : 250}, {r1 : 150, r2 : 150, R : 100}, {uwW : 300, uwL : 800, iW : 130, iL : 600, iO : 550, ir : 60});	wholeTable.S[0].limits.Lmin = 750}
+	if (~string_.indexOf('2')) {wholeTable.S[2]=Object.create(TableTop).constructor(0, wholeTable.S[0].W, 600,1500, [2,3], 'Крыло 2', {Lmax : 4500, Lmin : 500, Wmax : 750, Wmin : 250}, {r1 : 50, r2 : 50, R : 100}, {uwW : 280, uwL : 500, ir:20, iW : 150, iL : 600, ir : 40}); wholeTable.S[0].limits.Lmin = 1500}
 
 	redraw_mainCountur();
+	generateTablic();
  // graphModel.AlarmText = graphModel.views.front.text(100, 100, 'Limit').attr({fontSize : '120px', 'text-anchor' : 'middle', 'letter-spacing' : 2, stroke : 'tomato', strokeWidth :2, fill : 'tomato'})
 ;
 	// graphModel.drawDragCountuor(graphModel.views.front, wholeTable.array4Drag);
@@ -628,18 +676,22 @@ function zoom0(canva){ //zoom all objects in viewbox
 		            tdx = 0;
 		            tdy = direction * Math.round(snapInvMatrix.y( dx,dy ));
 					wholeTable.S[this.data().infl4].setSize(oldY + tdy,this.data().infl2);////set size with checking limits
-					$('#'+this.data().infl4+this.data().infl2).text(wholeTable.S[this.data().infl4][this.data().infl2]).parent().find("td:eq(3)").text(wholeTable.S[this.data().infl4].S);
+					$('#'+this.data().infl4+this.data().infl2).text(wholeTable.S[this.data().infl4][this.data().infl2]);
+					// $('#'+this.data().infl4+this.data().infl2).text(wholeTable.S[this.data().infl4][this.data().infl2]).parent().find("td:eq(3)").text(wholeTable.S[this.data().infl4].S);
 					graphModel.reDrawDimLines(graphModel.views.front, wholeTable.array4Drag);
 	            }
 	            else {
 		            tdx = direction * Math.round(snapInvMatrix.x( dx,dy ));
 		            tdy = 0;
 		            wholeTable.S[this.data().infl4].setSize(oldX + vk * tdx,this.data().infl2);////set size with checking limits
-					$('#'+this.data().infl4+this.data().infl2).text(wholeTable.S[this.data().infl4][this.data().infl2]).parent().find("td:eq(3)").text(wholeTable.S[this.data().infl4].S);
+					$('#'+this.data().infl4+this.data().infl2).text(wholeTable.S[this.data().infl4][this.data().infl2]);
+					// $('#'+this.data().infl4+this.data().infl2).text(wholeTable.S[this.data().infl4][this.data().infl2]).parent().find("td:eq(3)").text(wholeTable.S[this.data().infl4].S);
 					graphModel.reDrawDimLines(graphModel.views.front, wholeTable.array4Drag);
 	            }
 	            // console.log(this.attr('stroke'));
 	            // console.log(tdx, tdy);
+					$('#'+this.data().infl4+'S').text(wholeTable.S[this.data().infl4].S);
+
             this.transform( "t" + [ direction * tdx, direction * tdy ] + this.data('ot')  ).attr({'stroke' : '#bbb'});
 
 
@@ -675,11 +727,14 @@ function stopE(el){
 //======================================= TABLIC ====== HANDLING =========================================================
 
 
-function generateTablic(){ console.log('generateTablic');
-	var tbl=''
+function generateTablic(){ 
+	// console.log('generateTablic');
+ 	var f=0; //whole area
 	for (var i in wholeTable.S) {
-		tbl+=wholeTable.S[i].ST;
+		f +=(+wholeTable.S[i].S);
+	// console.log(f);
 	}
+		var tbl = '<tr><td>ИТОГО:</td><td></td><td></td><td id="F">'+f.toFixed(2)+'</td><td></td></tr>' ; 
 		 $('#priceTable').append(tbl);
 
 }
