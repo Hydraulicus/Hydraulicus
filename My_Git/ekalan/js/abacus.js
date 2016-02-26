@@ -63,7 +63,7 @@ var TableTop = {//prototipe
     this[target] = amount;
     var limMax = this.limits[target+'max'],
         limMin = this.limits[target+'min'];
-        console.log(limMax, limMin);
+        // console.log(limMax, limMin);
     if (amount < limMin) {
     	this[target] = limMin;
     	var cpos = { top: mousePos.y+ 10, left: mousePos.x + 10 };
@@ -467,8 +467,9 @@ drawDimLines : function (canva, array4Drag, matrix) {//Draw dimlines to dragable
 													        data2 : this.data('name'),
 													        data4 : this.data('infl4')
 													      };
-												console.log(this.data('infl'),target.data2,target.data4 );
-												callModall(target)
+												// console.log(this.data('infl'),target.data2,target.data4 );
+												callModall(target);
+												
 											})
 									.transform(tr)
 									;
@@ -670,7 +671,7 @@ function zoom0(canva){ //zoom all objects in viewbox
             var snapInvMatrix = this.transform().diffMatrix.invert();
             snapInvMatrix.e = snapInvMatrix.f = 0;
             direction = parseInt(this.data().direction) || 1;
-            console.log(this.data().infl4, this.data().infl2, direction);
+            // console.log(this.data().infl4, this.data().infl2, direction);
 
 			if (this.attr('cursor') == 'n-resize') {
 		            tdx = 0;
@@ -690,8 +691,10 @@ function zoom0(canva){ //zoom all objects in viewbox
 	            }
 	            // console.log(this.attr('stroke'));
 	            // console.log(tdx, tdy);
-					$('#'+this.data().infl4+'S').text(wholeTable.S[this.data().infl4].S);
 
+					// $('#'+this.data().infl4+'S').text(wholeTable.S[this.data().infl4].S);
+			targetCell.s.text(wholeTable.S[this.data().infl4].S);
+			targetCell.f.text(F());
             this.transform( "t" + [ direction * tdx, direction * tdy ] + this.data('ot')  ).attr({'stroke' : '#bbb'});
 
 
@@ -701,12 +704,13 @@ function start(el){
 		// console.clear();
 		oldMatrix = this.transform().localMatrix;
 		this.data('ot', this.transform().local );
+		this.data('ot', this.transform().local );
 		$('#'+this.data().infl4+this.data().infl2).css("background-color",'DarkSalmon');
 		tdx=0;	 tdy=0;
 		oldX = wholeTable.S[this.data().infl4][this.data().infl2]
 		oldY = wholeTable.S[this.data().infl4][this.data().infl2]
 		vk = ((this.data().infl4 == 1) && (this.data().infl2 == 'W')) ? -1 : 1;//
-
+		targetCell.s=$('#'+this.data().infl4+'S');
 	};
 
 function stopE(el){
@@ -726,17 +730,22 @@ function stopE(el){
 //========================================================================================================================
 //======================================= TABLIC ====== HANDLING =========================================================
 
+var targetCell = {};	
 
-function generateTablic(){ 
-	// console.log('generateTablic');
- 	var f=0; //whole area
+function F() {
+	var f=0; //whole area
 	for (var i in wholeTable.S) {
 		f +=(+wholeTable.S[i].S);
 	// console.log(f);
 	}
-		var tbl = '<tr><td>ИТОГО:</td><td></td><td></td><td id="F">'+f.toFixed(2)+'</td><td></td></tr>' ; 
-		 $('#priceTable').append(tbl);
+	return f.toFixed(2)
+}
 
+
+function generateTablic(){ 
+	// console.log('generateTablic');
+		 $('#priceTable').append('<tr><td>ИТОГО:</td><td></td><td></td><td id="F">'+F()+'</td><td></td></tr>');
+		targetCell.f = $('#F');
 }
 
 

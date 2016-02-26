@@ -191,14 +191,14 @@
         initialisation({n : nOfWings,});
     });
 
-document.querySelector('#item-1').addEventListener('click', function(){window.location.search = '&n=1';}, false);
+      document.querySelector('#item-1').addEventListener('click', function(){window.location.search = '&n=1';}, false);
 
-document.querySelector('#item-2').addEventListener('click', function(){window.location.search = '&n=0';}, false);
+      document.querySelector('#item-2').addEventListener('click', function(){window.location.search = '&n=0';}, false);
 
-document.querySelector('#item-3').addEventListener('click', function(){window.location.search = '&n=12';}, false);
+      document.querySelector('#item-3').addEventListener('click', function(){window.location.search = '&n=12';}, false);
 
 
-document.querySelector('#changeDim').addEventListener('input', function(){ 
+      document.querySelector('#changeDim').addEventListener('input', function(e){ 
       var min=$(this).attr('min'), max=$(this).attr('max'), val=parseInt($(this).val()), exkl = $(this).parent().find('i');
 
      if (val < min || val > max) {console.log(val, min, max);
@@ -209,12 +209,15 @@ document.querySelector('#changeDim').addEventListener('input', function(){
           $(this).css({color:'black'}); 
           exkl.css({opacity:0, color:'red'});
         } 
-      
+           // e.preventDefault();
+                // e.stopPropagation();  
+
     });
 
- $('#save-button').on('click', function(){
+ $('#save-button').on('click', function(event){
         console.log("save button pressed ")
-       
+      // event.preventDefault();
+  // event.stopImmediatePropagation();
     });
 
 function dontSubmit (event)
@@ -241,9 +244,9 @@ function $_GET(key) {
   return s ? s[1] : false;
 }
 
-
+var modFlag = false;
 function callModall(target){
- console.log(target);
+ // console.log(target);
 //  console.log(wholeTable.limits[0]);
   var vaL = wholeTable.S[target.data4][target.data2],
       maxLim = wholeTable.S[target.data4].limits[target.data2+'max'],
@@ -251,7 +254,10 @@ function callModall(target){
       $( "#WrappdimInputModal" ).find('p').html( 'Ограничение: от '+minLim+' до '+maxLim+' мм' );
     $( "#WrappdimInputModal" )
       .modal({keyboard : true})
-      .on('shown.bs.modal', function (e) {var that = $( "#WrappdimInputModal" ).find('input');
+      .on('shown.bs.modal', function (e) {
+        modFlag = true;
+        console.log('show modal');
+        var that = $( "#WrappdimInputModal" ).find('input');
         that.data('input2target',target);
         that.data(target)
             .attr({
@@ -261,19 +267,31 @@ function callModall(target){
         that.val(vaL).focus().select();
       })
 
-      .on('hide.bs.modal', function (e) {var that = $( "#WrappdimInputModal" ).find('input');
+      .on('hide.bs.modal', function (e) {
+        var that = $( "#WrappdimInputModal" ).find('input');
         // console.log('hide event',$(this).val())
         var  target_ = that.data('input2target');
-        // console.log(target_);
+        console.log(target_);
         // console.log(that.val());
         wholeTable.S[target_.data4].setSize(parseInt( that.val() ), target_.data2);//set size with checking limits
         $('#'+target_.data4+target_.data2).text(wholeTable.S[target_.data4][target_.data2]).parent().find("td:eq(3)").text(wholeTable.S[target_.data4].S);
         // wholeTable.S[target.data4][target.data2] = that.val();
+        console.log('hide.bs.modal');
+        console.time('modal');
+        if (modFlag) {redraw_mainCountur();}
+        modFlag = false;
+        console.timeEnd('modal');
+         // $(this).find('input').click(function(e){
 
-        redraw_mainCountur();
+            // });
       })
-      ;
-  return true
+     .on('hidden.bs.modal', function (e) { console.log('!!!hiden.bs.modal');
+        console.time('modal');
+                    e.preventDefault();
+                e.stopPropagation();  
+     });
+  // return true
+  return false;
 }
 
 
