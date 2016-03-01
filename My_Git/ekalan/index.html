@@ -27,11 +27,11 @@
 
 <!--
             <p> </p><p> Getted values - : <textarea id="setKnobVal" rows="1" cols="10" name="text"></textarea></p> -->
-    <div class="flex_container" style="height:50vh;">
+    <div class="flex_container" style="">
 
 <!-- ===================== FRONT ====================== -->
-            <div class="flex_block" style="background-color: #deefef; flex: 0 0 590px; height:590px;margin-top:1em ">
-  <!-- <div class="flex_svg-menu_container"  style=" padding:1em; background-color: #eee; width:100%; height:590px;"   float: left;> -->
+
+            <div class="flex_block" style="background-color: #deefef; margin:1em; padding:1em; flex: 0 0 400px; ">
 
             <!-- <div class=" flex_block " style=" flex: 0 1 590px; justify-content: flex-start; "> -->
 <div style='position: absolute;'><!-- block for radial menus-->
@@ -82,8 +82,8 @@
 
             <!-- <div class="flex_block" style=" padding:1em; flex: 0 0 590px; width:590px; height:590px;"> -->
             <!-- <div contenteditable="true" > -->
-            <div id='frontViewWrapper' ><!-- //Farefox can get size only from parent div. -->
-                  <svg id="frontView" class="flex_block"  width="590px"  height="590px" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" style='border: 1px solid #aaa'  viewBox="0 0 3000 3000">
+            <div id='frontViewWrapper'  style="flex: 0 0 530px; "><!-- //Farefox can get size only from parent div. -->
+                  <svg id="frontView" class="flex_block"  width="530px"  height="530px" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 3000 3000">
                   </svg>
             </div ><!-- end of frontViewWrapper -->
 
@@ -93,9 +93,9 @@
 
  </div ><!-- ================================ end of FRONT ========================================================= -->
 
-            <div class="flex_block" style="background-color: #eee; padding:1em; flex: 0 0 290px; height:290px">
+            <div class="flex_block" style="background-color: #deefef; margin:1em;  padding:1em; flex: 0 0 530px; ">
               <p> </p>
-                <svg id="svgout" class="flex_block"   width="300px" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" style='border: 1px solid #aaa' fill='green'  viewBox="0 0 3000 3000"><!-- preserveAspectRatio="xMinYMin meet" -->
+                <svg id="svgout" class="flex_block"   width="530px" height="530px" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 3000 3000"><!--style='border: 1px solid #aaa' preserveAspectRatio="xMinYMin meet" -->
 
                 </svg>
             </div>
@@ -370,7 +370,16 @@ $( document ).ready(function() {
 });//]]>
 
   </script>
+<script type="text/javascript">
+    var inFormOrLink;
+    $('a').on('click', function() { inFormOrLink = true; });
+    $('form').on('submit', function() { inFormOrLink = true; });
 
+    $(window).on("beforeunload", function() { 
+        return inFormOrLink ? "Do you really want to close?" : 'Это действие приведет к потере введеных ранее данных'; 
+        // return inFormOrLink ? "Do you really want to close?" : null; 
+    })
+</script>
 
 
 

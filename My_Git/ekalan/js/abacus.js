@@ -34,25 +34,6 @@ var TableTop = {//prototipe
 
 		};
 
-		// this.winSil = {l01 : this.L - this.uwL, l02 : this.uwL, }
-
-		  // Object.defineProperty(this, "l", {// l cobtain dims and size of winseal 
-		  //   get: function() {
-		  //   	var o ={};
-			 //    	o.l01=this.L - this.uwL
-			 //    	o.l02=this.uwL
-			 //    	o.l03=
-			 //    	o.h0=this.uwW
-		  //     return o //area in sq m . rounded
-		  //   }
-		  // });
-
-		  // Object.defineProperty(this, "uwO", {// offeset from start corner to windowsell
-		  //   get: function() {
-		  //   	console.log('uwO getter',this);
-		  //     return (this.L - this.uwL) * 0.5;
-		  //   }
-		  // });
 		  Object.defineProperty(this, "S", {// S will be calculated automaticaly everytime
 		    get: function() {
 		      return ((this.W * this.L + this.uwW * this.uwL + this.iW * this.iL) * 0.000001).toFixed(2) //area in sq m . rounded
@@ -111,6 +92,7 @@ distance4DimLines : [],		//array of distances betwin model an dimline. Are influ
   baseLofunderWin : 800, 	//defoult L of windowsill
 			 bade : 400,	//base distance of dimline
 			backD : 50,  	//return distance of dimline
+		  padding : 200, 	//defoult padding for tabletop graphics in viewboxes
   dragStrokeColor : 'red'
 	};
 	
@@ -131,7 +113,7 @@ Object.defineProperty(wholeTable, "tableCountur", {
     	    // Return = this.S[0].L - this.S[0].r1 - this.S[0].r2,
     	    X1 = this.S[0].L - this.S[0].iO + this.S[0].defr, 
     	    X2 = this.S[0].r2,
-
+ 
 	    	L1 = 0,
 	    	r11 = '',
 	    	r12 = '',
@@ -148,7 +130,8 @@ Object.defineProperty(wholeTable, "tableCountur", {
 	    	r11 = " a " + this.S[1].r1 + ", " + this.S[1].r1 + " 0 0 1 -" + this.S[1].r1 + "," + this.S[1].r1 ;
 	    	r12 = " a " + this.S[1].r2 + ", " + this.S[1].r2 + " 0 0 1 -" + this.S[1].r2 + ", -" + this.S[1].r2;
 	    	W1 = this.S[1].W - this.S[1].r1 - this.S[1].r2;
-	    	R1 =  "v " + this.S[1].R + " a " + this.S[1].R + ", -" + this.S[1].R + " 0 0 1 -" + this.S[1].R + ", -" + this.S[1].R ;
+	    	// R1 =  "v " + this.S[1].R + " a " + this.S[1].R + ", -" + this.S[1].R + " 0 0 1 -" + this.S[1].R + ", -" + this.S[1].R ;
+	    	R1 =  ' q 0, -' + this.S[1].R + ' -' + this.S[1].R + ', -' +  this.S[1].R;
 	    	r01 = '';
 	    	W0 = this.S[0].W;
 			// tL = (W0 + L1 - this.S[1].uwL ) * 0.5, //temporary var
@@ -163,7 +146,7 @@ Object.defineProperty(wholeTable, "tableCountur", {
 				iO = this.S[1].iO,
 			    iL = this.S[1].iL,//lenght of ilend
 			    tL1 = (iO  - this.S[1].r2) - iR, //temporary var
-			    tL2 = (L1 - iO - iL + this.S[1].r2) - iR; //temporary var
+			    tL2 = (L1 - iO - iL + this.S[1].r2) - iR - this.S[1].R; //temporary var
 
 		    firstBack = ' v'+'-' + tL1 +
 		    ' q 0, -' + iR + ' -' + iR + ', -' +  iR +  ' h -' +  (iW - iR  - iR )  + ' q -' + iR + ', 0 -' + iR + ', -' + iR + 
@@ -173,23 +156,24 @@ Object.defineProperty(wholeTable, "tableCountur", {
 
 	    	X1 += this.S[1].R;
 	    	X1 -= this.S[1].W;
-	    // console.log(iW, iR);
 	    }
 	    if (typeof wholeTable.S[2] !== 'undefined') {
 			L2 = this.S[2].L - this.S[2].r1;
 	    	r22 = " a " + this.S[2].r2 + ", " + this.S[2].r2 + " 0 0 1 -" + this.S[2].r2 + ", " + this.S[2].r2;
 	    	r21 = " a " + this.S[2].r1 + ", " + this.S[2].r1 + " 0 0 1 -" + this.S[2].r1 + ", -" + this.S[2].r1 ;
 	    	W2 = this.S[2].W - this.S[2].r1 - this.S[2].r2;
-	    	R2 =  " a " + this.S[2].R + ", -" + this.S[2].R + " 0 0 1 -" + this.S[2].R + "," + this.S[2].R + "v -" + this.S[2].R ;
+	    	// R2 =  " a " + this.S[2].R + ", -" + this.S[2].R + " 0 0 1 -" + this.S[2].R + "," + this.S[2].R + "v -" + this.S[2].R ;
+	    	R2 =  ' q -' + this.S[2].R + ', 0 -'+ this.S[2].R + ', ' +  this.S[2].R;
 	    	r02 = '';
 
 			var
 				iW = this.S[2].iW,
 				iR = ((iW - 2 * this.S[2].defr) <= 0)  ? iW * 0.5 : this.S[2].defr,//radiuses of ilend corners
+				compensator = 0.5* (this.S[2].defr - iR),
 			    iL = this.S[2].iL,//lenght of ilend
 			    iO = this.S[2].iO,
-			    tL1 = (L2 - iO - iL); //temporary var
-			    tL2 = (iO  - this.S[2].r2) - iR, //temporary var
+			    tL1 = (L2 - iO - iL) + compensator - this.S[2].R; //temporary var
+			    tL2 = (iO  - this.S[2].r2) - iR + compensator, //temporary var
 
 			secondFrwd = ' v' + tL1 +
 			' q 0, ' + iR + ' ' + iR + ', ' +  iR +  ' h ' + (iW - iR - iR) + ' q ' + iR + ', 0 ' + iR + ', ' + iR + 
@@ -200,22 +184,23 @@ Object.defineProperty(wholeTable, "tableCountur", {
 			  // tL = (L2 - iL) * 0.5 - iR;
 			  tL1 = this.S[2].uwO - this.S[2].r1;
 			  tL2 = (L2 - this.S[2].uwO - this.S[2].uwL);
-
+   
 			secondBack = ' v -' + tL1 + ' h -' + this.S[2].uwW + ' v -' + this.S[2].uwL + ' h ' + this.S[2].uwW + ' v -' + tL2 + ' ';
 
 	    	X2 -= this.S[0].r2;
 	    	X2 += this.S[2].W;
 	    	X2 += this.S[2].R;
 	    }
-	    var iR = this.S[0].defr,//radiuses of ilend corners
-			iW = this.S[0].iW,
+	    var iW = this.S[0].iW,
+		    iR = ((iW - 2 * this.S[0].defr) <= 0)  ? iW * 0.5 : this.S[0].defr,//radiuses of ilend corners
 		    iL = this.S[0].iL - iR - iR,//lenght of ilend
+		    tV = iW - iR  - iR,
 
 	    back = ' L '+ X1 + ' , ' +this.S[0].W+' '+
-		    ' q -' + iR + ', 0  -' + iR + ', ' + iR + ' v' + (iW - iR  - iR) + ' q 0, ' + iR + ' -' + iR + ', '+ iR + 
-		    ' h -' + iL +
-		    ' q -' + iR + ', 0  -' + iR + ', -' + iR + ' v-' + (iW - iR  - iR) + ' q 0, -' + iR + ' -' + iR + ',  -' + iR +
-		    ' L ' + X2 + ' , ' +this.S[0].W;
+			   ' q -' + iR + ', 0  -' + iR + ', ' + iR + ' v' + tV  + ' q 0, ' + iR + ' -' + iR + ', '+ iR + 
+			   ' h -' + iL +
+			   ' q -' + iR + ', 0  -' + iR + ', -' + iR + ' v-' + tV + ' q 0, -' + iR + ' -' + iR + ',  -' + iR +
+			   ' L ' + X2 + ' , ' +this.S[0].W;
 
 	    var	d='M0,0 '+ l0
 				+ leftSide + r11 + ' h'+'-'+ W1 + r12 + firstBack //concern first wing
@@ -225,8 +210,9 @@ Object.defineProperty(wholeTable, "tableCountur", {
 				+ secondFrwd + r22 + ' h'+'-' + W2 + r21 //concern second wing
 				+ r02 + secondBack
 				+'z';
-		// console.log( back);
+		// console.log( back, tV);
 		// console.log(d, this.S[0].iO);
+		// console.log(iL,d);
 		return d
 	    }
 });
@@ -312,15 +298,23 @@ Object.defineProperty(wholeTable, "array4Drag", {
 				if ( typeof wholeTable.S[0] !== 'undefined') {
 						arr.push({x : wholeTable.S[0].L, y : 0, x1 : wholeTable.S[0].L, y1 : wholeTable.S[0].W, cur : 'e-resize', name : 'W', infl2 : 'L', infl4 : '0'});
 						arr.push({x : wholeTable.S[0].L, y : wholeTable.S[0].W, x1 : 0, y1 : wholeTable.S[0].W, cur : 'n-resize', name : 'L',  infl2 : 'W', infl4 : '0' });
-						arr.push({x : wholeTable.S[0].uwO, y : 0, x1 : wholeTable.S[0].uwO, y1 : (-1)*wholeTable.S[0].uwW, cur : 'e-resize', name : 'uwW', infl4 : 0, infl2 : "uwO" });
-						arr.push({x1 : wholeTable.S[0].uwO+wholeTable.S[0].uwL, y1 : (-1)*wholeTable.S[0].uwW, x : wholeTable.S[0].uwO, y : (-1)*wholeTable.S[0].uwW, name : 'uwL', cur : 'n-resize', infl4 : 0, infl2 : "uwW", direction : '-1' });
-						arr.push({x1 : wholeTable.S[0].uwO+wholeTable.S[0].uwL, y1 : (-1)*wholeTable.S[0].uwW, x : wholeTable.S[0].uwO+wholeTable.S[0].uwL, y : 0, cur : 'e-resize', name : 'uwO', infl4 : 0, infl2 : "uwL", direction : '1', 'display' : 0 });
+						arr.push({x : wholeTable.S[0].uwO, y : 0, x1 : wholeTable.S[0].uwO, y1 : (-1)*wholeTable.S[0].uwW, cur : 'e-resize', name : 'uwW', infl4 : 0, infl2 : "uwO", 'display' : 0 });
+
+						arr.push({x1 : wholeTable.S[0].uwO+wholeTable.S[0].uwL, y1 : (-1)*wholeTable.S[0].uwW, x : wholeTable.S[0].uwO, y : (-1)*wholeTable.S[0].uwW, name : 'uwL', cur : 'n-resize', infl4 : 0, infl2 : "uwW", direction : '-1',
+						 'display' : ( wholeTable.S[0].uwW == 0 ) ? 0 : 1  
+						});
+						arr.push({x1 : wholeTable.S[0].uwO+wholeTable.S[0].uwL, y1 : (-1)*wholeTable.S[0].uwW, x : wholeTable.S[0].uwO+wholeTable.S[0].uwL, y : 0, cur : 'e-resize', name : 'uwO', infl4 : 0, infl2 : "uwL", direction : '1', 
+						 'display' : ( wholeTable.S[0].uwW == 0 ) ? 0 : 1  
+					});
 
 						var o4i =  wholeTable.S[0].L - (wholeTable.S[0].iO + W1 - R1 - wholeTable.S[0].defr); //offset for ilend
 						arr.push({x : o4i, y : wholeTable.S[0].W, x1 : o4i, y1 : wholeTable.S[0].W + wholeTable.S[0].iW, cur : 'e-resize', infl2 : 'iO', infl4 : '0', name : 'iO', direction : '-1', 'display' : 0  });
-
-						arr.push({x : o4i - wholeTable.S[0].iL, y : wholeTable.S[0].W, x1 : o4i - wholeTable.S[0].iL, y1 : wholeTable.S[0].W + wholeTable.S[0].iW, cur : 'e-resize', name : 'iW',  infl2 : 'iL', infl4 : '0', direction : '-1' });
-						arr.push({x : o4i, y : wholeTable.S[0].W + wholeTable.S[0].iW, x1 : o4i - wholeTable.S[0].iL, y1 : wholeTable.S[0].W + wholeTable.S[0].iW, cur : 'n-resize', name : 'iL', infl2 : 'iW', infl4 : '0', direction : '1'});
+						arr.push({x : o4i - wholeTable.S[0].iL, y : wholeTable.S[0].W, x1 : o4i - wholeTable.S[0].iL, y1 : wholeTable.S[0].W + wholeTable.S[0].iW, cur : 'e-resize', name : 'iW',  infl2 : 'iL', infl4 : '0', direction : '-1',
+						 'display' : ( wholeTable.S[0].iW == 0 ) ? 0 : 1  
+						 });
+						arr.push({x : o4i, y : wholeTable.S[0].W + wholeTable.S[0].iW, x1 : o4i - wholeTable.S[0].iL, y1 : wholeTable.S[0].W + wholeTable.S[0].iW, cur : 'n-resize', name : 'iL', infl2 : 'iW', infl4 : '0', direction : '1',
+						 'display' : ( wholeTable.S[0].iW == 0 ) ? 0 : 1  
+					});
 
 					}
 				if ( typeof wholeTable.S[1] !== 'undefined') {
@@ -329,15 +323,15 @@ Object.defineProperty(wholeTable, "array4Drag", {
 						arr.push({x : wholeTable.S[1].X0-wholeTable.S[1].W, y : wholeTable.S[1].Y0, x1 : wholeTable.S[1].X0-wholeTable.S[1].W, y1 : wholeTable.S[1].Y0+wholeTable.S[1].L, cur : 'e-resize' , name : 'L',  infl2 : 'W', infl4 : '1'});
 						arr.push({x : wholeTable.S[1].X0, y : wholeTable.S[1].Y0+wholeTable.S[1].L, x1 : wholeTable.S[1].X0-wholeTable.S[1].W, y1 : wholeTable.S[1].Y0+wholeTable.S[1].L, cur : 'n-resize', name : 'W', infl2 : 'L', infl4 : '1'});
 
-						arr.push({x : wholeTable.S[1].X0, y : wholeTable.S[1].Y0 + wholeTable.S[1].uwO, x1 : wholeTable.S[1].X0 + wholeTable.S[1].uwW, y1 : wholeTable.S[1].Y0 + wholeTable.S[1].uwO, cur : 'n-resize', infl2 : 'uwO', infl4 : '1', name : 'uwW', direction : '1', 'display' : 1  });
+						arr.push({x : wholeTable.S[1].X0, y : wholeTable.S[1].Y0 + wholeTable.S[1].uwO, x1 : wholeTable.S[1].X0 + wholeTable.S[1].uwW, y1 : wholeTable.S[1].Y0 + wholeTable.S[1].uwO, cur : 'n-resize', infl2 : 'uwO', infl4 : '1', name : 'uwW', direction : '1', 'display' : ( wholeTable.S[1].uwW == 0 ) ? 0 : 1	});
 						arr.push({x : wholeTable.S[1].X0, y : wholeTable.S[1].Y0 + wholeTable.S[1].uwO + wholeTable.S[1].uwL, x1 : wholeTable.S[1].X0 + wholeTable.S[1].uwW, y1 : wholeTable.S[1].Y0 + wholeTable.S[1].uwO + wholeTable.S[1].uwL, cur : 'n-resize', infl2 : 'uwL', infl4 : '1', name : 'uwW', direction : '1', 'display' : 0  });
-						arr.push({x : wholeTable.S[1].X0 + wholeTable.S[1].uwW, y : wholeTable.S[1].Y0 + wholeTable.S[1].uwO, x1 : wholeTable.S[1].X0 + wholeTable.S[1].uwW, y1 : wholeTable.S[1].Y0 + wholeTable.S[1].uwO + wholeTable.S[1].uwL, cur : 'e-resize', infl2 : 'uwW', infl4 : '1', name : 'uwL', direction : '1', 'display' : 1  });
+						arr.push({x : wholeTable.S[1].X0 + wholeTable.S[1].uwW, y : wholeTable.S[1].Y0 + wholeTable.S[1].uwO, x1 : wholeTable.S[1].X0 + wholeTable.S[1].uwW, y1 : wholeTable.S[1].Y0 + wholeTable.S[1].uwO + wholeTable.S[1].uwL, cur : 'e-resize', infl2 : 'uwW', infl4 : '1', name : 'uwL', direction : '1', 'display' : ( wholeTable.S[1].uwW == 0 ) ? 0 : 1   });
 
 						arr.push({x : wholeTable.S[1].X0 - wholeTable.S[1].W, y : wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO, x1 : wholeTable.S[1].X0 - wholeTable.S[1].W - wholeTable.S[1].iW, y1 :  wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO, cur : 'n-resize', name : 'iO', infl2 : 'iO', infl4 : '1', direction : '-1', 'display' : 0 });	
 
-						arr.push({x : wholeTable.S[1].X0 - wholeTable.S[1].W, y : wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO - wholeTable.S[1].iL, x1 : wholeTable.S[1].X0 - wholeTable.S[1].W - wholeTable.S[1].iW, y1 :  wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO - wholeTable.S[1].iL, cur : 'n-resize', name : 'iW', infl2 : 'iL', infl4 : '1', direction : '-1', });	
+						arr.push({x : wholeTable.S[1].X0 - wholeTable.S[1].W, y : wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO - wholeTable.S[1].iL, x1 : wholeTable.S[1].X0 - wholeTable.S[1].W - wholeTable.S[1].iW, y1 :  wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO - wholeTable.S[1].iL, cur : 'n-resize', name : 'iW', infl2 : 'iL', infl4 : '1', direction : '-1', 'display' : ( wholeTable.S[1].iW == 0 ) ? 0 : 1 });	
 
-						arr.push({x : wholeTable.S[1].X0 - wholeTable.S[1].W - wholeTable.S[1].iW, y : wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO, x1 : wholeTable.S[1].X0 - wholeTable.S[1].W - wholeTable.S[1].iW, y1 :  wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO - wholeTable.S[1].iL, cur : 'e-resize', name : 'iL', infl2 : 'iW', infl4 : '1', direction : '-1' });	
+						arr.push({x : wholeTable.S[1].X0 - wholeTable.S[1].W - wholeTable.S[1].iW, y : wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO, x1 : wholeTable.S[1].X0 - wholeTable.S[1].W - wholeTable.S[1].iW, y1 :  wholeTable.S[1].Y0 + wholeTable.S[1].L - wholeTable.S[1].iO - wholeTable.S[1].iL, cur : 'e-resize', name : 'iL', infl2 : 'iW', infl4 : '1', direction : '-1', 'display' : ( wholeTable.S[1].iW == 0 ) ? 0 : 1 });	
 
 					}
 				if ( typeof wholeTable.S[2] !== 'undefined') {
@@ -347,21 +341,21 @@ Object.defineProperty(wholeTable, "array4Drag", {
 						arr.push({x : wholeTable.S[2].X0, y : wholeTable.S[2].Y0+wholeTable.S[2].L, x1 : wholeTable.S[2].X0+wholeTable.S[2].W, y1 : wholeTable.S[2].Y0+wholeTable.S[2].L, cur : 'n-resize', name : 'W',  infl2 : 'L', infl4 : '2'});
 
 
-						arr.push({x : wholeTable.S[2].X0 + wholeTable.S[2].W, y : wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO, x1 : wholeTable.S[2].X0 + wholeTable.S[2].W + wholeTable.S[2].iW, y1 :   wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO , cur : 'n-resize', name : 'iW', infl2 : 'iO', infl4 : '2', direction : '-1' });
+						arr.push({x : wholeTable.S[2].X0 + wholeTable.S[2].W, y : wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO, x1 : wholeTable.S[2].X0 + wholeTable.S[2].W + wholeTable.S[2].iW, y1 :   wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO , cur : 'n-resize', name : 'iW', infl2 : 'iO', infl4 : '2', direction : '-1', 'display' : ( wholeTable.S[2].iW == 0 ) ? 0 : 1 });
 
 
 						arr.push({x : wholeTable.S[2].X0 + wholeTable.S[2].W, y : wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO - wholeTable.S[2].iL, x1 : wholeTable.S[2].X0 + wholeTable.S[2].W + wholeTable.S[2].iW, y1 :  wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO - wholeTable.S[2].iL , cur : 'n-resize', name : 'iW', infl2 : 'iL', infl4 : '2', direction : '-1', 'display' : 0  });
 
-						arr.push({x : wholeTable.S[2].X0 + wholeTable.S[2].W + wholeTable.S[2].iW, y : wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO, x1 : wholeTable.S[2].X0 + wholeTable.S[2].W + wholeTable.S[2].iW, y1 :  wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO - wholeTable.S[2].iL , cur : 'e-resize', name : 'iL', infl2 : 'iW', infl4 : '2', direction : '1' });
+						arr.push({x : wholeTable.S[2].X0 + wholeTable.S[2].W + wholeTable.S[2].iW, y : wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO, x1 : wholeTable.S[2].X0 + wholeTable.S[2].W + wholeTable.S[2].iW, y1 :  wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].iO - wholeTable.S[2].iL , cur : 'e-resize', name : 'iL', infl2 : 'iW', infl4 : '2', direction : '1', 'display' : ( wholeTable.S[2].iW == 0 ) ? 0 : 1 });
 
 						var x = -1 * wholeTable.S[2].uwW,
 							y = wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].uwO,
 							y1 = wholeTable.S[2].Y0 + wholeTable.S[2].L - wholeTable.S[2].uwO - wholeTable.S[2].uwL;
 
-						arr.push({x : x, y : y, x1 : x, y1 :  y1, cur : 'e-resize', name : 'uwL', infl2 : 'uwW', infl4 : '2', direction : '-1' });
+						arr.push({x : x, y : y, x1 : x, y1 :  y1, cur : 'e-resize', name : 'uwL', infl2 : 'uwW', infl4 : '2', direction : '-1', 'display' : ( wholeTable.S[2].uwW == 0 ) ? 0 : 1 });
 
 						arr.push({x : 0, y : y, x1 : x, y1 :  y, cur : 'n-resize', name : 'uwO', infl2 : 'uwO', infl4 : '2', direction : '-1', 'display' : 0   });
-						arr.push({x : 0, y : y1, x1 : x, y1 :  y1, cur : 'n-resize', name : 'uwW', infl2 : 'uwL', infl4 : '2', direction : '-1' });
+						arr.push({x : 0, y : y1, x1 : x, y1 :  y1, cur : 'n-resize', name : 'uwW', infl2 : 'uwL', infl4 : '2', direction : '-1', 'display' : ( wholeTable.S[2].uwW == 0 ) ? 0 : 1 });
 					}
 		return arr
 	    }
@@ -413,13 +407,13 @@ Object.defineProperty(wholeTable, "dDimLines", {
 	    }
     });
 
-function backgngColor(canva, textElm){
-	var SVGRect = textElm.getBBox();
-	var rect = canva.rect()
-    .attr({"x" : SVGRect.x, "y" : SVGRect.y, "width" : SVGRect.width, "height" : SVGRect.height, "fill": "#fff", stroke: 'black', strokeWidth : '2px'})
-    .insertBefore(textElm);
-    return rect
-}
+// function backgngColor(canva, textElm){
+// 	var SVGRect = textElm.getBBox();
+// 	var rect = canva.rect()
+//     .attr({"x" : SVGRect.x, "y" : SVGRect.y, "width" : SVGRect.width, "height" : SVGRect.height, "fill": "#fff", stroke: 'black', strokeWidth : '2px'})
+//     .insertBefore(textElm);
+//     return rect
+// }
 
 var graphModel ={
  AlarmText : 'Limit',
@@ -491,6 +485,18 @@ reDrawDimLines : function (canva, array4Drag, matrix) {
 							 dist = {to : wholeTable.distance4DimLines[i].shift + ' ' + (backD * (-1)),
 									back : backD + ' ' + wholeTable.distance4DimLines[i].shift * (-1)};
 							shift += (array4Drag[i].cur == 'e-resize') ? ' h ' + dist.to + ' v '+ (array4Drag[i].y1-array4Drag[i].y) + ' h  ' + dist.back + '  ' : ' v ' + dist.to + ' h ' + (array4Drag[i].x1-array4Drag[i].x) + ' v  ' + dist.back ;
+							
+
+							if ( (array4Drag[i].display == 0) ) { 
+									wholeTable.dimLines[i].l.stop().animate({opacity:0 }, 500); 
+									wholeTable.dimLines[i].t.stop().animate({opacity:0 }, 500); 
+								}
+								else { 
+									wholeTable.dimLines[i].l.stop().animate({opacity:1 }, 750, mina.easeinout ); 
+									wholeTable.dimLines[i].t.stop().animate({opacity:1 }, 750, mina.easeinout ); 
+								}
+							
+
 							wholeTable.dimLines[i].l.attr( 'd',shift);
 							wholeTable.dimLines[i].t.attr({text :  wholeTable.dDimLines[i].text, x :  wholeTable.dDimLines[i].tx, y : wholeTable.dDimLines[i].ty});
 							wholeTable.dimLines[i].t.transform(wholeTable.dDimLines[i].transf);
@@ -515,23 +521,23 @@ drawDragCountuor : function(canva, array4Drag, matrix){//Start draw dragable ele
 				return wholeTable.dragLines
 		},
 
-drawWindowSillsDragCountuor : function(canva, array4Drag, matrix){//Start draw dragable element
-			// if (typeof wholeTable.dragLines !== 'undefined') { for (var i in wholeTable.dragLines) wholeTable.dragLines[i].remove()};
-			console.log(array4Drag);
-			for (var i in array4Drag) {
-					wholeTable.dragSillLines[i]  = canva.line( array4Drag[i].x, array4Drag[i].y, array4Drag[i].x1, array4Drag[i].y1)
-									.attr({ stroke: wholeTable.dragStrokeColor, 'strokeWidth': 22, cursor: array4Drag[i].cur, id:array4Drag[i].infl2})
-									.data('infl2',array4Drag[i].infl2)
-									.data('infl4',array4Drag[i].infl4)
-									 .drag( dragMove , start, stopE)
-									 // .hover(function() { this.attr({strokeWidth: 20, stroke:"#aaf"}) },
-										//  	function() { this.attr({strokeWidth: 40, stroke : wholeTable.dragStrokeColor}) })
-									 .dblclick(underWinGrow);
+// drawWindowSillsDragCountuor : function(canva, array4Drag, matrix){//Start draw dragable element
+// 			// if (typeof wholeTable.dragLines !== 'undefined') { for (var i in wholeTable.dragLines) wholeTable.dragLines[i].remove()};
+// 			console.log(array4Drag);
+// 			for (var i in array4Drag) {
+// 					wholeTable.dragSillLines[i]  = canva.line( array4Drag[i].x, array4Drag[i].y, array4Drag[i].x1, array4Drag[i].y1)
+// 									.attr({ stroke: wholeTable.dragStrokeColor, 'strokeWidth': 22, cursor: array4Drag[i].cur, id:array4Drag[i].infl2})
+// 									.data('infl2',array4Drag[i].infl2)
+// 									.data('infl4',array4Drag[i].infl4)
+// 									 .drag( dragMove , start, stopE)
+// 									 // .hover(function() { this.attr({strokeWidth: 20, stroke:"#aaf"}) },
+// 										//  	function() { this.attr({strokeWidth: 40, stroke : wholeTable.dragStrokeColor}) })
+// 									 .dblclick(underWinGrow);
 
-					if (typeof matrix !== 'undefined') {wholeTable.dragSillLines[i].transform(matrix) }
-				}
-				return wholeTable.dragSillLines
-		},
+// 					if (typeof matrix !== 'undefined') {wholeTable.dragSillLines[i].transform(matrix) }
+// 				}
+// 				return wholeTable.dragSillLines
+// 		},
 
 //===========================================================================================
 reDrawDragCountuor : function(canva, array4Drag, matrix){//Start draw dragable element
@@ -575,24 +581,60 @@ drawCircles : function(canva, array4, matrix){//Start draw dblclick cicrcles
 
 	var	mainCountur = {//content of main views
 			front : undefined,
-			izometr : undefined,
-			}; // сюда будем подставлять новый d
+			izometr0 : undefined,
+			izometr1 : undefined,
+			// izometr : undefined, //group of izometr0 and izometr1
 
+			}; // сюда будем подставлять новый d
+var g;
+var discs;
 //============================================================================================================
 //======================================== initialisation ====================================================
 //============================================================================================================
 function initialisation(par){
-	var myMatrix = new Snap.Matrix();
-	myMatrix.scale(0.8,0.4);            // play with scaling before and after the rotate
-	// myMatrix.translate(100,100);      // this translate will not be applied to the rotation
-	myMatrix.rotate(45);            // rotate
+	var IzoMatrix = new Snap.Matrix();
+
+	IzoMatrix.scale(0.8,0.4);            
+	// myMatrix  
+	IzoMatrix.rotate(45); 
+
+	mainCountur.cloneMrtx = IzoMatrix.clone(IzoMatrix);    
+	mainCountur.cloneMrtx.translate(-20,-20);    
+
 	graphModel.views.izometr = Snap("#svgout");//connect first viewport with izometric view
 	graphModel.views.front = Snap("#frontView");//connect 2-nd viewport with front view
 
+
+
+
 	wholeTable.S[0]=Object.create(TableTop).constructor(0, 0, 600, 2500, [2,3], 'Центральная', {Lmax : 4500, Lmin : 500, Wmax : 750, Wmin : 250}, {r1 : 150, r2 : 150}, {uwW : 300, uwL : 800, ir:10, iW : 50, iL : 500, iO : 600});
 
-	mainCountur.izometr=graphModel.views.izometr.path( wholeTable.tableCountur).attr({ stroke: '#999', 'strokeWidth': 20,fill:"#aaa"}).transform(myMatrix);
-	mainCountur.front=graphModel.views.front.path( wholeTable.tableCountur).attr({ stroke: '#aaa', 'strokeWidth': 20,fill:"#bbb"})
+	mainCountur.izometr0=graphModel.views.izometr.path( wholeTable.tableCountur).attr({ stroke: '#999', 'strokeWidth': 20, fill:"#aaa", 'stroke-linejoin': 'bevel', 'stroke-miterlimit' : 1 }).transform(IzoMatrix);
+	mainCountur.izometr1=graphModel.views.izometr.path( wholeTable.tableCountur).attr({ stroke: '#999', 'strokeWidth': 20, fill:"#aaa", 'stroke-linejoin': 'bevel', 'stroke-miterlimit' : 1}).transform(mainCountur.cloneMrtx);
+	// mainCountur.izometr0=graphModel.views.izometr.path();
+	// mainCountur.izometr1=graphModel.views.izometr.path();
+	// mainCountur.izometr = graphModel.views.izometr.group(graphModel.views.izometr.path(),mainCountur.izometr1);
+	// mainCountur.izometr[0].attr({'d':wholeTable.tableCountur});
+	// mainCountur.izometr.attr({'d':wholeTable.tableCountur});
+	// g = graphModel.views.izometr.paper.g(mainCountur.izometr0,mainCountur.izometr1);
+	// g.attr({fill: "#fff"});
+	// mainCountur.izometr.attr({fill: "#fff"});
+// console.log(mainCountur.izometr[0].attr('fill'));
+
+// var smallCircle = graphModel.views.izometr.circle(100, -150, 70).attr({fill:"#aaa"}).transform(mainCountur.cloneMrtx);
+// Lets put this small circle and another one into a group:
+
+// discs = graphModel.views.izometr.group(smallCircle, graphModel.views.izometr.circle(200, -150, 70).transform(mainCountur.cloneMrtx));
+	// discs.add(mainCountur.izometr0,mainCountur.izometr1);
+// Now we can change attributes for the whole group
+// discs[0].attr({r:500,
+    // fill: "#fff"
+// });
+// discs.attr({fill: "R(150, 150, 100)#fff-#000"});
+
+
+
+	mainCountur.front=graphModel.views.front.path( wholeTable.tableCountur).attr({ stroke: '#aaa', 'strokeWidth': 20,fill:"#bbb", 'stroke-linejoin': 'bevel', 'stroke-miterlimit' : 1})
 											 .hover(function() {
 											 	this.attr({fill:"#bbc",stroke:"#aac"});
 											 }, function() {
@@ -611,6 +653,7 @@ function initialisation(par){
 	if (~string_.indexOf('2')) {wholeTable.S[2]=Object.create(TableTop).constructor(0, wholeTable.S[0].W, 600,1500, [2,3], 'Крыло 2', {Lmax : 4500, Lmin : 500, Wmax : 750, Wmin : 250}, {r1 : 50, r2 : 50, R : 100}, {uwW : 280, uwL : 500, ir:20, iW : 150, iL : 600, ir : 40}); wholeTable.S[0].limits.Lmin = 1500}
 
 	redraw_mainCountur();
+
 	generateTablic();
  // graphModel.AlarmText = graphModel.views.front.text(100, 100, 'Limit').attr({fontSize : '120px', 'text-anchor' : 'middle', 'letter-spacing' : 2, stroke : 'tomato', strokeWidth :2, fill : 'tomato'})
 ;
@@ -631,10 +674,20 @@ function redraw_mainCountur(){
                 graphModel.drawCircles(graphModel.views.front, wholeTable.aC);
             });
 
-      mainCountur.izometr.animate({'d':wholeTable.tableCountur}, 550, mina.elastic,
-      	function(){
+      mainCountur.izometr0.attr({'d':wholeTable.tableCountur});
+      mainCountur.izometr1.attr({'d':wholeTable.tableCountur});
       		zoom0(graphModel.views.izometr);
-      	});
+     //  mainCountur.izometr1.animate({'d':wholeTable.tableCountur}, 550, mina.elastic
+     //  	,function(){
+     //  	console.log(document.getElementById('clone'));
+     //  	if (!document.getElementById('clone') == 'null') {console.log('should be remove'); this.remove()};
+     //  	mainCountur.izometr1.clone().attr({
+     //  		'id' : "clone",    fill : 'tomato', 'd':wholeTable.tableCountur})
+     //  	.animate({
+     // 'transform' : mainCountur.cloneMrtx
+			  // },400);
+     //  		zoom0(graphModel.views.izometr);
+     //  	});
 }
 
 
@@ -660,7 +713,7 @@ function twoWawe(){
 
 function zoom0(canva){ //zoom all objects in viewbox
 	var bBox = canva.getBBox()
-	 var scale= ' '+(bBox.x-300)+' '+(bBox.y-300)+' '+(bBox.w+600)+' ' +(bBox.h+600);
+	 var scale= ' '+(bBox.x-wholeTable.padding*0.5)+' '+(bBox.y-wholeTable.padding)+' '+(bBox.w+wholeTable.padding)+' ' +(bBox.h+wholeTable.padding);
 	// canva.animate({"viewBox": scale}, 100, function(){console.log(scale)});
 	canva.attr({"viewBox": scale});
 	// document.querySelector('#frontView').setAttribute("viewBox", ' '+bBox.x+' '+bBox.y+' '+bBox.w+' ' +bBox.h);
@@ -720,7 +773,9 @@ function stopE(el){
 								graphModel.reDrawDragCountuor(graphModel.views.front, wholeTable.array4Drag);
 								zoom0(graphModel.views.front);
 								graphModel.reDrawCircles(graphModel.views.front, wholeTable.aC);});
-		mainCountur.izometr.animate({'d':wholeTable.tableCountur}, 150, mina.easein, function(){ zoom0(graphModel.views.izometr);});
+		mainCountur.izometr0.attr({'d':wholeTable.tableCountur});
+		mainCountur.izometr1.attr({'d':wholeTable.tableCountur});
+		// mainCountur.izometr.animate({'d':wholeTable.tableCountur}, 150, mina.easein, function(){ zoom0(graphModel.views.izometr);});
 		$('#'+this.data().infl4+this.data().infl2).css("background-color",'white');
 		$('#besideMouse').css({display:'none'});
 	};
