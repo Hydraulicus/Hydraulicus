@@ -84,6 +84,7 @@ var wholeTable = {
 		 dimLines : [],		//array which contain dim lines with coord from array4Drag. All this lines are redrawing afte draging
 		underWins : [], 	//array which contain coords of windowsills
 	  windowsills : [], 	//array which contain windowsills
+  IzometrCountuor : [],		//array of countur segments of izomertia
 			   aC : [],		//array of coord of circle which show dblclick
 			   aW : [],		//array of coord for windo
   		  circles : [],		//array of circle which show dblclick
@@ -93,6 +94,7 @@ distance4DimLines : [],		//array of distances betwin model an dimline. Are influ
 			 bade : 400,	//base distance of dimline
 			backD : 50,  	//return distance of dimline
 		  padding : 200, 	//defoult padding for tabletop graphics in viewboxes
+		  visHigh : 50, 	//visible high of borded along walls
   dragStrokeColor : 'red'
 	};
 	
@@ -209,13 +211,23 @@ Object.defineProperty(wholeTable, "tableCountur", {
 				+ R2
 				+ secondFrwd + r22 + ' h'+'-' + W2 + r21 //concern second wing
 				+ r02 + secondBack
-				+'z';
+				+'L 0 0';
 		// console.log( back, tV);
 		// console.log(d, this.S[0].iO);
 		// console.log(iL,d);
 		return d
 	    }
 });
+		  Object.defineProperty(wholeTable, "aSides", {//array of sides 4 izometria 
+		    get: function() {
+
+				var arr= Snap.parsePathString(wholeTable.tableCountur);
+
+				return arr
+		    }
+		  });
+
+
 
 		  Object.defineProperty(wholeTable, "aC", {//array of coord of circle which show dblclick
 		    get: function() {
@@ -415,10 +427,91 @@ Object.defineProperty(wholeTable, "dDimLines", {
 //     return rect
 // }
 
+function formingD(arr){
+	// for (var i = Things.length - 1; i >= 0; i--) {
+	// 		Things[i]
+	// 	}
+	var s='';
+		// console.log(arr);
+	for (var i in arr) {
+		s += arr[i] + ' ' 
+	}
+		// console.log(s);
+	return s
+};
+
+var tempSeg; 
 var graphModel ={
  AlarmText : 'Limit',
 		views : {},// view windows
 //===========================================================================================
+drawIzometrCountuor : function(canva, array4Drag, matrix){//Start draw dragable element
+	console.time('drawIzometrCountuor');
+			if (typeof wholeTable.IzometrCountuor !== 'undefined') { for (var i in wholeTable.IzometrCountuor) wholeTable.IzometrCountuor[i].remove()};
+
+				console.log('Start draw izometr countur');
+			// wholeTable.IzometrCountuor[0] = canva.path(formingD(wholeTable.aSides[i])).transform(matrix);//'M0 0'
+			wholeTable.IzometrCountuor[0] = canva.path(formingD(wholeTable.aSides[0])).attr({ stroke: 'tomato', 'strokeWidth': 1, cursor: 'pointer'}).transform(matrix);//'M0 0'
+			// debugger;
+// wholeTable.IzometrCountuor[0] = canva.path('M0 0') ;
+			for (var i = 1; i <= wholeTable.aSides.length - 1; i++) 
+				{ 	
+					var l = wholeTable.IzometrCountuor[i-1].getTotalLength(),
+						m = wholeTable.IzometrCountuor[i-1].getPointAtLength(l),
+						back = formingD(wholeTable.aSides[i]);
+
+					var d = 'm'+ (parseInt(m.x) || 0 )+ ' ' + (parseInt(m.y) || 0)+ ' ' + back;
+					// console.log('wholeTable.aSides['+i+'] = '+d);
+					wholeTable.IzometrCountuor[i] = canva.path(d);
+					// console.log('length of ['+i+'] = '+wholeTable.IzometrCountuor[i].getTotalLength());
+					l = wholeTable.IzometrCountuor[i].getTotalLength();
+					var to = wholeTable.IzometrCountuor[i].getPointAtLength(l);
+					
+					wholeTable.IzometrCountuor[i]
+									.attr({ stroke: 'transparent', 'strokeWidth': 100, cursor : 'pointer', fill : 'transparent'})
+									.data('d', d)
+									.data('i', i)
+									.data('derection',wholeTable.aSides[i][0])
+									.data('l', l)
+									.data('m', {x : (parseInt(m.x) || 0 ), y : (parseInt(m.y) || 0)}) 
+									.data('to', {x : parseInt(to.x), y : parseInt(to.y)}) 
+									.hover(function(){
+										var m = this.data('m'),
+											i = this.data('i'),
+											l = this.data('l'),
+											to = this.data('to'),
+											derection = this.data('derection'),
+											h = wholeTable.visHigh;
+										// console.log(this.data('derection'));
+										var realCoord = {x : matrix.x(m.x, m.y), y : matrix.y(m.x, m.y)};
+										var secCoord = {x : matrix.x(to.x, to.y), y : matrix.y(to.x, to.y)}
+
+										// console.log(realCoord,secCoord,l);
+										// var startD = ' m ' + realCoord.x + ' ' + (realCoord.y-h*0.5) + 'v '+h+' L ' +  secCoord.x + ' ' + secCoord.y  + 'v -1';
+										// var finishD = ' m ' + realCoord.x + ' ' + (realCoord.y-h) + 'v '+h+' L ' +  secCoord.x + ' ' + secCoord.y  + 'v -'+h;
+
+										var startD = ' m ' + realCoord.x + ' ' + (realCoord.y) + 'v -'+1+' L ' +  secCoord.x + ' ' + (secCoord.y-h*0.5)  + 'v 1';
+										var finishD = ' m ' + realCoord.x + ' ' + (realCoord.y) + 'v -'+h+' L ' +  secCoord.x + ' ' + (secCoord.y-h)  + 'v '+h;
+										// var newD = ' m ' + realCoord.x + ' ' + realCoord.y + 'v -'+h+' L ' +  secCoord.x + ' ' + secCoord.y  + 'v -'+h;
+										
+										// console.log(derection);
+										if ( derection == 'L' || derection == 'l' || derection == 'h' || derection == 'v')
+											{tempSeg = canva.path(startD).attr({fill : 'tomato', opacity : 0.5, stroke: 'tomato', 'strokeWidth': 12});
+											tempSeg.stop().animate({d:finishD},200,mina.easeinout);}
+										// if (typeof matrix !== 'undefined') {temp.transform(matrix) }
+										 // this.stop().animate({stroke:'Gold ',strokeWidth:2,fontSize : '120px', fill : 'DarkGoldenRod '},250, mina.easein)
+										},
+										 function(){ if (typeof tempSeg !== 'undefined') { var that = tempSeg;
+											 that.stop().animate({opacity:0},200,mina.linear, function () { that.remove()});}
+										 })
+
+
+					if (typeof matrix !== 'undefined') {wholeTable.IzometrCountuor[i].transform(matrix) }
+				}
+				console.timeEnd('drawIzometrCountuor');
+				return wholeTable.IzometrCountuor
+		},
+
 drawDimLines : function (canva, array4Drag, matrix) {//Draw dimlines to dragable elements
 		var arrow = canva.polygon([0,10, 4,10, 2,0, 0,10]).attr({fill: 'red'}).transform('r270');
 		var marker = arrow.marker(0,0, 10,10, 0,5);
@@ -520,24 +613,6 @@ drawDragCountuor : function(canva, array4Drag, matrix){//Start draw dragable ele
 				}
 				return wholeTable.dragLines
 		},
-
-// drawWindowSillsDragCountuor : function(canva, array4Drag, matrix){//Start draw dragable element
-// 			// if (typeof wholeTable.dragLines !== 'undefined') { for (var i in wholeTable.dragLines) wholeTable.dragLines[i].remove()};
-// 			console.log(array4Drag);
-// 			for (var i in array4Drag) {
-// 					wholeTable.dragSillLines[i]  = canva.line( array4Drag[i].x, array4Drag[i].y, array4Drag[i].x1, array4Drag[i].y1)
-// 									.attr({ stroke: wholeTable.dragStrokeColor, 'strokeWidth': 22, cursor: array4Drag[i].cur, id:array4Drag[i].infl2})
-// 									.data('infl2',array4Drag[i].infl2)
-// 									.data('infl4',array4Drag[i].infl4)
-// 									 .drag( dragMove , start, stopE)
-// 									 // .hover(function() { this.attr({strokeWidth: 20, stroke:"#aaf"}) },
-// 										//  	function() { this.attr({strokeWidth: 40, stroke : wholeTable.dragStrokeColor}) })
-// 									 .dblclick(underWinGrow);
-
-// 					if (typeof matrix !== 'undefined') {wholeTable.dragSillLines[i].transform(matrix) }
-// 				}
-// 				return wholeTable.dragSillLines
-// 		},
 
 //===========================================================================================
 reDrawDragCountuor : function(canva, array4Drag, matrix){//Start draw dragable element
@@ -655,6 +730,9 @@ function initialisation(par){
 	redraw_mainCountur();
 
 	generateTablic();
+
+	// console.dir(wholeTable.aSides);
+
  // graphModel.AlarmText = graphModel.views.front.text(100, 100, 'Limit').attr({fontSize : '120px', 'text-anchor' : 'middle', 'letter-spacing' : 2, stroke : 'tomato', strokeWidth :2, fill : 'tomato'})
 ;
 	// graphModel.drawDragCountuor(graphModel.views.front, wholeTable.array4Drag);
@@ -688,6 +766,10 @@ function redraw_mainCountur(){
 			  // },400);
      //  		zoom0(graphModel.views.izometr);
      //  	});
+
+	graphModel.drawIzometrCountuor(graphModel.views.izometr, wholeTable.aSides, mainCountur.cloneMrtx)
+
+
 }
 
 
