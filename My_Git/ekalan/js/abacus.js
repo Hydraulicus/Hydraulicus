@@ -85,6 +85,7 @@ var wholeTable = {
 		underWins : [], 	//array which contain coords of windowsills
 	  windowsills : [], 	//array which contain windowsills
   IzometrCountuor : [],		//array of countur segments of izomertia
+	 IzomElements : [],
 			   aC : [],		//array of coord of circle which show dblclick
 			   aW : [],		//array of coord for windo
   		  circles : [],		//array of circle which show dblclick
@@ -94,7 +95,10 @@ distance4DimLines : [],		//array of distances betwin model an dimline. Are influ
 			 bade : 400,	//base distance of dimline
 			backD : 50,  	//return distance of dimline
 		  padding : 200, 	//defoult padding for tabletop graphics in viewboxes
-		  visHigh : 50, 	//visible high of borded along walls
+		  visHigh : 30, 	//visible high of borded along walls
+	    panelHigh : 650, 	//visible high of panels along walls
+	     footHigh : -900, 	//visible high of foot
+		     izoR : 0.63,	//scale ratio for izo view
   dragStrokeColor : 'red'
 	};
 	
@@ -212,9 +216,7 @@ Object.defineProperty(wholeTable, "tableCountur", {
 				+ secondFrwd + r22 + ' h'+'-' + W2 + r21 //concern second wing
 				+ r02 + secondBack
 				+'L 0 0';
-		// console.log( back, tV);
-		// console.log(d, this.S[0].iO);
-		// console.log(iL,d);
+
 		return d
 	    }
 });
@@ -440,33 +442,129 @@ function formingD(arr){
 	return s
 };
 
-var tempSeg; 
+function drawEdge(canva, el, typ, matrix){//typ = click or hover or remove or redraw
+
+		var m = el.data('m'),
+			d = el.data('d'),
+			i = el.data('i'),
+			l = el.data('l'),
+			to = el.data('to'),
+			derection = el.data('derection');
+		// console.log(i,wholeTable.IzomElements[i].flag);
+
+// if ( wholeTable.IzomElements[i].flag !== 0) { 
+// 	// debugger;
+// 	console.log('!== 0');console.log( wholeTable.IzomElements[i].flag );
+// };
+
+	if ((typ == 'click') && ( wholeTable.IzomElements[i].flag !== 0)) { 
+
+					// console.log( wholeTable.IzomElements[i].flag );
+					wholeTable.IzomElements[i].flag = 0;
+					// console.log(typeof( wholeTable.IzomElements[i].flag ));
+					// console.log( wholeTable.IzomElements[i].flag );
+					// debugger;
+					wholeTable.IzomElements[i].elmnt.remove(); 
+					return	
+				};
+
+		var	h = (flag == 0 || flag == 1) ? wholeTable.visHigh :
+				(flag == 2) ? wholeTable.panelHigh : 
+				(flag == 4) ? wholeTable.footHigh : //foots
+				-15; // edge
+			h *= wholeTable.izoR;
+		// console.log(wholeTable.IzomElements[i].flag );
+		
+		var realCoord = {x : matrix.x(m.x, m.y), y : matrix.y(m.x, m.y)};
+		var secCoord = {x : matrix.x(to.x, to.y), y : matrix.y(to.x, to.y)};
+		var startD = ' m ' + realCoord.x + ' ' + (realCoord.y) + 'v -'+1+' L ' +  secCoord.x + ' ' + (secCoord.y)  + 'v 1';
+		var finishD = ' m ' + realCoord.x + ' ' + (realCoord.y) + 'v '+(h*(-1))+' L ' +  secCoord.x + ' ' + (secCoord.y-h)  + 'v '+h;
+		if (typ == 'redraw') {
+			// console.log(i,wholeTable.IzomElements[i].elmnt);
+			// console.log(finishD);
+						if ( wholeTable.IzomElements[i].flag == 3) 
+							{	wholeTable.IzomElements[i].elmnt.attr('d', d);
+								return
+							}
+							else 
+							{
+								wholeTable.IzomElements[i].elmnt.attr('d',finishD);
+								return
+							}
+					}
+
+
+		if (( derection == 'L' || derection == 'l' || derection == 'h' || derection == 'v') && (flag !== 3))
+			{
+				if (typ == 'hover') {
+						tempSeg = canva.path(startD).attr({fill : 'tomato', opacity : 0.55, stroke: 'tomato', 'strokeWidth': 12});
+						tempSeg.stop().animate({d:finishD},200,mina.easeinout);
+					}
+					else {
+						wholeTable.IzomElements[i].elmnt = canva.path(startD).attr({fill : 'gray', opacity : 0.55, stroke: 'gray', 'strokeWidth': 1});
+						wholeTable.IzomElements[i].elmnt.stop().animate({d:finishD},200,mina.easeinout);
+						wholeTable.IzomElements[i].flag = flag;
+						wholeTable.IzomElements[i].elmnt.click(function(){var that = el; drawEdge(canva, that, 'click', matrix);});
+					} 
+
+			};
+
+				if (flag == 3)
+					if (typ == 'hover') 
+						{tempSeg = canva.path(d)
+									.attr({fill : 'transparent', opacity : 1, stroke: 'magenta', 'strokeWidth': 50, cursor: 'pointer'})
+									.transform(matrix)
+									.addTransform('t0,-25')
+									;
+						}
+					else {
+						wholeTable.IzomElements[i].elmnt = canva.path(d)
+									.attr({fill : 'transparent', opacity : 1, stroke: 'magenta', 'strokeWidth': 50, cursor: 'pointer'})
+									.transform(matrix)
+									.addTransform('t0,-25')
+									;
+						wholeTable.IzomElements[i].flag = flag;
+						wholeTable.IzomElements[i].elmnt.click(function(){var that = el; drawEdge(canva, that, 'click', matrix);});
+					} 
+
+				tempSeg.click(function(){
+										// var i = this.data('i');
+										drawEdge(canva, this, 'click', matrix);
+										// wholeTable.IzomElements[i].flag = flag;
+									})
+	}
+
+var tempSeg, firstly = 1; 
 var graphModel ={
  AlarmText : 'Limit',
 		views : {},// view windows
 //===========================================================================================
-drawIzometrCountuor : function(canva, array4Drag, matrix){//Start draw dragable element
-	console.time('drawIzometrCountuor');
-			if (typeof wholeTable.IzometrCountuor !== 'undefined') { for (var i in wholeTable.IzometrCountuor) wholeTable.IzometrCountuor[i].remove()};
+calcIzometrCountuor : function(canva, array4Drag, matrix){
+			if (typeof wholeTable.IzometrCountuor[0] !== 'undefined') { for (var i in wholeTable.IzometrCountuor) wholeTable.IzometrCountuor[i].remove()};
 
-				console.log('Start draw izometr countur');
-			// wholeTable.IzometrCountuor[0] = canva.path(formingD(wholeTable.aSides[i])).transform(matrix);//'M0 0'
-			wholeTable.IzometrCountuor[0] = canva.path(formingD(wholeTable.aSides[0])).attr({ stroke: 'tomato', 'strokeWidth': 1, cursor: 'pointer'}).transform(matrix);//'M0 0'
-			// debugger;
-// wholeTable.IzometrCountuor[0] = canva.path('M0 0') ;
+					if (firstly == 1) {console.log(firstly);
+						for (var i = 1; i <= wholeTable.aSides.length - 1; i++) 
+							{wholeTable.IzomElements[i] = {'i' : i, 'flag' : 0};  };
+						firstly = 0	
+					}
+
+			console.log(wholeTable.IzomElements);
+			var d = formingD(wholeTable.aSides[0]);
+			wholeTable.IzometrCountuor[0] = canva.path(d).attr({ stroke: 'tomato', 'strokeWidth': 1, cursor: 'pointer'}).transform(matrix);//'M0 0'
+			wholeTable.IzomElements[0] = {'i' : 0, 'flag' : 0};
+						// debugger;
 			for (var i = 1; i <= wholeTable.aSides.length - 1; i++) 
-				{ 	
+				{ 
 					var l = wholeTable.IzometrCountuor[i-1].getTotalLength(),
 						m = wholeTable.IzometrCountuor[i-1].getPointAtLength(l),
 						back = formingD(wholeTable.aSides[i]);
 
-					var d = 'm'+ (parseInt(m.x) || 0 )+ ' ' + (parseInt(m.y) || 0)+ ' ' + back;
+					d = 'm'+ (parseInt(m.x) || 0 )+ ' ' + (parseInt(m.y) || 0)+ ' ' + back;
 					// console.log('wholeTable.aSides['+i+'] = '+d);
 					wholeTable.IzometrCountuor[i] = canva.path(d);
 					// console.log('length of ['+i+'] = '+wholeTable.IzometrCountuor[i].getTotalLength());
 					l = wholeTable.IzometrCountuor[i].getTotalLength();
 					var to = wholeTable.IzometrCountuor[i].getPointAtLength(l);
-					
 					wholeTable.IzometrCountuor[i]
 									.attr({ stroke: 'transparent', 'strokeWidth': 100, cursor : 'pointer', fill : 'transparent'})
 									.data('d', d)
@@ -475,42 +573,45 @@ drawIzometrCountuor : function(canva, array4Drag, matrix){//Start draw dragable 
 									.data('l', l)
 									.data('m', {x : (parseInt(m.x) || 0 ), y : (parseInt(m.y) || 0)}) 
 									.data('to', {x : parseInt(to.x), y : parseInt(to.y)}) 
+									.click(function(){
+										var i = this.data('i');
+										// console.log(this);
+										drawEdge(canva, this, 'click', matrix);
+										// wholeTable.IzomElements[i].flag = flag;
+									})
 									.hover(function(){
-										var m = this.data('m'),
-											i = this.data('i'),
-											l = this.data('l'),
-											to = this.data('to'),
-											derection = this.data('derection'),
-											h = wholeTable.visHigh;
-										// console.log(this.data('derection'));
-										var realCoord = {x : matrix.x(m.x, m.y), y : matrix.y(m.x, m.y)};
-										var secCoord = {x : matrix.x(to.x, to.y), y : matrix.y(to.x, to.y)}
-
-										// console.log(realCoord,secCoord,l);
-										// var startD = ' m ' + realCoord.x + ' ' + (realCoord.y-h*0.5) + 'v '+h+' L ' +  secCoord.x + ' ' + secCoord.y  + 'v -1';
-										// var finishD = ' m ' + realCoord.x + ' ' + (realCoord.y-h) + 'v '+h+' L ' +  secCoord.x + ' ' + secCoord.y  + 'v -'+h;
-
-										var startD = ' m ' + realCoord.x + ' ' + (realCoord.y) + 'v -'+1+' L ' +  secCoord.x + ' ' + (secCoord.y-h*0.5)  + 'v 1';
-										var finishD = ' m ' + realCoord.x + ' ' + (realCoord.y) + 'v -'+h+' L ' +  secCoord.x + ' ' + (secCoord.y-h)  + 'v '+h;
-										// var newD = ' m ' + realCoord.x + ' ' + realCoord.y + 'v -'+h+' L ' +  secCoord.x + ' ' + secCoord.y  + 'v -'+h;
-										
-										// console.log(derection);
-										if ( derection == 'L' || derection == 'l' || derection == 'h' || derection == 'v')
-											{tempSeg = canva.path(startD).attr({fill : 'tomato', opacity : 0.5, stroke: 'tomato', 'strokeWidth': 12});
-											tempSeg.stop().animate({d:finishD},200,mina.easeinout);}
-										// if (typeof matrix !== 'undefined') {temp.transform(matrix) }
-										 // this.stop().animate({stroke:'Gold ',strokeWidth:2,fontSize : '120px', fill : 'DarkGoldenRod '},250, mina.easein)
+										drawEdge(canva, this, 'hover', matrix);
 										},
-										 function(){ if (typeof tempSeg !== 'undefined') { var that = tempSeg;
+									 function(){ if (typeof tempSeg !== 'undefined') { var that = tempSeg;
 											 that.stop().animate({opacity:0},200,mina.linear, function () { that.remove()});}
 										 })
 
 
 					if (typeof matrix !== 'undefined') {wholeTable.IzometrCountuor[i].transform(matrix) }
 				}
-				console.timeEnd('drawIzometrCountuor');
+				// console.timeEnd('calcIzometrCountuor');
+				console.log(wholeTable.IzomElements);
 				return wholeTable.IzometrCountuor
 		},
+redrawElaments : function (canva, array4redraw, matrix) {
+	// if (typeof wholeTable.IzometrCountuor[0] !== 'undefined') { for (var i in wholeTable.IzometrCountuor) wholeTable.IzometrCountuor[i].remove()};
+	// console.log(array4redraw);
+	// for (var i in wholeTable.IzometrCountuor) {
+	for (var i = 1; i <= wholeTable.IzometrCountuor.length-1; i++) {
+		var el = wholeTable.IzometrCountuor[i];
+		// console.log(i,wholeTable.IzomElements[i].elmnt );
+
+		if (typeof wholeTable.IzomElements[i].elmnt === 'undefined') {console.log(i,'!undefined')}
+			else 
+		{  
+				// el.remove()
+				// console.log(el.data('m'));
+				// drawEdge(canva, wholeTable.aSides[i], 'redraw', matrix);
+				drawEdge(canva, wholeTable.IzometrCountuor[i], 'redraw', matrix);
+			};
+	}
+	// console.log(array4redraw);
+	},
 
 drawDimLines : function (canva, array4Drag, matrix) {//Draw dimlines to dragable elements
 		var arrow = canva.polygon([0,10, 4,10, 2,0, 0,10]).attr({fill: 'red'}).transform('r270');
@@ -640,17 +741,6 @@ drawCircles : function(canva, array4, matrix){//Start draw dblclick cicrcles
 			// console.dir(wholeTable.circles);
 		return wholeTable.circles
 		},
-
-// drawWindowSills : function(n, array4, matrix){//Start draw WindowSills
-
-				// 	wholeTable.windowsills[n]  = canva.rect( array4[n].x, array4[n].y, 30)
-				// 					.attr({ stroke: 'transparent', strokeWidth: 5, fill : '#bbb'});
-				// 	if (typeof matrix !== 'undefined') {wholeTable.circles[i].transform(matrix) }
-				// 		wholeTable.circlesGroup.add(wholeTable.circles[i]);
-
-				// return wholeTable.circles
-		// },
-
 }// end graphModel object
 
 
@@ -659,10 +749,8 @@ drawCircles : function(canva, array4, matrix){//Start draw dblclick cicrcles
 			izometr0 : undefined,
 			izometr1 : undefined,
 			// izometr : undefined, //group of izometr0 and izometr1
-
 			}; // сюда будем подставлять новый d
-var g;
-var discs;
+var g, discs;
 //============================================================================================================
 //======================================== initialisation ====================================================
 //============================================================================================================
@@ -679,35 +767,11 @@ function initialisation(par){
 	graphModel.views.izometr = Snap("#svgout");//connect first viewport with izometric view
 	graphModel.views.front = Snap("#frontView");//connect 2-nd viewport with front view
 
-
-
-
 	wholeTable.S[0]=Object.create(TableTop).constructor(0, 0, 600, 2500, [2,3], 'Центральная', {Lmax : 4500, Lmin : 500, Wmax : 750, Wmin : 250}, {r1 : 150, r2 : 150}, {uwW : 300, uwL : 800, ir:10, iW : 50, iL : 500, iO : 600});
 
 	mainCountur.izometr0=graphModel.views.izometr.path( wholeTable.tableCountur).attr({ stroke: '#999', 'strokeWidth': 20, fill:"#aaa", 'stroke-linejoin': 'bevel', 'stroke-miterlimit' : 1 }).transform(IzoMatrix);
 	mainCountur.izometr1=graphModel.views.izometr.path( wholeTable.tableCountur).attr({ stroke: '#999', 'strokeWidth': 20, fill:"#aaa", 'stroke-linejoin': 'bevel', 'stroke-miterlimit' : 1}).transform(mainCountur.cloneMrtx);
-	// mainCountur.izometr0=graphModel.views.izometr.path();
-	// mainCountur.izometr1=graphModel.views.izometr.path();
-	// mainCountur.izometr = graphModel.views.izometr.group(graphModel.views.izometr.path(),mainCountur.izometr1);
-	// mainCountur.izometr[0].attr({'d':wholeTable.tableCountur});
-	// mainCountur.izometr.attr({'d':wholeTable.tableCountur});
-	// g = graphModel.views.izometr.paper.g(mainCountur.izometr0,mainCountur.izometr1);
-	// g.attr({fill: "#fff"});
-	// mainCountur.izometr.attr({fill: "#fff"});
-// console.log(mainCountur.izometr[0].attr('fill'));
-
-// var smallCircle = graphModel.views.izometr.circle(100, -150, 70).attr({fill:"#aaa"}).transform(mainCountur.cloneMrtx);
-// Lets put this small circle and another one into a group:
-
-// discs = graphModel.views.izometr.group(smallCircle, graphModel.views.izometr.circle(200, -150, 70).transform(mainCountur.cloneMrtx));
-	// discs.add(mainCountur.izometr0,mainCountur.izometr1);
-// Now we can change attributes for the whole group
-// discs[0].attr({r:500,
-    // fill: "#fff"
-// });
-// discs.attr({fill: "R(150, 150, 100)#fff-#000"});
-
-
+	
 
 	mainCountur.front=graphModel.views.front.path( wholeTable.tableCountur).attr({ stroke: '#aaa', 'strokeWidth': 20,fill:"#bbb", 'stroke-linejoin': 'bevel', 'stroke-miterlimit' : 1})
 											 .hover(function() {
@@ -728,15 +792,7 @@ function initialisation(par){
 	if (~string_.indexOf('2')) {wholeTable.S[2]=Object.create(TableTop).constructor(0, wholeTable.S[0].W, 600,1500, [2,3], 'Крыло 2', {Lmax : 4500, Lmin : 500, Wmax : 750, Wmin : 250}, {r1 : 50, r2 : 50, R : 100}, {uwW : 280, uwL : 500, ir:20, iW : 150, iL : 600, ir : 40}); wholeTable.S[0].limits.Lmin = 1500}
 
 	redraw_mainCountur();
-
 	generateTablic();
-
-	// console.dir(wholeTable.aSides);
-
- // graphModel.AlarmText = graphModel.views.front.text(100, 100, 'Limit').attr({fontSize : '120px', 'text-anchor' : 'middle', 'letter-spacing' : 2, stroke : 'tomato', strokeWidth :2, fill : 'tomato'})
-;
-	// graphModel.drawDragCountuor(graphModel.views.front, wholeTable.array4Drag);
-// generateTablic();
 }
 //============================================================================================================
 
@@ -754,20 +810,9 @@ function redraw_mainCountur(){
 
       mainCountur.izometr0.attr({'d':wholeTable.tableCountur});
       mainCountur.izometr1.attr({'d':wholeTable.tableCountur});
-      		zoom0(graphModel.views.izometr);
-     //  mainCountur.izometr1.animate({'d':wholeTable.tableCountur}, 550, mina.elastic
-     //  	,function(){
-     //  	console.log(document.getElementById('clone'));
-     //  	if (!document.getElementById('clone') == 'null') {console.log('should be remove'); this.remove()};
-     //  	mainCountur.izometr1.clone().attr({
-     //  		'id' : "clone",    fill : 'tomato', 'd':wholeTable.tableCountur})
-     //  	.animate({
-     // 'transform' : mainCountur.cloneMrtx
-			  // },400);
-     //  		zoom0(graphModel.views.izometr);
-     //  	});
+ 	zoom0(graphModel.views.izometr);
 
-	graphModel.drawIzometrCountuor(graphModel.views.izometr, wholeTable.aSides, mainCountur.cloneMrtx)
+	graphModel.calcIzometrCountuor(graphModel.views.izometr, wholeTable.aSides, mainCountur.cloneMrtx);
 
 
 }
@@ -855,9 +900,19 @@ function stopE(el){
 								graphModel.reDrawDragCountuor(graphModel.views.front, wholeTable.array4Drag);
 								zoom0(graphModel.views.front);
 								graphModel.reDrawCircles(graphModel.views.front, wholeTable.aC);});
-		mainCountur.izometr0.attr({'d':wholeTable.tableCountur});
-		mainCountur.izometr1.attr({'d':wholeTable.tableCountur});
-		// mainCountur.izometr.animate({'d':wholeTable.tableCountur}, 150, mina.easein, function(){ zoom0(graphModel.views.izometr);});
+
+		mainCountur.izometr0.animate({'d':wholeTable.tableCountur}, 150, mina.easein, function(){});
+		mainCountur.izometr1.animate({'d':wholeTable.tableCountur}, 150, mina.easein, function(){
+				graphModel.calcIzometrCountuor(graphModel.views.izometr, wholeTable.aSides, mainCountur.cloneMrtx);	
+
+				graphModel.redrawElaments (graphModel.views.izometr, wholeTable.IzometrCountuor, mainCountur.cloneMrtx);
+
+								zoom0(graphModel.views.izometr);
+								});
+
+		// mainCountur.izometr0.attr({'d':wholeTable.tableCountur});
+		// mainCountur.izometr1.attr({'d':wholeTable.tableCountur});
+
 		$('#'+this.data().infl4+this.data().infl2).css("background-color",'white');
 		$('#besideMouse').css({display:'none'});
 	};
@@ -935,3 +990,8 @@ var mousePos = undefined;
     }
 })();
 
+Snap.plugin( function( Snap, Element, Paper, global ) {
+	Element.prototype.addTransform = function( t ) {
+		return this.transform( this.transform().localMatrix.toTransformString() + t );
+	};
+});
