@@ -430,15 +430,8 @@ Object.defineProperty(wholeTable, "dDimLines", {
 // }
 
 function formingD(arr){
-	// for (var i = Things.length - 1; i >= 0; i--) {
-	// 		Things[i]
-	// 	}
 	var s='';
-		// console.log(arr);
-	for (var i in arr) {
-		s += arr[i] + ' ' 
-	}
-		// console.log(s);
+	for (var i in arr) {s += arr[i] + ' '}
 	return s
 };
 
@@ -449,28 +442,25 @@ function drawEdge(canva, el, typ, matrix){//typ = click or hover or remove or re
 			i = el.data('i'),
 			l = el.data('l'),
 			to = el.data('to'),
+			dataflag = el.data('flag'),
 			derection = el.data('derection');
-		// console.log(i,wholeTable.IzomElements[i].flag);
+		console.log(i,dataflag,wholeTable.IzomElements[i].flag);
 
 // if ( wholeTable.IzomElements[i].flag !== 0) { 
-// 	// debugger;
+	// debugger;
 // 	console.log('!== 0');console.log( wholeTable.IzomElements[i].flag );
 // };
 
 	if ((typ == 'click') && ( wholeTable.IzomElements[i].flag !== 0)) { 
-
-					// console.log( wholeTable.IzomElements[i].flag );
 					wholeTable.IzomElements[i].flag = 0;
-					// console.log(typeof( wholeTable.IzomElements[i].flag ));
-					// console.log( wholeTable.IzomElements[i].flag );
-					// debugger;
 					wholeTable.IzomElements[i].elmnt.remove(); 
 					return	
 				};
 
-		var	h = (flag == 0 || flag == 1) ? wholeTable.visHigh :
-				(flag == 2) ? wholeTable.panelHigh : 
-				(flag == 4) ? wholeTable.footHigh : //foots
+		var	
+			h = (dataflag == 0 || dataflag == 1) ? wholeTable.visHigh :
+				(dataflag == 2) ? wholeTable.panelHigh : 
+				(dataflag == 4) ? wholeTable.footHigh : //foots
 				-15; // edge
 			h *= wholeTable.izoR;
 		// console.log(wholeTable.IzomElements[i].flag );
@@ -480,8 +470,16 @@ function drawEdge(canva, el, typ, matrix){//typ = click or hover or remove or re
 		var startD = ' m ' + realCoord.x + ' ' + (realCoord.y) + 'v -'+1+' L ' +  secCoord.x + ' ' + (secCoord.y)  + 'v 1';
 		var finishD = ' m ' + realCoord.x + ' ' + (realCoord.y) + 'v '+(h*(-1))+' L ' +  secCoord.x + ' ' + (secCoord.y-h)  + 'v '+h;
 		if (typ == 'redraw') {
+			dataflag = wholeTable.IzomElements[i].flag;
+
+			h = (dataflag == 0 || dataflag == 1) ? wholeTable.visHigh :
+				(dataflag == 2) ? wholeTable.panelHigh : 
+				(dataflag == 4) ? wholeTable.footHigh : //foots
+				-15; // edge
+			h *= wholeTable.izoR;		
+			var finishD = ' m ' + realCoord.x + ' ' + (realCoord.y) + 'v '+(h*(-1))+' L ' +  secCoord.x + ' ' + (secCoord.y-h)  + 'v '+h;
 			// console.log(i,wholeTable.IzomElements[i].elmnt);
-			// console.log(finishD);
+			console.log(dataflag,finishD);
 						if ( wholeTable.IzomElements[i].flag == 3) 
 							{	wholeTable.IzomElements[i].elmnt.attr('d', d);
 								return
@@ -501,10 +499,11 @@ function drawEdge(canva, el, typ, matrix){//typ = click or hover or remove or re
 						tempSeg.stop().animate({d:finishD},200,mina.easeinout);
 					}
 					else {
-						wholeTable.IzomElements[i].elmnt = canva.path(startD).attr({fill : 'gray', opacity : 0.55, stroke: 'gray', 'strokeWidth': 1});
+						wholeTable.IzomElements[i].elmnt = canva.path(startD).attr({fill : 'gold', opacity : 0.55, stroke: 'gold', 'strokeWidth': 1});
 						wholeTable.IzomElements[i].elmnt.stop().animate({d:finishD},200,mina.easeinout);
 						wholeTable.IzomElements[i].flag = flag;
-						wholeTable.IzomElements[i].elmnt.click(function(){var that = el; drawEdge(canva, that, 'click', matrix);});
+						el.data('flag', flag);
+						wholeTable.IzomElements[i].elmnt.click(function(){var that = el; that.data('flag', flag); drawEdge(canva, that, 'click', matrix);});
 					} 
 
 			};
@@ -524,13 +523,13 @@ function drawEdge(canva, el, typ, matrix){//typ = click or hover or remove or re
 									.addTransform('t0,-25')
 									;
 						wholeTable.IzomElements[i].flag = flag;
+						el.data('flag', flag);
 						wholeTable.IzomElements[i].elmnt.click(function(){var that = el; drawEdge(canva, that, 'click', matrix);});
 					} 
 
 				tempSeg.click(function(){
-										// var i = this.data('i');
+										this.data('flag', flag);
 										drawEdge(canva, this, 'click', matrix);
-										// wholeTable.IzomElements[i].flag = flag;
 									})
 	}
 
@@ -576,8 +575,9 @@ calcIzometrCountuor : function(canva, array4Drag, matrix){
 									.click(function(){
 										var i = this.data('i');
 										// console.log(this);
-										drawEdge(canva, this, 'click', matrix);
+										this.data('flag', flag);
 										// wholeTable.IzomElements[i].flag = flag;
+										drawEdge(canva, this, 'click', matrix);
 									})
 									.hover(function(){
 										drawEdge(canva, this, 'hover', matrix);
