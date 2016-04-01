@@ -1,0 +1,101 @@
+  <!DOCTYPE HTML>	
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="author" content="Alexei Zababurin" />
+    <meta name="description" content=" JS. SVG. animation.  SVG-animation. "/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta property="og:title" content="Signature  by Alexei Zababurin"/>
+    <meta property="og:site_name" content="Signature  by Alexei Zababurin"/>
+    <meta property="og:description" content="Signature  by Alexei Zababurin"/>
+    <title>Signature by Alexei Zababurin</title>
+
+  </head>
+  <body>
+	 <div style='width:100%;height:95px'>
+	 	
+		<svg id="animation" width="100%"  height="100%" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 95" preserveAspectRatio="xMidYMid meet" style=' background: linear-gradient(to top, #bbb, white);'> <!-- slice -->
+
+
+		</svg>
+	 </div>
+	 <script src="js/snap.svg-min.js"></script>
+  	  <script type="text/javascript">
+  	  var animSvg = Snap("#animation");
+
+
+var svgString1 = '<path id="s3" d="M23.6,28.002c0.011,2.454,0.222,4.764,0.734,7.166c1.206-0.333,2.411-0.665,3.616-0.997    c-1.08-4.467-2.896-12.992-8.66-13.758c-4.534-0.602-7.671,4.375-9.557,7.733c-6.801,12.11-9.255,27.811-3.616,40.767    c2.614,6.007,7.269,12.769,14.419,13.445c8.039,0.761,15.018-4.893,18.959-11.431c8.442-14.005,6.347-34.183,3.121-49.424    c-0.453-2.14-3.613-1.55-3.683,0.499c-0.643,18.823,1.6,39.047,9.59,56.28c0.81,1.745,3.508,0.822,3.494-0.946    c-0.037-4.607-0.258-9.188-0.009-13.797c0.141-2.613,1.555-16.769,7.207-12.368c3.783,2.944,4.066,10.457,5.139,14.766    c0.646,2.595,2.185,6.016,5.4,4.353c2.148-1.111,0.251-4.348-1.893-3.238c0.898,0.395,1.127,0.31,0.688-0.256   " stroke="black"/>';
+
+
+
+function Drawing( svgString, transformString, timeBetweenDraws ) {
+    this.fragment = Snap.parse( svgString );
+    this.pathArray = this.fragment.selectAll('path');
+    this.group = animSvg.g().transform( transformString ).drag();
+    this.timeBetweenDraws = timeBetweenDraws;
+};
+
+Drawing.prototype.init = function( svgString, transformString ) {
+      this.group.clear();
+      this.currentPathIndex = 0;
+
+};
+
+Drawing.prototype.endReached = function() {
+    if( this.currentPathIndex >= this.pathArray.length ) {
+        return true;
+    };
+};
+
+Drawing.prototype.callOnFinished = function() {
+}
+
+Drawing.prototype.initDraw = function() {
+    this.init();
+    this.draw();
+};
+
+Drawing.prototype.quickDraw = function() {
+    this.init();
+    this.timeBetweenDraws = 0;
+    this.draw();
+};
+
+Drawing.prototype.draw = function() {         // this is the main animation bit
+    if( this.endReached() ) {
+        if( this.callOnFinished ) {
+            this.callOnFinished();
+            return
+        };
+    };
+    var myPath = this.pathArray[ this.currentPathIndex ] ;
+
+    this.leng = myPath.getTotalLength();
+
+    this.group.append( myPath );
+
+     myPath.attr({
+       fill: 'none',
+       "stroke-dasharray": this.leng + " " + this.leng,
+       "stroke-dashoffset": this.leng
+     });
+
+     this.currentPathIndex++;
+
+     myPath.animate({"stroke-dashoffset": 0}, this.timeBetweenDraws, mina.easeout, this.draw.bind( this ) );
+
+};
+
+
+    var myDrawing1 = new Drawing( svgString1, '', 2000 ); myDrawing1.initDraw();
+
+
+
+
+
+	  </script>
+  </body>
+  
+
