@@ -1,22 +1,25 @@
  var json = [{"name":"WSSC Wind Use", "vol":22},
 				{"name":"US Wind Generation", "vol":4.7}],//data fot infographic
-	 iLook = {R : 300, r : 100 //R - out radius in px, r - inner radius
-			 ,color : 'hsl(240,50%,75%)' //color of outer data circle
-			},
-// angles = [{'x':0,'dx':30},{'x':0,'dx':5}];
-angles = [20,5];
-// console.log(json);
+	 iLook = {R : 180, w : 60 //R - out radius in px, w - width
+			 ,color : '#6D9EEB' //color of outer data circle
+			};
+
+//=================================================================================            
+var textes = [   {'text' : json[0].name, 'x' : 100, 'y' : -255}
+                ,{'text' : '('+json[0].vol+')', 'x':100, 'y' : -230, 'endX' : 50, 'endY' : -150}
+                ,{'text' : json[1].name, 'x':-120, 'y' : -255}
+                ,{'text' : '('+json[1].vol+')', 'x':-120, 'y' : -230, 'endX' : 15, 'endY' : -90}
+                ];
 
 var width = 800,
     height = width,
     radius = Math.min(width, height) / 2;
-
     tau = 2 * Math.PI; 
 
 
 var arc = [
-    d3.svg.arc().innerRadius(180).outerRadius(240).startAngle(0),
-    d3.svg.arc().innerRadius(120).outerRadius(180).startAngle(0),
+    d3.svg.arc().innerRadius(iLook.R).outerRadius(iLook.R-iLook.w).startAngle(0),
+    d3.svg.arc().innerRadius(iLook.R-iLook.w-iLook.w).outerRadius(iLook.R-iLook.w).startAngle(0),
     ];
 
 
@@ -26,13 +29,36 @@ var svg = d3.select("#animation").append("svg")
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
+// Define the gradient
+var gradient = svg.append("svg:defs")
+    .append("svg:linearGradient")
+    .attr("id", "gradient")
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "100%")
+    .attr("spreadMethod", "pad");
+
+// Define the gradient colors
+gradient.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#cccccf")
+    .attr("stop-opacity", 1);
+
+gradient.append("svg:stop")
+    .attr("offset", "90%")
+    .attr("stop-color", iLook.color)
+    .attr("stop-opacity", 1);
+
+
 
 // Add the background arc, from 0 to 100% .
 for (var i in json) {
         var background = svg.append("path")
             .datum({endAngle: tau})
-            .style("fill", "#eee")
-            .attr({"stroke" : "#555", "stroke-width" : 1})
+            .style("fill", "#efefef")
+            .attr({"stroke" : "#888", "stroke-width" : 1})
+            .classed("partition", true)
             .attr("d", arc[i]);
 }
 
@@ -40,14 +66,16 @@ for (var i in json) {
 var foreground = [
     svg.append("path")
     .datum({endAngle: 0})
-    .style("fill", iLook.color)
-    .attr({"stroke" : "#555", "stroke-width" : 1})
+    .style("fill", 'url(#gradient)')
+    .attr({"stroke" : "#888", "stroke-width" : 1})
+    .classed("partition", true)
     .attr("d", arc[0]),
 
     svg.append("path")
     .datum({endAngle: 0})
-    .style("fill", iLook.color)
-    .attr({"stroke" : "#555", "stroke-width" : 1})
+    .style("fill", 'url(#gradient)')
+    .attr({"stroke" : "#888", "stroke-width" : 1, opacity : 0.65})
+    .classed("partition", true)
     .attr("d", arc[1]),
     ];
 
@@ -66,10 +94,78 @@ var EndAngle = json[0].vol * 0.01 * tau;
  EndAngle = json[1].vol * 0.01 * tau;
     foreground[1].transition()
       .duration(750)
-      .call(arcTween, EndAngle, 1);
-
-
+      .call(arcTween, EndAngle, 1)
+      .each("end", function(){  gradient.select("stop")
+        .transition()
+        // .delay(1000)
+        .duration(500)
+         .ease("cubic ")
+        .attr("stop-color", iLook.color);})
 }, 500);
+
+// var text = svg.selectAll("text")
+//     .data(json);
+
+//     text.enter().append("text")
+//     .attr("text-anchor", "middle")
+//     .style("font-size", function(d) { return 16 + "px"; })
+
+
+var texts = svg.selectAll('text')
+                .data(textes)
+                .enter()
+                .append("text");
+
+var textLabels = texts
+                .attr("x", function(d) { return d.x; })
+                .attr("y", function(d) { return d.y; })
+                .classed("roboto", true)
+                .attr("text-anchor", "middle")
+                .attr("fill", "black")
+                .text(function(d) { return d.text; });
+// debugger;
+var racks = svg.selectAll('path:not(.partition)')
+                .data(textes)
+                .enter()
+                .append("path");
+
+var  racksAttr = racks
+                .classed("dash", true)
+                .attr({"id" : "rack1", "stroke" : "black", "stroke-width" : 1, opacity : 1})
+                .attr("d", function(d) { var L = (typeof( d.endX ) === 'undefined' )? ' ' : ' L' + d.endX + ',' + d.endY; return 'M'+d.x+','+(d.y+10)+L })
+                ;
+
+//  svg.append('text') 
+//     .text(json[1].name) 
+//     .attr('x', -100) 
+//     .attr('y', -250)
+//     .style("fill","black"); 
+
+// // svg.select('text').each(function() {  console.log(this.getBBox());});
+
+
+
+
+//=============dash
+var paths = svg.selectAll(".dash")
+    .call(transition);
+
+  function transition(path) {
+    path.transition()
+        .duration(1500)
+        .attrTween("stroke-dasharray", tweenDash)
+        //.each("end", function() { d3.select(this).call(transition); }); // infinite loop
+  }
+  
+  function tweenDash() {
+    var l = this.getTotalLength(),
+        i = d3.interpolateString("0," + l, l + "," + l); // interpolation of stroke-dasharray attr
+    return function(t) {
+      return i(t);
+    };
+  }
+
+//=============
 
 // svg.transition()
 //       .duration(1050)
