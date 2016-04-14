@@ -57,9 +57,12 @@ for (var i in json) {
         var background = svg.append("path")
             .datum({endAngle: tau})
             .style("fill", "#efefef")
-            .attr({"stroke" : "#888", "stroke-width" : 1})
+            .attr({"stroke" : "#888", "stroke-width" : 1, "opacity" : 0.1})
             .classed("partition", true)
-            .attr("d", arc[i]);
+            .attr("d", arc[i])
+            .transition()
+            .duration(1000)
+            .attr({"opacity" : 1});
 }
 
 
@@ -67,14 +70,14 @@ var foreground = [
     svg.append("path")
     .datum({endAngle: 0})
     .style("fill", 'url(#gradient)')
-    .attr({"stroke" : "#888", "stroke-width" : 1})
+    .attr({"stroke" : "#888", "stroke-width" : 0})
     .classed("partition", true)
     .attr("d", arc[0]),
 
     svg.append("path")
     .datum({endAngle: 0})
     .style("fill", 'url(#gradient)')
-    .attr({"stroke" : "#888", "stroke-width" : 1, opacity : 0.65})
+    .attr({"stroke" : "#888", "stroke-width" : 0, opacity : 0.65})
     .classed("partition", true)
     .attr("d", arc[1]),
     ];
@@ -89,6 +92,7 @@ setTimeout(function() {
 var EndAngle = json[0].vol * 0.01 * tau;
   foreground[0].transition()
       .duration(750)
+      // .delay(1000)
       .call(arcTween, EndAngle, 0);
 
  EndAngle = json[1].vol * 0.01 * tau;
@@ -101,7 +105,7 @@ var EndAngle = json[0].vol * 0.01 * tau;
         .duration(500)
          .ease("cubic ")
         .attr("stop-color", iLook.color);})
-}, 500);
+}, 1000);
 
 // var text = svg.selectAll("text")
 //     .data(json);
@@ -121,8 +125,11 @@ var textLabels = texts
                 .attr("y", function(d) { return d.y; })
                 .classed("roboto", true)
                 .attr("text-anchor", "middle")
-                .attr("fill", "black")
-                .text(function(d) { return d.text; });
+                .attr({"fill" : "black", "opacity" : 0, "font-size" : "5px"})
+                .text(function(d) { return d.text; })
+                .transition()
+                .duration(2000)
+                .attr({"opacity" : 1, "font-size" : "20px"});
 // debugger;
 var racks = svg.selectAll('path:not(.partition)')
                 .data(textes)
