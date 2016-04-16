@@ -8,19 +8,19 @@
 var width = 836,
     height = 1258,
     tau = 2 * Math.PI
-    cr = {x:418, y:406}; //center of rotation
+    cr = {x:width*0.5, y:406}; //center of rotation
 
 var textes = [   {'text' : json[0].name, 'x' : iLook.R*0.5, 'y' : (-1)*iLook.R*1.2}
-                ,{'text' : '('+json[0].vol+')', 'x' : iLook.R*0.5, 'y' : (-1)*iLook.R*1.2 + 25, 'endX' : 50, 'endY' : -150}
+                ,{'text' : '('+json[0].vol+')', 'x' : iLook.R*0.5, 'y' : (-1)*iLook.R*1.2 + 25, 'endX' : iLook.R*0.33, 'endY' : (-1)*iLook.R*0.8}
                 ,{'text' : json[1].name, 'x' : (-1)*iLook.R*0.5, 'y' : (-1)*iLook.R*1.2}
-                ,{'text' : '('+json[1].vol+')', 'x' : (-1)*iLook.R*0.5, 'y' : (-1)*iLook.R*1.2 + 25, 'endX' : 15, 'endY' : -90}
+                ,{'text' : '('+json[1].vol+')', 'x' : (-1)*iLook.R*0.5, 'y' : (-1)*iLook.R*1.2 + 25, 'endX' : iLook.R*0.05, 'endY' : (-1)*(iLook.R-iLook.w)*0.8}
                 ];
 
-var turbine = [ {d : "M"+(cr.x+10)+" "+(cr.y+11)+" c-4,-9 3,-15 8,-14 33,20 112,64 143,86l111 73c2,1 0,4 -2,3 -109,-60 -220,-105 -239,-132l-21 -16z"}
-                ,{d : "M425 392c-6,7 -15,5 -16,-1 1,-38 -1,-129 2,-166l8 -133c1,-2 4,-2 4,0 3,125 20,243 5,273l-3 27z"}
-                ,{d : "M404 406c10,2 12,11 8,15 -34,19 -111,65 -145,81l-119 59c-2,1 -4,-2 -2,-3 107,-65 201,-138 234,-141l24 -11z"}
-                ,{d : "M426 389c6,2 10,8 10,15l0 -1c-5,-1 -12,5 -8,14l2 2c-3,2 -7,4 -11,4 -3,0 -5,-1 -7,-2l0 0c4,-4 2,-13 -8,-15l-2 2c0,-1 0,-2 0,-3 0,-6 3,-11 7,-14l0 0c1,6 10,8 16,1l1 -3z"}
-                // ,{d : "M419 426c-4,0 -11,0 -14,-2 -4,-12 -7,-21 -6,-33 1,-4 4,-5 20,-5m0 40c5,0 12,0 15,-2 4,-12 6,-21 5,-33 0,-4 -4,-5 -20,-5"}
+var turbine = [ {d : "M"+(cr.x+10)+", "+(cr.y+11)+" c-4,-9 3,-15 8,-14 33,20 112,64 143,86l111 73c2,1 0,4 -2,3 -109,-60 -220,-105 -239,-132l-21 -16z"}
+                ,{d : "M"+(cr.x+7)+", "+(cr.y-14)+"c-6,7 -15,5 -16,-1 1,-38 -1,-129 2,-166l8 -133c1,-2 4,-2 4,0 3,125 20,243 5,273l-3 27z"}
+                ,{d : "M"+(cr.x-14)+", "+(cr.y)+"c10,2 12,11 8,15 -34,19 -111,65 -145,81l-119 59c-2,1 -4,-2 -2,-3 107,-65 201,-138 234,-141l24 -11z"}
+                ,{d : "M"+(cr.x+8)+", "+(cr.y-17)+"c6,2 10,8 10,15l0 -1c-5,-1 -12,5 -8,14l2 2c-3,2 -7,4 -11,4 -3,0 -5,-1 -7,-2l0 0c4,-4 2,-13 -8,-15l-2 2c0,-1 0,-2 0,-3 0,-6 3,-11 7,-14l0 0c1,6 10,8 16,1l1 -3z"}
+                // ,{d : "M"+(cr.x+1)+" "+(cr.y+20)+"c-4,0 -11,0 -14,-2 -4,-12 -7,-21 -6,-33 1,-4 4,-5 20,-5m0 40c5,0 12,0 15,-2 4,-12 6,-21 5,-33 0,-4 -4,-5 -20,-5"}
                 ]
 
 var arc = [
@@ -84,7 +84,9 @@ var foreground = [
     .attr({"stroke" : "#888", "stroke-width" : 0})
     .attr("transform", "translate("+cr.x+","+cr.y+")")
     .classed("partition", true)
-    .attr("d", arc[0]),
+    .classed("4centr", true)
+    .attr("d", arc[0])
+    ,
 
     svg.append("path")
     .datum({endAngle: 0})
@@ -92,8 +94,14 @@ var foreground = [
     .attr("transform", "translate("+cr.x+","+cr.y+")")
     .attr({"stroke" : "#888", "stroke-width" : 0, opacity : 0.65})
     .classed("partition", true)
-    .attr("d", arc[1]),
+    .classed("4centr", true)
+    .attr("d", arc[1])
+                // .call(function(d,i){ 
+                // var c = arc[0].centroid(d);  console.log(c);})
     ];
+
+
+
 
 for (var i in json) {
    console.log(i,json[i].vol);};
@@ -102,15 +110,16 @@ for (var i in json) {
 for (var i in turbine) {
         var background = svg.append("path")
             // .style("fill", "#555")
-            .attr({"stroke" : "#888", "stroke-width" : 2, "fill" : "#555", "opacity" : 1})
+            .attr({"stroke" : "#000", "stroke-width" : 2, "fill" : "#555", "opacity" : 1})
             .classed("turbine", true)
             .attr("d", turbine[i].d)
             .transition()
-            .duration(5500)
+            .duration(5750)
             .attrTween("transform", tween)
+            .each("end", function(d, i){});
              ;
    
-    function tween(d, i, a) { return d3.interpolateString("rotate(0, "+cr.x+","+cr.y+")", "rotate(570, "+cr.x+","+cr.y+")");};
+    function tween(d, i, a) { return d3.interpolateString("rotate(0, "+cr.x+","+cr.y+")", "rotate(615, "+cr.x+","+cr.y+")");};
 }
 
 setTimeout(function() {
@@ -126,6 +135,7 @@ var EndAngle = json[0].vol * 0.01 * tau;
         .delay(300)
       .duration(850)
       .call(arcTween, EndAngle, 1)
+
       .each("end", function(){  
             gradient.select("stop")
                     .transition()
@@ -147,7 +157,7 @@ var textLabels = texts
                 .classed("roboto", true)
                 .attr("text-anchor", "middle")
                 .attr({"fill" : "black", "opacity" : 0, "font-size" : "5px"})
-                .attr("transform", "translate(418,406)")
+                .attr("transform", "translate("+cr.x+","+cr.y+")")
                 .text(function(d) { return d.text; })
                 .transition()
                 .duration(2000)
@@ -163,13 +173,14 @@ var racks = svg.selectAll('path .dash')
 // .selectAll('path:not(.partition)')
                 .data(textes)
                 .enter()
-                .append("path");
-
-var  racksAttr = racks
+                .append("path")
                 .classed("dash", true)
                 .attr({"id" : "rack1", "stroke" : "black", "stroke-width" : 1, opacity : 1})
+                .attr("transform", "translate("+cr.x+","+cr.y+")")
                 .attr("d", function(d) { 
-                    var L = (typeof( d.endX ) === 'undefined' )? ' ' : ' L' + d.endX + ',' + d.endY; return 'M'+d.x+','+(d.y+10)+L })
+                    var L = (typeof( d.endX ) === 'undefined' )? ' ' : ' L' + d.endX + ',' + d.endY,
+                        D = 'M'+d.x+','+(d.y+10)+L ; 
+                    return D })
                 ;
 
 //  svg.append('text') 
@@ -189,7 +200,7 @@ var paths = svg.selectAll(".dash")
 
   function transition(path) {
     path.transition()
-        .duration(1500)
+        .duration(4500)
         .attrTween("stroke-dasharray", tweenDash)
         //.each("end", function() { d3.select(this).call(transition); }); // infinite loop
   }
@@ -203,6 +214,9 @@ var paths = svg.selectAll(".dash")
   }
 
 //=============
+
+
+
 
 // svg.transition()
 //       .duration(1050)
