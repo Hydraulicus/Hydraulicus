@@ -134,9 +134,10 @@ for (var i in turbine) {
 setTimeout(function() {
 var EndAngle = json[0].vol * 0.01 * tau;
   foreground[0].transition()
-      .duration(1000)
-      .delay(1650)
-      .ease("cubic")
+      .duration(900)
+      .delay(1750)
+      // .ease("cubic")
+      .ease("linear")
       .call(arcTween, EndAngle, 0); 
  EndAngle = json[1].vol * 0.01 * tau;
     foreground[1].transition()
