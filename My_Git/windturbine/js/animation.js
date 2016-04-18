@@ -8,16 +8,17 @@
 var width = 836,
     height = 1258,
     tau = 2 * Math.PI
-    cr = {x:width*0.5, y:406}; //center of rotation
+    cr = {x:width*0.5, y:550},//center of rotation
+    newPlace = {x : 225, y : 245, scale : 0.4}; //where infographic move before animation
 
 var phases = {'one' : 7000
             , 'two' : 1000
             };
 
-var textes = [   {'text' : json[0].name, 'x' : iLook.R*0.5, 'y' : (-1)*iLook.R*1.2}
-                ,{'text' : '('+json[0].vol+')', 'x' : iLook.R*0.5, 'y' : (-1)*iLook.R*1.2 + 25, 'endX' : iLook.R*0.33, 'endY' : (-1)*iLook.R*0.8}
-                ,{'text' : json[1].name, 'x' : (-1)*iLook.R*0.5, 'y' : (-1)*iLook.R*1.2}
-                ,{'text' : '('+json[1].vol+')', 'x' : (-1)*iLook.R*0.5, 'y' : (-1)*iLook.R*1.2 + 25, 'endX' : iLook.R*0.05, 'endY' : (-1)*(iLook.R-iLook.w)*0.8}
+var textes = [   {'text' : json[0].name, 'x' : iLook.R*0.725, 'y' : (-1)*iLook.R*1.4}
+                ,{'text' : '('+json[0].vol+'%)', 'x' : iLook.R*0.725, 'y' : (-1)*iLook.R*1.4 + 50, 'endX' : iLook.R*0.5, 'endY' : (-1)*iLook.R*0.75}
+                ,{'text' : json[1].name, 'x' : (-1)*iLook.R*0.75, 'y' : (-1)*iLook.R*1.4}
+                ,{'text' : '('+json[1].vol+'%)', 'x' : (-1)*iLook.R*0.75, 'y' : (-1)*iLook.R*1.4 + 50, 'endX' : iLook.R*0.05, 'endY' : (-1)*(iLook.R-iLook.w)*0.8}
                 ];
 
 var startTurbine = [ {d : "M"+(cr.x+10)+", "+(cr.y+11)+" c-3,-9 4,-15 9,-14 2,1 3,3 2,5l-1 4c0,1 0,2 -1,3 -2,2 -3,4 -6,4l-3 -2z"}
@@ -32,7 +33,7 @@ var turbine = [  {d : "M"+(cr.x+10)+", "+(cr.y+11)+" c-4,-9 3,-15 8,-14 33,20 11
                 ];
 var cockpit = [  {d : "M"+(cr.x+1)+" "+(cr.y+20)+"c-4,0 -11,0 -14,-2 -4,-12 -7,-21 -6,-33 1,-4 4,-5 20,-5m0 40c5,0 12,0 15,-2 4,-12 6,-21 5,-33 0,-4 -4,-5 -20,-5"}
                 // ,{d : "M"+(cr.x+1)+" "+(cr.y+630)+"c8,0 15,0 22,0l-11 -610 -11 0M419 1036c-7,0 -14,0 -22,0l12 -611"}
-                ,{d : "M"+(cr.x+1)+" "+(cr.y+630)+"c8,0 15,0 22,0l-11 -610 -11 0M419 1036c-7,0 -14,0 -22,0l6 -305 6 -305 10 0"}
+                ,{d : "M"+(cr.x+1)+" "+(cr.y+630)+"c8,0 15,0 22,0l-11 -610 -11 0M"+(cr.x+1)+" "+(cr.y+630)+"c-7,0 -14,0 -22,0l6 -305 6 -305 10 0"}
 
             ]
 
@@ -50,6 +51,16 @@ var svg = d3.select("#animation").append("svg")
     // .style("background","linear-gradient(to top, #bbb, white);")
     .append("g")
     // .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+
+svg.append("svg:image")
+   .attr('x',0)
+   .attr('y',0)
+   .attr('width', width)
+   .attr('height', height)
+   .classed("photo", true)
+   .attr("xlink:href","windmill+infographic.png")
+   .attr({"opacity" : 0});
+
 
 // Define the infograph gradient
 var gradient = svg.append("svg:defs")
@@ -80,7 +91,7 @@ for (var i in json) {
             .attr("transform", "translate("+cr.x+","+cr.y+")")
             .datum({endAngle: tau})
             .style("fill", "#efefef")
-            .attr({"stroke" : "#555", "stroke-width" : 2, "opacity" : 0.1})
+            .attr({"stroke" : "#555", "stroke-width" : 1, "opacity" : 0.1})
             .classed("partition", true)
             .attr("d", arc[i])
             .transition()
@@ -94,7 +105,7 @@ var foreground = [
     svg.append("path")
     .datum({endAngle: 0})
     .style("fill", 'url(#gradient)')
-    .attr({"stroke" : "#555", "stroke-width" : 1})
+    .attr({"stroke" : "#555", "stroke-width" : 0})
     .attr("transform", "translate("+cr.x+","+cr.y+")")
     .classed("partition", true)
     .classed("4centr", true)
@@ -105,7 +116,7 @@ var foreground = [
     .datum({endAngle: 0})
     .style("fill", 'url(#gradient)')
     .attr("transform", "translate("+cr.x+","+cr.y+")")
-    .attr({"stroke" : "#000", "stroke-width" : 1, opacity : 0.65})
+    .attr({"stroke" : "#000", "stroke-width" : 0, opacity : 0.65})
     .classed("partition", true)
     .classed("4centr", true)
     .attr("d", arc[1]) 
@@ -135,27 +146,45 @@ for (var i in turbine) {
    
 
 
-setTimeout(function() {
 var EndAngle = json[0].vol * 0.01 * tau;
   foreground[0].transition()
-      .delay(1750)
+      .delay(2500)
       .duration(900)
       .ease("linear")
+      // .transition().attr("stroke-width", 2)
       .call(arcTween, EndAngle, 0); 
  EndAngle = json[1].vol * 0.01 * tau;
     foreground[1].transition()
-        .delay(750)
+      .delay(1500)
       .duration(500)
       .call(arcTween, EndAngle, 1)
-      .each("end", function(){  
+      .each("end", function(d){
+
             gradient.select("stop")
                     .transition()
                     .delay(1000)
-                    .duration(4000)
+                    .duration(1100)
                     .ease("cubic ")
-                    .attr("stop-color", iLook.color);})
-}, 750);
+                    .attr("stop-color", iLook.color)
+                    // .each("end", function(){svg.selectAll(".partition").transition().duration(400).attr("stroke-width", 2);})
+                    .each("end", callBack);
+                    
+                    ;});
 
+
+    function callBack(path){
+                    svg.selectAll(".partition, .roboto, .dash")
+                    .transition()
+                    // .delay(1000)
+                    .duration(400)
+                    .attr("stroke-width", 2)
+                    .attr("transform", "translate("+newPlace.x+","+newPlace.y+")"+"scale("+newPlace.scale+")")
+                     .attr({"font-size" : "42px"})
+                    ;
+
+
+
+};
 
 var texts = svg.selectAll('text')
                 .data(textes)
@@ -205,7 +234,14 @@ var paths = svg.selectAll(".cockpitColor")
                 .delay(2000)
                 .duration(1000)
                   .attr({  "opacity" : 1})
-    // .each('end', function(d){console.log('End cockpit',d); })    
+    .each('end', function(d){
+        // console.log('End cockpit',d); 
+        svg.select(".photo")
+        .transition()
+        .duration(1500)
+        .attr({  "opacity" : 1})
+
+    })    
     ;
 var paths = svg.selectAll(".cockpit")
     .call(transition);
@@ -246,13 +282,6 @@ var paths = svg.selectAll(".dash")
   }
 
 //=============
-
-
-
-
-// svg.transition()
-//       .duration(1050)
-//       .attr("transform", "translate(" + width / 4 + "," + height / 4 + ")");
 
 
 // Creates a tween on the specified transition's "d" attribute, transitioning
