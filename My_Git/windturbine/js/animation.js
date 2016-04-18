@@ -10,6 +10,10 @@ var width = 836,
     tau = 2 * Math.PI
     cr = {x:width*0.5, y:406}; //center of rotation
 
+var phases = {'one' : 7000
+            , 'two' : 1000
+            };
+
 var textes = [   {'text' : json[0].name, 'x' : iLook.R*0.5, 'y' : (-1)*iLook.R*1.2}
                 ,{'text' : '('+json[0].vol+')', 'x' : iLook.R*0.5, 'y' : (-1)*iLook.R*1.2 + 25, 'endX' : iLook.R*0.33, 'endY' : (-1)*iLook.R*0.8}
                 ,{'text' : json[1].name, 'x' : (-1)*iLook.R*0.5, 'y' : (-1)*iLook.R*1.2}
@@ -20,14 +24,17 @@ var startTurbine = [ {d : "M"+(cr.x+10)+", "+(cr.y+11)+" c-3,-9 4,-15 9,-14 2,1 
                 ,{d : "M"+(cr.x+7)+", "+(cr.y-14)+"c-6,7 -15,5 -16,-1 0,-4 3,-5 5,-5l2 0c1,0 2,0 4,0 2,0 4,1 6,3l-1 3z"}
                 ,{d : "M"+(cr.x-14)+", "+(cr.y)+"c10,2 12,11 8,15 -4,2 -6,0 -7,-2l-1 -1c-1,-2 -1,-2 -2,-4 -1,-2 -2,-4 -1,-6l3 -2z"}
                 ,{d : "M"+(cr.x+8)+", "+(cr.y-17)+"c6,2 10,8 10,15l0 -1c-5,-1 -12,5 -8,14l2 2c-3,2 -7,4 -11,4 -3,0 -5,-1 -7,-2l0 0c4,-4 2,-13 -8,-15l-2 2c0,-1 0,-2 0,-3 0,-6 3,-11 7,-14l0 0c1,6 10,8 16,1l1 -3z"}
-                // ,{d : "M"+(cr.x+1)+" "+(cr.y+20)+"c-4,0 -11,0 -14,-2 -4,-12 -7,-21 -6,-33 1,-4 4,-5 20,-5m0 40c5,0 12,0 15,-2 4,-12 6,-21 5,-33 0,-4 -4,-5 -20,-5"}
                 ];
 var turbine = [  {d : "M"+(cr.x+10)+", "+(cr.y+11)+" c-4,-9 3,-15 8,-14 33,20 112,64 143,86l111 73c2,1 0,4 -2,3 -109,-60 -220,-105 -239,-132l-21 -16z"}
                 ,{d : "M"+(cr.x+ 7)+", "+(cr.y-14)+"c-6,7 -15,5 -16,-1 1,-38 -1,-129 2,-166l8 -133c1,-2 4,-2 4,0 3,125 20,243 5,273l-3 27z"}
                 ,{d : "M"+(cr.x-14)+", "+(cr.y)+"c10,2 12,11 8,15 -34,19 -111,65 -145,81l-119 59c-2,1 -4,-2 -2,-3 107,-65 201,-138 234,-141l24 -11z"}
                 ,{d : "M"+(cr.x+ 8)+", "+(cr.y-17)+"c6,2 10,8 10,15l0 -1c-5,-1 -12,5 -8,14l2 2c-3,2 -7,4 -11,4 -3,0 -5,-1 -7,-2l0 0c4,-4 2,-13 -8,-15l-2 2c0,-1 0,-2 0,-3 0,-6 3,-11 7,-14l0 0c1,6 10,8 16,1l1 -3z"}
-                // ,{d : "M"+(cr.x+1)+" "+(cr.y+20)+"c-4,0 -11,0 -14,-2 -4,-12 -7,-21 -6,-33 1,-4 4,-5 20,-5m0 40c5,0 12,0 15,-2 4,-12 6,-21 5,-33 0,-4 -4,-5 -20,-5"}
                 ];
+var cockpit = [  {d : "M"+(cr.x+1)+" "+(cr.y+20)+"c-4,0 -11,0 -14,-2 -4,-12 -7,-21 -6,-33 1,-4 4,-5 20,-5m0 40c5,0 12,0 15,-2 4,-12 6,-21 5,-33 0,-4 -4,-5 -20,-5"}
+                // ,{d : "M"+(cr.x+1)+" "+(cr.y+630)+"c8,0 15,0 22,0l-11 -610 -11 0M419 1036c-7,0 -14,0 -22,0l12 -611"}
+                ,{d : "M"+(cr.x+1)+" "+(cr.y+630)+"c8,0 15,0 22,0l-11 -610 -11 0M419 1036c-7,0 -14,0 -22,0l6 -305 6 -305 10 0"}
+
+            ]
 
 var arc = [
     d3.svg.arc().innerRadius(iLook.R).outerRadius(iLook.R-iLook.w).startAngle(0),
@@ -44,7 +51,7 @@ var svg = d3.select("#animation").append("svg")
     .append("g")
     // .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
-// Define the gradient
+// Define the infograph gradient
 var gradient = svg.append("svg:defs")
     .append("svg:linearGradient")
     .attr("id", "gradient")
@@ -54,10 +61,10 @@ var gradient = svg.append("svg:defs")
     .attr("y2", "100%")
     .attr("spreadMethod", "pad");
 
-// Define the gradient colors
+// Define the  infograph gradient colors
 gradient.append("svg:stop")
     .attr("offset", "0%")
-    .attr("stop-color", "#cccccf")
+    .attr("stop-color", "#def")
     .attr("stop-opacity", 1);
 
 gradient.append("svg:stop")
@@ -73,12 +80,12 @@ for (var i in json) {
             .attr("transform", "translate("+cr.x+","+cr.y+")")
             .datum({endAngle: tau})
             .style("fill", "#efefef")
-            .attr({"stroke" : "#888", "stroke-width" : 1, "opacity" : 0.1})
+            .attr({"stroke" : "#555", "stroke-width" : 2, "opacity" : 0.1})
             .classed("partition", true)
             .attr("d", arc[i])
             .transition()
-            .duration(1000)
-            .attr({"opacity" : 0.2});
+            .duration(phases.one)
+            .attr({"opacity" : 1});
 }
 
 
@@ -87,7 +94,7 @@ var foreground = [
     svg.append("path")
     .datum({endAngle: 0})
     .style("fill", 'url(#gradient)')
-    .attr({"stroke" : "#888", "stroke-width" : 0})
+    .attr({"stroke" : "#555", "stroke-width" : 1})
     .attr("transform", "translate("+cr.x+","+cr.y+")")
     .classed("partition", true)
     .classed("4centr", true)
@@ -98,7 +105,7 @@ var foreground = [
     .datum({endAngle: 0})
     .style("fill", 'url(#gradient)')
     .attr("transform", "translate("+cr.x+","+cr.y+")")
-    .attr({"stroke" : "#888", "stroke-width" : 0, opacity : 0.65})
+    .attr({"stroke" : "#000", "stroke-width" : 1, opacity : 0.65})
     .classed("partition", true)
     .classed("4centr", true)
     .attr("d", arc[1]) 
@@ -107,26 +114,23 @@ var foreground = [
     ];
 
 
-
-
-for (var i in json) {
-   console.log(i,json[i].vol);};
+// for (var i in json) {
+//    console.log(i,json[i].vol);};
 
 // Add the windturbine 
     function tween(d, i, a) { 
         return d3.interpolateString("rotate(0, "+cr.x+","+cr.y+")", "rotate(645, "+cr.x+","+cr.y+")");};
 for (var i in turbine) {
         var background = svg.append("path")
-            .attr({"stroke" : "#000", "stroke-width" : 2, "fill" : "#555", "opacity" : 1})
+            .attr({"stroke" : "#000", "stroke-width" : 1, "fill" : "#eed", "opacity" : 1})
             .classed("turbine", true)
             .attr("d", startTurbine[i].d)
             .transition()
             .ease("cubic-out")
-            .duration(7000)
+            .duration(phases.one)
             .attrTween("transform", tween)
             .attr("d", turbine[i].d)
             .each("end", function(d, i){});
-             ;
 }
    
 
@@ -134,9 +138,8 @@ for (var i in turbine) {
 setTimeout(function() {
 var EndAngle = json[0].vol * 0.01 * tau;
   foreground[0].transition()
-      .duration(900)
       .delay(1750)
-      // .ease("cubic")
+      .duration(900)
       .ease("linear")
       .call(arcTween, EndAngle, 0); 
  EndAngle = json[1].vol * 0.01 * tau;
@@ -172,11 +175,42 @@ var textLabels = texts
                 .attr({"opacity" : 1, "font-size" : "20px"})
                 ;
 
-var t = textLabels  
-        .forEach(function(d, i) { console.log(d ); textes[i].bbox=d[i].getBBox(); console.log(textes[i].bbox)});
+// var t = textLabels  
+//         .forEach(function(d, i) { console.log(d ); textes[i].bbox=d[i].getBBox(); console.log(textes[i].bbox)});
+
+//=========== cockpit ===================
+
+var racks = svg.selectAll('path .cockpitColor')
+                .data(cockpit)
+                .enter()
+                .append("path")
+                .classed("cockpitColor", true)
+                .attr({"fill" : "#ffe", "stroke" : "transparent", "stroke-width" : 0, opacity : 0})
+                .attr("d", function(d) { return d.d});
+
+var racks = svg.selectAll('path .cockpit')
+                .data(cockpit)
+                .enter()
+                .append("path")
+                .classed("cockpit", true)
+                .attr({"id" : "cockpit", "fill" : "transparent", "stroke" : "black", "stroke-width" : 2, opacity : 1})
+                .attr("d", function(d) { return d.d});
 
 
-// debugger;
+
+
+var paths = svg.selectAll(".cockpitColor")
+    .call(transition)
+                .transition()
+                .delay(2000)
+                .duration(1000)
+                  .attr({  "opacity" : 1})
+    // .each('end', function(d){console.log('End cockpit',d); })    
+    ;
+var paths = svg.selectAll(".cockpit")
+    .call(transition);
+//=====================================
+//================ ==================== 
 var racks = svg.selectAll('path .dash')
 // .selectAll('path:not(.partition)')
                 .data(textes)
@@ -190,17 +224,7 @@ var racks = svg.selectAll('path .dash')
                         D = 'M'+d.x+','+(d.y+10)+L ; 
                     return D })
                 ;
-
-//  svg.append('text') 
-//     .text(json[1].name) 
-//     .attr('x', -100) 
-//     .attr('y', -250)
-//     .style("fill","black"); 
-
 // // svg.select('text').each(function() {  console.log(this.getBBox());});
-
-
-
 
 //=============dash
 var paths = svg.selectAll(".dash")
