@@ -7,9 +7,9 @@
 //=================================================================================            
 var width = 2550,
     height = 1207,
-    tau = 2 * Math.PI
-    // cr = {x:2000, y:550},//center of rotation
-    // newPlace = {x : 225, y : 245, scale : 0.4}; //where infographic move before animation
+    tau = 2 * Math.PI,
+    cr = {x:2107, y:467},//center of rotation
+    newPlace = {x : 225, y : 245, scale : 0.4}; //where infographic move before animation
 
 var phases = {'one' : 2500 //dashdrawing turbine + reveal text1   
             , 'two' : 1500 //dashdrawing blades
@@ -28,11 +28,16 @@ var turbine = [{d : "M2094 497c4,224 8,448 4,673l48 1 -27 -675c0,-5 -2,-8 -13,-7
               ,{d : "M2088 467c0,-25 37,-25 37,0l-2 63c-1,1 -1,3 -3,4l-1 -38c0,-5 -2,-8 -13,-7 -9,0 -12,2 -12,8 0,13 0,26 0,40 -3,-1 -6,-2 -6,-6l0 -64z"} // cockpit
 ]; // statik, dash draving
 
-var blades = [ {d : ""} // blade 1
-              ,{d : ""} // blade 2
-              ,{d : ""} // blade 3
-              ,{d : ""} // cock
-              ] //rotateble
+var bladesStart = [  {d : "M2116 452c-1,1 -5,2 -7,1 -4,0 -9,0 -9,-3 5,-1 5,-1 9,-1 4,1 3,1 7,3"} // blade 1
+                    ,{d : "M2088 467c2,0 4,3 5,5 2,4 4,7 2,10 -4,-4 -4,-4 -6,-7 -1,-4 -1,-4 -1,-8"} // blade 2
+                    ,{d : "M2116 483c-1,-2 0,-6 1,-8 2,-3 4,-7 7,-6 -1,5 -1,5 -3,8 -2,3 -2,3 -5,6"} // blade 3
+                    ,{d : "M2088 466c0,-4 1,-7 3,-10 3,-3 5,-5 9,-6M2116 483c-5,2 -8,3 -11,2 -4,0 -7,-1 -10,-3M2116 452c4,3 4,3 6,6 2,4 3,7 2,11"} // cock
+                    ] //rotateble
+var bladesEnd = [  {d : "M2116 452c-1,1 -5,2 -7,1 -4,0 -9,0 -9,-3 20,-150 51,-305 54,-304 7,1 -37,300 -38,306"} // blade 1
+                    ,{d : "M2088 467c2,0 4,3 5,5 2,4 4,7 2,10 -137,63 -284,120 -286,117 -3,-7 273,-130 279,-132"} // blade 2
+                    ,{d : "M2116 483c-1,-2 0,-6 1,-8 2,-3 4,-7 7,-6 127,81 255,174 253,177 -4,7 -256,-160 -261,-163"} // blade 3
+                    ,{d : "M2088 466c0,-4 1,-7 3,-10 3,-3 5,-5 9,-6M2116 483c-5,2 -8,3 -11,2 -4,0 -7,-1 -10,-3M2116 452c4,3 4,3 6,6 2,4 3,7 2,11"} // cock
+                    ] //rotateble
 var svg = init();
 
 // ============ phase ONE ===================
@@ -42,21 +47,63 @@ var mill = svg.selectAll('path .cockpit')
                 .enter()
                 .append("path")
                 .classed("cockpit", true)
-                .attr({"fill" : "rgba(255,255,240,0)", "stroke" : "transparent", "stroke-width" : 2, opacity : 1})
+                .attr({"fill" : "rgba(255,255,240,0)", "stroke" : "transparent", "stroke-width" : 2})
+                .attr("opacity", 1)//appiaring
                 .attr("d", function(d) { return d.d})
-                .each(function(d, i) { var del = (i == 1) ? phases.one*0.5 : 0; d3.select(this).call(transition, del, phases.one*0.5)});
- 
-// dashdrawing turbine 
+                .each(function(d, i) { var del = (i == 1) ? phases.one*0.5 : 0; d3.select(this).call(transition, del, phases.one*0.5)})
+                ;
+
+// ============ phase TWO ===================
+// drawing blades
 var Blades = svg.selectAll('path .blades')
-                .data(blades)
+                .data(bladesStart)
                 .enter()
                 .append("path")
                 .classed("blades", true)
-                .attr({"fill" : "rgba(255,255,240,0)", "stroke" : "transparent", "stroke-width" : 2, opacity : 1})
-                .attr("d", function(d) { return d.d})
-                .each(function(d, i) { var del = phases.one*0.25*i; d3.select(this).call(transition, del, phases.one*0.25)});
+                .attr({"fill" : "rgba(255,255,240,1)", "stroke" : "black", "stroke-width" : 1, opacity : 0})
+                .transition() 
+                .delay(phases.one)
+                .duration(phases.two)
+                .attr("d", function(d) { return d.d})//drawing smoll blades
+                .attr("opacity", 1)//appiaring
+// ============ phase THREE ===================
+// ============ growing blades ==============
+                .transition() 
+                .delay(phases.one+phases.two)
+                .duration(phases.three)
+                .attr("d", function(d,i) {return bladesEnd[i].d })
+// ============ phase FOUR ===================
+// ============ first rotating blades ==============
+                .transition() 
+                .delay(phases.one+phases.two+phases.three)
+                .duration(phases.four)
+                .ease("cubic-in")
+                .attrTween("transform", tween)//add rotation
+// ============ phase FIVE ===================
+// ============ second rotating blades ==============
+                .transition() 
+                .delay(phases.one+phases.two+phases.three+phases.four)
+                .duration(phases.five)
+                .ease("cubic-out")
+                .attrTween("transform", tween)//add rotation
+// ============ phase SIX ===================
+// ============ disappaire ==============
+                .each("end",function(){ mill.transition().duration(phases.six).attr("opacity", 0);
+                  d3.select("image").transition().duration(phases.six).attr("opacity", 1);
+              })
+                .transition() 
+                .delay(phases.one+phases.two+phases.three+phases.four+phases.five)
+                .duration(phases.six)
+                .ease("cubic-in-out")
+                .attr("opacity", 0)//
+                ;
+
 
 //===========================================
+
+    function tween(d, i, a) {return d3.interpolateString("rotate(0, "+cr.x+","+cr.y+")", "rotate(720, "+cr.x+","+cr.y+")");};
+
+
   function transition(path, del, dur) {//function which drawout counturs and fill it
     path.transition()
         .duration(dur)
@@ -93,9 +140,10 @@ svg.append("svg:image")
    .attr('x',0)
    .attr('y',-37)
    .attr('width', width)
+   .classed("image", true)
    .attr('height', 1280)
    .classed("photo", true)
    .attr("xlink:href","windmill2_ImgID1.jpg")
-   .attr({"opacity" : 0.5});
+   .attr({"opacity" : 0});
    return svg
 }
