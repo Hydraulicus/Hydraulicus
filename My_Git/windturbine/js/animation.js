@@ -2,8 +2,8 @@
 				{"name":"US Wind Generation", "vol":4.7}],//data fot infographic
 	 iLook = {R : 325, w : 105 //R - out radius in px, w - width
 			 ,color : '#6D9EEB' //color of outer data circle
-			};
-
+			},
+txt1 = ["Title","Some message about wind power will be revealed here. Some message about wind power will be revealed here. Some message about wind power will be revealed here"];
 //=================================================================================            
 var width = 2550,
     height = 1207,
@@ -11,9 +11,9 @@ var width = 2550,
     cr = {x:2106, y:467},//center of rotation
     newPlace = {x : width-cr.x, y : cr.y, scale : 1}; //where infographic move before animation
 
-var phases = {'one' : 1500 //dashdrawing turbine + reveal text1   
-            , 'two' : 1500 //dashdrawing blades
-            , 'three' : 2000 //blades growing
+var phases = {'one' : 500 //dashdrawing turbine + reveal text1   
+            , 'two' : 500 //dashdrawing blades
+            , 'three' : 200 //blades growing
             , 'four' : 4000 //rotation. appiar inner donat and text2
             , 'five' : 4000 //rotation. appiar outer donat and text3
             , 'six' : 3000 //infograph move, draft disappiar, photo appiar
@@ -46,6 +46,7 @@ var arc = [
 var svg = init();
 var infograph = infographInit();
 var foreground = foregroundInit();
+var infoTXT = infoTxtInit(width*0.5, 300);
 // ============ phase ONE ===================
 // dashdrawing turbine 
 var mill = svg.selectAll('path .cockpit')
@@ -72,6 +73,10 @@ var Blades = svg.selectAll('path .blades')
                 .duration(phases.two)
                 .attr("d", function(d) { return d.d})//drawing smoll blades
                 .attr("opacity", 1)//appiaring
+                .each(function(){ 
+                  d3.selectAll(".infoTXT").
+                  transition().duration(phases.one).attr("opacity",1)
+                  })
 // ============ phase THREE ===================
 // ============ growing blades ==============
                 .transition() 
@@ -85,7 +90,7 @@ var Blades = svg.selectAll('path .blades')
                 .duration(phases.four)
                 .ease("cubic-in")
                 .attrTween("transform", tween)//add rotation
-                .each("end", outerDonat(phases.one+phases.two+phases.three+2700, 650))//draw infographic outer
+                .each("end", innerDonat(phases.one+phases.two+phases.three+2600, 650))//draw infographic outer
 // ============ phase FIVE ===================
 // ============ second rotating blades ==============
                 .transition() 
@@ -93,10 +98,10 @@ var Blades = svg.selectAll('path .blades')
                 .duration(phases.five)
                 .ease("cubic-out")
                 .attrTween("transform", tween)//add rotation
-                .each("end", innerDonat(phases.one+phases.two+phases.three+phases.four+200, 800))//draw infographic inner
+                .each("end", outerDonat(phases.one+phases.two+phases.three+phases.four, 325))//draw infographic inner
 // ============ phase SIX ===================
 // ============ disappaire ==============
-                .each("end",function(){ mill.transition().duration(phases.six).attr("opacity", 0);
+                .each("end",function(){ mill.transition().duration(phases.six).attr("opacity", 0).remove();
                   d3.select("image").transition().duration(phases.six).attr("opacity", 1);
               })
                 .transition() 
@@ -104,6 +109,7 @@ var Blades = svg.selectAll('path .blades')
                 .duration(phases.six)
                 .ease("cubic-in-out")
                 .attr("opacity", 0)//
+                .remove();
                 ;
 //============================================
 //============ INFOGRAPHIC DRAWING ===========
@@ -113,6 +119,68 @@ var Blades = svg.selectAll('path .blades')
             .delay(phases.one+phases.two+phases.three)
             .duration(phases.three+phases.four)
             .attr({"opacity" : 1});
+//============================================
+
+
+
+
+
+  
+
+
+//=========== supsidiary function ===================
+
+function infoTxtInit(w, h) {
+
+
+
+    var rect = svg.append('rect')
+                    .attr('width', w)
+                    .attr('height', h)
+                    .attr('x', (width - width*0.5)*0.5)
+                    .attr('y', 820)
+                    .style('fill', 'rgba(255,255,255,0.25)')
+                    .attr('stroke', 'transparent');
+
+ svg.selectAll("text")
+   .data(txt1).enter().append("text")
+  .attr("transform", "translate("+width*0.5+",850)")
+  .classed("infoTXT", true)
+  .classed("roboto", true)
+  .attr({"fill" : "black", "opacity" : 0, "font-size" : "40px"})
+  .attr("text-anchor", "middle")
+  .attr('x', 0)
+  .attr('y',  function(d, i){ return 30 + i * 90; })
+  .text(function(d){ return d; }) 
+  .call(wrap, width*0.5)
+
+}
+
+// from http://bl.ocks.org/mbostock/7555321
+function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+    words = text.text().split(/\s+/).reverse(),
+    word,
+    line = [],
+    lineNumber = 0,
+    lineHeight = 1.2, // ems
+    y = text.attr("y"),
+    dy = parseFloat(text.attr("dy")) || 0,
+    tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", (++lineNumber * lineHeight + dy) + "em").text(word);
+      }
+    }
+  });
+}
+
 
 
 function outerDonat(del, dur){
@@ -146,7 +214,7 @@ var  EndAngle = json[1].vol * 0.01 * tau;
 
 
     function callBack(path){
-                    svg.selectAll(".partition, .roboto, .dash")
+                    svg.selectAll(".partition, .dash")
                     .transition()
                     // .delay(1000)
                     .duration(1400)
