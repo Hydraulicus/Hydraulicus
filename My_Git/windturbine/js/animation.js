@@ -27,9 +27,9 @@ var txt = {x : width * 0.333},
   shift = (-1) * width * 0.0125;
 putTxtBacgnd((width - txt.x)*0.5+shift, 0, width*0.333, height);//x y w h
 // var infoTXT1 = infoTxtInit(txt.x+shift, width*0.333, 50, 100, 40, txtTop);
-var infoTXT2 = infoTxtInit(txt.x+shift, width*0.333, height*0.4, 300, 30, txtFirst);//x, w, y, h, size, txt
-var infoTXT4 = infoTxtInit(txt.x+shift, width*0.333, height*0.4, 200, 30, txtSec);
-var infoTXT3 = infoTxtInit(txt.x+shift, width*0.333, 250, 200, 30, txtThr);
+var infoTXT2 = infoTxtInit(txt.x+shift, width*0.333, height*0.2, 300, 32, txtFirst);//x, w, y, h, size, txt
+var infoTXT4 = infoTxtInit(txt.x+shift, width*0.333, height*0.6, 200, 32, txtSec);
+var infoTXT3 = infoTxtInit(txt.x+shift, width*0.333, height*0.38, 200, 32, txtThr);
 
 var dashes = [   
                 { 'x' : 418, 'y' : -230, 'endX' : iLook.R*0.5, 'endY' : (-1)*iLook.R*0.75}
@@ -78,8 +78,8 @@ var Blades = svg.selectAll('path .blades')
                 .attr("d", function(d) { return d.d})//drawing smoll blades
                 .attr("opacity", 1)//appiaring
                 .each(function(){ 
-                  if (typeof(infoTXT1) !== "undefined") infoTXT1.transition().delay(phases.one*0.5).duration(phases.one).attr("opacity",1)//show top and bottom textes
-                  if (typeof(infoTXT2) !== "undefined") infoTXT2.transition().delay(phases.one*0.5).duration(phases.one).attr("opacity",1)//show top and bottom textes
+                  if (typeof(infoTXT1) !== "undefined") infoTXT1.transition().delay(phases.one*0.25).duration(phases.one+phases.two).attr("opacity",1)//show top and bottom textes
+                  if (typeof(infoTXT2) !== "undefined") infoTXT2.transition().delay(phases.one*0.25).duration(phases.one+phases.two).attr("opacity",1)//show top and bottom textes
                   })
 // ============ phase THREE ===================
 // ============ growing blades ==============
@@ -88,6 +88,8 @@ var Blades = svg.selectAll('path .blades')
                 .duration(phases.three)
                 .attr("d", function(d,i) {return bladesEnd[i].d })
 // ============ phase FOUR ===================
+// ============ second text fade in  =========
+                .each(function(){ infoTXT4.transition().duration(phases.three).attr("opacity",1) })//show  text
 // ============ first rotating blades ==============
                 .transition() 
                 .delay(phases.one+phases.two+phases.three)
@@ -96,11 +98,9 @@ var Blades = svg.selectAll('path .blades')
                 .ease("linear")
                 .attrTween("transform", tween)//add 360degr rotation
                 .each("end", innerDonat(phases.one+phases.two+phases.three+phases.four*0.3, 350))//draw infographic 
-                .each(function(){ 
-                 if (typeof(infoTXT2) !== "undefined") infoTXT2.transition().delay(phases.one+phases.two+phases.three+2000).duration(1000).attr("opacity",0).remove()//show top and bottom textes 
-                infoTXT4.transition().delay(phases.one+phases.two+phases.three+2000).duration(1000).attr("opacity",1) 
-                })//show  text
 // ============ phase FIVE ===================
+// =============== 3 text fade in  ===========
+                .each(function(){ infoTXT3.transition().delay(phases.one+phases.two+phases.three+phases.four*0.5).duration(1500).attr("opacity",1) })//show  text
 // ============ second rotating blades ==============
                 .transition() 
                 .delay(phases.one+phases.two+phases.three+phases.four)
@@ -110,7 +110,6 @@ var Blades = svg.selectAll('path .blades')
                 .attrTween("transform", tween)//add rotation
                 // .attr("opacity",0.2)
                 .each("end", outerDonat(phases.one+phases.two+phases.three+phases.four-100, 900))//draw infographic 
-                .each(function(){ infoTXT3.transition().delay(phases.one+phases.two+phases.three+phases.four).duration(1500).attr("opacity",1) })//show  text
 // ============ phase SIX ===================
 // ============ disappaire ==============
                 .each("end",function(){ mill.transition().duration(phases.six).attr("opacity", 0).remove();
@@ -310,7 +309,7 @@ txtBckgnd.append("svg:stop")
 txtBckgnd.append("svg:stop")
     .attr("offset", "30%")
     .attr("stop-color", "white")
-    .attr("stop-opacity", 0.4);
+    .attr("stop-opacity", 0.5);
 
 txtBckgnd.append("svg:stop")
     .attr("offset", "50%")
