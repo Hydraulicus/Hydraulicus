@@ -1,4 +1,4 @@
- var json = [ {"vol" : 22},
+ var json = [ {"vol" : 25},
       				{"vol" : 4.7}],//data fot infographic
     iLook = {R : 325, w : 105 //R - out radius in px, w - width
              ,color : '#6D9EEB' //color of outer data circle

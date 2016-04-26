@@ -28,12 +28,11 @@ var txt = {x : width * 0.333},
 putTxtBacgnd((width - txt.x)*0.5+shift, 0, width*0.333, height);//x y w h
 // var infoTXT1 = infoTxtInit(txt.x+shift, width*0.333, 50, 100, 40, txtTop);
 var infoTXT2 = infoTxtInit(txt.x+shift, width*0.333, height*0.2, 300, 32, txtFirst);//x, w, y, h, size, txt
-var infoTXT4 = infoTxtInit(txt.x+shift, width*0.333, height*0.6, 200, 32, txtSec);
-var infoTXT3 = infoTxtInit(txt.x+shift, width*0.333, height*0.38, 200, 32, txtThr);
+var infoTXT4 = infoTxtInit(txt.x+shift, width*0.333, height*0.4, 200, 32, txtSec);
+var infoTXT3 = infoTxtInit(txt.x+shift, width*0.333, height*0.575, 200, 32, txtThr);
 
-var dashes = [   
-                { 'x' : 418, 'y' : -230, 'endX' : iLook.R*0.5, 'endY' : (-1)*iLook.R*0.75}
-                ,{'x' : 418, 'y' : -20, 'endX' : iLook.R*0.05, 'endY' : (-1)*(iLook.R-iLook.w)*0.8}
+var dashes = [ {'x' : 418, 'y' : 200, 'endX' : iLook.R*0.85, 'endY' : (-1)*iLook.R*0.05}
+              ,{'x' : 418, 'y' : -10, 'endX' : iLook.R*0.05, 'endY' : (-1)*(iLook.R-iLook.w)*0.8}
                 ];
 
 //================ ==================== 
@@ -99,7 +98,7 @@ var Blades = svg.selectAll('path .blades')
                 .attrTween("transform", tween)//add 360degr rotation
                 .each("end", innerDonat(phases.one+phases.two+phases.three+phases.four*0.3, 350))//draw infographic 
 // ============ phase FIVE ===================
-// =============== 3 text fade in  ===========
+// =============== therd text fade in  ===========
                 .each(function(){ infoTXT3.transition().delay(phases.one+phases.two+phases.three+phases.four*0.5).duration(1500).attr("opacity",1) })//show  text
 // ============ second rotating blades ==============
                 .transition() 
@@ -109,7 +108,7 @@ var Blades = svg.selectAll('path .blades')
                 .ease("linear")
                 .attrTween("transform", tween)//add rotation
                 // .attr("opacity",0.2)
-                .each("end", outerDonat(phases.one+phases.two+phases.three+phases.four-100, 900))//draw infographic 
+                .each("end", outerDonat(phases.one+phases.two+phases.three+phases.four-100, 1000))//draw infographic 
 // ============ phase SIX ===================
 // ============ disappaire ==============
                 .each("end",function(){ mill.transition().duration(phases.six).attr("opacity", 0).remove();
@@ -217,15 +216,8 @@ var  EndAngle = json[1].vol * 0.01 * tau;
     function callBack(path){
                     svg.selectAll(".partition, .dash")
                     .transition()
-                    // .delay(1000)
                     .duration(phases.six)
-                    // .attr("stroke-width", 1)
-                    // .attr("stroke", "blue")
                     .attr("transform", "translate("+newPlace.x+","+newPlace.y+")"+"scale("+newPlace.scale+")")
-                     // .attr({"font-size" : "42px"})
-                     // .attr({"" : "42px"})
-                     // .each("end", )
-                      // .each("end", function(d) { d3.select(this).attr({"opacity" : "1"}).call(transition, 10, phases.one*0.5)})
                       .each("end", function(d) { racks.call(transition, 10, phases.one*0.5)})
                     ;
 };
