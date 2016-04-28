@@ -1,3 +1,11 @@
+var timings = {blue:4200,
+              logo : 10, //timings for logo drawings
+        brandDelay : 1200, // delay before brand  drawings
+        spellbrand : 150, //timings for drawing of each letters of brand name
+         signature : [400, 250, 1000, 180, 100, 100] //timings for signature drawings
+        };
+
+
 
   	  var animSvg = Snap("#animation");
 
@@ -29,7 +37,7 @@ var brandName = [
                 ]
 var c = animSvg.circle(119, 77, 10)
                 .attr({fill : "#006BAD", opacity : 0.1})
-                .animate({r:500, opacity : 1}, 4000, mina.easeout);
+                .animate({r:500, opacity : 1}, timings.blue, mina.easeout);
 
 
 function Drawing( svgString, transformString, timeBetweenDraws ) {
@@ -94,25 +102,25 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
 
 
 
-      var logo = new Drawing( svgString1, '', 10 ); logo.initDraw();
+      var logo = new Drawing( svgString1, '', timings.logo ); logo.initDraw();
       var brand = []; 
       var sign = [];
 
-        sign[0] = new Drawing( signature[0], '', 500 ); //svgString, transformString, timeBetweenDraws
-        sign[1] = new Drawing( signature[1], '', 300 ); 
-        sign[2] = new Drawing( signature[2], '', 1200 ); 
-        sign[3] = new Drawing( signature[3], '', 200 ); 
-        sign[4] = new Drawing( signature[4], '', 200 ); 
-        sign[5] = new Drawing( signature[5], '', 100 ); 
+        sign[0] = new Drawing( signature[0], '', timings.signature[0] ); //svgString, transformString, timeBetweenDraws
+        sign[1] = new Drawing( signature[1], '', timings.signature[1] ); 
+        sign[2] = new Drawing( signature[2], '', timings.signature[2] ); 
+        sign[3] = new Drawing( signature[3], '', timings.signature[3] ); 
+        sign[4] = new Drawing( signature[4], '', timings.signature[4] ); 
+        sign[5] = new Drawing( signature[5], '', timings.signature[5] ); 
 
 
 
         for (var i in brandName)
-          { brand[i] = new Drawing( brandName[i], '', 140 );
+          { brand[i] = new Drawing( brandName[i], '', timings.spellbrand );
         // console.log(i);
           }
 
-        setTimeout(function() {brand[0].initDraw()}, 1200) ;
+        setTimeout(function() {brand[0].initDraw()}, timings.brandDelay) ;
             brand[0].callOnFinished = function() {brand[1].initDraw(); }; 
             brand[1].callOnFinished = function() {brand[2].initDraw(); }; 
             brand[2].callOnFinished = function() {brand[3].initDraw(); }; 
