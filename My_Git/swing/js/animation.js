@@ -1,9 +1,4 @@
 
-
-  	 
-
-// var svgString1 = '<path id="s3" fill="transparent" stroke="#006BAD" stroke-width="0" d="M0 0, L432 0, 432 153, 0 153 M136 72c2,5 2,9 1,13l-16 51c33,-1 59,-29 57,-63l234 0 0 -2 -234 0c-2,-28 -25,-51 -56,-53l0 10c2,1 4,3 4,4 3,1 6,1 6,2l0 7 -6 0 0 5c4,0 6,0 6,1l0 7 -6 0 0 9c5,3 8,6 10,9zm-75 -1l-41 0 0 2 41 0c0,1 0,2 0,4 0,35 28,57 56,59l-16 -51c-1,-4 -1,-8 1,-13 2,-3 5,-6 10,-9l0 -9 -5 0 0 -7c0,-1 2,-1 5,-1l0 -5 -6 0 0 -7c0,-1 3,-1 6,-2 0,-1 2,-3 4,-4l0 -10c-29,1 -53,24 -55,53z"/>';
-// var svgString1 = '<path id="s3" fill="transparent" stroke="#006BAD" stroke-width="0" d="M0 0, L432 0, 432 153, 0 153"/>';
 var signature = [
    '<path class="fil1 str2" d="M212 103l5 1c-7,-3 -21,-5 -25,-2 -2,2 -2,5 1,7 11,7 35,6 34,-3 -1,-9 -11,-13 -17,-21 -1,-1 1,-3 5,-1 5,2 9,4 12,7"/>'
   ,'<path class="fil1 str2" d="M236 103c2,1 4,2 5,4 1,1 3,3 1,4 -2,0 -4,-1 -6,-3 0,0 0,-3 1,-3 4,-2 15,0 22,-1"/>'
@@ -33,6 +28,9 @@ var pendulum = [ 'M407 -677c0,-10 -46,-19 -118,-25l0 -84 0 0 0 -24c0,-10 -75,-18
                 ,"M133 43c0,0 -1,0 -3,0l0 -2 0 0 0 -1c-1,0 -2,0 -5,0 -2,0 -4,0 -4,0l0 1 0 2c-2,0 -3,0 -3,0l0 5c0,0 3,0 7,0 5,0 7,0 8,0l0 -5zm0 -3l0 -5c0,0 -1,0 -3,0 0,-1 -1,-2 -3,-3l0 -7c-1,0 -2,0 -3,0l0 7c-2,1 -3,2 -3,3 -2,0 -3,0 -3,0l0 5 0 0c0,0 3,0 7,0 5,0 7,0 8,0zm-12 8l0 1 0 5c-8,5 -8,10 -7,14l11 36 11 -36c2,-4 2,-9 -6,-14l0 -5 0 -1c-1,0 -2,0 -5,0 -2,0 -4,0 -4,0z"//phase 4
                 ,"M133 39c0,0 0,0 -1,0l0 -1 0 0 0 -1c-1,0 -2,0 -3,0 -1,0 -2,0 -2,0l0 1 0 1c-1,0 -2,0 -2,0l0 2c1,0 2,0 4,0 2,0 4,0 4,0l0 -2zm0 -2l0 -2c0,0 0,0 -2,0 0,-1 0,-1 -1,-2l0 -3c0,-1 -1,-1 -2,0l0 3c0,1 -1,1 -1,2 -1,0 -2,0 -2,0l0 2 0 0c1,0 2,0 4,0 2,0 4,0 4,0zm-6 4l0 1 0 3c-4,2 -4,5 -4,7l6 19 6 -19c0,-2 0,-5 -3,-7l0 -3 0 -1c-1,0 -2,0 -3,0 -1,0 -2,0 -2,0z"//phase 5
 ];
+var hatch = [  '<path class="fil1 str0" d="M92 149c13,-1 26,-5 38,-10 3,-1 6,-2 10,-3"/>'
+              ,'<path class="fil1 str0" d="M98 134c2,1 11,4 20,9 11,5 17,4 24,9"/>'
+]
 var speedFactor = 1; //to do swing animation faster or slowly. Calculated in function initAnimation 
 
 mina.easeInOutQuad = function (n) {//easing calculate
@@ -60,6 +58,7 @@ var animSvg, //point to SVG tag
     pndln;//point to pendulum object
  
       var brand = [], 
+          cross = [],
            sign = [];
 
 function Drawing( svgString, transformString, timeBetweenDraws ) {
@@ -143,22 +142,19 @@ var underline = animSvg.rect(22, 75, 0, 4, 2, 2)
     swing_(); 
 
 
-        sign[0] = new Drawing( signature[0], '', timings.signature[0] ); //svgString, transformString, timeBetweenDraws
-        sign[1] = new Drawing( signature[1], '', timings.signature[1] ); 
-        sign[2] = new Drawing( signature[2], '', timings.signature[2] ); 
-        sign[3] = new Drawing( signature[3], '', timings.signature[3] ); 
-        sign[4] = new Drawing( signature[4], '', timings.signature[4] ); 
-        sign[5] = new Drawing( signature[5], '', timings.signature[5] ); 
-
-
+        for (var i in signature)
+          { sign[i] = new Drawing( signature[i], '', timings.signature[i] );//svgString, transformString, timeBetweenDraws
+          }
 
         for (var i in brandName)
           { brand[i] = new Drawing( brandName[i], '', timings.spellbrand );
-        // console.log(i);
           }
 
-        // setTimeout(function() {brand[0].initDraw()}, timings.brandDelay) ;
-        setTimeout(function() {brand[0].initDraw()}, timings.whole*0.85) ;
+        for (var j in hatch)
+          { cross[j] = new Drawing( hatch[j], '', 225 );
+          }
+
+        setTimeout(function() {brand[0].initDraw(); }, timings.whole*0.85) ;
             brand[0].callOnFinished = function() {brand[1].initDraw(); }; 
             brand[1].callOnFinished = function() {brand[2].initDraw(); }; 
             brand[2].callOnFinished = function() {brand[3].initDraw(); }; 
@@ -171,16 +167,20 @@ var underline = animSvg.rect(22, 75, 0, 4, 2, 2)
             brand[9].callOnFinished = function() {brand[10].initDraw(); }; 
             brand[10].callOnFinished = function() {brand[11].initDraw(); }; 
 
+            brand[11].callOnFinished = function() { cross[0].initDraw();}; 
+            cross[0].callOnFinished = function() {cross[1].initDraw(); }; 
+            cross[1].callOnFinished = function() {sign[0].initDraw(); }; 
 //draw signature
-            brand[11].callOnFinished = function() {sign[0].initDraw(); }; 
             sign[0].callOnFinished = function() { sign[1].initDraw() };
             sign[1].callOnFinished = function() { sign[2].initDraw() };
             sign[2].callOnFinished = function() { sign[3].initDraw() };
             sign[3].callOnFinished = function() { sign[4].initDraw() };
             sign[4].callOnFinished = function() { sign[5].initDraw() };
 
- 
 
+           
+
+ 
 };
 
 
