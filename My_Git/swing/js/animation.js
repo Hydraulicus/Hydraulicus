@@ -1,8 +1,9 @@
 
 
-  	  var animSvg = Snap("#animation");
+  	 
 
-var svgString1 = '<path id="s3" fill="transparent" stroke="#006BAD" stroke-width="0" d="M0 0, L432 0, 432 153, 0 153 M136 72c2,5 2,9 1,13l-16 51c33,-1 59,-29 57,-63l234 0 0 -2 -234 0c-2,-28 -25,-51 -56,-53l0 10c2,1 4,3 4,4 3,1 6,1 6,2l0 7 -6 0 0 5c4,0 6,0 6,1l0 7 -6 0 0 9c5,3 8,6 10,9zm-75 -1l-41 0 0 2 41 0c0,1 0,2 0,4 0,35 28,57 56,59l-16 -51c-1,-4 -1,-8 1,-13 2,-3 5,-6 10,-9l0 -9 -5 0 0 -7c0,-1 2,-1 5,-1l0 -5 -6 0 0 -7c0,-1 3,-1 6,-2 0,-1 2,-3 4,-4l0 -10c-29,1 -53,24 -55,53z"/>';
+// var svgString1 = '<path id="s3" fill="transparent" stroke="#006BAD" stroke-width="0" d="M0 0, L432 0, 432 153, 0 153 M136 72c2,5 2,9 1,13l-16 51c33,-1 59,-29 57,-63l234 0 0 -2 -234 0c-2,-28 -25,-51 -56,-53l0 10c2,1 4,3 4,4 3,1 6,1 6,2l0 7 -6 0 0 5c4,0 6,0 6,1l0 7 -6 0 0 9c5,3 8,6 10,9zm-75 -1l-41 0 0 2 41 0c0,1 0,2 0,4 0,35 28,57 56,59l-16 -51c-1,-4 -1,-8 1,-13 2,-3 5,-6 10,-9l0 -9 -5 0 0 -7c0,-1 2,-1 5,-1l0 -5 -6 0 0 -7c0,-1 3,-1 6,-2 0,-1 2,-3 4,-4l0 -10c-29,1 -53,24 -55,53z"/>';
+// var svgString1 = '<path id="s3" fill="transparent" stroke="#006BAD" stroke-width="0" d="M0 0, L432 0, 432 153, 0 153"/>';
 var signature = [
    '<path class="fil1 str2" d="M212 103l5 1c-7,-3 -21,-5 -25,-2 -2,2 -2,5 1,7 11,7 35,6 34,-3 -1,-9 -11,-13 -17,-21 -1,-1 1,-3 5,-1 5,2 9,4 12,7"/>'
   ,'<path class="fil1 str2" d="M236 103c2,1 4,2 5,4 1,1 3,3 1,4 -2,0 -4,-1 -6,-3 0,0 0,-3 1,-3 4,-2 15,0 22,-1"/>'
@@ -32,42 +33,34 @@ var pendulum = [ 'M407 -677c0,-10 -46,-19 -118,-25l0 -84 0 0 0 -24c0,-10 -75,-18
                 ,"M133 43c0,0 -1,0 -3,0l0 -2 0 0 0 -1c-1,0 -2,0 -5,0 -2,0 -4,0 -4,0l0 1 0 2c-2,0 -3,0 -3,0l0 5c0,0 3,0 7,0 5,0 7,0 8,0l0 -5zm0 -3l0 -5c0,0 -1,0 -3,0 0,-1 -1,-2 -3,-3l0 -7c-1,0 -2,0 -3,0l0 7c-2,1 -3,2 -3,3 -2,0 -3,0 -3,0l0 5 0 0c0,0 3,0 7,0 5,0 7,0 8,0zm-12 8l0 1 0 5c-8,5 -8,10 -7,14l11 36 11 -36c2,-4 2,-9 -6,-14l0 -5 0 -1c-1,0 -2,0 -5,0 -2,0 -4,0 -4,0z"//phase 4
                 ,"M133 39c0,0 0,0 -1,0l0 -1 0 0 0 -1c-1,0 -2,0 -3,0 -1,0 -2,0 -2,0l0 1 0 1c-1,0 -2,0 -2,0l0 2c1,0 2,0 4,0 2,0 4,0 4,0l0 -2zm0 -2l0 -2c0,0 0,0 -2,0 0,-1 0,-1 -1,-2l0 -3c0,-1 -1,-1 -2,0l0 3c0,1 -1,1 -1,2 -1,0 -2,0 -2,0l0 2 0 0c1,0 2,0 4,0 2,0 4,0 4,0zm-6 4l0 1 0 3c-4,2 -4,5 -4,7l6 19 6 -19c0,-2 0,-5 -3,-7l0 -3 0 -1c-1,0 -2,0 -3,0 -1,0 -2,0 -2,0z"//phase 5
 ];
-var speedFactor = 1; //to do animation faster or slowly
+var speedFactor = 1; //to do swing animation faster or slowly. Calculated in function initAnimation 
 
-
-mina.easeInOutQuad = function (n) {
+mina.easeInOutQuad = function (n) {//easing calculate
   if ( ( n *= 2 ) < 1 ) return 0.5 * Math.pow( n, 2 );
   return -0.5 * ( ( --n ) * ( n - 2 ) - 1 );
 };
 
-var phases = [ {d : pendulum[0], t : 2000, bezier : mina.easeInOutQuad    } // phase 0
+var phases = [ {d : pendulum[0], t : 1500, bezier : mina.easeInOutQuad    } // phase 0
               ,{d : pendulum[5], t : 1000, bezier : mina.easeInOutQuad    } //phase 5
               ,{d : pendulum[1], t : 1000, bezier : mina.easeInOutQuad    } //phase 8
               ,{d : pendulum[4], t : 800, bezier : mina.easeInOutQuad    } //phase 10
               ,{d : pendulum[3], t : 0, bezier : mina.easeInOutQuad    } //original size - phase 11
 ];//mina.easeInOutCirc - almost perfect
 
-phases.forEach(function(item, i, arr) { phases[i].t*=speedFactor;  //tuning animation speed
-  // console.log( phases[i].t);
-});
-
-
-
-
-var timings = {blue : 0,
-              logo : 10, //timings for logo drawings
+var timings = {whole : 0,
+              logo : 1000, //timings for logo drawings
         brandDelay : 1200, // delay before brand  drawings
         spellbrand : 150, //timings for drawing of each letters of brand name
-         signature : [400, 250, 1000, 180, 100, 100] //timings for signature drawings
+         signature : [300, 200, 800, 140, 80, 80] //timings for signature drawings
         };
-phases.forEach(function(item, i, arr) { timings.blue += item.t }); // calculating whole time of animation  
+phases.forEach(function(item, i, arr) { timings.whole += item.t }); // calculating whole time of animation  
   
-console.log( timings.blue);
-
-var c = animSvg.circle(119, 77, 1000)
-                .attr({fill : "#006BAD", opacity : 0.1})
-                .animate({r:60, opacity : 0.95}, timings.blue, mina.easein);
-
+console.log( timings.whole);
+var animSvg, //point to SVG tag
+    pndln;//point to pendulum object
+ 
+      var brand = [], 
+           sign = [];
 
 function Drawing( svgString, transformString, timeBetweenDraws ) {
     this.fragment = Snap.parse( svgString );
@@ -109,77 +102,85 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
             return
         };
     };
-    var myPath = this.pathArray[ this.currentPathIndex ] ;
+     var myPath = this.pathArray[ this.currentPathIndex ] ;
     this.leng = myPath.getTotalLength();
     this.group.append( myPath );
      myPath.attr({
-       fill: 'white', "opacity" : 0.75,
+       fill: 'transparent', "opacity" : 1,
        "stroke-dasharray": this.leng + " " + this.leng,
        "stroke-dashoffset": this.leng
      });
      this.currentPathIndex++;
      myPath.animate({"stroke-dashoffset": 0}, this.timeBetweenDraws, mina.easeout, this.draw.bind( this ) );
-};
 
+  };
 var n = 0; //phase
-var pndln  = animSvg.path( phases[0].d )
-                    .attr({fill: 'white', "stroke-width" : 0,  stroke : "#006BAD"});
 
-
-swing_();
 function swing_(){ 
    n++;
    if (n <= phases.length-1)  {
-      console.log("time", n, phases[n-1].t, phases[n-1].bezier);
-   
+      // console.log("time", n, phases[n-1].t, phases[n-1].bezier);
       pndln.animate({d : phases[n].d}, phases[n-1].t, phases[n-1].bezier, function(){ swing_() });
    }
     return
 }
 
 
+function initAnimation (obj) {
 
-      // var logo = new Drawing( svgString1, '', timings.logo ); logo.initDraw(); 
-//       var brand = []; 
-//       var sign = [];
+  speedFactor = obj.time / (timings.whole * 0.001);    
+  phases.forEach(function(item, i, arr) { phases[i].t*=speedFactor;  });//tuning animation speed
+  
+    animSvg = Snap(obj.blck);  
+     // var logo = new Drawing( svgString1, '', timings.logo ); logo.initDraw(); 
+var c = animSvg.circle(119, 77, 1000)
+                .attr({fill : "#006BAD", opacity : 1})
+                .animate({r:60, opacity : 1}, timings.whole*0.85, mina.easein, function(){underline.animate({x : 22, width : 390}, obj.wrtng*1000 , mina.easeinout)});
+var underline = animSvg.rect(22, 75, 0, 4, 2, 2)
+                .attr({fill : "#006BAD"});
 
-//         sign[0] = new Drawing( signature[0], '', timings.signature[0] ); //svgString, transformString, timeBetweenDraws
-//         sign[1] = new Drawing( signature[1], '', timings.signature[1] ); 
-//         sign[2] = new Drawing( signature[2], '', timings.signature[2] ); 
-//         sign[3] = new Drawing( signature[3], '', timings.signature[3] ); 
-//         sign[4] = new Drawing( signature[4], '', timings.signature[4] ); 
-//         sign[5] = new Drawing( signature[5], '', timings.signature[5] ); 
+    pndln  = animSvg.path( phases[0].d ).attr({fill: 'white', "stroke-width" : 0,  stroke : "#006BAD"});
+    swing_(); 
+
+
+        sign[0] = new Drawing( signature[0], '', timings.signature[0] ); //svgString, transformString, timeBetweenDraws
+        sign[1] = new Drawing( signature[1], '', timings.signature[1] ); 
+        sign[2] = new Drawing( signature[2], '', timings.signature[2] ); 
+        sign[3] = new Drawing( signature[3], '', timings.signature[3] ); 
+        sign[4] = new Drawing( signature[4], '', timings.signature[4] ); 
+        sign[5] = new Drawing( signature[5], '', timings.signature[5] ); 
 
 
 
-//         for (var i in brandName)
-//           { brand[i] = new Drawing( brandName[i], '', timings.spellbrand );
-//         // console.log(i);
-//           }
+        for (var i in brandName)
+          { brand[i] = new Drawing( brandName[i], '', timings.spellbrand );
+        // console.log(i);
+          }
 
-//         setTimeout(function() {brand[0].initDraw()}, timings.brandDelay) ;
-//             brand[0].callOnFinished = function() {brand[1].initDraw(); }; 
-//             brand[1].callOnFinished = function() {brand[2].initDraw(); }; 
-//             brand[2].callOnFinished = function() {brand[3].initDraw(); }; 
-//             brand[3].callOnFinished = function() {brand[4].initDraw(); }; 
-//             brand[4].callOnFinished = function() {brand[5].initDraw(); }; 
-//             brand[5].callOnFinished = function() {brand[6].initDraw(); }; 
-//             brand[6].callOnFinished = function() {brand[7].initDraw(); }; 
-//             brand[7].callOnFinished = function() {brand[8].initDraw(); }; 
-//             brand[8].callOnFinished = function() {brand[9].initDraw(); }; 
-//             brand[9].callOnFinished = function() {brand[10].initDraw(); }; 
-//             brand[10].callOnFinished = function() {brand[11].initDraw(); }; 
+        // setTimeout(function() {brand[0].initDraw()}, timings.brandDelay) ;
+        setTimeout(function() {brand[0].initDraw()}, timings.whole*0.85) ;
+            brand[0].callOnFinished = function() {brand[1].initDraw(); }; 
+            brand[1].callOnFinished = function() {brand[2].initDraw(); }; 
+            brand[2].callOnFinished = function() {brand[3].initDraw(); }; 
+            brand[3].callOnFinished = function() {brand[4].initDraw(); }; 
+            brand[4].callOnFinished = function() {brand[5].initDraw(); }; 
+            brand[5].callOnFinished = function() {brand[6].initDraw(); }; 
+            brand[6].callOnFinished = function() {brand[7].initDraw(); }; 
+            brand[7].callOnFinished = function() {brand[8].initDraw(); }; 
+            brand[8].callOnFinished = function() {brand[9].initDraw(); }; 
+            brand[9].callOnFinished = function() {brand[10].initDraw(); }; 
+            brand[10].callOnFinished = function() {brand[11].initDraw(); }; 
 
-// //draw signature
-//             brand[11].callOnFinished = function() {sign[0].initDraw(); }; 
-//             sign[0].callOnFinished = function() { sign[1].initDraw() };
-//             sign[1].callOnFinished = function() { sign[2].initDraw() };
-//             sign[2].callOnFinished = function() { sign[3].initDraw() };
-//             sign[3].callOnFinished = function() { sign[4].initDraw() };
-//             sign[4].callOnFinished = function() { sign[5].initDraw() };
+//draw signature
+            brand[11].callOnFinished = function() {sign[0].initDraw(); }; 
+            sign[0].callOnFinished = function() { sign[1].initDraw() };
+            sign[1].callOnFinished = function() { sign[2].initDraw() };
+            sign[2].callOnFinished = function() { sign[3].initDraw() };
+            sign[3].callOnFinished = function() { sign[4].initDraw() };
+            sign[4].callOnFinished = function() { sign[5].initDraw() };
 
-   // for (var i = 1; i <= brand.length; i++) {
-   //  console.log(i);
-   //        brand[i-1].callOnFinished = function() {var n = i; brand[n].initDraw(); }; 
-   //      }     
+ 
+
+};
+
 
