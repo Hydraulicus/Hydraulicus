@@ -28,9 +28,6 @@ var pendulum = [ 'M407 -677c0,-10 -46,-19 -118,-25l0 -84 0 0 0 -24c0,-10 -75,-18
                 ,"M133 43c0,0 -1,0 -3,0l0 -2 0 0 0 -1c-1,0 -2,0 -5,0 -2,0 -4,0 -4,0l0 1 0 2c-2,0 -3,0 -3,0l0 5c0,0 3,0 7,0 5,0 7,0 8,0l0 -5zm0 -3l0 -5c0,0 -1,0 -3,0 0,-1 -1,-2 -3,-3l0 -7c-1,0 -2,0 -3,0l0 7c-2,1 -3,2 -3,3 -2,0 -3,0 -3,0l0 5 0 0c0,0 3,0 7,0 5,0 7,0 8,0zm-12 8l0 1 0 5c-8,5 -8,10 -7,14l11 36 11 -36c2,-4 2,-9 -6,-14l0 -5 0 -1c-1,0 -2,0 -5,0 -2,0 -4,0 -4,0z"//phase 4
                 ,"M133 39c0,0 0,0 -1,0l0 -1 0 0 0 -1c-1,0 -2,0 -3,0 -1,0 -2,0 -2,0l0 1 0 1c-1,0 -2,0 -2,0l0 2c1,0 2,0 4,0 2,0 4,0 4,0l0 -2zm0 -2l0 -2c0,0 0,0 -2,0 0,-1 0,-1 -1,-2l0 -3c0,-1 -1,-1 -2,0l0 3c0,1 -1,1 -1,2 -1,0 -2,0 -2,0l0 2 0 0c1,0 2,0 4,0 2,0 4,0 4,0zm-6 4l0 1 0 3c-4,2 -4,5 -4,7l6 19 6 -19c0,-2 0,-5 -3,-7l0 -3 0 -1c-1,0 -2,0 -3,0 -1,0 -2,0 -2,0z"//phase 5
 ];
-var hatch = [  '<path class="fil1 str0" d="M92 149c13,-1 26,-5 38,-10 3,-1 6,-2 10,-3"/>'
-              ,'<path class="fil1 str0" d="M98 134c2,1 11,4 20,9 11,5 17,4 24,9"/>'
-]
 var speedFactor = 1; //to do swing animation faster or slowly. Calculated in function initAnimation 
 
 mina.easeInOutQuad = function (n) {//easing calculate
@@ -38,12 +35,12 @@ mina.easeInOutQuad = function (n) {//easing calculate
   return -0.5 * ( ( --n ) * ( n - 2 ) - 1 );
 };
 
-var phases = [ {d : pendulum[0], t : 1500, bezier : mina.easeInOutQuad    } // phase 0
-              ,{d : pendulum[5], t : 1000, bezier : mina.easeInOutQuad    } //phase 5
-              ,{d : pendulum[1], t : 1000, bezier : mina.easeInOutQuad    } //phase 8
-              ,{d : pendulum[4], t : 800, bezier : mina.easeInOutQuad    } //phase 10
-              ,{d : pendulum[3], t : 0, bezier : mina.easeInOutQuad    } //original size - phase 11
-];//mina.easeInOutCirc - almost perfect
+var phases = [ {d : pendulum[0], t : 1500, bezier : mina.easeInOutQuad    } 
+              ,{d : pendulum[5], t : 1000, bezier : mina.easeInOutQuad    } 
+              ,{d : pendulum[1], t : 1000, bezier : mina.easeInOutQuad    } 
+              ,{d : pendulum[4], t : 800, bezier : mina.easeInOutQuad    } 
+              ,{d : pendulum[3], t : 0, bezier : mina.easeInOutQuad    } //original size 
+];
 
 var timings = {whole : 0,
               logo : 1000, //timings for logo drawings
@@ -58,7 +55,6 @@ var animSvg, //point to SVG tag
     pndln;//point to pendulum object
  
       var brand = [], 
-          cross = [],
            sign = [];
 
 function Drawing( svgString, transformString, timeBetweenDraws ) {
@@ -118,7 +114,6 @@ var n = 0; //phase
 function swing_(){ 
    n++;
    if (n <= phases.length-1)  {
-      // console.log("time", n, phases[n-1].t, phases[n-1].bezier);
       pndln.animate({d : phases[n].d}, phases[n-1].t, phases[n-1].bezier, function(){ swing_() });
    }
     return
@@ -131,7 +126,6 @@ function initAnimation (obj) {
   phases.forEach(function(item, i, arr) { phases[i].t*=speedFactor;  });//tuning animation speed
   
     animSvg = Snap(obj.blck);  
-     // var logo = new Drawing( svgString1, '', timings.logo ); logo.initDraw(); 
 var c = animSvg.circle(119, 77, 1000)
                 .attr({fill : "#006BAD", opacity : 1})
                 .animate({r:60, opacity : 1}, timings.whole*0.85, mina.easein, function(){underline.animate({x : 22, width : 390}, obj.wrtng*1000 , mina.easeinout)});
@@ -150,10 +144,6 @@ var underline = animSvg.rect(22, 75, 0, 4, 2, 2)
           { brand[i] = new Drawing( brandName[i], '', timings.spellbrand );
           }
 
-        for (var j in hatch)
-          { cross[j] = new Drawing( hatch[j], '', 225 );
-          }
-
         setTimeout(function() {brand[0].initDraw(); }, timings.whole*0.85) ;
             brand[0].callOnFinished = function() {brand[1].initDraw(); }; 
             brand[1].callOnFinished = function() {brand[2].initDraw(); }; 
@@ -166,21 +156,13 @@ var underline = animSvg.rect(22, 75, 0, 4, 2, 2)
             brand[8].callOnFinished = function() {brand[9].initDraw(); }; 
             brand[9].callOnFinished = function() {brand[10].initDraw(); }; 
             brand[10].callOnFinished = function() {brand[11].initDraw(); }; 
-
-            brand[11].callOnFinished = function() { cross[0].initDraw();}; 
-            cross[0].callOnFinished = function() {cross[1].initDraw(); }; 
-            cross[1].callOnFinished = function() {sign[0].initDraw(); }; 
 //draw signature
+            brand[11].callOnFinished = function() { sign[0].initDraw();}; 
             sign[0].callOnFinished = function() { sign[1].initDraw() };
             sign[1].callOnFinished = function() { sign[2].initDraw() };
             sign[2].callOnFinished = function() { sign[3].initDraw() };
             sign[3].callOnFinished = function() { sign[4].initDraw() };
             sign[4].callOnFinished = function() { sign[5].initDraw() };
-
-
-           
-
- 
 };
 
 
