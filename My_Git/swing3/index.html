@@ -1,0 +1,46 @@
+  <!DOCTYPE HTML>	
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="author" content="Alexei Zababurin" />
+    <meta name="description" content=" JS. SVG. animation.  SVG-animation. "/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta property="og:title" content="Alexei Zababurin for Plumb Kendall"/>
+    <meta property="og:site_name" content="Alexei Zababurin for Plumb Kendall"/>
+    <meta property="og:description" content="Alexei Zababurin for Plumb Kendall"/>
+    <title>Alexei Zababurin for Plumb Kendall</title>
+
+<style type="text/css">
+    .str0 {stroke:#888;stroke-width:1}
+    .str2 {stroke:#555;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .fil1 {fill:none}
+    .brand {fill : "transparent"; stroke:#006BAD; stroke-width:3;stroke-linecap:round;}
+     .bg {
+        background-color: #bbb;
+      }
+  </style>
+
+  </head>
+  <body class="bg">
+
+	 <div style='width:50%; margin: 10% auto'><!-- cover for SVG-animation. You can setup width, height and other HTML parameters. -->
+	 
+		<svg id="swing"  xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0  431 152" preserveAspectRatio="xMidYMid meet" style=' background-color:  white;'>
+
+		</svg>
+	 </div>
+    	
+     <script src="js/snap.svg-min.js"></script>
+     <script src="js/animation.js"></script>
+     <script type="text/javascript">
+       initAnimation({
+        time : 5, // sec., timing of pendulum swing
+        wrtng: 2, // sec., timing of drawing cross and writings  word 'solution'
+        blck : "#swing" // point to SVG id
+       });
+     </script>
+  </body>
+  
+
