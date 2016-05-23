@@ -70,7 +70,7 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
  
       var brand = []
            ,dashi = [],
-           kneeR, pants, mug, leftHand, GhaziFace, GhaziSmile, GhaziMoustache;
+           kneeR, pants, mug, leftHand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0;
 
 function initAnimation (obj) {
     animSvg = Snap(obj.blck); 
@@ -98,7 +98,7 @@ animSvg.add(Snap.parse(chears));//add chears
  
 kneeR = animSvg.select('#kneeR');
 pants = animSvg.select('#pants');
-kneeAnimation();
+// kneeAnimation();
 
 
 
@@ -112,16 +112,33 @@ kneeAnimation();
 
           // dashi[1].callOnFinished = function() { dashi[2].initDraw();}; //draw chear
           dashi[1].callOnFinished = function() { drawObjects()}; 
-GhaziFace = Snap.select('#Ghaziface').attr({cursor : "pointer"}).hover(GhaziMouseOn, GhaziMouseOff);
+
+// GhaziFace = Snap.selectAll('.Ghaziface').forEach(function(element, index) {
+//     element.attr({cursor : "pointer"}).hover(GhaziMouseOn, GhaziMouseOff); 
+// });
+
+GhaziFace = animSvg.ellipse(715, 438, 46, 70).attr({opacity:0,cursor : "pointer"}).hover(GhaziMouseOn, GhaziMouseOff); //ellipse for face hover effect
 GhaziMoustache = Snap.select('#moustache');
 leftHand = animSvg.path(rHand).addClass('fil2');
-GhaziSmile = animSvg.path('M723 473c1,0 2,1 1,2 -5,2 -12,2 -17,0 -1,-1 0,-2 1,-2 5,2 10,2 15,0z').addClass('fil2').attr({opacity:0});
-mug = animSvg.path(mugD).attr({stroke:'#1FB1E9', 'stroke-width':1, fill : '#1FB1E9', 'fill-rule' : "evenodd", cursor : "pointer"}).hover(mugMouseOn, mugMouseOff);
+GhaziSmile = animSvg.path('M723 473c1,0 2,1 1,2 -5,2 -12,2 -17,0 -1,-1 0,-2 1,-2 5,2 10,2 15,0z').addClass('fil2').transform('s0').attr({opacity:0});
+mug = animSvg.path(mugD)
+              .attr({stroke:'#1FB1E9', 'stroke-width':1, fill : '#1FB1E9', 'fill-rule' : "evenodd", cursor : "pointer"})
+              .hover(mugMouseOn, mugMouseOff)
+              .click(mugClick);
 mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"});
-fingersOnMug0 = animSvg.path('M884 604l8 0c3,0 5,2 5,5l0 0c0,2 -2,4 -5,4l-8 0c-3,0 -5,-2 -5,-4l0 0c0,-3 2,-5 5,-5zM931 633c3,0 5,2 5,4l0 0c0,2 -2,4 -5,4l-8 0c-2,0 -4,-2 -4,-4l0 0c0,-2 2,-4 4,-4 -2,0 -4,-2 -4,-5l0 0c0,-2 2,-4 4,-4 -2,0 -4,-2 -4,-4l0 0c0,-3 2,-5 4,-5 -2,0 -4,-2 -4,-4l0 0c0,-3 2,-5 4,-5l8 0c3,0 5,2 5,5l0 0c0,2 -2,4 -5,4 3,0 5,2 5,5l0 0c0,2 -2,4 -5,4 3,0 5,2 5,4l0 0c0,3 -2,5 -5,5z').addClass('fil2').attr({'opacity':0});
-};//end of initAnimation function
+// fingersOnMug0 = animSvg.path('M884 604l8 0c3,0 5,2 5,5l0 0c0,2 -2,4 -5,4l-8 0c-3,0 -5,-2 -5,-4l0 0c0,-3 2,-5 5,-5zM931 633c3,0 5,2 5,4l0 0c0,2 -2,4 -5,4l-8 0c-2,0 -4,-2 -4,-4l0 0c0,-2 2,-4 4,-4 -2,0 -4,-2 -4,-5l0 0c0,-2 2,-4 4,-4 -2,0 -4,-2 -4,-4l0 0c0,-3 2,-5 4,-5 -2,0 -4,-2 -4,-4l0 0c0,-3 2,-5 4,-5l8 0c3,0 5,2 5,5l0 0c0,2 -2,4 -5,4 3,0 5,2 5,5l0 0c0,2 -2,4 -5,4 3,0 5,2 5,4l0 0c0,3 -2,5 -5,5z').addClass('fil2').attr({'opacity':0});
+fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
+};//end of initAnimation function.attr({'opacity':0});
 
-function kneeAnimationStart() //4 constant animatiob
+function mugClick(){console.log('mugClick');
+time = 1800;
+  mugInsude.attr({'opacity':0});
+  // leftHand.animate({d:'M776 598l-55 -79c-5,-8 -2,-19 6,-24 8,-5 19,-2 24,6l55 79c5,8 2,19 -6,24 -8,5 -19,2 -24,-6z'},time,mina.easeInOutQuad, function(){mug.animate({d:rHand},time,mina.easeInOutQuad)});
+  // leftHand.animate({d:'M751 500l54 79c6,8 4,19 -4,24l0 0c-8,6 -19,4 -25,-4l-54 -79c-6,-8 -4,-19 4,-25l0 0c8,-5 19,-3 25,5z'},time,mina.easeInOutQuad, function(){mug.animate({d:rHand},time,mina.easeInOutQuad)});
+  mug.animate({d:'M729 527c0,1 -7,2 -16,2 -9,0 -16,-1 -16,-2l-2 -13c0,-7 -1,-16 -3,-28 0,-1 0,-8 0,-8 0,-1 9,-2 21,-2 12,0 21,1 21,2 0,0 -5,49 -5,49zm-36 -37l2 20c-1,-6 -1,-10 -2,-20z'},time,mina.easeInOutQuad, function(){mug.animate({d:mugD},time,mina.easeInOutQuad,function(){mugInsude.attr({'opacity':1});})})
+  fingersOnMug0.animate({d:GhaziFingers[1]},time,mina.easeInOutQuad, function(){fingersOnMug0.animate({d:GhaziFingers[0]},time,mina.easeInOutQuad,function(){})})
+}
+function kneeAnimationStart() //4 constant animation
     {//console.log('kneeAnimationStart',rhythm);
       {
         kneeR.animate({ d: 'M628 699l63 175c2,3 3,6 3,10 0,13 -11,23 -24,23 -10,0 -19,-7 -22,-15l-63 -176c-2,-3 -3,-6 -3,-10 0,-12 11,-23 24,-23 10,0 19,7 22,16z' }, rhythm, mina.easeInOutQuad);
@@ -138,18 +155,19 @@ function kneeAnimation() //4 constant animatiob
         pants.animate({ d: Ghazi[1].pants }, rhythm, mina.easeInOutQuad, kneeAnimationStart);
       }
       else 
-      {setTimeout(function(){timeKnee = 5; console.log(timeKnee); kneeAnimation()},5000)}
+      {setTimeout(function(){timeKnee = 5; console.log(timeKnee); kneeAnimation()},1000)}
   }
 
 function mugMouseOn()
 {
-  leftHand.animate({d:'M904 642l-72 0c-10,0 -18,-8 -18,-17l0 0c0,-10 8,-18 18,-18l72 0c10,0 18,8 18,18l0 0c0,9 -8,17 -18,17z'},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1})});
+  // leftHand.stop().animate({d:'M904 642l-72 0c-10,0 -18,-8 -18,-17l0 0c0,-10 8,-18 18,-18l72 0c10,0 18,8 18,18l0 0c0,9 -8,17 -18,17z'},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1})});
+  leftHand.stop().animate({d:'M904 642l-72 0c-10,0 -18,-8 -18,-17l0 0c0,-10 8,-18 18,-18l72 0c10,0 18,8 18,18l0 0c0,9 -8,17 -18,17z'},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1})});
 }
 
 function mugMouseOff()
 { 
   fingersOnMug0.attr({opacity:0});
-  leftHand.animate({d:rHand}, 100, mina.linear);
+  leftHand.stop().animate({d:rHand}, 100, mina.linear);
 }
 
 function GhaziMouseOn()
