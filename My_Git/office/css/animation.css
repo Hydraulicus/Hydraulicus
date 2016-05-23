@@ -1,0 +1,54 @@
+/*.mugEllipse {
+    stroke-width : 0;
+    fill: #4B89B6
+}*/
+
+.fil2 {fill:#EF977C}/*skeen color*/
+
+/*.fadeout {
+        opacity: 0;
+-webkit-animation: fadeInFromNone 1s 2.5s  ease-out;
+    -moz-animation: fadeInFromNone 1s 2.5s  ease-out;
+    -o-animation: fadeInFromNone 1s 2.5s ease-out;
+    animation: fadeInFromNone 1s 2.5s ease-out;
+}
+
+@keyframes fadeInFromNone {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@-webkit-keyframes fadeInFromNone {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeInFromNone {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}*/
+
+/*@-o-keyframes fadeInFromNone {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}*/
