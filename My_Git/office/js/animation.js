@@ -1,8 +1,10 @@
-var rhythm = 3000, timeKnee=4;
+var rhythm = 1000, timeKnee=10;
 
 
 
-
+mina.easeOutQuad = function(n) {
+  return -1 * n * ( n - 2 );
+};
 mina.easeInOutQuad = function (n) {//easing calculate
   if ( ( n *= 2 ) < 1 ) return 0.5 * Math.pow( n, 2 );
   return -0.5 * ( ( --n ) * ( n - 2 ) - 1 );
@@ -37,11 +39,6 @@ Drawing.prototype.initDraw = function() {
     this.draw();
 };
 
-// Drawing.prototype.quickDraw = function() {
-//     this.init();
-//     this.timeBetweenDraws = 0;
-//     this.draw();
-// };
 
 Drawing.prototype.draw = function() {         // this is the main animation bit
     if( this.endReached() ) {
@@ -70,7 +67,7 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
  
       var brand = []
            ,dashi = [],
-           kneeR, pants, mug, leftHand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0;
+           kneeR, pants, mug, leftHand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, clickFlag = false, GhaziSviter;
 
 function initAnimation (obj) {
     animSvg = Snap(obj.blck); 
@@ -98,7 +95,7 @@ animSvg.add(Snap.parse(chears));//add chears
  
 kneeR = animSvg.select('#kneeR');
 pants = animSvg.select('#pants');
-// kneeAnimation();
+kneeAnimation();
 
 
 
@@ -116,7 +113,7 @@ pants = animSvg.select('#pants');
 // GhaziFace = Snap.selectAll('.Ghaziface').forEach(function(element, index) {
 //     element.attr({cursor : "pointer"}).hover(GhaziMouseOn, GhaziMouseOff); 
 // });
-
+GhaziSviter = Snap.select('#ghazisviter');
 GhaziFace = animSvg.ellipse(715, 438, 46, 70).attr({opacity:0,cursor : "pointer"}).hover(GhaziMouseOn, GhaziMouseOff); //ellipse for face hover effect
 GhaziMoustache = Snap.select('#moustache');
 leftHand = animSvg.path(rHand).addClass('fil2');
@@ -130,13 +127,49 @@ mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B
 fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
 };//end of initAnimation function.attr({'opacity':0});
 
-function mugClick(){console.log('mugClick');
-time = 1800;
+function mugClick(){
+  clickFlag = true;
   mugInsude.attr({'opacity':0});
-  // leftHand.animate({d:'M776 598l-55 -79c-5,-8 -2,-19 6,-24 8,-5 19,-2 24,6l55 79c5,8 2,19 -6,24 -8,5 -19,2 -24,-6z'},time,mina.easeInOutQuad, function(){mug.animate({d:rHand},time,mina.easeInOutQuad)});
-  // leftHand.animate({d:'M751 500l54 79c6,8 4,19 -4,24l0 0c-8,6 -19,4 -25,-4l-54 -79c-6,-8 -4,-19 4,-25l0 0c8,-5 19,-3 25,5z'},time,mina.easeInOutQuad, function(){mug.animate({d:rHand},time,mina.easeInOutQuad)});
-  mug.animate({d:'M729 527c0,1 -7,2 -16,2 -9,0 -16,-1 -16,-2l-2 -13c0,-7 -1,-16 -3,-28 0,-1 0,-8 0,-8 0,-1 9,-2 21,-2 12,0 21,1 21,2 0,0 -5,49 -5,49zm-36 -37l2 20c-1,-6 -1,-10 -2,-20z'},time,mina.easeInOutQuad, function(){mug.animate({d:mugD},time,mina.easeInOutQuad,function(){mugInsude.attr({'opacity':1});})})
-  fingersOnMug0.animate({d:GhaziFingers[1]},time,mina.easeInOutQuad, function(){fingersOnMug0.animate({d:GhaziFingers[0]},time,mina.easeInOutQuad,function(){})})
+  var time = 800, stopTime = 200;
+  var frames = [Ghazi[1].lHand
+  ,'M846 601c-17,17 -2,2 -19,19 -7,7 -18,7 -24,0l0 0c-7,-7 -7,-18 0,-25 17,-17 1,-2 18,-19 7,-7 18,-7 25,0l0 0c7,7 7,18 0,25z'
+  ,'M818 552c0,25 0,19 0,44 0,9 -8,17 -18,17l0 0c-9,0 -17,-8 -17,-17 0,-25 0,-19 0,-44 0,-9 8,-17 17,-17l0 0c10,0 18,8 18,17z'
+  ,'M750 500c14,20 43,58 57,77 6,8 4,19 -4,25l0 0c-8,5 -19,3 -25,-4 -13,-20 -43,-58 -56,-78 -6,-8 -4,-19 4,-24l0 0c8,-6 19,-4 24,4z'
+  ],
+  mugd = 'M729 527c0,1 -7,2 -16,2 -9,0 -16,-1 -16,-2l-2 -13c0,-7 -1,-16 -3,-28 0,-1 0,-8 0,-8 0,-1 9,-2 21,-2 12,0 21,1 21,2 0,0 -5,49 -5,49zm-36 -37l2 20c-1,-6 -1,-10 -2,-20z';
+
+  leftHand.animate({d:frames[1]}, time*0.2, mina.linear, 
+    function(){console.log('2'); leftHand.animate({d:frames[2]},time*0.15,mina.linear 
+      , function(){console.log('3'); leftHand.animate({d:frames[3]}, time*0.65, mina.easeOutQuad  
+         ,function(){setTimeout(
+        //back stroke
+                       function(){console.log('0'); leftHand.animate({d:frames[2]}, time*0.35, mina.linear
+                        , function(){console.log('0'); leftHand.animate({d:frames[0]}, time*0.55, mina.easeout); clickFlag = false;})
+                    }, stopTime)
+        })
+      })
+     }
+    );
+
+  mug.animate({d:mugd},time,mina.easeOutQuad, 
+    function(){
+      setTimeout(function()
+                  { mug.animate({d:mugD},time,mina.linear, 
+                        function(){mugInsude.attr({'opacity':1});}
+                        )
+                  }, stopTime
+                )
+              }
+              );
+  GhaziSviter.animate({d:Ghazi[3].sviter},time,mina.easeOutQuad);
+  fingersOnMug0.animate({d:GhaziFingers[1]},time,mina.easeOutQuad,
+        function(){
+          setTimeout( 
+              function(){fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.linear); GhaziSviter.animate({d:Ghazi[0].sviter}, time*1.25, mina.easiout)}
+                    , stopTime
+                    )
+                  }
+                )
 }
 function kneeAnimationStart() //4 constant animation
     {//console.log('kneeAnimationStart',rhythm);
@@ -151,8 +184,8 @@ function kneeAnimation() //4 constant animatiob
   {//console.log('kneeAnimation');
     if (timeKnee !== 0) 
       {
-        kneeR.animate({ d: Ghazi[1].kneeR }, rhythm, mina.easeInOutQuad);
-        pants.animate({ d: Ghazi[1].pants }, rhythm, mina.easeInOutQuad, kneeAnimationStart);
+        kneeR.animate({ d : Ghazi[1].kneeR }, rhythm, mina.easeInOutQuad);
+        pants.animate({ d : Ghazi[1].pants }, rhythm, mina.easeInOutQuad, kneeAnimationStart);
       }
       else 
       {setTimeout(function(){timeKnee = 5; console.log(timeKnee); kneeAnimation()},1000)}
@@ -160,14 +193,18 @@ function kneeAnimation() //4 constant animatiob
 
 function mugMouseOn()
 {
-  // leftHand.stop().animate({d:'M904 642l-72 0c-10,0 -18,-8 -18,-17l0 0c0,-10 8,-18 18,-18l72 0c10,0 18,8 18,18l0 0c0,9 -8,17 -18,17z'},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1})});
-  leftHand.stop().animate({d:'M904 642l-72 0c-10,0 -18,-8 -18,-17l0 0c0,-10 8,-18 18,-18l72 0c10,0 18,8 18,18l0 0c0,9 -8,17 -18,17z'},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1})});
+  if (clickFlag) return 
+  else 
+  leftHand.stop().animate({d : Ghazi[1].lHand},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1})});
 }
 
 function mugMouseOff()
-{ 
-  fingersOnMug0.attr({opacity:0});
-  leftHand.stop().animate({d:rHand}, 100, mina.linear);
+{ if (clickFlag) return 
+  else 
+    {
+        fingersOnMug0.attr({opacity:0});
+        leftHand.stop().animate({d : rHand}, 100, mina.linear);
+    }
 }
 
 function GhaziMouseOn()
@@ -184,10 +221,8 @@ function GhaziMouseOff()
 function drawObjects()
     {
       for (var j in objects)
-        { var temp = Snap.parse(objects[j]);
-          // console.log(temp);
-          // temp.attr({'opacity' : 0.5});
-          animSvg.add(temp)
+        { 
+          animSvg.add(Snap.parse(objects[j]))
         }
     }
 
