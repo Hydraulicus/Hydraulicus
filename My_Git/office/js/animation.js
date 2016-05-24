@@ -165,7 +165,7 @@ function mugClick(){
   fingersOnMug0.animate({d:GhaziFingers[1]},time,mina.easeOutQuad,
         function(){
           setTimeout( 
-              function(){fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.linear); GhaziSviter.stop().animate({d:Ghazi[2].sviter}, time, mina.easiout)}
+              function(){fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.linear); GhaziSviter.stop().animate({d:Ghazi[2].sviter}, time, mina.easeout)}
                     , stopTime
                     )
                   }
