@@ -66,8 +66,8 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
 
  
       var brand = []
-           ,dashi = [],
-           kneeR, pants, mug, leftHand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, clickFlag = false, GhaziSviter;
+         ,dashi = []
+         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, clickFlag = false, GhaziSviter, GhaziElbow, GhaziSpich;
 
 function initAnimation (obj) {
     animSvg = Snap(obj.blck); 
@@ -83,6 +83,7 @@ carpet = animSvg.path(carpetD).attr({fill:'#A2C3BE'});/*carpet*/
 
 animSvg.add(Snap.parse(chears));//add chears
 
+GhaziElbow = animSvg.circle(595, 625, 21).attr({opacity:1, id : 'elbow'}).addClass('fil1');
 
       for (var j in Ghazi[0])
         {
@@ -113,8 +114,19 @@ kneeAnimation();
 // GhaziFace = Snap.selectAll('.Ghaziface').forEach(function(element, index) {
 //     element.attr({cursor : "pointer"}).hover(GhaziMouseOn, GhaziMouseOff); 
 // });
+
+var myMatrix = new Snap.Matrix();
+myMatrix.scale(0.01, 0.01,  773, 415);
+var orMatrix = new Snap.Matrix();
+orMatrix.scale(1, 1,  773, 415);
+
 GhaziSviter = Snap.select('#ghazisviter');
-GhaziFace = animSvg.ellipse(715, 438, 46, 70).attr({opacity:0,cursor : "pointer"}).hover(GhaziMouseOn, GhaziMouseOff); //ellipse for face hover effect
+righthand = Snap.select('#handr');
+GhaziSpich = animSvg.path(Ghazi[3].speech).attr({stroke:'black', fill : 'white', 'stroke-width':1}).transform(myMatrix);
+GhaziFace = animSvg.ellipse(715, 438, 46, 70) //ellipse for face hover effect
+                   .attr({opacity:0,cursor : "pointer"})
+                   .hover(GhaziMouseOn, GhaziMouseOff)
+                   .mousedown(function() {GhaziSpich.animate({transform : orMatrix}, 1000,  mina.bounce);});
 GhaziMoustache = Snap.select('#moustache');
 leftHand = animSvg.path(rHand).addClass('fil2');
 GhaziSmile = animSvg.path('M723 473c1,0 2,1 1,2 -5,2 -12,2 -17,0 -1,-1 0,-2 1,-2 5,2 10,2 15,0z').addClass('fil2').transform('s0').attr({opacity:0});
@@ -125,7 +137,9 @@ mug = animSvg.path(mugD)
 mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"});
 // fingersOnMug0 = animSvg.path('M884 604l8 0c3,0 5,2 5,5l0 0c0,2 -2,4 -5,4l-8 0c-3,0 -5,-2 -5,-4l0 0c0,-3 2,-5 5,-5zM931 633c3,0 5,2 5,4l0 0c0,2 -2,4 -5,4l-8 0c-2,0 -4,-2 -4,-4l0 0c0,-2 2,-4 4,-4 -2,0 -4,-2 -4,-5l0 0c0,-2 2,-4 4,-4 -2,0 -4,-2 -4,-4l0 0c0,-3 2,-5 4,-5 -2,0 -4,-2 -4,-4l0 0c0,-3 2,-5 4,-5l8 0c3,0 5,2 5,5l0 0c0,2 -2,4 -5,4 3,0 5,2 5,5l0 0c0,2 -2,4 -5,4 3,0 5,2 5,4l0 0c0,3 -2,5 -5,5z').addClass('fil2').attr({'opacity':0});
 fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
-};//end of initAnimation function.attr({'opacity':0});
+elbowAnimation();
+
+};//end of init function
 
 function mugClick(){
   clickFlag = true;
@@ -190,6 +204,12 @@ function kneeAnimation() //4 constant animatiob
       else 
       {setTimeout(function(){timeKnee = 5; console.log(timeKnee); kneeAnimation()},1000)}
   }
+
+function elbowAnimation()
+{ var time = rhythm*1.5;
+  righthand.animate({transform : 'r1.25,755,625 '}, time, mina.easeinout, function(){righthand.animate({transform : 't0,0'}, time, mina.easeinout)});
+  GhaziElbow.animate({transform : 't0,-4'}, time, mina.easeinout, function(){GhaziElbow.animate({transform : 't0,0'}, time, mina.easeinout, elbowAnimation)});
+}
 
 function mugMouseOn()
 {
