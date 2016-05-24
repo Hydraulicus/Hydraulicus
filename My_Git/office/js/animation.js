@@ -138,13 +138,13 @@ function mugClick(){
   ],
   mugd = 'M729 527c0,1 -7,2 -16,2 -9,0 -16,-1 -16,-2l-2 -13c0,-7 -1,-16 -3,-28 0,-1 0,-8 0,-8 0,-1 9,-2 21,-2 12,0 21,1 21,2 0,0 -5,49 -5,49zm-36 -37l2 20c-1,-6 -1,-10 -2,-20z';
 
-  leftHand.animate({d:frames[1]}, time*0.2, mina.linear, 
+  leftHand.animate({d:frames[1]}, time*0.235, mina.linear, 
     function(){console.log('2'); leftHand.animate({d:frames[2]},time*0.15,mina.linear 
       , function(){console.log('3'); leftHand.animate({d:frames[3]}, time*0.65, mina.easeOutQuad  
          ,function(){setTimeout(
         //back stroke
                        function(){console.log('0'); leftHand.animate({d:frames[2]}, time*0.35, mina.linear
-                        , function(){console.log('0'); leftHand.animate({d:frames[0]}, time*0.55, mina.easeout); clickFlag = false;})
+                        , function(){console.log('0'); leftHand.animate({d:frames[0]}, time*0.5, mina.easeout); clickFlag = false;})
                     }, stopTime)
         })
       })
@@ -161,11 +161,11 @@ function mugClick(){
                 )
               }
               );
-  GhaziSviter.animate({d:Ghazi[3].sviter},time,mina.easeOutQuad);
+  GhaziSviter.stop().animate({d:Ghazi[3].sviter},time,mina.easeOutQuad);
   fingersOnMug0.animate({d:GhaziFingers[1]},time,mina.easeOutQuad,
         function(){
           setTimeout( 
-              function(){fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.linear); GhaziSviter.animate({d:Ghazi[0].sviter}, time*1.25, mina.easiout)}
+              function(){fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.linear); GhaziSviter.stop().animate({d:Ghazi[2].sviter}, time, mina.easiout)}
                     , stopTime
                     )
                   }
