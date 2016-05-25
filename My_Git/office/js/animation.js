@@ -1,5 +1,5 @@
 var rhythm = 1000, 
-timeKnee=10;
+timeKneeShake=15;
 
 
 mina.easeInQuad = function (n) {
@@ -70,6 +70,7 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
  
       var brand = [],dashi = []
          ,clickFlag = false
+         ,timeKnee = timeKneeShake
          ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet;
 
       var toMouth = new Snap.Matrix(),
@@ -159,6 +160,7 @@ typingAnimation();
 
 function mugClick(){
    var time = 800
+    animSvg.selectAll('path circle').forEach(function(element, index) {element.stop()  });//Stop all animation
     leftHand.stop().animate({d : Ghazi[1].lHand},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1}); setTimeout(function(){ mugDrink(time, function(){mugMouseOff()}) }, time*0.33)});
 }
 
@@ -209,7 +211,7 @@ function mugDrink(time, callback){
 }
 
 function handToMouth(){
-    var stopTime = 2000, moveTime = rhythm*3;
+    var stopTime = 3000, moveTime = rhythm*3;
     fingersOnMug0.attr({opacity:0}); 
     leftHand.animate({d : Ghazi[1].handToMouth}, moveTime, mina.backout, function(){setTimeout(function(){leftHand.animate({d : lHand}, moveTime, mina.easeInOutQuad)}, stopTime)}); 
     GhaziFaceSet.animate({transform : 't0,14'}, moveTime, mina.backout, function(){setTimeout(function(){GhaziFaceSet.animate({transform : 't0,0'}, moveTime*0.75, mina.easeInOutQuad)}, stopTime)}); 
@@ -233,7 +235,7 @@ function kneeAnimation(){ //4 constant animatiob
       }
       else 
       { handToMouth(); 
-        setTimeout(function(){timeKnee = 5; console.log(timeKnee); kneeAnimation()},1000)
+        setTimeout(function(){timeKnee = timeKneeShake; console.log(timeKnee); kneeAnimation()},1000)
       }
   }
 
