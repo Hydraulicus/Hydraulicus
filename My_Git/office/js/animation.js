@@ -1,7 +1,9 @@
 var rhythm = 1000, timeKnee=10;
 
 
-
+mina.easeInQuad = function (n) {
+  return Math.pow( n, 2 );
+};
 mina.easeOutQuad = function(n) {
   return -1 * n * ( n - 2 );
 };
@@ -65,9 +67,9 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
 
 
  
-      var brand = []
-         ,dashi = []
-         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, clickFlag = false, GhaziSviter, GhaziElbow, GhaziSpich;
+      var brand = [],dashi = []
+         ,clickFlag = false
+         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, GhaziSviter, GhaziElbow, GhaziSpich;
 
 function initAnimation (obj) {
     animSvg = Snap(obj.blck); 
@@ -137,14 +139,14 @@ mug = animSvg.path(mugD)
 mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"});
 // fingersOnMug0 = animSvg.path('M884 604l8 0c3,0 5,2 5,5l0 0c0,2 -2,4 -5,4l-8 0c-3,0 -5,-2 -5,-4l0 0c0,-3 2,-5 5,-5zM931 633c3,0 5,2 5,4l0 0c0,2 -2,4 -5,4l-8 0c-2,0 -4,-2 -4,-4l0 0c0,-2 2,-4 4,-4 -2,0 -4,-2 -4,-5l0 0c0,-2 2,-4 4,-4 -2,0 -4,-2 -4,-4l0 0c0,-3 2,-5 4,-5 -2,0 -4,-2 -4,-4l0 0c0,-3 2,-5 4,-5l8 0c3,0 5,2 5,5l0 0c0,2 -2,4 -5,4 3,0 5,2 5,5l0 0c0,2 -2,4 -5,4 3,0 5,2 5,4l0 0c0,3 -2,5 -5,5z').addClass('fil2').attr({'opacity':0});
 fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
-elbowAnimation();
+typingAnimation();
 
 };//end of init function
 
 function mugClick(){
   clickFlag = true;
   mugInsude.attr({'opacity':0});
-  var time = 800, stopTime = 200;
+  var time = 800, stopTime = 300;
   var frames = [Ghazi[1].lHand
   ,'M846 601c-17,17 -2,2 -19,19 -7,7 -18,7 -24,0l0 0c-7,-7 -7,-18 0,-25 17,-17 1,-2 18,-19 7,-7 18,-7 25,0l0 0c7,7 7,18 0,25z'
   ,'M818 552c0,25 0,19 0,44 0,9 -8,17 -18,17l0 0c-9,0 -17,-8 -17,-17 0,-25 0,-19 0,-44 0,-9 8,-17 17,-17l0 0c10,0 18,8 18,17z'
@@ -157,8 +159,9 @@ function mugClick(){
       , function(){console.log('3'); leftHand.animate({d:frames[3]}, time*0.65, mina.easeOutQuad  
          ,function(){setTimeout(
         //back stroke
-                       function(){console.log('0'); leftHand.animate({d:frames[2]}, time*0.35, mina.linear
-                        , function(){console.log('0'); leftHand.animate({d:frames[0]}, time*0.5, mina.easeout); clickFlag = false;})
+                       function(){console.log('0'); leftHand.animate({d:frames[2]}, time*0.35, mina.easeInQuad
+                        , function(){console.log('0'); leftHand.animate({d:frames[1]}, time*0.2, mina.linear
+                           , function(){console.log('0'); leftHand.animate({d:frames[0]}, time*0.48, mina.easeOutQuad); clickFlag = false; typingAnimation()})})
                     }, stopTime)
         })
       })
@@ -196,7 +199,7 @@ function kneeAnimationStart() //4 constant animation
     }
 function kneeAnimation() //4 constant animatiob
   {//console.log('kneeAnimation');
-    if (timeKnee !== 0) 
+    if ((timeKnee !== 0) && (!clickFlag)) 
       {
         kneeR.animate({ d : Ghazi[1].kneeR }, rhythm, mina.easeInOutQuad);
         pants.animate({ d : Ghazi[1].pants }, rhythm, mina.easeInOutQuad, kneeAnimationStart);
@@ -205,10 +208,12 @@ function kneeAnimation() //4 constant animatiob
       {setTimeout(function(){timeKnee = 5; console.log(timeKnee); kneeAnimation()},1000)}
   }
 
-function elbowAnimation()
+function typingAnimation()
 { var time = rhythm*1.5;
-  righthand.animate({transform : 'r1.25,755,625 '}, time, mina.easeinout, function(){righthand.animate({transform : 't0,0'}, time, mina.easeinout)});
-  GhaziElbow.animate({transform : 't0,-4'}, time, mina.easeinout, function(){GhaziElbow.animate({transform : 't0,0'}, time, mina.easeinout, elbowAnimation)});
+  if (clickFlag) return;
+  leftHand.animate({ transform : 'r-1,755,625 '}, time, mina.easeinout, function(){leftHand.animate({transform : 't0,0'}, time, mina.easeinout)});
+  righthand.animate({transform : 'r1,755,625 '}, time, mina.easeinout, function(){righthand.animate({transform : 't0,0'}, time, mina.easeinout)});
+  GhaziElbow.animate({transform : 't0,-4'}, time, mina.easeinout, function(){GhaziElbow.animate({transform : 't0,0'}, time, mina.easeinout, typingAnimation)});
 }
 
 function mugMouseOn()
