@@ -106,16 +106,6 @@ kneeAnimation();
 
 
 
-        for (var i in dashing)
-          { 
-            dashi[i] = new Drawing( dashing[i].teg, '', dashing[i].time, dashing[i].fill);
-          };
-          dashi[0].initDraw(); 
-          dashi[0].callOnFinished = function() {dashi[1].initDraw(); }; 
-
-
-          // dashi[1].callOnFinished = function() { dashi[2].initDraw();}; //draw chear
-          dashi[1].callOnFinished = function() { drawObjects()}; 
 
 // GhaziFace = Snap.selectAll('.Ghaziface').forEach(function(element, index) {
 //     element.attr({cursor : "pointer"}).hover(GhaziMouseOn, GhaziMouseOff); 
@@ -155,6 +145,15 @@ fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0
 typingAnimation();
 
 
+        for (var i in dashing)
+          { 
+            dashi[i] = new Drawing( dashing[i].teg, '', dashing[i].time, dashing[i].fill);
+          };
+          dashi[0].initDraw(); 
+          dashi[0].callOnFinished = function() {dashi[1].initDraw(); }; 
+
+          // dashi[1].callOnFinished = function() { dashi[2].initDraw();}; //draw chear
+          dashi[1].callOnFinished = function() { drawObjects()}; 
 
 };//end of init function
 
@@ -211,6 +210,7 @@ function mugDrink(time, callback){
 
 function handToMouth(){
     var stopTime = 2000, moveTime = rhythm*3;
+    fingersOnMug0.attr({opacity:0}); 
     leftHand.animate({d : Ghazi[1].handToMouth}, moveTime, mina.backout, function(){setTimeout(function(){leftHand.animate({d : lHand}, moveTime, mina.easeInOutQuad)}, stopTime)}); 
     GhaziFaceSet.animate({transform : 't0,14'}, moveTime, mina.backout, function(){setTimeout(function(){GhaziFaceSet.animate({transform : 't0,0'}, moveTime*0.75, mina.easeInOutQuad)}, stopTime)}); 
 }
@@ -276,7 +276,7 @@ function drawObjects()
     {
       for (var j in objects)
         { 
-          // animSvg.add(Snap.parse(objects[j]))
+          animSvg.add(Snap.parse(objects[j]))
         }
     }
 
