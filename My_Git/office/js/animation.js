@@ -1,5 +1,5 @@
 var rhythm = 1000, 
-timeKneeShake=15;
+timeKneeShake=2;
 
 
 mina.easeInQuad = function (n) {
@@ -159,7 +159,8 @@ typingAnimation();
 };//end of init function
 
 function mugClick(){
-   var time = 800
+   var time = 800;
+   leftHand.stop().attr({d:lHand});//Stop animation
     animSvg.selectAll('path circle').forEach(function(element, index) {element.stop()  });//Stop all animation
     leftHand.stop().animate({d : Ghazi[1].lHand},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1}); setTimeout(function(){ mugDrink(time, function(){mugMouseOff()}) }, time*0.33)});
 }
@@ -182,7 +183,7 @@ function mugDrink(time, callback){
         //back stroke
                        function(){console.log('0'); leftHand.stop().animate({d:frames[2]}, time*0.35, mina.easeInQuad
                         , function(){console.log('0'); leftHand.stop().animate({d:frames[1]}, time*0.2, mina.linear
-                           , function(){console.log('0'); leftHand.stop().animate({d:frames[0]}, time*0.48, mina.easeOutQuad, callback); clickFlag = false; typingAnimation(); kneeAnimation()})})
+                           , function(){console.log('0'); leftHand.stop().animate({d:frames[0]}, time*0.48, mina.easeOutQuad, callback);})})
                     }, stopTime)
         })
       })
@@ -211,6 +212,7 @@ function mugDrink(time, callback){
 }
 
 function handToMouth(){
+  if (clickFlag) console.log(clickFlag);
     var stopTime = 3000, moveTime = rhythm*3;
     fingersOnMug0.attr({opacity:0}); 
     leftHand.animate({d : Ghazi[1].handToMouth}, moveTime, mina.backout, function(){setTimeout(function(){leftHand.animate({d : lHand}, moveTime, mina.easeInOutQuad)}, stopTime)}); 
@@ -255,8 +257,9 @@ function mugMouseOn()
 }
 
 function mugMouseOff()
-{ if (clickFlag) return 
-  else 
+{  clickFlag = false; typingAnimation(); kneeAnimation();
+ // if (clickFlag) return 
+  //else 
     {
         fingersOnMug0.attr({opacity:0});
         leftHand.stop().animate({d : lHand}, 100, mina.linear);
