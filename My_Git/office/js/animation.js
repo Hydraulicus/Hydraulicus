@@ -1,5 +1,5 @@
 var rhythm = 1000, 
-timeKneeShake=2;
+timeKneeShake=3;
 
 
 mina.easeInQuad = function (n) {
@@ -259,7 +259,8 @@ function mugMouseOn()
 }
 
 function mugMouseOff()
-{  clickFlag = false; typingAnimation(); kneeAnimation();
+{  clickFlag = false;  kneeAnimation(); 
+GhaziFaceSet.stop().transform('t0,0');//Stop animation
  // if (clickFlag) return 
   //else 
     {
