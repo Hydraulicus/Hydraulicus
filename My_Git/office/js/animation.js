@@ -143,7 +143,7 @@ mug = animSvg.path(mugD)
 mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"});
 // fingersOnMug0 = animSvg.path('M884 604l8 0c3,0 5,2 5,5l0 0c0,2 -2,4 -5,4l-8 0c-3,0 -5,-2 -5,-4l0 0c0,-3 2,-5 5,-5zM931 633c3,0 5,2 5,4l0 0c0,2 -2,4 -5,4l-8 0c-2,0 -4,-2 -4,-4l0 0c0,-2 2,-4 4,-4 -2,0 -4,-2 -4,-5l0 0c0,-2 2,-4 4,-4 -2,0 -4,-2 -4,-4l0 0c0,-3 2,-5 4,-5 -2,0 -4,-2 -4,-4l0 0c0,-3 2,-5 4,-5l8 0c3,0 5,2 5,5l0 0c0,2 -2,4 -5,4 3,0 5,2 5,5l0 0c0,2 -2,4 -5,4 3,0 5,2 5,4l0 0c0,3 -2,5 -5,5z').addClass('fil2').attr({'opacity':0});
 fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
-typingAnimation();
+// typingAnimation();
 
 
         for (var i in dashing)
@@ -161,6 +161,8 @@ typingAnimation();
 function mugClick(){
    var time = 800;
    leftHand.stop().attr({d:lHand});//Stop animation
+   // GhaziFaceSet.attr({transform : 't0,0'});//Stop animation
+   GhaziFaceSet.stop().transform('t0,0');//Stop animation
     animSvg.selectAll('path circle').forEach(function(element, index) {element.stop()  });//Stop all animation
     leftHand.stop().animate({d : Ghazi[1].lHand},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1}); setTimeout(function(){ mugDrink(time, function(){mugMouseOff()}) }, time*0.33)});
 }
