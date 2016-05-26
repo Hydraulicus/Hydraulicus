@@ -1,11 +1,12 @@
 var rhythm = 300, //ms, of knee shacking
     timeKneeShake=12;
 
-      var brand = [],dashi = []
+      var brand = [], dashi = [], secondhands = [], secondEyes = []
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,timeKnee = timeKneeShake
-         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech;
+         ,timeTyping = timeKneeShake
+         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech;
 
       // var toMouth = new Snap.Matrix(),
       //     orToMouth = new Snap.Matrix();
@@ -43,8 +44,10 @@ constantAnimation();
 //     element.attr({cursor : "pointer"}).hover(GhaziMouseOn, GhaziMouseOff); 
 // });
 GhaziFaceSet = animSvg.paper.g();
+SecondFaceSet = animSvg.paper.g();
 
 var faceGroup = Snap.selectAll('.Ghaziface').forEach(function(element, index) {GhaziFaceSet.add(element);  });
+var faceGroup2 = Snap.selectAll('.secondface').forEach(function(element, index) {SecondFaceSet.add(element);  });
 
 myMatrix = new Snap.Matrix();
 myMatrix.scale(0.01, 0.01,  773, 415);
@@ -77,7 +80,7 @@ var spichCross2 = animSvg.path(secondSpeech.cross)
 
 GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).attr({'id' : 'speech1'});
 GhaziFace = animSvg.ellipse(715, 438, 46, 70) //ellipse for face hover effect
-                   .attr({opacity:0,cursor : "pointer"})
+                   .attr({opacity : 0, cursor : "pointer"})
                    .hover(GhaziMouseOn, GhaziMouseOff)
                    .click(function() {console.log('click - open bubble'); GhaziSpich.animate({transform : orMatrix}, 1000,  mina.bounce);  document.body.addEventListener('click', fnClose, true);});
 GhaziMoustache = Snap.select('#moustache');
@@ -86,18 +89,22 @@ GhaziSmile = animSvg.path('M723 473c1,0 2,1 1,2 -5,2 -12,2 -17,0 -1,-1 0,-2 1,-2
 GhaziFaceSet.add(GhaziSmile); 
 mug = animSvg.path(mugD)
               .attr({stroke:'#1FB1E9', 'stroke-width':1, fill : '#1FB1E9', 'fill-rule' : "evenodd"});
-mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"});
+mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"}).addClass('steam');
 fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
 // typingAnimation();
 
 Secondsmile = Snap.select('#secondsmile');
 SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'});
 SecondFace = animSvg.ellipse(1215, 438, 46, 70) //ellipse for face hover effect
-                   .attr({opacity:0,cursor : "pointer"})
+                   .attr({opacity : 0, cursor : "pointer"})
                    .hover(SecondMouseOn, SecondMouseOff)
-                   .click(function() { SecondSpeech.animate({transform : orMatrix2}, 1000,  mina.bounce);  document.body.addEventListener('click', fnClose, true);})
-                   ;
+                   .click(function() { SecondSpeech.animate({transform : orMatrix2}, 1000,  mina.bounce);  document.body.addEventListener('click', fnClose, true);});
 
+secondhands[0] = Snap.select('#lefthand');
+secondhands[1] = Snap.select('#righthand');
+secondEyes[0] = Snap.select('.eye0');
+secondEyes[1] = Snap.select('.eye1');
+SecondConstAnimation();
 
         for (var i in dashing)
           { 
@@ -182,6 +189,8 @@ function mugDrink(time, callback){
                 )
 }
 
+
+
 function handToMouth(){
   if (clickFlag) console.log(clickFlag);
     var stopTime = 3000, moveTime = rhythm*3;
@@ -197,12 +206,19 @@ function kneeAnimationStart() //4 constant animation
         timeKnee--;
     }
 
+function secondFaceDown(timing, stopTime) {
+  SecondFaceSet.animate({transform : 't0,14'}, timing, mina.backout, function(){setTimeout(function(){SecondFaceSet.animate({transform : 't0,0'}, timing*0.75, mina.easeInOutQuad)}, stopTime)}); 
+  secondEyes[0].animate({transform : 't2,0s1.5'}, timing, mina.backout, function(){setTimeout(function(){secondEyes[0].animate({transform : 't0,0s1'}, timing*0.75, mina.easeInOutQuad)}, stopTime)}); 
+  secondEyes[1].animate({transform : 't-2,0s1.5'}, timing, mina.backout, function(){setTimeout(function(){secondEyes[1].animate({transform : 't0,0s1'}, timing*0.75, mina.easeInOutQuad)}, stopTime)}); 
+}
 
-function typingAnimation()
-{ var time = rhythm*1.5;
-  if (clickFlag) return;
-  righthand.animate({transform : 'r1,755,625 '}, time, mina.easeinout, function(){righthand.animate({transform : 't0,0'}, time, mina.easeinout)});
-  GhaziElbow.animate({transform : 't0,-4'}, time, mina.easeinout, function(){GhaziElbow.animate({transform : 't0,0'}, time, mina.easeinout, typingAnimation)});
+function SecondConstAnimation()
+{ var time = rhythm * 3;
+  if (timeTyping < (timeKneeShake * 0.5)) {time = rhythm * 0.5; };
+  if (timeTyping == 5) {secondFaceDown(rhythm, rhythm*timeKneeShake*0.5)};
+  if (timeTyping == 0) {timeTyping = timeKneeShake;};
+  secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
+  secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function(){secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping--; SecondConstAnimation()})});
 }
 
 function mugMouseOn()
@@ -249,8 +265,6 @@ function fnClose () {
 //         box.style.display = 'none';
 //     }
 // });
-
-
 
 function drawObjects()
     {
