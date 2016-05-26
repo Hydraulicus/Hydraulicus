@@ -5,7 +5,7 @@ var rhythm = 300, //ms, of knee shacking
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,timeKnee = timeKneeShake
-         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet;
+         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech;
 
       // var toMouth = new Snap.Matrix(),
       //     orToMouth = new Snap.Matrix();
@@ -14,8 +14,8 @@ function initAnimation (obj) {
     animSvg = Snap(obj.blck); 
     rhythm = obj.rhythm * 1000;
 
-animSvg.add(Snap.parse(floor));//add underwindow and floor
-animSvg.add(Snap.parse(windw));//add underwindow and floor
+    animSvg.add(Snap.parse(floor));//add underwindow and floor
+    animSvg.add(Snap.parse(windw));//add underwindow and floor
   
 
 carpet = animSvg.path(carpetD).attr({fill:'#A2C3BE'});/*carpet*/
@@ -26,11 +26,14 @@ animSvg.add(Snap.parse(chears));//add chears
 
 GhaziElbow = animSvg.circle(595, 625, 21).attr({opacity:1, id : 'elbow'}).addClass('fil1');
 
-      for (var j in Ghazi[0])
-        {
-          animSvg.add(Snap.parse(Ghazi[0][j]));//Add stady Ghazy
+      for (var j in Ghazi[0]) 
+        { animSvg.add(Snap.parse(Ghazi[0][j]));//Add stady Ghazy
         }
  
+     for (var j in second) 
+        { animSvg.add(Snap.parse(second[j]));//Add stady Second personag
+        }
+
 kneeR = animSvg.select('#kneeR');
 pants = animSvg.select('#pants');
 // kneeAnimation();
@@ -43,29 +46,40 @@ GhaziFaceSet = animSvg.paper.g();
 
 var faceGroup = Snap.selectAll('.Ghaziface').forEach(function(element, index) {GhaziFaceSet.add(element);  });
 
-var myMatrix = new Snap.Matrix();
+myMatrix = new Snap.Matrix();
 myMatrix.scale(0.01, 0.01,  773, 415);
 var orMatrix = new Snap.Matrix();
 orMatrix.scale(1, 1,  773, 415);
+myMatrix2 = new Snap.Matrix();
+myMatrix2.scale(0.01, 0.01,  1150, 415);
+var orMatrix2 = new Snap.Matrix();
+orMatrix2.scale(1, 1,  1200, 415);
 
-// toMouth.scale(2, 1, 838, 625);
-// toMouth.scale(1, 2,  838, 625).rotate(37, 838, 625);
-// orToMouth.scale(1, 1, 838, 625).rotate(0, 838, 625);;
+
 
 GhaziSviter = Snap.select('#ghazisviter');
 righthand = Snap.select('#handr');
 var spich1 = animSvg.path(Ghazi[3].speechOut).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
 var spich2 = animSvg.path(Ghazi[3].speechIn).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
-var spichCross = animSvg.path(Ghazi[3].speechCross)
-                        .attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1})
+var spich3 = animSvg.path(secondSpeech.outer).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
+var spich4 = animSvg.path(secondSpeech.inner).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
+var spichCross1 = animSvg.path(Ghazi[3].speechCross)
+                        .attr({stroke :'#ccc', fill : '#fff', 'stroke-width' : 3})
                         .attr({cursor : 'pointer'})
-                        .mousedown(function() { GhaziSpich.animate({transform : myMatrix}, 1000,  mina.backin);}); 
+                        .click(function() { GhaziSpich.animate({transform : myMatrix}, 750,  mina.backin);})
+                        ;
+var spichCross2 = animSvg.path(secondSpeech.cross)
+                        .attr({stroke :'#ccc', fill : '#fff', 'stroke-width' : 3})
+                        .attr({cursor : 'pointer'})
+                        .click(function() { SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin);})
+                        ; 
 
-GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross).transform(myMatrix).attr({'id' : 'speech'});
+
+GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).attr({'id' : 'speech1'});
 GhaziFace = animSvg.ellipse(715, 438, 46, 70) //ellipse for face hover effect
                    .attr({opacity:0,cursor : "pointer"})
                    .hover(GhaziMouseOn, GhaziMouseOff)
-                   .mouseup(function() {console.log('click'); GhaziSpich.animate({transform : orMatrix}, 1000,  mina.bounce);});
+                   .click(function() {console.log('click - open bubble'); GhaziSpich.animate({transform : orMatrix}, 1000,  mina.bounce);  document.body.addEventListener('click', fnClose, true);});
 GhaziMoustache = Snap.select('#moustache');
 leftHand = animSvg.path(lHand).addClass('fil2');
 GhaziSmile = animSvg.path('M723 473c1,0 2,1 1,2 -5,2 -12,2 -17,0 -1,-1 0,-2 1,-2 5,2 10,2 15,0z').addClass('fil2').transform('s0').attr({opacity:0});
@@ -75,6 +89,14 @@ mug = animSvg.path(mugD)
 mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"});
 fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
 // typingAnimation();
+
+Secondsmile = Snap.select('#secondsmile');
+SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'});
+SecondFace = animSvg.ellipse(1215, 438, 46, 70) //ellipse for face hover effect
+                   .attr({opacity:0,cursor : "pointer"})
+                   .hover(SecondMouseOn, SecondMouseOff)
+                   .click(function() { SecondSpeech.animate({transform : orMatrix2}, 1000,  mina.bounce);  document.body.addEventListener('click', fnClose, true);})
+                   ;
 
 
         for (var i in dashing)
@@ -86,6 +108,8 @@ fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0
 
           // dashi[1].callOnFinished = function() { dashi[2].initDraw();}; //draw chear
           dashi[1].callOnFinished = function() { drawObjects()}; 
+
+
 
 };//end of init function
 
@@ -199,7 +223,7 @@ function mugMouseOff()
 
 function GhaziMouseOn()
 {   GhaziSmile.attr({opacity:1});
-     GhaziSmile.animate({transform : 't0,-1s1'}, 300, mina.easeinout);
+    GhaziSmile.animate({transform : 't0,-1s1'}, 300, mina.easeinout);
     GhaziMoustache.animate({d:'M691 470l0 4c6,0 9,0 14,-3 2,-2 9,-6 8,-10 -2,-1 -3,-3 -3,-6l0 0c-8,1 -18,6 -19,15zM741 469l0 4c-6,1 -9,0 -14,-2 -3,-2 -9,-6 -9,-10 3,-1 4,-3 4,-6l0 0c7,1 18,5 19,14z'},200,mina.easeinout);
 }
 function GhaziMouseOff()
@@ -208,13 +232,25 @@ function GhaziMouseOff()
     GhaziMoustache.animate({d:Ghazi[0].moustache}, 200, mina.easeinout);
 }
 
+function SecondMouseOn()  {  Secondsmile.animate({d : 'M1224 474c1,-1 2,1 1,2 -7,5 -17,5 -24,0 -1,-1 0,-2 1,-2 7,5 16,5 22,0z'}, 300, mina.backout); }
+function SecondMouseOff() {  Secondsmile.animate({d : 'M1207 477l13 0c0,0 1,1 1,2 0,0 -1,1 -1,1l-13 0c-1,0 -2,-1 -2,-1 0,-1 1,-2 2,-2z'}, 300, mina.backin);}
+
 //close cpeech bubble when a user clicks outside of them
+function fnClose () {
+  console.log('Click - close bubble');
+  GhaziSpich.animate({transform : myMatrix}, 750,  mina.backin); 
+  SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin); 
+  document.body.removeEventListener('click', fnClose, true);
+}
+
 // window.addEventListener('mouseup', function(event){ console.log('close event');
 //   var box = document.getElementById('speech');
 //   if (event.target != box && event.target.parentNode != box){
 //         box.style.display = 'none';
 //     }
 // });
+
+
 
 function drawObjects()
     {
