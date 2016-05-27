@@ -3,8 +3,8 @@ var rhythm = 300, //ms, of knee shacking
       //for constant animation of Abbas
       fastSpeedK = 75, //msec
       normSpeedK = 150, //msec
-      nfast = 3000 / fastSpeedK,
-      nNorm = 3000 / normSpeedK,
+      nfast = 2700 / fastSpeedK,
+      nNorm = 2700 / normSpeedK,
       cycle = nfast+nNorm;
 
       var brand = [], dashi = [], secondhands = [], secondEyes = []
@@ -16,6 +16,8 @@ var rhythm = 300, //ms, of knee shacking
 
       // var toMouth = new Snap.Matrix(),
       //     orToMouth = new Snap.Matrix();
+
+var raisedThrowHand, throwPaper, throwKulak, throwHandGroup;
 
 function initAnimation (obj) {
     animSvg = Snap(obj.blck); 
@@ -112,8 +114,8 @@ secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
 constantAnimation();
 
-
-throwHandDrawing();
+throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
+// throwHandDrawing();
         for (var i in dashing)
           { 
             dashi[i] = new Drawing( dashing[i].teg, '', dashing[i].time, dashing[i].fill);
@@ -131,21 +133,35 @@ throwing();
 
 };//end of init function
 
-var raisedThrowHand, throwPaper, throwKulak, throwHandGroup;
+
 
 function throwHandDrawing(){
-    throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});  
+  throwHandGroup.clear();
+  // throwHandGroup.remove();
+  // throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
+      console.log(throwHandGroup);
     for (var i in throwHand) {
-      throwHandGroup.add(Snap.parse(throwHand[i]));//.attr({stroke:'black','stroke-width':5});
+      throwHandGroup.add(Snap.parse(throwHand[i])).addClass('throwHandGroup');//.attr({stroke:'black','stroke-width':5});
     }
+
     throwPaper = Snap.select("#throwpaper");
-    console.log(throwHandGroup.attr('transform'));
+    // console.log(throwHandGroup);
   }
 
+function throwHandRemoving(){
+  throwHandGroup.clear();
+var tempGroup = Snap.selectAll('.throwHandGroup').forEach(function(element, index) {element.remove() });
+
+  // throwHandGroup.remove();
+    console.log(tempGroup);
+  }
+
+
 function throwing(){
+  throwHandDrawing();
   secondhands[1].attr({'visibility' : 'hidden'});
 
-  throwHandGroup.animate({'transform':'r0,1090,624'}, 1200, mina.easeout, function()
+  throwHandGroup.animate({'transform':'r0,1090,624'}, 2000, mina.easeout, function()
     { 
         setTimeout(function()
           { 
@@ -159,7 +175,11 @@ function throwing(){
                       // console.log(throwHandGroup.attr('transform'));
                     })
                 });
-            Snap.select("#throwhand").animate({d:throwedHandD},1500,mina.backout, function(){ backingSecondhand()});
+            Snap.select("#throwhand").animate({d:throwedHandD},1500,mina.backout, function()
+              { 
+                backingSecondhand()
+                
+              });
           }, 30) });
       
 }
@@ -169,7 +189,8 @@ function backingSecondhand() {
      Snap.select("#throwhand").animate({d:dd},1500,mina.backout, function()
         {
           secondhands[1].attr({'visibility' : 'visible'});//show typing hand
-          Snap.select("#throwkulak").attr({'visibility':'visible'}).transform('r120,1090,624'); 
+          // Snap.select("#throwkulak").attr({'visibility':'visible'}).transform('r120,1090,624'); 
+          // throwHandRemoving();
           SecondConstAnimation();
         });
   }
