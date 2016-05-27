@@ -136,7 +136,7 @@ var raisedThrowHand, throwPaper, throwKulak, throwHandGroup;
 function throwHandDrawing(){
     throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});  
     for (var i in throwHand) {
-      throwHandGroup.add(Snap.parse(throwHand[i])).attr({stroke:'black','stroke-width':5});
+      throwHandGroup.add(Snap.parse(throwHand[i]));//.attr({stroke:'black','stroke-width':5});
     }
     throwPaper = Snap.select("#throwpaper");
     console.log(throwHandGroup.attr('transform'));
