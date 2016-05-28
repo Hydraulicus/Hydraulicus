@@ -161,13 +161,13 @@ function throwing(){
   throwHandDrawing();
   secondhands[1].attr({'visibility' : 'hidden'});
 
-  throwHandGroup.animate({'transform':'r0,1090,624'}, 2000, mina.easeout, function()
+  throwHandGroup.animate({'transform':'r0,1090,624'}, 1000, mina.easeout, function()
     { 
         setTimeout(function()
           { 
             Snap.select("#throwkulak").attr({'visibility':'hidden'});
-            throwPaper.animate({transform : 'r122,1220,850'}, 7000, mina.easeOutQuad, function()
-                { throwPaper.animate({opacity : 0},1000, function()
+            throwPaper.animate({transform : 'r122,1220,850'}, 3500, mina.easeOutQuad, function()
+                { throwPaper.animate({opacity : 0},800, function()
                     {
                       // throwPaper.transform('t0,0 r120,1090,624').attr({'opacity' : 1})
                       // console.log(throwHandGroup.attr('transform'));
@@ -175,7 +175,7 @@ function throwing(){
                       // console.log(throwHandGroup.attr('transform'));
                     })
                 });
-            Snap.select("#throwhand").animate({d:throwedHandD},1500,mina.backout, function()
+            Snap.select("#throwhand").animate({d:throwedHandD},1200,mina.backout, function()
               { 
                 backingSecondhand()
                 
