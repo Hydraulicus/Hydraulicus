@@ -183,7 +183,7 @@ function  strawDrinking(){
 
  timingRise.forEach(function(item, i, arr) { stroke += item;}); // calculating whole time of animation  
 
-secondhands[1].animate({d : handD[1]}, rhythm, mina.linear,// character take cup
+secondhands[1].animate({d : handD[1]}, rhythm * 0.5, mina.linear,// character take cup
   function()
    {  Nframe=0;
       frameChanging(secondhands[1], strokeRise, timingRise);
@@ -196,7 +196,7 @@ secondhands[1].animate({d : handD[1]}, rhythm, mina.linear,// character take cup
               Nframe=0; frameChanging(secondhands[1], strokeBack, timingBack);
               strawCup.animate({transform : 't0,0'},1200, mina.easeinout);
               secondsweater.animate({ d : secondSweater[0]}, 1000*2, mina.easeinout);
-              secondFingers.animate({ d : AbassFingers[0]},1200, mina.easeinout, function(){ secondFingers.attr({'opacity':0}); secondhands[1].animate({d  : handD[0]}, rhythm, mina.linear, function(){console.log('again'); SecondConstAnimation()}) });
+              secondFingers.animate({ d : AbassFingers[0]},1200, mina.easeinout, function(){ secondFingers.attr({'opacity':0}); secondhands[1].animate({d  : handD[0]}, rhythm*0.5, mina.linear, function(){console.log('again'); SecondConstAnimation()}) });
              }, stoptime) 
           });
      } 
