@@ -13,10 +13,7 @@ var rhythm = 300, //ms, of knee shacking
          ,timeKnee = 0
          ,timeTyping = nNorm
          ,steamGradient
-         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater;
-
-      // var toMouth = new Snap.Matrix(),
-      //     orToMouth = new Snap.Matrix();
+         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin;
 
 //var raisedThrowHand, throwPaper, throwKulak, throwHandGroup;
 var  strawCup;
@@ -133,16 +130,26 @@ throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'rais
           // dashi[1].callOnFinished = function() { dashi[2].initDraw();};
 //draw chear           dashi[1].callOnFinished = function() {};
 
-
+animSvg.add(Snap.parse(throwPaper));
 animSvg.add(Snap.parse(bin));
+Bin = Snap.select('#bin')
+          .attr({cursor : 'pointer'})
+          .click(binClick);
 animSvg.add(Snap.parse(SecondCup));
 strawCup = Snap.select('#strawcup');
 secondFingers =  animSvg.path(AbassFingers[0]).addClass('fil2').attr({'opacity':0});
 drawObjects(); 
 secondsweater = Snap.select('#secondsweater'); 
 SecondConstAnimation();
- 
+throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
+// console.log(throwedPaper);
 };//end of init function
+
+function binClick(){
+
+  throwedPaper.attr({opacity:1}).stop().animate({transform : 'r-180, 1590, 720 s0.2'}, 1000, mina.easeInOutQuad, function(){throwedPaper.stop().animate({transform : 'r-180, 1590, 720 s0.2 t0,-350'}, 500, mina.backout, function(){throwedPaper.stop().animate({opacity:0},200, function(){throwedPaper.stop().transform('r0, 1590, 720 s1 ')})})});
+
+}
 
 function gradientAnim () {
     steamGradient.attr({ x1: 0, y1: 1, x2: 0, y2: 2 });
@@ -151,7 +158,6 @@ function gradientAnim () {
 
 function throwHandDrawing(){
   throwHandGroup.clear();
-  // throwHandGroup.remove();
   // throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
       console.log(throwHandGroup);
     for (var i in throwHand) {
@@ -349,12 +355,7 @@ function fnClose () {
   document.body.removeEventListener('click', fnClose, true);
 }
 
-// window.addEventListener('mouseup', function(event){ console.log('close event');
-//   var box = document.getElementById('speech');
-//   if (event.target != box && event.target.parentNode != box){
-//         box.style.display = 'none';
-//     }
-// });
+
 
 function drawObjects()
     {
