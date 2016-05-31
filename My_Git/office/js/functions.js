@@ -69,7 +69,7 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
 		Element.prototype.drawAtPath = function( path, timer, options) {
 
 			var myObject = this, bbox = this.getBBox(1);
-			var point, movePoint = {}, len = path.getTotalLength(), from = 0, to = len, drawpath = 0, easing = mina.bounce, callback;
+			var point, movePoint = {}, len = path.getTotalLength(), from = 0, to = len, drawpath = 0, easing = mina.linear, callback;
 			var startingTransform = ''; 
 
 			if( options ) {

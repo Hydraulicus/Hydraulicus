@@ -3,15 +3,15 @@ var rhythm = 300, //ms, of knee shacking
       //for constant animation of Abbas
       fastSpeedK = 75, //msec
       normSpeedK = 150, //msec
-      nfast = 2700 / fastSpeedK,
-      nNorm = 2700 / normSpeedK,
-      cycle = nfast+nNorm;
+      nfast = 1500 / fastSpeedK,
+      nNorm = 1500 / normSpeedK,
+      cycle = nNorm+ nfast + nNorm;
 
       var brand = [], dashi = [], secondhands = [], secondEyes = []
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,timeKnee = 0
-         ,timeTyping = nNorm
+         ,timeTyping = 0
          ,steamGradient
          ,path4throwing
          ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin;
@@ -148,7 +148,7 @@ throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 };//end of init function
 
 function drawRect( el ) {
-  el.drawAtPath( path4throwing, 2000, {callback: function(){el.animate({opacity:0},5000,function(){el.remove()})}} );
+  el.drawAtPath( path4throwing, 750, {callback: function(){el.animate({opacity:0},5000,function(){el.remove()})}} );
 };
 
 // function throwingFrame(tag, arr, N) 
@@ -252,12 +252,12 @@ function constantAnimation()
 
 function SecondConstAnimation()
 { var time = normSpeedK;
-  if (timeTyping > (nfast)) {time = fastSpeedK; };
-  if (timeTyping == nfast) {console.log(timeTyping,'call down');secondFaceDown(rhythm, 3000)};
+  if ((timeTyping > nNorm) && (timeTyping < (nNorm + nfast))){time = fastSpeedK; console.log(timeTyping,'fast typing');};
+  if (timeTyping == nNorm) {console.log(timeTyping,'FaceDown');secondFaceDown(rhythm, 3000)};
   if (timeTyping == cycle) 
       {
-        // console.log(timeTyping,nfast,nNorm);
-        timeTyping = 0;
+        console.log(timeTyping,nfast,nNorm,'agian');
+        timeTyping = (-1)*nNorm;
         strawDrinking();
         return
       };
