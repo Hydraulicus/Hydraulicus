@@ -13,6 +13,7 @@ var rhythm = 300, //ms, of knee shacking
          ,timeKnee = 0
          ,timeTyping = nNorm
          ,steamGradient
+         ,path4throwing
          ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin;
 
 //var raisedThrowHand, throwPaper, throwKulak, throwHandGroup;
@@ -31,6 +32,7 @@ carpet = animSvg.path(carpetD).attr({fill:'#A2C3BE'});/*carpet*/
  brand[1] = animSvg.path(brandNameD).transform("t0,-5").attr({fill:'#ABC9C5'}).animate({ transform: 't0,0' }, 300, mina.easeInOutQuad);/*brandName*/
 
 animSvg.add(Snap.parse(chears));//add chears
+path4throwing = animSvg.path("M1626 692c-7,-17 -11,-34 -20,-49 -4,-7 -10,-13 -18,-15 -8,-1 -19,0 -24,7 -10,13 -14,31 -16,47 -4,51 0,120 0,170").attr({ fill: "none", stroke: "red", opacity: "1" });
 
 GhaziElbow = animSvg.circle(595, 625, 21).attr({opacity:1, id : 'elbow'}).addClass('fil1');
 
@@ -116,7 +118,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- constantAnimation();
+ // constantAnimation();
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -140,14 +142,48 @@ strawCup = Snap.select('#strawcup');
 secondFingers =  animSvg.path(AbassFingers[0]).addClass('fil2').attr({'opacity':0});
 drawObjects(); 
 secondsweater = Snap.select('#secondsweater'); 
-SecondConstAnimation();
+// SecondConstAnimation();
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 // console.log(throwedPaper);
 };//end of init function
 
-function binClick(){
+function drawRect( el ) {
 
-  throwedPaper.attr({opacity:1}).stop().animate({transform : 'r-180, 1590, 720 s0.2'}, 1000, mina.easeInOutQuad, function(){throwedPaper.stop().animate({transform : 'r-180, 1590, 720 s0.2 t0,-350'}, 500, mina.backout, function(){throwedPaper.stop().animate({opacity:0},200, function(){throwedPaper.stop().transform('r0, 1590, 720 s1 ')})})});
+  el.drawAtPath( path4throwing, 3000);
+  // el.drawAtPath( path4throwing, 3000, { callback: drawRect.bind(null, el) } );
+};
+
+function throwingFrame(tag, arr, N) 
+    {
+      // if (N > arr.length-1) {tag.animate({opacity:0},102); return};
+      if (N > arr.length-1) { console.log(N); return};
+      console.log(arr[N]);
+      tag.animate({transform : arr[N]}, 120, mina.linear, function() {throwingFrame(tag, arr, N+1) })
+      // debugger;
+    }
+
+function binClick(){
+var 
+// movepath = 'r-180, 1590, 720'+ 's0.2';
+movepathSteps = ['t-20,-50s0.95', 't-30,-90s0.9', 't-40,-110s0.85', 't-50,-90s0.7', 't-70,50s0.5', 't-80,190s0.3'],
+movepath =  movepathSteps.reduce(function(sum, current) {
+  return sum + current;
+}, '');
+
+var newEl = throwedPaper.clone().attr({ opacity: 1 });
+newEl.animate({transform : 't0,0s0.5'},1000);
+drawRect( newEl ); //Animate along a path
+
+ // console.log(movepath);
+// throwedPaper.attr({opacity:1});
+// throwingFrame(throwedPaper, movepathSteps, 0);
+
+  // throwedPaper.attr({opacity:1}).stop().animate({transform : movepath}, 1000, mina.easeInOutQuad, 
+    // function(){throwedPaper.stop().animate({transform : movepath + 't0,350'}, 500, mina.backout, 
+      // function(){throwedPaper.stop().animate({opacity:0},10200
+        // , function(){throwedPaper.stop().transform('r0, 1590, 720 s1 ')}
+        // )}
+      // )});
 
 }
 
@@ -181,13 +217,21 @@ function frameChanging(part, arr, timings) {
 
 function  strawDrinking(){
   var stoptime = 300,
+  kRithm = 1,
   strokeRise = [ handD[1], handD[2], handD[3], handD[4] ],
-  timingRise = [    100,      200,     180,        300 ],//msec
+  timingRise = [100 * kRithm,200* kRithm,180* kRithm,300* kRithm ],//msec
   strokeBack = [ handD[3], handD[2], handD[1] ],
-  timingBack = [    630,     180,      220   ],//msec
-  stroke = 0;
+  timingBack = [630* kRithm, 180* kRithm, 220* kRithm],//msec
 
- timingRise.forEach(function(item, i, arr) { stroke += item;}); // calculating whole time of animation  
+  stroke = timingRise.reduce(function(sum, current) {// calculating whole time of animation  
+  return sum + current;
+}, 0);
+
+ // timingRise.forEach(function(item, i, arr) { 
+ //  item *= kRithm;
+ // stroke += item;
+ // }); 
+  console.log();
 
 secondhands[1].animate({d : handD[1]}, rhythm * 0.5, mina.linear,// character take cup
   function()

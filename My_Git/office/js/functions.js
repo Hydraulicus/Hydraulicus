@@ -60,3 +60,51 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
      this.currentPathIndex++;
      myPath.animate({"stroke-dashoffset": 0}, this.timeBetweenDraws, mina.easeout, this.draw.bind( this ) );
   };
+
+
+//Animate along a path
+(function() {
+        Snap.plugin( function( Snap, Element, Paper, global ) {
+
+		Element.prototype.drawAtPath = function( path, timer, options) {
+
+			var myObject = this, bbox = this.getBBox(1);
+			var point, movePoint = {}, len = path.getTotalLength(), from = 0, to = len, drawpath = 0, easing = mina.linear, callback;
+			var startingTransform = ''; 
+
+			if( options ) {
+				easing = options.easing || easing;
+				if( options.reverse  ) { from = len; to = 0; };
+				if( options.drawpath ) {
+					drawpath = 1;
+					path.attr({    
+						fill: "none",
+                                                strokeDasharray: len + " " + len,
+                                                strokeDashoffset: this.len
+	                                });
+
+				};
+				if( options.startingTransform ) {
+					startingTransform = options.startingTransform;
+				};
+				callback = options.callback || function() {};
+			};
+
+			Snap.animate(from, to , function( val ) {
+        // console.log(len,val, (len/(val*2)));
+
+        var scale = ((len-val)/len); scale = (scale > 0.5) ? scale : 0.5; console.log(scale);
+		        	point = path.getPointAtLength( val );
+    				movePoint.x = point.x - bbox.cx; movePoint.y = point.y - bbox.cy;
+            // myObject.transform( startingTransform + 't' + movePoint.x + ',' + movePoint.y + 'r' + point.alpha+'s'+((len-val)/len+0.25));
+    				myObject.transform( startingTransform + 't' + movePoint.x + ',' + movePoint.y + 'r' + point.alpha+'s'+scale);
+
+				if( drawpath ) {
+					path.attr({ "stroke-dashoffset": len - val });
+				};
+        // myObject.animate({transform : 't0,0s0.5'},1000);
+  			}, timer, easing, callback ); 
+		};
+	});
+
+})();
