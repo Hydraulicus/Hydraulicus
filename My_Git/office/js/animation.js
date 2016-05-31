@@ -32,7 +32,7 @@ carpet = animSvg.path(carpetD).attr({fill:'#A2C3BE'});/*carpet*/
  brand[1] = animSvg.path(brandNameD).transform("t0,-5").attr({fill:'#ABC9C5'}).animate({ transform: 't0,0' }, 300, mina.easeInOutQuad);/*brandName*/
 
 animSvg.add(Snap.parse(chears));//add chears
-path4throwing = animSvg.path("M1626 692c-7,-17 -11,-34 -20,-49 -4,-7 -10,-13 -18,-15 -8,-1 -19,0 -24,7 -10,13 -14,31 -16,47 -4,51 0,120 0,170").attr({ fill: "none", stroke: "red", opacity: "1" });
+path4throwing = animSvg.path("M1626 692c-7,-17 -11,-34 -20,-49 -4,-7 -10,-13 -18,-15 -8,-1 -19,0 -24,7 -10,13 -14,31 -16,47 -4,51 0,120 0,170").attr({ fill: "none", stroke: "red", opacity: "0" });
 
 GhaziElbow = animSvg.circle(595, 625, 21).attr({opacity:1, id : 'elbow'}).addClass('fil1');
 
@@ -118,7 +118,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- // constantAnimation();
+ constantAnimation();
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -142,49 +142,32 @@ strawCup = Snap.select('#strawcup');
 secondFingers =  animSvg.path(AbassFingers[0]).addClass('fil2').attr({'opacity':0});
 drawObjects(); 
 secondsweater = Snap.select('#secondsweater'); 
-// SecondConstAnimation();
+SecondConstAnimation();
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 // console.log(throwedPaper);
 };//end of init function
 
 function drawRect( el ) {
-
-  el.drawAtPath( path4throwing, 3000);
-  // el.drawAtPath( path4throwing, 3000, { callback: drawRect.bind(null, el) } );
+  el.drawAtPath( path4throwing, 2000, {callback: function(){el.animate({opacity:0},5000,function(){el.remove()})}} );
 };
 
-function throwingFrame(tag, arr, N) 
-    {
-      // if (N > arr.length-1) {tag.animate({opacity:0},102); return};
-      if (N > arr.length-1) { console.log(N); return};
-      console.log(arr[N]);
-      tag.animate({transform : arr[N]}, 120, mina.linear, function() {throwingFrame(tag, arr, N+1) })
-      // debugger;
-    }
+// function throwingFrame(tag, arr, N) 
+//     {
+//       // if (N > arr.length-1) {tag.animate({opacity:0},102); return};
+//       if (N > arr.length-1) { console.log(N); return};
+//       console.log(arr[N]);
+//       tag.animate({transform : arr[N]}, 120, mina.linear, function() {throwingFrame(tag, arr, N+1) })
+//       // debugger;
+//     }
 
 function binClick(){
-var 
-// movepath = 'r-180, 1590, 720'+ 's0.2';
-movepathSteps = ['t-20,-50s0.95', 't-30,-90s0.9', 't-40,-110s0.85', 't-50,-90s0.7', 't-70,50s0.5', 't-80,190s0.3'],
-movepath =  movepathSteps.reduce(function(sum, current) {
-  return sum + current;
-}, '');
 
+// movepathSteps = ['t-20,-50s0.95', 't-30,-90s0.9', 't-40,-110s0.85', 't-50,-90s0.7', 't-70,50s0.5', 't-80,190s0.3'],
+// movepath =  movepathSteps.reduce(function(sum, current) {
+  // return sum + current;
+// }, '');
 var newEl = throwedPaper.clone().attr({ opacity: 1 });
-newEl.animate({transform : 't0,0s0.5'},1000);
 drawRect( newEl ); //Animate along a path
-
- // console.log(movepath);
-// throwedPaper.attr({opacity:1});
-// throwingFrame(throwedPaper, movepathSteps, 0);
-
-  // throwedPaper.attr({opacity:1}).stop().animate({transform : movepath}, 1000, mina.easeInOutQuad, 
-    // function(){throwedPaper.stop().animate({transform : movepath + 't0,350'}, 500, mina.backout, 
-      // function(){throwedPaper.stop().animate({opacity:0},10200
-        // , function(){throwedPaper.stop().transform('r0, 1590, 720 s1 ')}
-        // )}
-      // )});
-
 }
 
 function gradientAnim () {
