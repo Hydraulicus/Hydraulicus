@@ -16,8 +16,7 @@ var rhythm = 300, //ms, of knee shacking
          ,path4throwing
          ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin;
 
-//var raisedThrowHand, throwPaper, throwKulak, throwHandGroup;
-var  strawCup;
+var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events;
 
 function initAnimation (obj) {
     animSvg = Snap(obj.blck); 
@@ -29,7 +28,7 @@ function initAnimation (obj) {
 
 carpet = animSvg.path(carpetD).attr({fill:'#A2C3BE'});/*carpet*/
  brand[0] = animSvg.path(brandNameD).transform("t0,-5").attr({fill:'#8FB4B4'});/*brandName*/
- brand[1] = animSvg.path(brandNameD).transform("t0,-5").attr({fill:'#ABC9C5'}).animate({ transform: 't0,0' }, 300, mina.easeInOutQuad);/*brandName*/
+ brand[1] = animSvg.path(brandNameD).transform("t0,-5").attr({fill:'#ABC9C5'}).animate({ transform: 't0,0' }, rhythm, mina.easeInOutQuad);/*brandName*/
 
 animSvg.add(Snap.parse(chears));//add chears
 path4throwing = animSvg.path("M1626 692c-7,-17 -11,-34 -20,-49 -4,-7 -10,-13 -18,-15 -8,-1 -19,0 -24,7 -10,13 -14,31 -16,47 -4,51 0,120 0,170").attr({ fill: "none", stroke: "red", opacity: "0" });
@@ -71,23 +70,7 @@ orMatrix2.scale(1, 1,  1200, 415);
 
 GhaziSviter = Snap.select('#ghazisviter');
 righthand = Snap.select('#handr');
-var spich1 = animSvg.path(Ghazi[3].speechOut).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
-var spich2 = animSvg.path(Ghazi[3].speechIn).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
-var spich3 = animSvg.path(secondSpeech.outer).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
-var spich4 = animSvg.path(secondSpeech.inner).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
-var spichCross1 = animSvg.path(Ghazi[3].speechCross)
-                        .attr({stroke :'#ccc', fill : '#fff', 'stroke-width' : 3})
-                        .attr({cursor : 'pointer'})
-                        .click(function() { GhaziSpich.animate({transform : myMatrix}, 750,  mina.backin);})
-                        ;
-var spichCross2 = animSvg.path(secondSpeech.cross)
-                        .attr({stroke :'#ccc', fill : '#fff', 'stroke-width' : 3})
-                        .attr({cursor : 'pointer'})
-                        .click(function() { SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin);})
-                        ; 
 
-
-GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).attr({'id' : 'speech1'});
 GhaziFace = animSvg.ellipse(715, 438, 46, 70) //ellipse for face hover effect
                    .attr({opacity : 0, cursor : "pointer"})
                    .hover(GhaziMouseOn, GhaziMouseOff)
@@ -108,7 +91,7 @@ fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0
 // typingAnimation();
 
 Secondsmile = Snap.select('#secondsmile');
-SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'});
+
 SecondFace = animSvg.ellipse(1215, 438, 46, 70) //ellipse for face hover effect
                    .attr({opacity : 0, cursor : "pointer"})
                    .hover(SecondMouseOn, SecondMouseOff)
@@ -132,6 +115,8 @@ throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'rais
           // dashi[1].callOnFinished = function() { dashi[2].initDraw();};
 //draw chear           dashi[1].callOnFinished = function() {};
 
+
+
 animSvg.add(Snap.parse(throwPaper));
 animSvg.add(Snap.parse(bin));
 Bin = Snap.select('#bin')
@@ -141,11 +126,49 @@ animSvg.add(Snap.parse(SecondCup));
 strawCup = Snap.select('#strawcup');
 secondFingers =  animSvg.path(AbassFingers[0]).addClass('fil2').attr({'opacity':0});
 drawObjects(); 
+
+animSvg.add(Snap.parse(mapa));//add MAP
+// animSvg.add(Snap.parse(marks)) ;//add marks
+
+var spich1 = animSvg.path(Ghazi[3].speechOut).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
+var spich2 = animSvg.path(Ghazi[3].speechIn).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
+var spich3 = animSvg.path(secondSpeech.outer).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
+var spich4 = animSvg.path(secondSpeech.inner).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
+var spichCross1 = animSvg.path(Ghazi[3].speechCross)
+                        .attr({stroke :'#ccc', fill : '#fff', 'stroke-width' : 3})
+                        .attr({cursor : 'pointer'})
+                        .click(function() { GhaziSpich.animate({transform : myMatrix}, 750,  mina.backin);})
+                        ;
+var spichCross2 = animSvg.path(secondSpeech.cross)
+                        .attr({stroke :'#ccc', fill : '#fff', 'stroke-width' : 3})
+                        .attr({cursor : 'pointer'})
+                        .click(function() { SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin);})
+                        ; 
+
+GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).attr({'id' : 'speech1'});
+SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'});
+
+
 secondsweater = Snap.select('#secondsweater'); 
 SecondConstAnimation();
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
-// console.log(throwedPaper);
+
+
+HQGroup = animSvg.paper.g().attr({'opacity' : 0.5});
+satellitesGroup = animSvg.paper.g().attr({'opacity' : 0.5});
+regionalsGroup = animSvg.paper.g().attr({'opacity' : 0.5});
+
+var HQ = Snap.selectAll('.hq').forEach(function(element, index) {HQGroup.add(element);});
+var satellites = Snap.selectAll('.satellite').forEach(function(element, index) {satellitesGroup.add(element);});
+var regionals = Snap.selectAll('.regional').forEach(function(element, index) {regionalsGroup.add(element);});
+
+map4events = Snap.select('#mapa')
+                  .attr({cursor : 'pointer'})
+                  .click(mapClick)
+                  ;
+
 };//end of init function
+
 
 function drawRect( el ) {
   el.drawAtPath( path4throwing, 750, {callback: function(){el.animate({opacity:0},5000,function(){el.remove()})}} );
@@ -161,7 +184,6 @@ function drawRect( el ) {
 //     }
 
 function binClick(){
-
 // movepathSteps = ['t-20,-50s0.95', 't-30,-90s0.9', 't-40,-110s0.85', 't-50,-90s0.7', 't-70,50s0.5', 't-80,190s0.3'],
 // movepath =  movepathSteps.reduce(function(sum, current) {
   // return sum + current;
@@ -210,11 +232,6 @@ function  strawDrinking(){
   return sum + current;
 }, 0);
 
- // timingRise.forEach(function(item, i, arr) { 
- //  item *= kRithm;
- // stroke += item;
- // }); 
-  console.log();
 
 secondhands[1].animate({d : handD[1]}, rhythm * 0.5, mina.linear,// character take cup
   function()
@@ -376,13 +393,18 @@ function SecondMouseOff() {  Secondsmile.animate({d : 'M1207 477l13 0c0,0 1,1 1,
 
 //close cpeech bubble when a user clicks outside of them
 function fnClose () {
-  console.log('Click - close bubble');
+  // console.log('Click - close bubble');
   GhaziSpich.animate({transform : myMatrix}, 750,  mina.backin); 
   SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin); 
+  map4events.animate({transform : 't0,-1s1'}, 750,  mina.backin); 
   document.body.removeEventListener('click', fnClose, true);
 }
 
-
+function mapClick(){
+  console.log('Click on map');
+  document.body.addEventListener('click', fnClose, true);
+  map4events.animate({transform : 't0,320s4.65'}, 750,  mina.bounce); 
+}
 
 function drawObjects()
     {
@@ -390,5 +412,5 @@ function drawObjects()
         { 
           animSvg.add(Snap.parse(objects[j]))
         }
-    }
+       }
 
