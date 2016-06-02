@@ -171,6 +171,8 @@ Snap.select('#regionalpost').attr({cursor : 'pointer'}).click(function(){ showOf
 Snap.select('#officespost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('officespost')});
 Snap.select('#satellitepost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('satellitepost')});
 Snap.select('#locationspost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('locationspost')});
+Snap.select('#annotation').attr({'opacity' : 0});
+Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 };//end of init function
 
@@ -433,6 +435,8 @@ function mapClose () {
   HQGroup.attr({'opacity' : 0}).transform( 't-500,125s0.01');
 satellitesGroup.attr({'opacity' : 0}).transform('t-40,245s0,01' );
 regionalsGroup.attr({'opacity' : 0}).transform('t60,210s0,01');
+Snap.select('#annotation').attr({'opacity' : 0});
+Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 }
 
 function mapClick(){
@@ -441,6 +445,8 @@ function mapClick(){
   map4events.animate({transform : 't0,320s4.65'}, 750,  mina.bounce).attr({cursor : 'default'}); 
   // Snap.select('#closer').click(function() { this.animate({transform : 't0,-1s1'}, 750,  mina.backin)}).attr({cursor : 'pointer'});  
   Snap.select('#closer').animate({transform : 't-20,-75s4.65'}, 800,  mina.bounce).attr({cursor : 'pointer'});  
+  Snap.select('#annotation').attr({'opacity' : 1});
+  Snap.select('#closer').attr({cursor : 'pointer', 'opacity' : 1});
 
 }
 

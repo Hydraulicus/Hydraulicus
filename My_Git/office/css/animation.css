@@ -1,29 +1,31 @@
        @font-face {
           font-weight:normal;
-          font-family:'Cavorting', sans-serif; 
-          src: url(css/cavorting.otf);
+          font-family: Cavorting; 
+          src: url('cavorting.otf');
         }
 
-.fil2 {fill:#EF977C}/*skeen color*/
-.hidden_{opacity: 0;}
+    .hidden_{opacity: 0;}
 
- .str5 {stroke:#F9CA6B;stroke-width:1}
+    .str5 {stroke:#F9CA6B;stroke-width:1}
     .str6 {stroke:#CCCCCC;stroke-width:1} 
     .str0 {stroke:#EF977C;stroke-width:7;stroke-linecap:round}
-    .fil3 {fill:none}
     .fil1 {fill:#006696}
+    .fil2 {fill:#EF977C}/*skeen color*/
+    .fil3 {fill:none}
+    .fil4 {fill:#FDE4AC}
+    .fil5 {fill:#F2521F}
+    .fil7 {fill:#B64B4D}
+    .fil12 {fill:#E8745D}
+    .fil13 {fill:#724842}
+    .fil14 {fill:#EBCA9C}
+    .fil15 {fill:#6E443D}
+    .fil16 {fill:#563636}
+    .fil17 {fill:#EF9887}
     .fil18 {fill:#016493}
     .fil19 {fill:#183F5B}
-    .fil16 {fill:#563636}
-    .fil15 {fill:#6E443D}
-    .fil13 {fill:#724842}
     .fil22 {fill:#7E89A8}
-    .fil7 {fill:#B64B4D}
     .fil24 {fill:#E6E6E6}
-    .fil12 {fill:#E8745D}
-    .fil14 {fill:#EBCA9C}
     
-    .fil17 {fill:#EF9887}
 
 
 .tabletop0 {stroke:#F9CA6B;stroke-width:2}
@@ -38,7 +40,5 @@
 .pen1{fill:#EDC80A}
 .pen2{fill:#D1AE15}
 .ruber {fill:#F29785}
-.fil4 {fill:#FDE4AC}
-.fil5 {fill:#F2521F}
 .bg { background-color: #bbb; }
 .throwPaper1 {fill:white; stroke:#E6E6E6; stroke-width:1.5}
