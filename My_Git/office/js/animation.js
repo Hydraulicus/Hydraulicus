@@ -28,7 +28,7 @@ function initAnimation (obj) {
 
 carpet = animSvg.path(carpetD).attr({fill:'#A2C3BE'});/*carpet*/
  brand[0] = animSvg.path(brandNameD).transform("t0,-5").attr({fill:'#8FB4B4'});/*brandName*/
- brand[1] = animSvg.path(brandNameD).transform("t0,-5").attr({fill:'#ABC9C5'}).animate({ transform: 't0,0' }, rhythm, mina.easeInOutQuad);/*brandName*/
+ brand[1] = animSvg.path(brandNameD).transform("t0,-5").attr({fill:'#ABC9C5'}).animate({ transform: 't0,0' }, rhythm*3, mina.easeInOutQuad);/*brandName*/
 
 animSvg.add(Snap.parse(chears));//add chears
 path4throwing = animSvg.path("M1626 692c-7,-17 -11,-34 -20,-49 -4,-7 -10,-13 -18,-15 -8,-1 -19,0 -24,7 -10,13 -14,31 -16,47 -4,51 0,120 0,170").attr({ fill: "none", stroke: "red", opacity: "0" });
@@ -45,8 +45,6 @@ GhaziElbow = animSvg.circle(595, 625, 21).attr({opacity:1, id : 'elbow'}).addCla
 
 kneeR = animSvg.select('#kneeR');
 pants = animSvg.select('#pants');
-// kneeAnimation();
-
 
 // GhaziFace = Snap.selectAll('.Ghaziface').forEach(function(element, index) {
 //     element.attr({cursor : "pointer"}).hover(GhaziMouseOn, GhaziMouseOff); 
@@ -74,7 +72,7 @@ righthand = Snap.select('#handr');
 GhaziFace = animSvg.ellipse(715, 438, 46, 70) //ellipse for face hover effect
                    .attr({opacity : 0, cursor : "pointer"})
                    .hover(GhaziMouseOn, GhaziMouseOff)
-                   .click(function() {GhaziSpich.animate({transform : orMatrix}, 1000,  mina.bounce);  document.body.addEventListener('click', fnClose, true);});
+                   .click(function() {GhaziSpich.animate({transform : orMatrix}, 1000,  mina.bounce).attr({visibility : 'visible'});  document.body.addEventListener('click', fnClose, true);});
 GhaziMoustache = Snap.select('#moustache');
 leftHand = animSvg.path(lHand).addClass('fil2');
 GhaziSmile = animSvg.path('M723 473c1,0 2,1 1,2 -5,2 -12,2 -17,0 -1,-1 0,-2 1,-2 5,2 10,2 15,0z').addClass('fil2').transform('s0').attr({opacity:0});
@@ -95,13 +93,13 @@ Secondsmile = Snap.select('#secondsmile');
 SecondFace = animSvg.ellipse(1215, 438, 46, 70) //ellipse for face hover effect
                    .attr({opacity : 0, cursor : "pointer"})
                    .hover(SecondMouseOn, SecondMouseOff)
-                   .click(function() { SecondSpeech.animate({transform : orMatrix2}, 1000,  mina.bounce);  document.body.addEventListener('click', fnClose, true);});
+                   .click(function() { SecondSpeech.animate({transform : orMatrix2}, 1000,  mina.bounce).attr({visibility : 'visible'});  document.body.addEventListener('click', fnClose, true);});
 
 secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- constantAnimation();
+ // constantAnimation();
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -124,11 +122,11 @@ Bin = Snap.select('#bin')
           .click(binClick);
 animSvg.add(Snap.parse(SecondCup));
 strawCup = Snap.select('#strawcup');
-secondFingers =  animSvg.path(AbassFingers[0]).addClass('fil2').attr({'opacity':0});
+secondFingers = animSvg.path(AbassFingers[0]).addClass('fil2').attr({'opacity':0});
 drawObjects(); 
 
 animSvg.add(Snap.parse(mapa));//add MAP
-// animSvg.add(Snap.parse(marks)) ;//add marks
+animSvg.add(Snap.parse(marks)) ;//add marks
 
 var spich1 = animSvg.path(Ghazi[3].speechOut).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
 var spich2 = animSvg.path(Ghazi[3].speechIn).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
@@ -145,18 +143,19 @@ var spichCross2 = animSvg.path(secondSpeech.cross)
                         .click(function() { SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin);})
                         ; 
 
-GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).attr({'id' : 'speech1'});
-SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'});
+GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).attr({'id' : 'speech1'}).attr({'visibility' : 'hidden'});
+SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'}).attr({'visibility' : 'hidden'});
+
 
 
 secondsweater = Snap.select('#secondsweater'); 
-SecondConstAnimation();
+// SecondConstAnimation();
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
-HQGroup = animSvg.paper.g().attr({'opacity' : 0.5});
-satellitesGroup = animSvg.paper.g().attr({'opacity' : 0.5});
-regionalsGroup = animSvg.paper.g().attr({'opacity' : 0.5});
+HQGroup = animSvg.paper.g().attr({'opacity' : 0}).transform( 't-500,125s0.01');
+satellitesGroup = animSvg.paper.g().attr({'opacity' : 0}).transform('t-40,245s0,01' );
+regionalsGroup = animSvg.paper.g().attr({'opacity' : 0}).animate({transform : 't60,210s0,01'}, 800,  mina.bounce);
 
 var HQ = Snap.selectAll('.hq').forEach(function(element, index) {HQGroup.add(element);});
 var satellites = Snap.selectAll('.satellite').forEach(function(element, index) {satellitesGroup.add(element);});
@@ -167,8 +166,36 @@ map4events = Snap.select('#mapa')
                   .click(mapClick)
                   ;
 
+Snap.select('#hqpost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('hq')});
+Snap.select('#regionalpost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('regionalpost')});
+Snap.select('#officespost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('officespost')});
+Snap.select('#satellitepost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('satellitepost')});
+Snap.select('#locationspost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('locationspost')});
+
 };//end of init function
 
+
+function showOfficesName(par){
+ console.log('par=',par);
+
+HQGroup.attr({'opacity' : 0}).transform( 't-500,125s0.01');
+satellitesGroup.attr({'opacity' : 0}).transform('t-40,245s0,01' );
+regionalsGroup.attr({'opacity' : 0}).transform('t60,210s0,01');
+
+ switch (par) {
+   case 'hq' : { console.log('hq'); HQGroup.attr({'opacity' : 1}).animate({transform : 't-500,125s4.65'}, 800,  mina.bounce) }
+   break
+
+   case ('regionalpost'):
+   case ('officespost' ): { console.log('regionalpost or officespost'); regionalsGroup.animate({'opacity' : 1}, 1000).animate({transform : 't60,210s4.65'}, 400,  mina.bounce);}
+   break
+
+   case ('satellitepost') :
+   case ('locationspost') : { console.log('satellitepost or locationspost'); satellitesGroup.animate({'opacity' : 1}, 1000).animate({transform : 't-40,245s4.65'}, 400,  mina.bounce);} 
+   break
+
+ }
+}
 
 function drawRect( el ) {
   el.drawAtPath( path4throwing, 750, {callback: function(){el.animate({opacity:0},5000,function(){el.remove()})}} );
@@ -394,16 +421,27 @@ function SecondMouseOff() {  Secondsmile.animate({d : 'M1207 477l13 0c0,0 1,1 1,
 //close cpeech bubble when a user clicks outside of them
 function fnClose () {
   // console.log('Click - close bubble');
-  GhaziSpich.animate({transform : myMatrix}, 750,  mina.backin); 
-  SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin); 
-  map4events.animate({transform : 't0,-1s1'}, 750,  mina.backin); 
-  document.body.removeEventListener('click', fnClose, true);
+  GhaziSpich.animate({transform : myMatrix}, 750,  mina.backin, function(){ GhaziSpich.attr({visibility : 'hidden'}); }); 
+  SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin, function(){ SecondSpeech.attr({visibility : 'hidden'}); }); 
+
+}
+
+function mapClose () {
+  map4events.animate({transform : 't0,-1s1'}, 750,  mina.backin).attr({cursor : 'pointer'}); 
+  Snap.select('#closer').animate({transform : 't0,0s1'}, 800,  mina.backin).attr({cursor : 'pointer'});  
+  document.body.removeEventListener('click', fnClose, true); 
+  HQGroup.attr({'opacity' : 0}).transform( 't-500,125s0.01');
+satellitesGroup.attr({'opacity' : 0}).transform('t-40,245s0,01' );
+regionalsGroup.attr({'opacity' : 0}).transform('t60,210s0,01');
 }
 
 function mapClick(){
   console.log('Click on map');
-  document.body.addEventListener('click', fnClose, true);
-  map4events.animate({transform : 't0,320s4.65'}, 750,  mina.bounce); 
+  document.body.addEventListener('click', mapClose, true);
+  map4events.animate({transform : 't0,320s4.65'}, 750,  mina.bounce).attr({cursor : 'default'}); 
+  // Snap.select('#closer').click(function() { this.animate({transform : 't0,-1s1'}, 750,  mina.backin)}).attr({cursor : 'pointer'});  
+  Snap.select('#closer').animate({transform : 't-20,-75s4.65'}, 800,  mina.bounce).attr({cursor : 'pointer'});  
+
 }
 
 function drawObjects()
