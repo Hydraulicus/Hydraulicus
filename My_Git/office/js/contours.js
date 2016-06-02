@@ -186,7 +186,7 @@ var mapa = ['<g id="mapa"><path fill="#95DAFF" d="M897 117l305 0c6,0 12,6 12,12l
 
 
 
-,'<text id="closer" x="1046" y="120" fill="white" stroke="white" stroke-width="0.216" font-weight="normal" font-size="15.133px" font-family="Cavorting">X</text>'
+,'<text id="closer" x="1044" y="120" fill="white" stroke="white" stroke-width="0.216" font-weight="normal" font-size="15.133px" font-family="Cavorting">X</text>'
 
 
 
@@ -197,8 +197,8 @@ var marks = [
 '<g id="california" class="marks hq"><path fill="black" stroke="black" stroke-width="0.566929" d="M893 162l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="894" y="173"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">CALIFORNIA, USA</text></g>'
 ,'<g id="argentina" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M954 239l50 0c1,0 2,1 2,2l0 13c0,1 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,0 -1,-1l0 -13c0,-1 1,-2 1,-2z"/><text x="963" y="251"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">ARGENTINA</text></g>'
 ,'<g id="india" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M1085 188l50 0c0,0 1,0 1,1l0 13c0,1 -1,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,-1 -2,-2l0 -13c0,-1 1,-1 2,-1z"/><text x="1102" y="199"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">INDIA</text></g>'
-,'<g id="europe" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M1038 159l50 0c0,0 1,1 1,1l0 14c0,1 -1,1 -1,1l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,0 -2,-1l0 -14c0,0 1,-1 2,-1z"/><text x="1039" y="171"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">ESTERN EUROPE</text></g>'
+,'<g id="europe" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M1038 159l50 0c0,0 1,1 1,1l0 14c0,1 -1,1 -1,1l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,0 -2,-1l0 -14c0,0 1,-1 2,-1z"/><text x="1038" y="171"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">EASTERN EUROPE</text></g>'
 ,'<g id="pakistan" class="marks regional"><path fill="black" stroke="black" stroke-width="0.566929" d="M1074 170l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1087" y="182"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">PAKISTAN</text></g>'
-,'<g id="afrika" class="marks regional"><path fill="black" stroke="black" stroke-width="0.566929" d="M1015 195l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1030" y="207"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">AFRICA</text></g>'
+,'<g id="afrika" class="marks regional"><path fill="black" stroke="black" stroke-width="0.566929" d="M1015 195l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1025" y="207"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">CAMEROON</text></g>'
 ,'<g id="russia" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M1076 147l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="1090" y="158"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">RUSSIA</text></g>'
 ]
