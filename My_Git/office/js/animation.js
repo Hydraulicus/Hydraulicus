@@ -10,6 +10,7 @@ var rhythm = 300, //ms, of knee shacking
       var brand = [], dashi = [], secondhands = [], secondEyes = []
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
+         ,pulseShow=false
          ,timeKnee = 0
          ,timeTyping = 0
          ,steamGradient
@@ -127,6 +128,7 @@ drawObjects();
 
 animSvg.add(Snap.parse(mapa));//add MAP
 animSvg.add(Snap.parse(marks)) ;//add marks
+circlesssss = animSvg.add(Snap.parse(circles)) ;//add circles around pins of marks
 
 var spich1 = animSvg.path(Ghazi[3].speechOut).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
 var spich2 = animSvg.path(Ghazi[3].speechIn).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
@@ -168,35 +170,57 @@ map4events = Snap.select('#mapa')
 
 Snap.select('#hqpost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('hq')});
 Snap.select('#regionalpost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('regionalpost')});
-Snap.select('#officespost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('officespost')});
+// Snap.select('#officespost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('officespost')});
 Snap.select('#satellitepost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('satellitepost')});
-Snap.select('#locationspost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('locationspost')});
+// Snap.select('#locationspost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('locationspost')});
 Snap.select('#annotation').attr({cursor : 'pointer', 'opacity' : 0});
 Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 };//end of init function
 
+var circlesssss;
 
 function showOfficesName(par){
- console.log('par=',par);
+ // console.log('par=',par);
+pulseShow = false; 
+Snap.selectAll('.circles').forEach(function(element, index) {element.stop().attr({r : 1, 'stroke' : 'none'});});//stop ALL cirkle animations
 
 HQGroup.attr({'opacity' : 0}).transform( 't-500,125s0.01');
 satellitesGroup.attr({'opacity' : 0}).transform('t-40,245s0,01' );
 regionalsGroup.attr({'opacity' : 0}).transform('t60,210s0,01');
 
  switch (par) {
-   case 'hq' : { console.log('hq'); HQGroup.attr({'opacity' : 1}).animate({transform : 't-500,125s4.65'}, 800,  mina.bounce) }
+   case 'hq' : { pulseShow = true;
+                  HQGroup.attr({'opacity' : 1}).animate({transform : 't-500,125s4.65'}, 400,  mina.bounce);
+                  Snap.selectAll('.californiacircle').forEach(function(element, index) {element.attr({'stroke' : 'red'});  circlePulse(element);});
+               }
    break
 
    case ('regionalpost'):
-   case ('officespost' ): { console.log('regionalpost or officespost'); regionalsGroup.animate({'opacity' : 1}, 1000).animate({transform : 't60,210s4.65'}, 400,  mina.bounce);}
+   case ('officespost' ): { pulseShow = true; 
+                            // console.log('regionalpost or officespost'); 
+                            regionalsGroup.animate({'opacity' : 1}, 1000).animate({transform : 't60,210s4.65'}, 400,  mina.bounce);
+                            Snap.selectAll('.regionalcircle').forEach(function(element, index) { element.attr({'stroke' : 'red'});  circlePulse(element);});
+                          }
    break
 
    case ('satellitepost') :
-   case ('locationspost') : { console.log('satellitepost or locationspost'); satellitesGroup.animate({'opacity' : 1}, 1000).animate({transform : 't-40,245s4.65'}, 400,  mina.bounce);} 
+   case ('locationspost') : { 
+                                pulseShow = true; 
+                                // console.log('satellitepost or locationspost'); 
+                                satellitesGroup.animate({'opacity' : 1}, 1000).animate({transform : 't-40,245s4.65'}, 400,  mina.bounce);
+                                Snap.selectAll('.satellitepostcircle').forEach(function(element, index) { element.attr({'stroke' : 'red'});  circlePulse(element);});
+                              } 
    break
 
  }
+}
+
+function circlePulse(el)
+{ 
+    // console.log(pulseShow,el.attr('class'));
+    if (!pulseShow) return
+    setTimeout(function(){el.attr({r : 1, opacity : 1, 'stroke-width' : 1}).animate({r : 25, opacity : 0, 'stroke-width' : 5}, 900, mina.easeinout, function(){el.attr({'stroke' : 'red'}); el.attr({'stroke' : 'red'});circlePulse(el)});}, 200);
 }
 
 function drawRect( el ) {
@@ -437,6 +461,9 @@ satellitesGroup.attr({'opacity' : 0}).transform('t-40,245s0,01' );
 regionalsGroup.attr({'opacity' : 0}).transform('t60,210s0,01');
 Snap.select('#annotation').attr({'opacity' : 0});
 Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
+pulseShow = false; 
+Snap.selectAll('.circles').forEach(function(element, index) {element.stop().attr({r : 1, 'stroke' : 'none'});});//stop ALL cirkle animations
+
 }
 
 function mapClick(){

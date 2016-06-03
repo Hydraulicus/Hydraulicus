@@ -184,11 +184,7 @@ var mapa = ['<g id="mapa"><path fill="#95DAFF" d="M897 117l305 0c6,0 12,6 12,12l
 
 ,'</g>'
 
-
-
 ,'<text id="closer" x="1044" y="120" fill="white" stroke="white" stroke-width="0.216" font-weight="normal" font-size="15.133px" font-family="Cavorting">X</text>'
-
-
 
 ];
 
@@ -201,4 +197,14 @@ var marks = [
 ,'<g id="pakistan" class="marks regional"><path fill="black" stroke="black" stroke-width="0.566929" d="M1074 170l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1087" y="182"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">PAKISTAN</text></g>'
 ,'<g id="afrika" class="marks regional"><path fill="black" stroke="black" stroke-width="0.566929" d="M1015 195l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1025" y="207"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">CAMEROON</text></g>'
 ,'<g id="russia" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M1076 147l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="1090" y="158"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">RUSSIA</text></g>'
+]
+
+var circles = [
+'<circle class="californiacircle circles" fill="none" stroke="none" stroke-width="2" cx="418" cy="456" r="1"/>'
+,'<circle class="satellitepostcircle circles" fill="none" stroke="none" stroke-width="2" cx="705" cy="766" r="1"/>'
+,'<circle class="satellitepostcircle circles" fill="none" stroke="none" stroke-width="2" cx="1305" cy="526" r="1"/>'//india
+,'<circle class="satellitepostcircle circles" fill="none" stroke="none" stroke-width="2" cx="1092" cy="396" r="1"/>'//europe
+,'<circle class="regionalcircle circles" fill="none" stroke="none" stroke-width="2" cx="1259" cy="494" r="1"/>'//pakistan
+,'<circle class="regionalcircle circles" fill="none" stroke="none" stroke-width="2" cx="985" cy="614" r="1"/>'//afrika
+,'<circle class="satellitepostcircle circles" fill="none" stroke="none" stroke-width="2" cx="1264" cy="334" r="1"/>'//russia
 ]
