@@ -7,7 +7,7 @@ var rhythm = 300, //ms, of knee shacking
       nNorm = 1500 / normSpeedK,
       cycle = nNorm+ nfast + nNorm;
 
-      var brand = [], dashi = [], secondhands = [], secondEyes = []
+      var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[]
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,pulseShow=false
@@ -87,7 +87,6 @@ mug = animSvg.path(mugD)
 
 mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"});
 fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
-// typingAnimation();
 
 Secondsmile = Snap.select('#secondsmile');
 
@@ -100,7 +99,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- // constantAnimation();
+ constantAnimation();
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -127,7 +126,6 @@ secondFingers = animSvg.path(AbassFingers[0]).addClass('fil2').attr({'opacity':0
 drawObjects(); 
 
 animSvg.add(Snap.parse(mapa));//add MAP
-animSvg.add(Snap.parse(marks)) ;//add marks
 circlesssss = animSvg.add(Snap.parse(circles)) ;//add circles around pins of marks
 
 var spich1 = animSvg.path(Ghazi[3].speechOut).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
@@ -148,20 +146,19 @@ var spichCross2 = animSvg.path(secondSpeech.cross)
 GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).attr({'id' : 'speech1'}).attr({'visibility' : 'hidden'});
 SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'}).attr({'visibility' : 'hidden'});
 
+laptop[0]=Snap.select('#macbook').attr({cursor : 'pointer'}).hover(function(){ laptopOn(0)}, function(){ laptopOff(0)});
+laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ laptopOn(2)}, function(){ laptopOff(2)});
 
 
 secondsweater = Snap.select('#secondsweater'); 
-// SecondConstAnimation();
+SecondConstAnimation();
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
-HQGroup = animSvg.paper.g().attr({'opacity' : 0}).transform( 't-500,125s0.01');
-satellitesGroup = animSvg.paper.g().attr({'opacity' : 0}).transform('t-40,245s0,01' );
-regionalsGroup = animSvg.paper.g().attr({'opacity' : 0}).animate({transform : 't60,210s0,01'}, 800,  mina.bounce);
 
-var HQ = Snap.selectAll('.hq').forEach(function(element, index) {HQGroup.add(element);});
-var satellites = Snap.selectAll('.satellite').forEach(function(element, index) {satellitesGroup.add(element);});
-var regionals = Snap.selectAll('.regional').forEach(function(element, index) {regionalsGroup.add(element);});
+satellitesGroup = Snap.selectAll('.satellite').forEach(function(element, index) { element.attr({'opacity' : 0}).transform('t1,1s0,01'); });
+ regionalsGroup = Snap.selectAll('.regional').forEach(function(element, index) { element.attr({'opacity' : 0}).transform('t1,1s0,01'); });
+ HQGroup = Snap.selectAll('.hq').forEach(function(element, index) {  element.attr({'opacity' : 0}).transform('t1,1s0.01' );  });//it is working prop
 
 map4events = Snap.select('#mapa')
                   .attr({cursor : 'pointer'})
@@ -171,31 +168,45 @@ map4events = Snap.select('#mapa')
 Snap.select('#hqpost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('hq')});
 Snap.select('#regionalpost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('regionalpost')});
 Snap.select('#satellitepost').attr({cursor : 'pointer'}).click(function(){ showOfficesName('satellitepost')});
-Snap.select('#annotation').attr({cursor : 'pointer', 'opacity' : 0});
+Snap.select('#annotation').attr({cursor : 'default', 'opacity' : 0});
 Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 };//end of init function
 
-var circlesssss;
+function laptopOn(n){//n = 0 - Ghazi laptop, n = 2 second laptop  
+var morphingPoint = (n == 0) ? '632,500' : '1130,500';
+Snap.select('#laptoptop'+n).stop().animate({transform : 's0.01,1,'+morphingPoint},300, mina.easeinout);
+Snap.select('#laptopbottom'+n).stop().animate({transform : 's0.7,1,'+morphingPoint},300, mina.easeinout)
+}
+
+function laptopOff(n){
+var morphingPoint = (n == 0) ? '632,500' : '1130,500';
+Snap.select('#laptoptop'+n).stop().animate({transform : 's1,1,'+morphingPoint},300, mina.easeinout);  
+Snap.select('#laptopbottom'+n).stop().animate({transform : 's1,1,'+morphingPoint},300, mina.easeinout)
+}
+
+function stopEvent(ev) {
+
+  ev.stopPropagation();
+  ev.preventDefault();
+ 
+}
+
 
 function showOfficesName(par){
 pulseShow = false; 
 Snap.selectAll('.circles').forEach(function(element, index) {element.stop().attr({r : 1, 'stroke' : 'none'});});//stop ALL cirkle animations
 
-HQGroup.attr({'opacity' : 0}).transform( 't-500,125s0.01');
-satellitesGroup.attr({'opacity' : 0}).transform('t-40,245s0,01' );
-regionalsGroup.attr({'opacity' : 0}).transform('t60,210s0,01');
-
  switch (par) {
    case 'hq' : { pulseShow = true;
-                  HQGroup.attr({'opacity' : 1}).animate({transform : 't-500,125s4.65'}, 400,  mina.bounce);
+                   HQGroup.forEach(function(element, index) { element.attr({'opacity' : 1}).animate({transform : 't0,0s1'}, 400,  mina.bounce); });
                   Snap.selectAll('.californiacircle').forEach(function(element, index) {element.attr({'stroke' : 'red'});  circlePulse(element);});
                }
    break
 
    case ('regionalpost'):
    case ('officespost' ): { pulseShow = true; 
-                            regionalsGroup.animate({'opacity' : 1}, 1000).animate({transform : 't60,210s4.65'}, 400,  mina.bounce);
+                            regionalsGroup.forEach(function(element, index) { element.attr({'opacity' : 1}).animate({transform : 't0,0s1'}, 400,  mina.bounce); });
                             Snap.selectAll('.regionalcircle').forEach(function(element, index) { element.attr({'stroke' : 'red'});  circlePulse(element);});
                           }
    break
@@ -203,7 +214,7 @@ regionalsGroup.attr({'opacity' : 0}).transform('t60,210s0,01');
    case ('satellitepost') :
    case ('locationspost') : { 
                                 pulseShow = true; 
-                                satellitesGroup.animate({'opacity' : 1}, 1000).animate({transform : 't-112,245s4.65'}, 400,  mina.bounce);
+                                satellitesGroup.forEach(function(element, index) { element.attr({'opacity' : 1}).animate({transform : 't0,0s1'}, 400,  mina.bounce); });
                                 Snap.selectAll('.satellitepostcircle').forEach(function(element, index) { element.attr({'stroke' : 'red'});  circlePulse(element);});
                               } 
    break
@@ -451,9 +462,9 @@ function mapClose () {
   map4events.animate({transform : 't0,-1s1'}, 750,  mina.backin).attr({cursor : 'pointer'}); 
   Snap.select('#closer').animate({transform : 't0,0s1'}, 800,  mina.backin).attr({cursor : 'pointer'});  
   document.body.removeEventListener('click', fnClose, true); 
-  HQGroup.attr({'opacity' : 0}).transform( 't-500,125s0.01');
-satellitesGroup.attr({'opacity' : 0}).transform('t-40,245s0,01' );
-regionalsGroup.attr({'opacity' : 0}).transform('t60,210s0,01');
+  HQGroup.forEach(function(element, index) { element.attr({'opacity' : 0}).transform( 't1,1s0.01'); });
+regionalsGroup.forEach(function(element, index) { element.attr({'opacity' : 0}).transform( 't1,1s0.01'); });
+satellitesGroup.forEach(function(element, index) { element.attr({'opacity' : 0}).transform( 't1,1s0.01'); });
 Snap.select('#annotation').attr({'opacity' : 0});
 Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 pulseShow = false; 

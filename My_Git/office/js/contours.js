@@ -54,18 +54,15 @@ var GhaziFingers = ['M923 615c-2,0 -4,-2 -4,-4 0,-3 2,-4 4,-4l9 -1c2,0 4,2 4,5 0
 //,mug : '<path class="fil4" d="M923 641c0,1 -7,2 -16,2 -9,0 -16,-1 -16,-2l-2 -13c-17,2 -20,-26 -3,-28 0,-1 0,-7 0,-7 0,-1 9,-2 21,-2 11,0 21,1 21,2 0,0 -5,48 -5,48zm-36 -37l2 20c-12,1 -14,-18 -2,-20z"/><ellipse class="fil5" cx="907" cy="593" rx="19" ry="2"/>'
 
 var objects = [
-	'<g id="macbook"><path class="fil22 str6" d="M800 635l-169 0c-1,6 6,6 8,6l152 0c2,0 9,2 9,-6z"/><path class="fil22 str6" d="M636 524l158 0c4,0 6,3 6,7l0 101c0,4 -2,7 -6,7l-158 0c-3,0 -6,-3 -6,-7l0 -101c0,-4 3,-7 6,-7z"/><path class="fil24" d="M723 582c0,-1 0,-2 1,-3 0,-1 0,-1 0,-1l1 -1c0,-1 -1,-1 -1,-2 -4,-2 -6,1 -8,1 -2,0 -3,-1 -5,-1 -5,0 -7,5 -6,10 0,2 3,9 7,9 1,0 2,-1 4,-1 1,0 3,1 4,1 3,0 6,-5 6,-7 0,0 0,0 -1,0 0,0 0,0 0,-1 -2,-1 -2,-2 -2,-4zM715 575c2,0 3,-1 4,-2 1,-1 2,-2 1,-4 -1,0 -3,1 -3,2 -1,1 -2,2 -2,4z"/></g>'
+	'<g id="macbook"><path id="laptopbottom0" class="fil22 str6" d="M800 635l-169 0c-1,6 6,6 8,6l152 0c2,0 9,2 9,-6z"/><g id="laptoptop0"><path class="fil22 str6" d="M636 524l158 0c4,0 6,3 6,7l0 101c0,4 -2,7 -6,7l-158 0c-3,0 -6,-3 -6,-7l0 -101c0,-4 3,-7 6,-7z"/><path class="fil24" d="M723 582c0,-1 0,-2 1,-3 0,-1 0,-1 0,-1l1 -1c0,-1 -1,-1 -1,-2 -4,-2 -6,1 -8,1 -2,0 -3,-1 -5,-1 -5,0 -7,5 -6,10 0,2 3,9 7,9 1,0 2,-1 4,-1 1,0 3,1 4,1 3,0 6,-5 6,-7 0,0 0,0 -1,0 0,0 0,0 0,-1 -2,-1 -2,-2 -2,-4zM715 575c2,0 3,-1 4,-2 1,-1 2,-2 1,-4 -1,0 -3,1 -3,2 -1,1 -2,2 -2,4z"/></g></g>'
 	,'<path class="pen1" d="M1410 601l6 -1 -6 -21 -4 0c-1,4 3,17 4,22z"/><polygon class="pen1" points="1420,600 1425,600 1425,583 1420,584"/>'
 	,'<path class="pen2" d="M1400 581l6 19 0 1 4 0c-1,-5 -5,-18 -4,-22l-6 2z"/><polygon class="pen2" points="1425,600 1429,600 1429,584 1425,583"/>'
 	,'<path class="ruber" d="M1400 581l6 -2 4 0c-1,-13 -16,-6 -10,2z"/>'
 	,'<path class="fil4" d="M1423 577c-1,1 -2,4 -3,7l5 -1 4 1c0,-3 -1,-5 -2,-7 -1,0 0,0 -2,0 -1,0 -1,0 -2,0z"/>'
 	,'<path class="fil5" d="M1401 599l0 3c1,13 2,25 3,38 0,0 1,1 1,2l25 0c1,-1 0,-1 1,-2l2 -41 -32 0z"/>'
 	,'<path class="black_" d="M1427 577c-2,1 -4,0 -4,0l2 -4 2 4z"/>'
-	,'<g id="macbook2"><path class="fil22 str6" d="M1298 635l-170 0c-1,6 6,6 9,6l152 0c2,0 9,2 9,-6z"/><path class="fil22 str6" d="M1134 524l158 0c3,0 6,3 6,7l0 101c0,4 -3,7 -6,7l-158 0c-3,0 -6,-3 -6,-7l0 -101c0,-4 3,-7 6,-7z"/></g>'
+	,'<g id="macbook2"><path  id="laptopbottom2" class="fil22 str6" d="M1298 635l-170 0c-1,6 6,6 9,6l152 0c2,0 9,2 9,-6z"/><g id="laptoptop2"><path class="fil22 str6" d="M1134 524l158 0c3,0 6,3 6,7l0 101c0,4 -3,7 -6,7l-158 0c-3,0 -6,-3 -6,-7l0 -101c0,-4 3,-7 6,-7z"/><path fill="#E6E6E6" d="M1220 582c0,-1 1,-2 1,-3 1,-1 1,-1 1,-1l1 -1c0,-1 -1,-1 -2,-2 -3,-2 -6,1 -8,1 -1,0 -3,-1 -4,-1 -5,0 -7,5 -6,10 0,2 3,9 6,9 2,0 3,-1 5,-1 1,0 3,1 4,1 3,0 5,-5 6,-7 0,0 -1,0 -1,0 0,0 0,0 0,-1 -2,-1 -3,-2 -3,-4z"/><path fill="#E6E6E6" d="M1213 575c2,0 3,-1 4,-2 1,-1 1,-2 1,-4 -1,0 -3,1 -4,2 0,1 -1,2 -1,4z"/></g></g>'
 
-   ,'<path fill="#E6E6E6" d="M1220 582c0,-1 1,-2 1,-3 1,-1 1,-1 1,-1l1 -1c0,-1 -1,-1 -2,-2 -3,-2 -6,1 -8,1 -1,0 -3,-1 -4,-1 -5,0 -7,5 -6,10 0,2 3,9 6,9 2,0 3,-1 5,-1 1,0 3,1 4,1 3,0 5,-5 6,-7 0,0 -1,0 -1,0 0,0 0,0 0,-1 -2,-1 -3,-2 -3,-4z"/>'
-   ,'<path fill="#E6E6E6" d="M1213 575c2,0 3,-1 4,-2 1,-1 1,-2 1,-4 -1,0 -3,1 -4,2 0,1 -1,2 -1,4z"/>'
-  
   ,'<path fill="#006696" d="M1100 729l226 0 0 0c14,0 25,-11 25,-25 0,-13 -11,-25 -25,-25l0 0 -226 0c-14,0 -25,12 -25,25 0,14 11,25 25,25z"/>'
   ,'<path fill="#4C89B6" d="M1125 699l63 175c2,3 3,6 3,10 0,13 -11,23 -24,23 -10,0 -18,-7 -22,-15l-63 -176c-2,-3 -3,-6 -3,-10 0,-12 11,-23 24,-23 10,0 19,7 22,16z"/>'
   ,'<path fill="#016493" d="M1142 891c3,0 6,-3 6,-7 0,-3 -3,-6 -6,-6 -4,0 -7,3 -7,6 0,4 3,7 7,7z"/>'
@@ -77,6 +74,8 @@ var objects = [
   ,'<path fill="#183F5B" d="M1278 883c-10,2 -13,1 -20,7 -13,12 -6,15 -12,14 -3,4 -17,-6 -21,11l83 0c-1,-9 -2,-10 -5,-16 -3,-3 -4,-5 -8,-7 -4,-4 -8,-9 -17,-9z"/>'
 ]  
   
+  var iosScreen = '<g id="iosscreen"><rect fill="black" stroke="black" stroke-width="0.566929" x="573" y="613" width="164" height="114" rx="6" ry="6"/><path fill="#F2F2F6" d="M580 620l150 0c0,0 1,0 1,1l0 94 -153 0 0 -94c0,-1 1,-1 2,-1z"/><path fill="#CCCCCC" d="M580 620l150 0c0,0 1,0 1,1l0 5 -153 0 0 -5c0,-1 1,-1 2,-1z"/><g clip-path="url(#id0)"><image id="Shape" x="654" y="616" width="1.48082" height="1.37537" xlink:href="Р‘РµР·С‹РјСЏРЅРЅС‹Р№-1_Images\Р‘РµР·С‹РјСЏРЅРЅС‹Р№-1_ImgID1.jpg"/></g><circle fill="red" cx="580" cy="621" r="1"/><circle fill="yellow" cx="582" cy="621" r="1"/><circle fill="#33CC66" cx="584" cy="621" r="1"/><rect fill="#E6E6E6" x="579" y="622" width="5.13625" height="2.29531" rx="1" ry="0"/><polygon fill="gray" points="587,623 587,623 587,623 587,623 587,624 587,624 587,624 587,624 587,624 586,624 586,623 587,623 "/><rect fill="white" x="585" y="622" width="98.004" height="2.29531" rx="10" ry="0"/><path fill="white" d="M687 622l41 0c1,0 1,3 0,3l-41 0c-2,0 -2,-3 0,-3z"/><g><ellipse fill="none" stroke="gray" stroke-width="1.99984" cx="687" cy="623"/><line fill="none" stroke="gray" stroke-width="1.99984" x1="687" y1="624" x2="688" y2= "624" /></g><path fill="gray" fill-rule="nonzero" d="M730 621l0 0 0 0 0 -1 -1 0 1 1 -1 0 1 0zm0 0m0 0m0 0m0 -1m-1 1m0 0m0 0"/><path fill="gray" fill-rule="nonzero" d="M729 621l0 0 0 0 0 1 0 0 0 0 0 -1 0 0zm0 0m0 0m0 1m0 0m0 0m0 0m0 -1"/><circle fill="#00CCFF" cx="655" cy="617" r="1"/><polygon fill="#CED3DA" points="580,708 729,708 730,715 579,715 "/><polygon fill="gray" points="580,623 581,623 581,624 "/><polygon fill="gray" points="584,623 583,623 583,624 "/></g>';
+
 var furnitures = [
  '<path id="id0" class="tabletop0" d="M435 642 L1482 642 1482 644 435 644 z"/>'
  ,'<path id="id1" class="tabletop1" d="M435 665 L1482 665 1482 644 435 644 z"/>'
@@ -166,6 +165,19 @@ var mapa = ['<g id="mapa"><path fill="#95DAFF" d="M897 117l305 0c6,0 12,6 12,12l
 ,'<g><path fill="#E6001A" d="M1063 191l3 -4c6,-11 -13,-11 -6,0l3 4zm0 -9c1,0 1,0 1,1 0,1 0,1 -1,1 -1,0 -2,0 -2,-1 0,-1 1,-1 2,-1z"/><path fill="#AC1141" d="M1063 180c1,0 2,2 2,3 0,1 -1,2 -2,2 -2,0 -3,-1 -3,-2 0,-1 1,-3 3,-3zm0 2c1,0 1,0 1,1 0,1 0,1 -1,1 -1,0 -2,0 -2,-1 0,-1 1,-1 2,-1z"/></g>'
 ,'<g><path fill="#E6001A" d="M1100 178l3 -5c7,-11 -13,-10 -6,0l3 5zm0 -10c1,0 1,1 1,2 0,0 0,1 -1,1 -1,0 -1,-1 -1,-1 0,-1 0,-2 1,-2z"/><path fill="#AC1141" d="M1100 167c1,0 3,1 3,3 0,1 -2,2 -3,2 -1,0 -2,-1 -2,-2 0,-2 1,-3 2,-3zm0 1c1,0 1,1 1,2 0,0 0,1 -1,1 -1,0 -1,-1 -1,-1 0,-1 0,-2 1,-2z"/></g>'
 ,'<g><path fill="#E6001A" d="M1109 219l3 -5c7,-11 -12,-11 -6,0l3 5zm0 -10c1,0 2,0 2,1 0,1 -1,1 -2,1 0,0 -1,0 -1,-1 0,-1 1,-1 1,-1z"/><path fill="#AC1141" d="M1109 208c2,0 3,1 3,2 0,1 -1,3 -3,3 -1,0 -2,-2 -2,-3 0,-1 1,-2 2,-2zm0 1c1,0 2,0 2,1 0,1 -1,1 -2,1 0,0 -1,0 -1,-1 0,-1 1,-1 1,-1z"/></g>'
+
+
+,'<g id="hqgroup"><g id="california" class="marks hq"><path fill="black" stroke="black" stroke-width="0.566929" d="M893 162l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="894" y="173"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">CALIFORNIA, USA</text></g></g>'
+,'<g id="california" class="marks hq"><path fill="black" stroke="black" stroke-width="0.566929" d="M893 162l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="894" y="173"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">CALIFORNIA, USA</text></g>'
+,'<g id="dallas" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M914 170l50 0c0,0 1,0 1,1l0 13c0,1 -1,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,-1 -2,-2l0 -13c0,-1 1,-1 2,-1z"/><text x="928" y="182" fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">DALLAS</text></g>'
+,'<g id="argentina" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M954 239l50 0c1,0 2,1 2,2l0 13c0,1 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,0 -1,-1l0 -13c0,-1 1,-2 1,-2z"/><text x="963" y="251"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">ARGENTINA</text></g>'
+ ,'<g id="india" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M1085 187l50 0c0,0 1,0 1,1l0 13c0,1 -1,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,-1 -2,-2l0 -13c0,-1 1,-1 2,-1z"/><text x="1102" y="198"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">INDIA</text></g>'
+,'<g id="europe" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M1038 159l50 0c0,0 1,1 1,1l0 14c0,1 -1,1 -1,1l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,0 -2,-1l0 -14c0,0 1,-1 2,-1z"/><text x="1038" y="171"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">EASTERN EUROPE</text></g>'
+,'<g id="pakistan" class="marks regional"><path fill="black" stroke="black" stroke-width="0.566929" d="M1074 170l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1087" y="182"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">PAKISTAN</text></g>'
+,'<g id="afrika" class="marks regional"><path fill="black" stroke="black" stroke-width="0.566929" d="M1015 195l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1025" y="207"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">CAMEROON</text></g>'
+,'<g id="russia" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M1076 147l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="1090" y="158"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">RUSSIA</text></g>'
+
+
 ,'</g>'
 ,'<g id="hqpost">'
 ,'<polygon fill="#F9FD64" points="905,295 943,292 946,334 909,337 "/><polygon fill="#956434" points="918,282 925,282 926,299 919,299 "/>'
@@ -188,19 +200,6 @@ var mapa = ['<g id="mapa"><path fill="#95DAFF" d="M897 117l305 0c6,0 12,6 12,12l
 
 ];
 
-//marks
-var marks = [
-'<g id="california" class="marks hq"><path fill="black" stroke="black" stroke-width="0.566929" d="M893 162l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="894" y="173"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">CALIFORNIA, USA</text></g>'
-// ,'<g id="chikago" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M925 157l50 0c1,0 2,0 2,1l0 13c0,1 -1,2 -2,2l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-2l0 -13c0,-1 1,-1 1,-1z"/><text x="938" y="168"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">CHICAGO</text></g>'
-// ,'<g id="dallas" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M950 192l50 0c1,0 2,1 2,1l0 14c0,1 -1,1 -2,1l-50 0c0,0 -1,0 -1,-1l0 -7 -4 -6 4 0 0 -1c0,0 1,-1 1,-1z"/><text x="964" y="204"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">DALLAS</text></g>'
-,'<g id="dallas" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M914 170l50 0c0,0 1,0 1,1l0 13c0,1 -1,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,-1 -2,-2l0 -13c0,-1 1,-1 2,-1z"/><text x="928" y="182" fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">DALLAS</text></g>'
-,'<g id="argentina" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M954 239l50 0c1,0 2,1 2,2l0 13c0,1 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,0 -1,-1l0 -13c0,-1 1,-2 1,-2z"/><text x="963" y="251"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">ARGENTINA</text></g>'
-,'<g id="india" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M1085 187l50 0c0,0 1,0 1,1l0 13c0,1 -1,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,-1 -2,-2l0 -13c0,-1 1,-1 2,-1z"/><text x="1102" y="198"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">INDIA</text></g>'
-,'<g id="europe" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M1038 159l50 0c0,0 1,1 1,1l0 14c0,1 -1,1 -1,1l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,0 -2,-1l0 -14c0,0 1,-1 2,-1z"/><text x="1038" y="171"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">EASTERN EUROPE</text></g>'
-,'<g id="pakistan" class="marks regional"><path fill="black" stroke="black" stroke-width="0.566929" d="M1074 170l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1087" y="182"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">PAKISTAN</text></g>'
-,'<g id="afrika" class="marks regional"><path fill="black" stroke="black" stroke-width="0.566929" d="M1015 195l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1025" y="207"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">CAMEROON</text></g>'
-,'<g id="russia" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.566929" d="M1076 147l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="1090" y="158"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">RUSSIA</text></g>'
-]
 
 var circles = [
 '<circle class="californiacircle circles" fill="none" stroke="none" stroke-width="2" cx="418" cy="456" r="1"/>'
