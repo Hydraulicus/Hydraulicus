@@ -15,7 +15,7 @@ var rhythm = 300, //ms, of knee shacking
          ,timeTyping = 0
          ,steamGradient
          ,path4throwing
-         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin;
+         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin, plant, can, flowers,water;
 
 var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup;
 var transitionNote = 't0,0s0.1';
@@ -101,7 +101,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- // constantAnimation();
+ constantAnimation();
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -153,7 +153,7 @@ laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ 
 
 
 secondsweater = Snap.select('#secondsweater'); 
-// SecondConstAnimation();
+SecondConstAnimation();
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
