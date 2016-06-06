@@ -17,7 +17,7 @@ var rhythm = 300, //ms, of knee shacking
          ,path4throwing
          ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin;
 
-var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events;
+var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup;
 var transitionNote = 't0,0s0.1';
 var transitionNoteEnd = 't0,0s1';
 
@@ -101,7 +101,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- constantAnimation();
+ // constantAnimation();
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -153,13 +153,14 @@ laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ 
 
 
 secondsweater = Snap.select('#secondsweater'); 
-SecondConstAnimation();
+// SecondConstAnimation();
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
 satellitesGroup = Snap.selectAll('.satellite').forEach(function(element1, index) { element1.attr({'opacity' : 0}).transform(transitionNote); });
  regionalsGroup = Snap.selectAll('.regional').forEach(function(element2, index) { element2.attr({'opacity' : 0}).transform(transitionNote); });
  HQGroup = Snap.selectAll('.hq').forEach(function(element3, index) {  element3.attr({'opacity' : 0}).transform(transitionNote );  });//it is working prop
+ 
 
 map4events = Snap.select('#mapa');
 Snap.select('#clickablemap')
@@ -172,7 +173,104 @@ Snap.select('#satellitepost').attr({cursor : 'pointer'}).click(function(){ showO
 Snap.select('#annotation').attr({cursor : 'default', 'opacity' : 0});
 Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
+lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
+
+animSvg.polygon(0,500, 558,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud1')});
+animSvg.polygon(0,500, 548,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud2')});
+animSvg.polygon(0,500, 548,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud3')});
+
+             animSvg.add(Snap.parse(plant));
+             plant    =   Snap.select('#plant')
+                         .attr({cursor : 'pointer'});
+             plantAct =   Snap.select('#plant')
+                         .click(plantClick)
+                         .mouseover(plantOver)
+                         .mouseout(plantOut);
+
+            animSvg.add(Snap.parse(can));  
+            can      =    Snap.select('#can')
+                          .attr({opacity : 0});
+         
+
+            for (var f in flowers){ animSvg.add(Snap.parse(flowers[f]));}
+            
+            animSvg.selectAll('.flowers').forEach(function(flower, index){flower.attr({'transform': 's0 0'});});
+
 };//end of init function
+
+
+function plantClick(){
+            if(!can.hasClass('active')) {
+                    can.addClass('active');
+                    can.animate({'transform': 'r-15 30 1020'},rhythm*3,mina.easyinout,function(){
+                                     for (var w in water){ waterDraw( water[w])};
+                    });
+       }             
+}
+
+function waterDraw(xpath){
+
+           var innerCircle = animSvg.path(xpath).attr({
+                     fill            : "none",
+                     stroke          : '#15B7E4',
+                     strokeWidth     : 1,
+                     strokeDasharray : "5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 ",
+                     strokeDashoffset: 500,
+                     opacity         : 1,
+                     class           : 'waters'
+           });
+
+          Snap.animate(0,rhythm*0.3, function( value ){innerCircle.attr({ 'strokeDashoffset': value })},rhythm*5, function(){canPutInPlace();});
+}
+
+function canPutInPlace(){
+            
+               animSvg.selectAll('.waters').forEach(function(water, index){
+                                 water.animate({opacity:0},rhythm);
+                    });
+
+               can.animate({'transform': 'r-0 30 1020'},rhythm*3,mina.easyinout,function(){canDisapear();});//flowersGrowUp();
+}
+function flowersGrowUp(){
+              animSvg.selectAll('.flowers').forEach(function(flower, index){
+                      
+                                 flower.animate({'transform': 's1 1'},rhythm*10,mina.easyinout, function(){setTimeout( function(){flowerDissapear()}, rhythm*10 );});
+
+               });
+}
+
+function canDisapear(){
+
+            can.removeClass('active');
+            can.animate({opacity:0},rhythm*2,function(){setTimeout( function(){flowersGrowUp();}, rhythm*5 );});//flowerDissapear();
+}
+
+function flowerDissapear(){
+             animSvg.selectAll('.flowers').forEach(function(flower, index){
+                                flower.animate({'transform': 's0 0'},rhythm*10,mina.easyinout);
+              });
+}
+
+function plantOver(){
+
+               can.animate({opacity:1},rhythm);     
+}
+
+function plantOut(){
+               if(!can.hasClass('active')){
+                            can.animate({opacity:0},rhythm);
+
+               }
+}
+
+
+
+
+function lampTurnOnOff(){
+  // console.log('lampTurnOnOff');
+  Snap.select('#lamp').toggleClass('fil10on');
+  Snap.select('#ghazisviter').toggleClass('fil1on');
+}
 
 function laptopOn(n){//n = 0 - Ghazi laptop, n = 2 second laptop  
 var morphingPoint = (n == 0) ? '632,500' : '1130,500';

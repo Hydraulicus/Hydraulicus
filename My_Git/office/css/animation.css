@@ -10,11 +10,17 @@
     .str6 {stroke:#CCCCCC;stroke-width:1} 
     .str0 {stroke:#EF977C;stroke-width:7;stroke-linecap:round}
     .fil1 {fill:#006696}
+    .fil1on {fill:#317FA3}
     .fil2 {fill:#EF977C}/*skeen color*/
     .fil3 {fill:none}
     .fil4 {fill:#FDE4AC}
     .fil5 {fill:#F2521F}
     .fil7 {fill:#B64B4D}
+    .fil8 {fill:#121C26}
+    .fil9 {fill:#E4A85B}
+    .fil10 {fill:#CCC}
+    .fil10on {fill:#ff9}
+    .fil11 {fill:#006470}
     .fil12 {fill:#E8745D}
     .fil13 {fill:#724842}
     .fil14 {fill:#EBCA9C}
@@ -42,3 +48,42 @@
 .ruber {fill:#F29785}
 .bg { background-color: #bbb; }
 .throwPaper1 {fill:white; stroke:#E6E6E6; stroke-width:1.5}
+
+
+.clouds1 {
+  -webkit-animation: cloudsfly 33s normal linear infinite;
+     -moz-animation: cloudsfly 33s normal linear infinite;
+      -ms-animation: cloudsfly 33s normal linear infinite;
+          animation: cloudsfly 33s normal linear infinite;
+}
+.clouds2 {
+  -webkit-animation: cloudsfly 30s normal linear infinite;
+     -moz-animation: cloudsfly 30s normal linear infinite;
+      -ms-animation: cloudsfly 30s normal linear infinite;
+          animation: cloudsfly 30s normal linear infinite;
+          opacity: 0.5; 
+          -webkit-animation-delay: -22s; 
+             -moz-animation-delay: -22s; 
+            -ms-animation-delay: -22s; 
+            animation-delay: -22s; 
+}
+.clouds3 {
+  -webkit-animation: cloudsfly 43s normal  infinite;
+     -moz-animation: cloudsfly 43s normal  infinite;
+      -ms-animation: cloudsfly 43s normal  infinite;
+          animation: cloudsfly 43s normal  infinite;
+          opacity: 0.5; 
+}
+@keyframes cloudsfly {
+  0%   { -ms-transform: translateX(25vw); 
+         -webkit-transform:translateX(25vw); 
+         -moz-transform: translateX(25vw);
+         transform: translateX(25vw);
+       }
+  100% { -ms-transform: translateX(-40vw); 
+         -webkit-transform:translateX(-40vw); 
+         -moz-transform: translateX(-40vw);
+         transform: translateX(-40vw);
+         
+       }
+}
