@@ -130,7 +130,7 @@ animSvg.polygon(0,500, 558,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.se
 animSvg.polygon(0,500, 548,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud2')});
 animSvg.polygon(0,500, 548,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud3')});
 drawObjects();
- 
+
              animSvg.add(Snap.parse(plant));
              plant    =   Snap.select('#plant')
                          .attr({cursor : 'pointer'});
@@ -338,7 +338,6 @@ function drawRect( el ) {
 
 
 function binClick(){
-
 var newEl = throwedPaper.clone().attr({ opacity: 1 });
 drawRect( newEl ); //Animate along a path
 }
@@ -544,10 +543,10 @@ function SecondMouseOff() {  Secondsmile.animate({d : 'M1207 477l13 0c0,0 1,1 1,
 
 //close cpeech bubble when a user clicks outside of them
 function fnClose () {
-  // console.log('Click - close bubble');
+  console.log('Click - close bubble');
   GhaziSpich.animate({transform : myMatrix}, 750,  mina.backin, function(){ GhaziSpich.attr({visibility : 'hidden'}); }); 
   SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin, function(){ SecondSpeech.attr({visibility : 'hidden'}); }); 
-
+  document.body.removeEventListener('click', fnClose, true); 
 }
 
 function mapClose (ev) {
