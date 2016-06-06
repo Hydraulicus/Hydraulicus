@@ -125,7 +125,25 @@ Bin = Snap.select('#bin')
 animSvg.add(Snap.parse(SecondCup));
 strawCup = Snap.select('#strawcup');
 secondFingers = animSvg.path(AbassFingers[0]).addClass('fil2').attr({'opacity':0});
-drawObjects(); 
+
+animSvg.polygon(0,500, 558,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud1')});
+animSvg.polygon(0,500, 548,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud2')});
+animSvg.polygon(0,500, 548,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud3')});
+drawObjects();
+ 
+             animSvg.add(Snap.parse(plant));
+             plant    =   Snap.select('#plant')
+                         .attr({cursor : 'pointer'});
+             plantAct =   Snap.select('#plant')
+                         .click(plantClick)
+                         .mouseover(plantOver)
+                         .mouseout(plantOut);
+
+            animSvg.add(Snap.parse(can));  
+            can      =    Snap.select('#can')
+                          .attr({opacity : 0});
+            for (var f in flowers){ animSvg.add(Snap.parse(flowers[f]));}
+            animSvg.selectAll('.flowers').forEach(function(flower, index){flower.attr({'transform': 's0 0'});});
 
 animSvg.add(Snap.parse(mapa));//add MAP
 circlesssss = animSvg.add(Snap.parse(circles)) ;//add circles around pins of marks
@@ -134,6 +152,8 @@ var spich1 = animSvg.path(Ghazi[3].speechOut).attr({stroke:'#ccc', fill : '#ccc'
 var spich2 = animSvg.path(Ghazi[3].speechIn).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
 var spich3 = animSvg.path(secondSpeech.outer).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
 var spich4 = animSvg.path(secondSpeech.inner).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
+
+
 var spichCross1 = animSvg.path(Ghazi[3].speechCross)
                         .attr({stroke :'#ccc', fill : '#fff', 'stroke-width' : 3})
                         .attr({cursor : 'pointer'})
@@ -150,7 +170,6 @@ SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2)
 
 laptop[0]=Snap.select('#macbook').attr({cursor : 'pointer'}).hover(function(){ laptopOn(0)}, function(){ laptopOff(0)});
 laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ laptopOn(2)}, function(){ laptopOff(2)});
-
 
 secondsweater = Snap.select('#secondsweater'); 
 SecondConstAnimation();
@@ -175,26 +194,7 @@ Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
 
-animSvg.polygon(0,500, 558,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud1')});
-animSvg.polygon(0,500, 548,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud2')});
-animSvg.polygon(0,500, 548,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud3')});
 
-             animSvg.add(Snap.parse(plant));
-             plant    =   Snap.select('#plant')
-                         .attr({cursor : 'pointer'});
-             plantAct =   Snap.select('#plant')
-                         .click(plantClick)
-                         .mouseover(plantOver)
-                         .mouseout(plantOut);
-
-            animSvg.add(Snap.parse(can));  
-            can      =    Snap.select('#can')
-                          .attr({opacity : 0});
-         
-
-            for (var f in flowers){ animSvg.add(Snap.parse(flowers[f]));}
-            
-            animSvg.selectAll('.flowers').forEach(function(flower, index){flower.attr({'transform': 's0 0'});});
 
 };//end of init function
 
