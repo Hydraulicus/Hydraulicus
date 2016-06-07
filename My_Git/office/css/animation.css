@@ -48,7 +48,9 @@
 .ruber {fill:#F29785}
 .bg { background-color: #bbb; }
 .throwPaper1 {fill:white; stroke:#E6E6E6; stroke-width:1.5}
-
+.files{
+  /*visibility: hidden*/
+}
 
 .clouds1 {
   -webkit-animation: cloudsfly 33s normal linear infinite;

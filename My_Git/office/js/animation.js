@@ -101,7 +101,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- // constantAnimation();
+ constantAnimation();
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -175,7 +175,7 @@ SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2)
 // laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ laptopOn(2)}, function(){ laptopOff(2)});
 
 secondsweater = Snap.select('#secondsweater'); 
-// SecondConstAnimation();
+SecondConstAnimation();
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
@@ -197,10 +197,46 @@ Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
 
-
+drawerHandler();
 
 };//end of init function
 
+function drawerHandler()
+{
+    Snap.selectAll('.drawer').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(drawerClick).hover(drawerMouseOn, drawerMouseOff);  });
+    // Snap.selectAll('.files').forEach(function(element, index) {  element.attr({visibility : 'hidden'}); });
+    Snap.selectAll('.files').forEach(function(element, index) {  element.attr({transform : 's1,0.5'}); });
+}
+
+
+function drawerClick(element){
+   var shiftout='t0,18';
+   var gettegId=this.attr("id");
+   this.stop().animate({'transform' : shiftout}, rhythm, mina.easeinout, function(){ Snap.selectAll('.'+gettegId).forEach(function(element, index) {  element.attr({visibility : 'visible'}); });  } );
+   // console.log(gettegId); 
+   
+}
+
+function drawerMouseOn(element){
+   var shiftout='t0,18';
+   // console.log(element,this.attr("id")); 
+   // this.attr({'transform' : shiftout});
+   var gettegId=this.attr("id");
+   this.stop().animate({'transform' : shiftout}, rhythm, mina.easeinout);
+   // console.log(gettegId); 
+   // Snap.selectAll('.'+gettegId).forEach(function(element, index) {  element.attr({visibility : 'visible'}); });    
+   Snap.selectAll('.'+gettegId).forEach(function(element, index) {  element.stop().animate({transform : 's1,1'},rhythm) });    
+}
+
+function drawerMouseOff(element){
+   var shiftout='t0,0';
+   // console.log(element,this.attr("id")); 
+   // this.attr({'transform' : shiftout});
+   var gettegId=this.attr("id");
+   // console.log(gettegId); 
+   this.stop().animate({'transform' : shiftout}, rhythm, mina.easeinout );
+   Snap.selectAll('.'+gettegId).forEach(function(element, index) { element.stop().attr({transform : 's1,0.5'});   });    
+}
 
 function plantClick(){
             if(!can.hasClass('active')) {
