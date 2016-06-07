@@ -101,7 +101,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- constantAnimation();
+ // constantAnimation();
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -126,9 +126,12 @@ animSvg.add(Snap.parse(SecondCup));
 strawCup = Snap.select('#strawcup');
 secondFingers = animSvg.path(AbassFingers[0]).addClass('fil2').attr({'opacity':0});
 
+// Snap.parse(clouds);
+
 animSvg.polygon(0,500, 558,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud1')});
 animSvg.polygon(0,500, 548,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud2')});
 animSvg.polygon(0,500, 548,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud3')});
+
 drawObjects();
 
              animSvg.add(Snap.parse(plant));
@@ -168,11 +171,11 @@ var spichCross2 = animSvg.path(secondSpeech.cross)
 GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).attr({'id' : 'speech1'}).attr({'visibility' : 'hidden'});
 SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'}).attr({'visibility' : 'hidden'});
 
-laptop[0]=Snap.select('#macbook').attr({cursor : 'pointer'}).hover(function(){ laptopOn(0)}, function(){ laptopOff(0)});
-laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ laptopOn(2)}, function(){ laptopOff(2)});
+// laptop[0]=Snap.select('#macbook').attr({cursor : 'pointer'}).hover(function(){ laptopOn(0)}, function(){ laptopOff(0)});
+// laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ laptopOn(2)}, function(){ laptopOff(2)});
 
 secondsweater = Snap.select('#secondsweater'); 
-SecondConstAnimation();
+// SecondConstAnimation();
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
@@ -293,7 +296,7 @@ function stopEvent(ev) {
 
 
 function showOfficesName(par){
-pulseShow = false; 
+// pulseShow = false; 
 Snap.selectAll('.circles').forEach(function(element, index) {element.stop().attr({r : 1, 'stroke' : 'none'});});//stop ALL cirkle animations
 
  HQGroup.forEach(function(element1, index) { element1.attr({'opacity' : 0}).transform( transitionNote); });
@@ -301,24 +304,24 @@ regionalsGroup.forEach(function(element2, index) { element2.attr({'opacity' : 0}
 satellitesGroup.forEach(function(element3, index) { element3.attr({'opacity' : 0}).transform( transitionNote); });
 
  switch (par) {
-   case 'hq' : { pulseShow = true;
+   case 'hq' : { //pulseShow = true;
                    HQGroup.forEach(function(elem, index) { elem.stop().attr({'opacity' : 1}).animate({transform : transitionNoteEnd}, 300,  mina.bounce); });
-                  Snap.selectAll('.californiacircle').forEach(function(element, index) {element.attr({'stroke' : 'red'});  circlePulse(element);});
+                  if (pulseShow) Snap.selectAll('.californiacircle').forEach(function(element, index) {element.attr({'stroke' : 'red'});  circlePulse(element);});
                }
    break
 
    case ('regionalpost'):
-   case ('officespost' ): { pulseShow = true; 
+   case ('officespost' ): { //pulseShow = true; 
                             regionalsGroup.forEach(function(element, index) { element.stop().attr({'opacity' : 1}).animate({transform : transitionNoteEnd}, 300,  mina.bounce); });
-                            Snap.selectAll('.regionalcircle').forEach(function(element, index) { element.attr({'stroke' : 'red'});  circlePulse(element);});
+                            if (pulseShow) Snap.selectAll('.regionalcircle').forEach(function(element, index) { element.attr({'stroke' : 'red'});  circlePulse(element);});
                           }
    break
 
    case ('satellitepost') :
    case ('locationspost') : { 
-                                pulseShow = true; 
+                                // pulseShow = true; 
                                 satellitesGroup.forEach(function(element, index) { element.stop().attr({'opacity' : 1}).animate({transform : transitionNoteEnd}, 300,  mina.bounce); });
-                                Snap.selectAll('.satellitepostcircle').forEach(function(element, index) { element.attr({'stroke' : 'red'});  circlePulse(element);});
+                               if (pulseShow)  Snap.selectAll('.satellitepostcircle').forEach(function(element, index) { element.attr({'stroke' : 'red'});  circlePulse(element);});
                               } 
    break
 
@@ -327,7 +330,7 @@ satellitesGroup.forEach(function(element3, index) { element3.attr({'opacity' : 0
 
 function circlePulse(el)
 { 
-    // console.log(pulseShow,el.attr('class'));
+    console.log(pulseShow,el.attr('class'));
     if (!pulseShow) return
     setTimeout(function(){el.attr({r : 1, opacity : 1, 'stroke-width' : 1}).animate({r : 25, opacity : 0, 'stroke-width' : 5}, 900, mina.easeinout, function(){el.attr({'stroke' : 'red'}); el.attr({'stroke' : 'red'});circlePulse(el)});}, 200);
 }
@@ -564,11 +567,12 @@ Snap.selectAll('.circles').forEach(function(element, index) {element.stop().attr
 }
 
 function mapClick(ev){
-  console.log('Click on map');
+  pulseShow = true;
   // document.body.addEventListener('click', mapClose, true);
   map4events.stop().animate({transform : 't0,320s4.65'}, 750,  mina.bounce).attr({cursor : 'default'}).unclick(mapClick); //
   Snap.select('#closer').stop().animate({transform : 't-20,-75s4.65'}, 750,  mina.bounce).attr({cursor : 'pointer', 'opacity' : 1}).click(mapClose);  
   Snap.select('#annotation').attr({'opacity' : 1});
+  console.log('Click on map',pulseShow);
 
 }
 
