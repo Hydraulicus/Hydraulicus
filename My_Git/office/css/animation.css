@@ -48,8 +48,8 @@
 .ruber {fill:#F29785}
 .bg { background-color: #bbb; }
 .throwPaper1 {fill:white; stroke:#E6E6E6; stroke-width:1.5}
-.files{
-  /*visibility: hidden*/
+.visibility_hid{
+  visibility: hidden
 }
 
 .clouds1 {

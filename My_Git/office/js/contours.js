@@ -81,51 +81,7 @@ var objects = [
 
 ,'<g id="phone"><polygon fill="#F9F9F6" points="274,529 367,529 367,464 274,464 "/><polygon fill="#8CCDD8" points="314,489 360,489 360,470 314,470 "/><polygon fill="#00CCFF" points="321,478 354,478 354,475 321,475 "/><polygon fill="#00CCFF" points="321,484 337,484 337,481 321,481 "/><polygon fill="#CCCCCC" points="314,503 320,503 320,497 314,497 "/><polygon fill="#CCCCCC" points="314,513 320,513 320,507 314,507 "/><polygon fill="#CCCCCC" points="314,523 320,523 320,517 314,517 "/><polygon fill="#CCCCCC" points="324,503 330,503 330,497 324,497 "/><polygon fill="#CCCCCC" points="324,513 330,513 330,507 324,507 "/><polygon fill="#CCCCCC" points="324,523 330,523 330,517 324,517 "/><polygon fill="#CCCCCC" points="334,503 340,503 340,497 334,497 "/><polygon fill="#CCCCCC" points="334,513 340,513 340,507 334,507 "/><polygon fill="#CCCCCC" points="334,523 340,523 340,517 334,517 "/><polygon fill="#CCCCCC" points="344,503 350,503 350,497 344,497 "/><polygon fill="#CCCCCC" points="344,513 350,513 350,507 344,507 "/><polygon fill="#85E1E4" points="344,523 350,523 350,517 344,517 "/><polygon fill="#CCCCCC" points="354,503 360,503 360,497 354,497 "/><polygon fill="#CCCCCC" points="354,513 360,513 360,507 354,507 "/><polygon fill="#E8745D" points="354,523 360,523 360,517 354,517 "/><path fill="#CCCCCC" d="M284 456l21 0c1,0 2,1 2,2l0 76c0,1 -1,2 -2,2l-21 0c-2,0 -2,-1 -2,-2l0 -76c0,-1 0,-2 2,-2z"/></g>'
 
-,'<g id="filedrawer1"><path fill="#AAAAAC" d="M23 530l186 0c6,0 10,5 10,10l0 274c0,6 -4,10 -10,10l-186 0c-5,0 -10,-4 -10,-10l0 -274c0,-5 5,-10 10,-10z"/>'
 
-,'<path fill="#50504D" d="M39 547l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
-,'<path fill="#50504D" d="M39 638l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
-,'<path fill="#50504D" d="M39 729l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
-
-
-,'<path id="file000" class="files drawer00" fill="#F9CA6B" d="M51 540l136 0c3,0 5,2 5,4l0 69c0,2 -2,4 -5,4l-136 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
-,'<path id="file010" class="files drawer01" fill="#F9CA6B" d="M51 632l136 0c3,0 5,2 5,4l0 69c0,2 -2,4 -5,4l-136 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
-,'<path id="file020" class="files drawer02" fill="#F9CA6B" d="M51 724l136 0c3,0 5,2 5,4l0 69c0,2 -2,4 -5,4l-136 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
-
-,'<path id="file001" class="files drawer00" fill="#C4A350" d="M47 550l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
-,'<path id="file011" class="files drawer01" fill="#C4A350" d="M47 642l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
-,'<path id="file021" class="files drawer02" fill="#C4A350" d="M47 734l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
-
-,'<path class="drawer" id="drawer00" fill="#919191" d="M39 547l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><polygon fill="gray" points="90,583 95,583 95,596 133,596 133,583 139,583 139,605 90,605 "/>'
-,'<path  class="drawer"  id="drawer01" fill="#919191" d="M39 638l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
-,'<path  class="drawer"  id="drawer02" fill="#919191" d="M39 729l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
-
-,'<polygon fill="gray" points="90,674 95,674 95,687 133,687 133,674 139,674 139,695 90,695 "/><polygon fill="gray" points="90,765 95,765 95,778 133,778 133,765 139,765 139,786 90,786 "/><polygon fill="white" points="90,577 95,577 95,585 133,585 133,577 139,577 139,590 90,590 "/><polygon fill="white" points="90,668 95,668 95,676 133,676 133,668 139,668 139,681 90,681 "/><polygon fill="white" points="90,759 95,759 95,767 133,767 133,759 139,759 139,772 90,772 "/>'
-,'</g>'
-
-
-
-
-,'<g id="filedrawer2"><path fill="#AAAAAC" d="M236 530l186 0c6,0 10,5 10,10l0 274c0,6 -4,10 -10,10l-186 0c-5,0 -10,-4 -10,-10l0 -274c0,-5 5,-10 10,-10z"/>'
-,'<path fill="#50504D" d="M252 547l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><path  fill="#50504D" d="M252 638l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><path  fill="#50504D" d="M252 729l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
-
-,'<path id="file100" class="files drawer10" fill="#F9CA6B" d="M263 540l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
-,'<path id="file110" class="files drawer11" fill="#F9CA6B" d="M263 632l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
-,'<path id="file120" class="files drawer12" fill="#F9CA6B" d="M263 724l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
-
-,'<path id="file101" class="files drawer10" fill="#C4A350" d="M258 550l137 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-137 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
-,'<path id="file111" class="files drawer11" fill="#C4A350" d="M258 642l137 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-137 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
-,'<path id="file121" class="files drawer12" fill="#C4A350" d="M258 734l137 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-137 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
-
-
-
-,'<g class="drawer" id="drawer10"><path  id="drawer10" fill="#919191" d="M252 547l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><polygon fill="gray" points="303,583 308,583 308,596 346,596 346,583 352,583 352,605 303,605 "/><polygon fill="white" points="303,577 308,577 308,585 346,585 346,577 352,577 352,590 303,590 "/></g>'
-
-,'<g class="drawer" id="drawer11"><path  id="drawer11"  fill="#919191" d="M252 638l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><polygon fill="gray" points="303,674 308,674 308,687 346,687 346,674 352,674 352,695 303,695 "/><polygon fill="white" points="303,668 308,668 308,676 346,676 346,668 352,668 352,681 303,681 "/></g>'
-
-,'<g class="drawer" id="drawer12"><path id="drawer12" fill="#919191" d="M252 729l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><polygon fill="gray" points="303,765 308,765 308,778 346,778 346,765 352,765 352,786 303,786 "/><polygon fill="white" points="303,759 308,759 308,767 346,767 346,759 352,759 352,772 303,772 "/></g>'
-,'</g>'
-,'<path fill="#A87C58" d="M361 815l153 0c2,0 3,1 3,3l0 106c0,2 -1,4 -3,4l-153 0c-2,0 -4,-2 -4,-4l0 -106c0,-2 2,-3 4,-3z"/><path fill="#C8A079" d="M414 815l46 0 0 -18c0,-2 -1,-3 -2,-3l-42 0c-1,0 -2,1 -2,3l0 18zm-53 0l8 0 0 -4 22 0 0 4 19 0 0 -20c0,-3 2,-5 4,-5l47 0c2,0 4,2 4,5l0 20 21 0 0 -4 22 0 1 4 5 0c2,0 3,1 3,3l0 54 -160 0 0 -54c0,-2 2,-3 4,-3z"/><polygon fill="#C6C8C6" points="425,872 450,872 450,865 425,865 "/><polygon fill="#EBEBEB" points="425,878 450,878 450,872 425,872 "/>'
 ]  
   
   var iosScreen = '<g id="iosscreen"><rect fill="black" stroke="black" stroke-width="0.566929" x="573" y="613" width="164" height="114" rx="6" ry="6"/><path fill="#F2F2F6" d="M580 620l150 0c0,0 1,0 1,1l0 94 -153 0 0 -94c0,-1 1,-1 2,-1z"/><path fill="#CCCCCC" d="M580 620l150 0c0,0 1,0 1,1l0 5 -153 0 0 -5c0,-1 1,-1 2,-1z"/><g clip-path="url(#id0)"></g><circle fill="red" cx="580" cy="621" r="1"/><circle fill="yellow" cx="582" cy="621" r="1"/><circle fill="#33CC66" cx="584" cy="621" r="1"/><rect fill="#E6E6E6" x="579" y="622" width="5.13625" height="2.29531" rx="1" ry="0"/><polygon fill="gray" points="587,623 587,623 587,623 587,623 587,624 587,624 587,624 587,624 587,624 586,624 586,623 587,623 "/><rect fill="white" x="585" y="622" width="98.004" height="2.29531" rx="10" ry="0"/><path fill="white" d="M687 622l41 0c1,0 1,3 0,3l-41 0c-2,0 -2,-3 0,-3z"/><g><ellipse fill="none" stroke="gray" stroke-width="1.99984" cx="687" cy="623"/><line fill="none" stroke="gray" stroke-width="1.99984" x1="687" y1="624" x2="688" y2= "624" /></g><path fill="gray" fill-rule="nonzero" d="M730 621l0 0 0 0 0 -1 -1 0 1 1 -1 0 1 0zm0 0m0 0m0 0m0 -1m-1 1m0 0m0 0"/><path fill="gray" fill-rule="nonzero" d="M729 621l0 0 0 0 0 1 0 0 0 0 0 -1 0 0zm0 0m0 0m0 1m0 0m0 0m0 0m0 -1"/><circle fill="#00CCFF" cx="655" cy="617" r="1"/><polygon fill="#CED3DA" points="580,708 729,708 730,715 579,715 "/><polygon fill="gray" points="580,623 581,623 581,624 "/><polygon fill="gray" points="584,623 583,623 583,624 "/></g>';
@@ -280,13 +236,79 @@ var water = [
              ,'<g class="waters"><path class="fil3 water" stroke="#15B7E4" stroke-width="1.99984" d="M132 986c0,-26 21,-48 47,-48 2,0 3,0 5,1"/>'
              ,'<g class="waters"><path class="fil3 water" stroke="#15B7E4" stroke-width="1.99984" d="M136 986c0,-24 19,-43 43,-43 1,0 2,0 3,0"/>'
              ,'<g class="waters"><path class="fil3 water" stroke="#15B7E4" stroke-width="1.99984" d="M140 986c0,-22 18,-39 39,-39 0,0 1,0 1,0"/>'
-
 ];
 
 var bigopenedfile = [
- '<g id="bigopenedfile">'
-,'<path fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.566929" d="M616 104l657 0c17,0 30,14 30,31l0 847c0,17 -13,30 -30,30l-657 0 0 -908z"/>'
-,'<path fill="#FFCC00" fill-opacity="0.501961" stroke="#FFCC00" stroke-width="0.566929" stroke-opacity="0.501961" d="M616 1012c-86,-45 -260,-72 -424,-72 -16,0 -30,-14 -30,-30l0 -847c0,-17 14,-30 30,-31 152,-3 315,21 424,72l0 908z"/>'
-,'<circle fill="none" stroke="#FFCC00" stroke-width="4.99975" cx="1255" cy="152" r="31"/><line fill="none" stroke="#FFCC00" stroke-width="4.99975" x1="1239" y1="168" x2="1271" y2= "136" /><line fill="none" stroke="#FFCC00" stroke-width="4.99975" x1="1239" y1="136" x2="1271" y2= "168" />'
+//=============================================================================================
+//=============================== Files and drawers ===========================================
+//=============================================================================================
+
+
+'<g id="filedrawer1"><path fill="#AAAAAC" d="M23 530l186 0c6,0 10,5 10,10l0 274c0,6 -4,10 -10,10l-186 0c-5,0 -10,-4 -10,-10l0 -274c0,-5 5,-10 10,-10z"/>'
+
+,'<path fill="#50504D" d="M39 547l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
+,'<path fill="#50504D" d="M39 638l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
+,'<path fill="#50504D" d="M39 729l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
+
+
+,'<path id="file000" class="files drawer00" fill="#F9CA6B" d="M51 540l136 0c3,0 5,2 5,4l0 69c0,2 -2,4 -5,4l-136 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
+,'<path id="file010" class="files drawer01" fill="#F9CA6B" d="M51 632l136 0c3,0 5,2 5,4l0 69c0,2 -2,4 -5,4l-136 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
+,'<path id="file020" class="files drawer02" fill="#F9CA6B" d="M51 724l136 0c3,0 5,2 5,4l0 69c0,2 -2,4 -5,4l-136 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
+
+,'<path id="file001" class="files drawer00" fill="#C4A350" d="M47 550l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
+,'<path id="file011" class="files drawer01" fill="#C4A350" d="M47 642l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
+,'<path id="file021" class="files drawer02" fill="#C4A350" d="M47 734l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
+
+,'<g class="drawer" id="drawer00">'
+,'<path fill="#919191" d="M39 547l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
+,'<polygon fill="gray" points="90,583 95,583 95,596 133,596 133,583 139,583 139,605 90,605 "/>'
+,'<polygon fill="white" points="90,577 95,577 95,585 133,585 133,577 139,577 139,590 90,590 "/>'
+,'</g>'
+
+,'<g class="drawer" id="drawer01">'
+,'<path fill="#919191" d="M39 638l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
+,'<polygon fill="gray" points="90,674 95,674 95,687 133,687 133,674 139,674 139,695 90,695 "/>'
+,'<polygon fill="white" points="90,668 95,668 95,676 133,676 133,668 139,668 139,681 90,681 "/>'
+,'</g>'
+
+,'<g class="drawer" id="drawer02">'
+,'<path fill="#919191" d="M39 729l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
+,'<polygon fill="gray" points="90,765 95,765 95,778 133,778 133,765 139,765 139,786 90,786 "/>'
+,'<polygon fill="white" points="90,759 95,759 95,767 133,767 133,759 139,759 139,772 90,772 "/>'
+,'</g>'
+,'</g>'
+
+
+,'<g id="filedrawer2"><path fill="#AAAAAC" d="M236 530l186 0c6,0 10,5 10,10l0 274c0,6 -4,10 -10,10l-186 0c-5,0 -10,-4 -10,-10l0 -274c0,-5 5,-10 10,-10z"/>'
+,'<path fill="#50504D" d="M252 547l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><path  fill="#50504D" d="M252 638l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><path  fill="#50504D" d="M252 729l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
+
+,'<path id="file100" class="files drawer10" fill="#F9CA6B" d="M263 540l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
+,'<path id="file110" class="files drawer11" fill="#F9CA6B" d="M263 632l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
+,'<path id="file120" class="files drawer12" fill="#F9CA6B" d="M263 724l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
+
+,'<path id="file101" class="files drawer10" fill="#C4A350" d="M258 550l137 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-137 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
+,'<path id="file111" class="files drawer11" fill="#C4A350" d="M258 642l137 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-137 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
+,'<path id="file121" class="files drawer12" fill="#C4A350" d="M258 734l137 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-137 0c-2,0 -4,-2 -4,-4l0 -69c0,-2 2,-4 4,-4z"/>'
+
+,'<g class="drawer" id="drawer10"><path  id="drawer10" fill="#919191" d="M252 547l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><polygon fill="gray" points="303,583 308,583 308,596 346,596 346,583 352,583 352,605 303,605 "/><polygon fill="white" points="303,577 308,577 308,585 346,585 346,577 352,577 352,590 303,590 "/></g>'
+
+,'<g class="drawer" id="drawer11"><path  id="drawer11"  fill="#919191" d="M252 638l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><polygon fill="gray" points="303,674 308,674 308,687 346,687 346,674 352,674 352,695 303,695 "/><polygon fill="white" points="303,668 308,668 308,676 346,676 346,668 352,668 352,681 303,681 "/></g>'
+
+,'<g class="drawer" id="drawer12"><path id="drawer12" fill="#919191" d="M252 729l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><polygon fill="gray" points="303,765 308,765 308,778 346,778 346,765 352,765 352,786 303,786 "/><polygon fill="white" points="303,759 308,759 308,767 346,767 346,759 352,759 352,772 303,772 "/></g>'
+,'</g>'
+,'<path fill="#A87C58" d="M361 815l153 0c2,0 3,1 3,3l0 106c0,2 -1,4 -3,4l-153 0c-2,0 -4,-2 -4,-4l0 -106c0,-2 2,-3 4,-3z"/><path fill="#C8A079" d="M414 815l46 0 0 -18c0,-2 -1,-3 -2,-3l-42 0c-1,0 -2,1 -2,3l0 18zm-53 0l8 0 0 -4 22 0 0 4 19 0 0 -20c0,-3 2,-5 4,-5l47 0c2,0 4,2 4,5l0 20 21 0 0 -4 22 0 1 4 5 0c2,0 3,1 3,3l0 54 -160 0 0 -54c0,-2 2,-3 4,-3z"/><polygon fill="#C6C8C6" points="425,872 450,872 450,865 425,865 "/><polygon fill="#EBEBEB" points="425,878 450,878 450,872 425,872 "/>'
+
+
+
+
+,'<g id="bigopenedfile">'
+,'<path id="innerfile" class="filesfromdrawers visibility_hid" fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.566929" d="M616 104l657 0c17,0 30,14 30,31l0 847c0,17 -13,30 -30,30l-657 0 0 -908z"/>'
+,'<path fill="#FFCC00" id="semytransparentfirstpage"  class="filesfromdrawers visibility_hid" fill-opacity="0.85" stroke="#FFCC00" stroke-width="0.5" stroke-opacity="0.85" d="M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z"/>'
+// ,'<path fill="#FFCC00" id="semytransparentfirstpage"  class="filesfromdrawers visibility_hid" fill-opacity="0.5" stroke="#FFCC00" stroke-width="0.566929" stroke-opacity="0.5" d="M616 1012c-86,-45 -260,-72 -424,-72 -16,0 -30,-14 -30,-30l0 -847c0,-17 14,-30 30,-31 152,-3 315,21 424,72l0 908z"/>'
+// ,'<g>'
+,'<line  class="filesfromdrawers visibility_hid "  fill="none" stroke="#FFCC00" stroke-width="4.99975" x1="1239" y1="168" x2="1271" y2= "136" /><line  class="filesfromdrawers visibility_hid"  fill="none" stroke="#FFCC00" stroke-width="4.99975" x1="1239" y1="136" x2="1271" y2= "168" />'
+,'<circle fill="FFCC00" id="fileclosecross" fill-opacity="0.01"  class="filesfromdrawers visibility_hid" stroke="#FFCC00" stroke-width="4.99975" cx="1255" cy="152" r="31"/>'
+ // ,'</g>'
  ,'</g>'
+
 ]

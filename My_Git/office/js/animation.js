@@ -196,46 +196,72 @@ Snap.select('#annotation').attr({cursor : 'default', 'opacity' : 0});
 Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
-
+animSvg.add(Snap.parse(bigopenedfile));
 drawerHandler();
 
 };//end of init function
 
 function drawerHandler()
 {
-    Snap.selectAll('.drawer').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(drawerClick).hover(drawerMouseOn, drawerMouseOff);  });
-    // Snap.selectAll('.files').forEach(function(element, index) {  element.attr({visibility : 'hidden'}); });
-    Snap.selectAll('.files').forEach(function(element, index) {  element.attr({transform : 's1,0.5'}); });
+   
+   Snap.selectAll('.drawer').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(drawerClick).hover(drawerMouseOn, drawerMouseOff);  });
+   Snap.selectAll('.files').forEach(function(element, index) {  element.attr({transform : 's1,0.5'}); });
 }
 
+var operadedFile, operadedFileD, thisDrawer, gettegId, clickDrawerEvent = false;
 
 function drawerClick(element){
+   if  (clickDrawerEvent) return;
+   clickDrawerEvent = true;
    var shiftout='t0,18';
-   var gettegId=this.attr("id");
-   this.stop().animate({'transform' : shiftout}, rhythm, mina.easeinout, function(){ Snap.selectAll('.'+gettegId).forEach(function(element, index) {  element.attr({visibility : 'visible'}); });  } );
-   console.log('drawerClick',gettegId); 
-   animSvg.add(Snap.parse(bigopenedfile));
+   gettegId=this.attr("id");
+   thisDrawer = this;
+   this.stop()
+       .unhover(drawerMouseOn, drawerMouseOff)
+       .animate({'transform' : shiftout}, rhythm, mina.easeinout);
+       
+   // console.log('drawerClick',gettegId); 
+   var innerfileD='M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z';
+   var outerfileD='M616 104c-123,-54 -266,-80 -424,-72 -16,1 -30,14 -30,31l0 847c0,16 14,31 30,30 146,-4 291,24 424,72l0 -908z';
+ 
+   operadedFile = Snap.selectAll('.'+gettegId); operadedFileD = operadedFile[0].attr('d');
+   operadedFile.animate({"d" : innerfileD}, rhythm*3, mina.backout, function(){
+        Snap.select("#fileclosecross").click(fileClose).attr({cursor : "pointer"});
+        Snap.selectAll('.filesfromdrawers').forEach(function(element, index) 
+              {
+                  element.removeClass('visibility_hid'); 
+              });
+        Snap.select("#semytransparentfirstpage").animate({"d" : outerfileD, "opacity" : 0.5}, rhythm*5, mina.easeinout)
+       })
+}
+
+//close file
+function fileClose () {
+  // console.log('Click - close file');
+  Snap.select("#fileclosecross").unclick(fileClose);
+  document.body.removeEventListener('click', fileClose, true); 
+  Snap.select("#semytransparentfirstpage").animate({"d" : "M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z", "opacity" : 0.85}, rhythm*2, mina.easeinout
+          ,function(){
+              Snap.selectAll('.filesfromdrawers').forEach(function(element, index) { element.addClass('visibility_hid'); });
+              operadedFile.animate({"d" : operadedFileD}, rhythm*3, mina.backin, function(){ thisDrawer.hover(drawerMouseOn, drawerMouseOff).animate({'transform' : 't0,0'}, rhythm, mina.easeinout);  Snap.selectAll('.'+gettegId).forEach(function(element, index) { element.stop().attr({transform : 's1,0.5'});  clickDrawerEvent = false  });    }); 
+          }
+
+    );
+
 }
 
 function drawerMouseOn(element){
    var shiftout='t0,18';
-   // console.log(element,this.attr("id")); 
-   // this.attr({'transform' : shiftout});
-   var gettegId=this.attr("id");
+   var gettegid=this.attr("id");
    this.stop().animate({'transform' : shiftout}, rhythm, mina.easeinout);
-   // console.log(gettegId); 
-   // Snap.selectAll('.'+gettegId).forEach(function(element, index) {  element.attr({visibility : 'visible'}); });    
-   Snap.selectAll('.'+gettegId).forEach(function(element, index) {  element.stop().animate({transform : 's1,1'},rhythm) });    
+   Snap.selectAll('.'+gettegid).forEach(function(element, index) {  element.stop().animate({transform : 's1,1'},rhythm);});    
 }
 
 function drawerMouseOff(element){
    var shiftout='t0,0';
-   // console.log(element,this.attr("id")); 
-   // this.attr({'transform' : shiftout});
-   var gettegId=this.attr("id");
-   // console.log(gettegId); 
+   var gettegid=this.attr("id");
    this.stop().animate({'transform' : shiftout}, rhythm, mina.easeinout );
-   Snap.selectAll('.'+gettegId).forEach(function(element, index) { element.stop().attr({transform : 's1,0.5'});   });    
+   Snap.selectAll('.'+gettegid).forEach(function(element, index) { element.stop().attr({transform : 's1,0.5'});   });    
 }
 
 function plantClick(){
@@ -274,7 +300,6 @@ function flowersGrowUp(){
               animSvg.selectAll('.flowers').forEach(function(flower, index){
                       
                                  flower.animate({'transform': 's1 1'},rhythm*10,mina.easyinout, function(){setTimeout( function(){flowerDissapear()}, rhythm*10 );});
-
                });
 }
 
@@ -303,31 +328,26 @@ function plantOut(){
 }
 
 
-
-
 function lampTurnOnOff(){
-  // console.log('lampTurnOnOff');
   Snap.select('#lamp').toggleClass('fil10on');
   Snap.select('#ghazisviter').toggleClass('fil1on');
 }
 
-function laptopOn(n){//n = 0 - Ghazi laptop, n = 2 second laptop  
-var morphingPoint = (n == 0) ? '632,500' : '1130,500';
-Snap.select('#laptoptop'+n).stop().animate({transform : 's0.01,1,'+morphingPoint},300, mina.easeinout);
-Snap.select('#laptopbottom'+n).stop().animate({transform : 's0.7,1,'+morphingPoint},300, mina.easeinout)
-}
+// function laptopOn(n){//n = 0 - Ghazi laptop, n = 2 second laptop  
+// var morphingPoint = (n == 0) ? '632,500' : '1130,500';
+// Snap.select('#laptoptop'+n).stop().animate({transform : 's0.01,1,'+morphingPoint},300, mina.easeinout);
+// Snap.select('#laptopbottom'+n).stop().animate({transform : 's0.7,1,'+morphingPoint},300, mina.easeinout)
+// }
 
-function laptopOff(n){
-var morphingPoint = (n == 0) ? '632,500' : '1130,500';
-Snap.select('#laptoptop'+n).stop().animate({transform : 's1,1,'+morphingPoint},300, mina.easeinout);  
-Snap.select('#laptopbottom'+n).stop().animate({transform : 's1,1,'+morphingPoint},300, mina.easeinout)
-}
+// function laptopOff(n){
+// var morphingPoint = (n == 0) ? '632,500' : '1130,500';
+// Snap.select('#laptoptop'+n).stop().animate({transform : 's1,1,'+morphingPoint},300, mina.easeinout);  
+// Snap.select('#laptopbottom'+n).stop().animate({transform : 's1,1,'+morphingPoint},300, mina.easeinout)
+// }
 
 function stopEvent(ev) {
-
   ev.stopPropagation();
   ev.preventDefault();
- 
 }
 
 
