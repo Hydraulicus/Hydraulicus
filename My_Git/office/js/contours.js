@@ -283,3 +283,10 @@ var water = [
 
 ];
 
+var bigopenedfile = [
+ '<g id="bigopenedfile">'
+,'<path fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.566929" d="M616 104l657 0c17,0 30,14 30,31l0 847c0,17 -13,30 -30,30l-657 0 0 -908z"/>'
+,'<path fill="#FFCC00" fill-opacity="0.501961" stroke="#FFCC00" stroke-width="0.566929" stroke-opacity="0.501961" d="M616 1012c-86,-45 -260,-72 -424,-72 -16,0 -30,-14 -30,-30l0 -847c0,-17 14,-30 30,-31 152,-3 315,21 424,72l0 908z"/>'
+,'<circle fill="none" stroke="#FFCC00" stroke-width="4.99975" cx="1255" cy="152" r="31"/><line fill="none" stroke="#FFCC00" stroke-width="4.99975" x1="1239" y1="168" x2="1271" y2= "136" /><line fill="none" stroke="#FFCC00" stroke-width="4.99975" x1="1239" y1="136" x2="1271" y2= "168" />'
+ ,'</g>'
+]

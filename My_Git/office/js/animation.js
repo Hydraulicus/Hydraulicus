@@ -101,7 +101,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- constantAnimation();
+ // constantAnimation();
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -175,7 +175,7 @@ SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2)
 // laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ laptopOn(2)}, function(){ laptopOff(2)});
 
 secondsweater = Snap.select('#secondsweater'); 
-SecondConstAnimation();
+// SecondConstAnimation();
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
@@ -213,8 +213,8 @@ function drawerClick(element){
    var shiftout='t0,18';
    var gettegId=this.attr("id");
    this.stop().animate({'transform' : shiftout}, rhythm, mina.easeinout, function(){ Snap.selectAll('.'+gettegId).forEach(function(element, index) {  element.attr({visibility : 'visible'}); });  } );
-   // console.log(gettegId); 
-   
+   console.log('drawerClick',gettegId); 
+   animSvg.add(Snap.parse(bigopenedfile));
 }
 
 function drawerMouseOn(element){
