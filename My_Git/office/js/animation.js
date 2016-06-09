@@ -215,7 +215,7 @@ function drawerHandler()
    Snap.selectAll('.files').forEach(function(element, index) {  element.attr({transform : 's1,0.5'}); });
 }
 
-var operadedFile, operadedFileD, thisDrawer, gettegId, clickDrawerEvent = false;
+var operadedFile, operadedFilePrevAttr = {}, thisDrawer, gettegId, clickDrawerEvent = false;
 
 function drawerClick(element){
    if  (clickDrawerEvent) return;
@@ -230,8 +230,12 @@ function drawerClick(element){
    var innerfileD='M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z';
    var outerfileD='M616 104c-123,-54 -266,-80 -424,-72 -16,1 -30,14 -30,31l0 847c0,16 14,31 30,30 146,-4 291,24 424,72l0 -908z';
  
-   operadedFile = Snap.selectAll('.'+gettegId); operadedFileD = operadedFile[0].attr('d');
-   operadedFile.animate({"d" : innerfileD}, rhythm*3, mina.backout, function(){
+   operadedFile = Snap.selectAll('.'+gettegId); 
+   operadedFilePrevAttr.d = operadedFile[0].attr('d'); 
+   operadedFilePrevAttr.parenT = operadedFile[0].parent(); 
+    Snap.select('#mapa').addClass('visibility_hid');
+
+   operadedFile[0].animate({"d" : innerfileD}, rhythm*3, mina.backout, function(){
         Snap.select("#fileclosecross").click(fileClose).attr({cursor : "pointer"});
         Snap.selectAll('.filesfromdrawers').forEach(function(element, index) 
               {
@@ -249,7 +253,7 @@ function fileClose () {
   Snap.select("#semytransparentfirstpage").animate({"d" : "M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z", "opacity" : 0.85}, rhythm*2, mina.easeinout
           ,function(){
               Snap.selectAll('.filesfromdrawers').forEach(function(element, index) { element.addClass('visibility_hid'); });
-              operadedFile.animate({"d" : operadedFileD}, rhythm*3, mina.backin, function(){ thisDrawer.hover(drawerMouseOn, drawerMouseOff).animate({'transform' : 't0,0'}, rhythm, mina.easeinout);  Snap.selectAll('.'+gettegId).forEach(function(element, index) { element.stop().attr({transform : 's1,0.5'});  clickDrawerEvent = false  });    }); 
+              operadedFile.animate({"d" :operadedFilePrevAttr.d }, rhythm*3, mina.backin, function(){ thisDrawer.hover(drawerMouseOn, drawerMouseOff).animate({'transform' : 't0,0'}, rhythm, mina.easeinout);  Snap.selectAll('.'+gettegId).forEach(function(element, index) { element.stop().attr({transform : 's1,0.5'});  clickDrawerEvent = false; Snap.select('#mapa').removeClass('visibility_hid');  });    }); 
           }
 
     );
