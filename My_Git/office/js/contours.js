@@ -29,6 +29,7 @@ sviter : '<path class="fil1" id="ghazisviter" d="M601 603c6,-23 18,-49 25,-72 6,
 ,ear : '<path class="fil17 Ghaziface" d="M750 432c1,0 3,0 4,2 3,2 3,7 0,9 -1,2 -3,2 -4,2l0 -13zM682 432c-2,0 -3,0 -5,2 -2,2 -2,7 0,9 2,2 3,2 5,2l0 -13z"/>'
 ,haer : '<path class="fil13 Ghaziface" d="M694 487l0 0 0 -14c0,0 0,-1 0,-1 0,-7 7,-12 17,-14 0,2 2,4 5,4 2,0 4,-2 5,-4 9,2 16,7 16,14l0 16c7,-6 11,-14 11,-23 0,-1 0,-2 0,-3l0 -31c-2,0 -3,0 -4,0l-31 0c-12,0 -15,-6 -19,-9 -3,2 -7,3 -10,3l0 40c0,9 4,17 10,22zm22 -114c16,0 29,13 29,29l20 0c0,4 -4,8 -5,10l14 0c0,4 -4,12 -8,15 -4,3 -10,4 -16,4l0 34c0,1 0,3 0,4 0,19 -15,34 -34,34 -19,0 -34,-15 -34,-34l0 -52 0 0 0 -25c0,-4 5,-8 6,-9 1,-1 3,-1 6,0 6,-6 13,-10 22,-10z"/>'
 ,moustache : '<path id="moustache" class="fil16 Ghaziface" d="M694 474l1 4c6,-1 9,-2 13,-6 2,-2 7,-7 6,-11 -2,0 -4,-2 -4,-5l0 0c-7,3 -17,9 -16,18zM737 474l0 4c-6,-1 -9,-2 -13,-6 -3,-2 -8,-7 -7,-11 3,0 4,-2 5,-5l0 0c7,3 16,9 15,18z"/>'
+
 }
 ,{
    pants : 'M603 725l226 4 0 0c14,0 25,-11 25,-25 0,-13 -11,-25 -25,-25l0 0 -226 -4c-14,0 -25,11 -25,25 0,13 11,25 25,25z'
@@ -84,7 +85,7 @@ var objects = [
 
 ]  
   
-  var iosScreen = '<g id="iosscreen"><rect fill="black" stroke="black" stroke-width="0.566929" x="573" y="613" width="164" height="114" rx="6" ry="6"/><path fill="#F2F2F6" d="M580 620l150 0c0,0 1,0 1,1l0 94 -153 0 0 -94c0,-1 1,-1 2,-1z"/><path fill="#CCCCCC" d="M580 620l150 0c0,0 1,0 1,1l0 5 -153 0 0 -5c0,-1 1,-1 2,-1z"/><g clip-path="url(#id0)"></g><circle fill="red" cx="580" cy="621" r="1"/><circle fill="yellow" cx="582" cy="621" r="1"/><circle fill="#33CC66" cx="584" cy="621" r="1"/><rect fill="#E6E6E6" x="579" y="622" width="5.13625" height="2.29531" rx="1" ry="0"/><polygon fill="gray" points="587,623 587,623 587,623 587,623 587,624 587,624 587,624 587,624 587,624 586,624 586,623 587,623 "/><rect fill="white" x="585" y="622" width="98.004" height="2.29531" rx="10" ry="0"/><path fill="white" d="M687 622l41 0c1,0 1,3 0,3l-41 0c-2,0 -2,-3 0,-3z"/><g><ellipse fill="none" stroke="gray" stroke-width="1.99984" cx="687" cy="623"/><line fill="none" stroke="gray" stroke-width="1.99984" x1="687" y1="624" x2="688" y2= "624" /></g><path fill="gray" fill-rule="nonzero" d="M730 621l0 0 0 0 0 -1 -1 0 1 1 -1 0 1 0zm0 0m0 0m0 0m0 -1m-1 1m0 0m0 0"/><path fill="gray" fill-rule="nonzero" d="M729 621l0 0 0 0 0 1 0 0 0 0 0 -1 0 0zm0 0m0 0m0 1m0 0m0 0m0 0m0 -1"/><circle fill="#00CCFF" cx="655" cy="617" r="1"/><polygon fill="#CED3DA" points="580,708 729,708 730,715 579,715 "/><polygon fill="gray" points="580,623 581,623 581,624 "/><polygon fill="gray" points="584,623 583,623 583,624 "/></g>';
+  // var iosScreen = '<g id="iosscreen"><rect fill="black" stroke="black" stroke-width="0.566929" x="573" y="613" width="164" height="114" rx="6" ry="6"/><path fill="#F2F2F6" d="M580 620l150 0c0,0 1,0 1,1l0 94 -153 0 0 -94c0,-1 1,-1 2,-1z"/><path fill="#CCCCCC" d="M580 620l150 0c0,0 1,0 1,1l0 5 -153 0 0 -5c0,-1 1,-1 2,-1z"/><g clip-path="url(#id0)"></g><circle fill="red" cx="580" cy="621" r="1"/><circle fill="yellow" cx="582" cy="621" r="1"/><circle fill="#33CC66" cx="584" cy="621" r="1"/><rect fill="#E6E6E6" x="579" y="622" width="5.13625" height="2.29531" rx="1" ry="0"/><polygon fill="gray" points="587,623 587,623 587,623 587,623 587,624 587,624 587,624 587,624 587,624 586,624 586,623 587,623 "/><rect fill="white" x="585" y="622" width="98.004" height="2.29531" rx="10" ry="0"/><path fill="white" d="M687 622l41 0c1,0 1,3 0,3l-41 0c-2,0 -2,-3 0,-3z"/><g><ellipse fill="none" stroke="gray" stroke-width="1.99984" cx="687" cy="623"/><line fill="none" stroke="gray" stroke-width="1.99984" x1="687" y1="624" x2="688" y2= "624" /></g><path fill="gray" fill-rule="nonzero" d="M730 621l0 0 0 0 0 -1 -1 0 1 1 -1 0 1 0zm0 0m0 0m0 0m0 -1m-1 1m0 0m0 0"/><path fill="gray" fill-rule="nonzero" d="M729 621l0 0 0 0 0 1 0 0 0 0 0 -1 0 0zm0 0m0 0m0 1m0 0m0 0m0 0m0 -1"/><circle fill="#00CCFF" cx="655" cy="617" r="1"/><polygon fill="#CED3DA" points="580,708 729,708 730,715 579,715 "/><polygon fill="gray" points="580,623 581,623 581,624 "/><polygon fill="gray" points="584,623 583,623 583,624 "/></g>';
 
 var furnitures = [
  '<path id="id0" class="tabletop0" d="M435 642 L1482 642 1482 644 435 644 z"/>'
@@ -282,6 +283,8 @@ var bigopenedfile = [
 ,'<g id="filedrawer2"><path fill="#AAAAAC" d="M236 530l186 0c6,0 10,5 10,10l0 274c0,6 -4,10 -10,10l-186 0c-5,0 -10,-4 -10,-10l0 -274c0,-5 5,-10 10,-10z"/>'
 ,'<path fill="#50504D" d="M252 547l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><path  fill="#50504D" d="M252 638l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><path  fill="#50504D" d="M252 729l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/>'
 
+, '<g id="portofell"><path fill="#A87C58" d="M370 819l153 0c2,0 3,1 3,4l0 105c0,2 -1,4 -3,4l-153 0c-2,0 -4,-2 -4,-4l0 -105c0,-3 2,-4 4,-4z"/><path fill="#C8A079" d="M423 819l46 0 0 -18c0,-2 -1,-3 -2,-3l-42 0c-1,0 -2,1 -2,3l0 18zm-53 0l8 0 0 -4 22 0 0 4 19 0 0 -20c0,-3 2,-5 4,-5l47 0c2,0 4,2 4,5l0 20 21 0 0 -4 22 0 1 4 5 0c2,0 3,1 3,4l0 53 -160 0 0 -53c0,-3 2,-4 4,-4z"/><polygon fill="#C6C8C6" points="434,876 459,876 459,869 434,869 "/><polygon fill="#EBEBEB" points="434,882 459,882 459,876 434,876 "/></g>'
+
 ,'<path id="file100" class="files drawer10" fill="#F9CA6B" d="M263 540l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
 ,'<path id="file110" class="files drawer11" fill="#F9CA6B" d="M263 632l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
 ,'<path id="file120" class="files drawer12" fill="#F9CA6B" d="M263 724l136 0c2,0 4,2 4,4l0 69c0,2 -2,4 -4,4l-136 0c-3,0 -5,-2 -5,-4l0 -69c0,-2 2,-4 5,-4z"/>'
@@ -296,19 +299,44 @@ var bigopenedfile = [
 
 ,'<g class="drawer" id="drawer12"><path id="drawer12" fill="#919191" d="M252 729l154 0c6,0 10,5 10,10l0 60c0,5 -4,9 -10,9l-154 0c-5,0 -9,-4 -9,-9l0 -60c0,-5 4,-10 9,-10z"/><polygon fill="gray" points="303,765 308,765 308,778 346,778 346,765 352,765 352,786 303,786 "/><polygon fill="white" points="303,759 308,759 308,767 346,767 346,759 352,759 352,772 303,772 "/></g>'
 ,'</g>'
-,'<path fill="#A87C58" d="M361 815l153 0c2,0 3,1 3,3l0 106c0,2 -1,4 -3,4l-153 0c-2,0 -4,-2 -4,-4l0 -106c0,-2 2,-3 4,-3z"/><path fill="#C8A079" d="M414 815l46 0 0 -18c0,-2 -1,-3 -2,-3l-42 0c-1,0 -2,1 -2,3l0 18zm-53 0l8 0 0 -4 22 0 0 4 19 0 0 -20c0,-3 2,-5 4,-5l47 0c2,0 4,2 4,5l0 20 21 0 0 -4 22 0 1 4 5 0c2,0 3,1 3,3l0 54 -160 0 0 -54c0,-2 2,-3 4,-3z"/><polygon fill="#C6C8C6" points="425,872 450,872 450,865 425,865 "/><polygon fill="#EBEBEB" points="425,878 450,878 450,872 425,872 "/>'
+]
 
-
-
-
-,'<g id="bigopenedfile">'
+var bigOpenedFile = [
+'<g id="bigopenedfile">'
 ,'<path id="innerfile" class="filesfromdrawers visibility_hid" fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.566929" d="M616 104l657 0c17,0 30,14 30,31l0 847c0,17 -13,30 -30,30l-657 0 0 -908z"/>'
 ,'<path fill="#FFCC00" id="semytransparentfirstpage"  class="filesfromdrawers visibility_hid" fill-opacity="0.85" stroke="#FFCC00" stroke-width="0.5" stroke-opacity="0.85" d="M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z"/>'
-// ,'<path fill="#FFCC00" id="semytransparentfirstpage"  class="filesfromdrawers visibility_hid" fill-opacity="0.5" stroke="#FFCC00" stroke-width="0.566929" stroke-opacity="0.5" d="M616 1012c-86,-45 -260,-72 -424,-72 -16,0 -30,-14 -30,-30l0 -847c0,-17 14,-30 30,-31 152,-3 315,21 424,72l0 908z"/>'
-// ,'<g>'
 ,'<line  class="filesfromdrawers visibility_hid "  fill="none" stroke="#FFCC00" stroke-width="4.99975" x1="1239" y1="168" x2="1271" y2= "136" /><line  class="filesfromdrawers visibility_hid"  fill="none" stroke="#FFCC00" stroke-width="4.99975" x1="1239" y1="136" x2="1271" y2= "168" />'
 ,'<circle fill="FFCC00" id="fileclosecross" fill-opacity="0.01"  class="filesfromdrawers visibility_hid" stroke="#FFCC00" stroke-width="4.99975" cx="1255" cy="152" r="31"/>'
  // ,'</g>'
  ,'</g>'
+]
 
+// var portfello = '<path fill="#A87C58" d="M361 815l153 0c2,0 3,1 3,3l0 106c0,2 -1,4 -3,4l-153 0c-2,0 -4,-2 -4,-4l0 -106c0,-2 2,-3 4,-3z"/><path fill="#C8A079" d="M414 815l46 0 0 -18c0,-2 -1,-3 -2,-3l-42 0c-1,0 -2,1 -2,3l0 18zm-53 0l8 0 0 -4 22 0 0 4 19 0 0 -20c0,-3 2,-5 4,-5l47 0c2,0 4,2 4,5l0 20 21 0 0 -4 22 0 1 4 5 0c2,0 3,1 3,3l0 54 -160 0 0 -54c0,-2 2,-3 4,-3z"/><polygon fill="#C6C8C6" points="425,872 450,872 450,865 425,865 "/><polygon fill="#EBEBEB" points="425,878 450,878 450,872 425,872 "/>';
+
+var wallcalendar = [
+  ,'<polygon fill="#E18088" points="649,191 798,191 798,163 649,163 "/>'
+  ,'<path fill="white" d="M648 192l151 0 0 97c0,3 -3,6 -6,6l-139 0c-4,0 -6,-3 -6,-6l0 -97z"/>'
+  ,'<path fill="none" stroke="white" stroke-width="0.566929" d="M648 192l151 0 0 97c0,3 -3,6 -6,6l-139 0c-4,0 -6,-3 -6,-6l0 -97z"/>'
+  ,'<path fill="white" stroke="white" stroke-width="0.566929" d="M654 170l5 0 0 -13 -5 0 0 13zm135 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13z"/>'
+
+  // <g id="_1773789779872">
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="654" y1="187" x2="660" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="664" y1="187" x2="670" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="674" y1="187" x2="680" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="684" y1="187" x2="690" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="694" y1="187" x2="700" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="704" y1="187" x2="710" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="714" y1="187" x2="720" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="724" y1="187" x2="730" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="734" y1="187" x2="740" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="744" y1="187" x2="750" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="754" y1="187" x2="760" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="764" y1="187" x2="770" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="774" y1="187" x2="780" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="784" y1="187" x2="790" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="794" y1="187" x2="798" y2= "187" />
+  //  <line fill="none" stroke="white" stroke-width="2.00013" x1="652" y1="187" x2="649" y2= "187" />
+  // </g>
+  // <path fill="#E6E6E6" stroke="#E6E6E6" stroke-width="0.566929" d="M662 282l21 0 0 -16 -21 0 0 16zm75 -63l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16zm-25 -63l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16zm-25 -63l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16zm-25 -42l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16z"/>
+  // <path fill="#E18088" stroke="#99CCCC" stroke-width="0.566929" d="M762 282l21 0 0 -16 -21 0 0 16zm0 -63l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16zm0 21l21 0 0 -16 -21 0 0 16z"/>
 ]

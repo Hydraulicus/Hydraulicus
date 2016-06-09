@@ -148,7 +148,13 @@ drawObjects();
             for (var f in flowers){ animSvg.add(Snap.parse(flowers[f]));}
             animSvg.selectAll('.flowers').forEach(function(flower, index){flower.attr({'transform': 's0 0'});});
 
+drawCalendar();
+animSvg.add(Snap.parse(bigopenedfile));
+drawerHandler();
+// animSvg.add(Snap.parse(portfello));//add portofello
+
 animSvg.add(Snap.parse(mapa));//add MAP
+animSvg.add(Snap.parse(bigOpenedFile));//file full size , initialized hidden 
 circlesssss = animSvg.add(Snap.parse(circles)) ;//add circles around pins of marks
 
 var spich1 = animSvg.path(Ghazi[3].speechOut).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
@@ -196,14 +202,15 @@ Snap.select('#annotation').attr({cursor : 'default', 'opacity' : 0});
 Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
-animSvg.add(Snap.parse(bigopenedfile));
-drawerHandler();
 
 };//end of init function
 
+function drawCalendar(){
+  animSvg.add(Snap.parse(wallcalendar));
+}
+
 function drawerHandler()
 {
-   
    Snap.selectAll('.drawer').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(drawerClick).hover(drawerMouseOn, drawerMouseOff);  });
    Snap.selectAll('.files').forEach(function(element, index) {  element.attr({transform : 's1,0.5'}); });
 }
@@ -219,8 +226,7 @@ function drawerClick(element){
    this.stop()
        .unhover(drawerMouseOn, drawerMouseOff)
        .animate({'transform' : shiftout}, rhythm, mina.easeinout);
-       
-   // console.log('drawerClick',gettegId); 
+
    var innerfileD='M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z';
    var outerfileD='M616 104c-123,-54 -266,-80 -424,-72 -16,1 -30,14 -30,31l0 847c0,16 14,31 30,30 146,-4 291,24 424,72l0 -908z';
  

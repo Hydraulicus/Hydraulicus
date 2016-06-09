@@ -105,3 +105,16 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
 	});
 
 })();
+
+
+// toFront() / .toBack() 
+//https://github.com/adobe-webplatform/Snap.svg/issues/121
+Snap.plugin(function (Snap, Element, Paper, glob) {
+    var elproto = Element.prototype;
+    elproto.toFront = function () {
+        this.prependTo(this.paper);
+    };
+    elproto.toBack = function () {
+        this.appendTo(this.paper);
+    };
+})
