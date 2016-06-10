@@ -17,7 +17,7 @@ var rhythm = 300, //ms, of knee shacking
          ,path4throwing
          ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin, plant, can, flowers,water;
 
-var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup;
+var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup, calendarPaper;
 var transitionNote = 't0,0s0.1';
 var transitionNoteEnd = 't0,0s1';
 
@@ -207,6 +207,20 @@ lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.
 
 function drawCalendar(){
   animSvg.add(Snap.parse(wallcalendar));
+  calendarPaper = Snap.select("#calendarpaper").attr({'cursor' : 'pointer'}).click(flipCalendar);
+}
+
+function flipCalendar(){
+
+  // calendarDigBl.clone().addClass('cloned').animate({transform: 'skewX(25) translate(-75 170) scale(1 -0.05)'}, rhythm*13, mina.easeout, function(){console.log(this.attr('class')); this.remove()});
+  calendarPaper.clone().addClass('cloned').animate({transform: 'skewX(25) translate(-75 170) scale(1 -0.05)'}, rhythm, mina.easeout
+      ,function(){
+        Snap.selectAll(".cloned .datesblocks").forEach(function(element, index) {  element.addClass("visibility_hid");   }) ; //horizontal position
+        this.animate({transform: 'skewX(0) translate(0 325)  scale(1 -1)'}, rhythm, mina.easein, function(){//hight position
+              this.animate({transform: ' translate(0 165) scale(1 -0.01) '}, rhythm, mina.easeout, function(){ this.remove() }) //back stroke
+          })
+       }
+  );
 }
 
 function drawerHandler()
@@ -233,7 +247,9 @@ function drawerClick(element){
    operadedFile = Snap.selectAll('.'+gettegId); 
    operadedFilePrevAttr.d = operadedFile[0].attr('d'); 
    operadedFilePrevAttr.parenT = operadedFile[0].parent(); 
-    Snap.select('#mapa').addClass('visibility_hid');
+    // Snap.select('#mapa').addClass('visibility_hid');
+    Snap.select('#mapa').animate({opacity : 0},rhythm);
+    
 
    operadedFile[0].animate({"d" : innerfileD}, rhythm*3, mina.backout, function(){
         Snap.select("#fileclosecross").click(fileClose).attr({cursor : "pointer"});
@@ -253,11 +269,15 @@ function fileClose () {
   Snap.select("#semytransparentfirstpage").animate({"d" : "M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z", "opacity" : 0.85}, rhythm*2, mina.easeinout
           ,function(){
               Snap.selectAll('.filesfromdrawers').forEach(function(element, index) { element.addClass('visibility_hid'); });
-              operadedFile.animate({"d" :operadedFilePrevAttr.d }, rhythm*3, mina.backin, function(){ thisDrawer.hover(drawerMouseOn, drawerMouseOff).animate({'transform' : 't0,0'}, rhythm, mina.easeinout);  Snap.selectAll('.'+gettegId).forEach(function(element, index) { element.stop().attr({transform : 's1,0.5'});  clickDrawerEvent = false; Snap.select('#mapa').removeClass('visibility_hid');  });    }); 
+              operadedFile.animate({"d" :operadedFilePrevAttr.d }, rhythm*3, mina.backin, function(){ thisDrawer.hover(drawerMouseOn, drawerMouseOff).animate({'transform' : 't0,0'}, rhythm, mina.easeinout);  Snap.selectAll('.'+gettegId).forEach(function(element, index) 
+                {  element.stop().attr({transform : 's1,0.5'}); 
+                   clickDrawerEvent = false;
+                   // Snap.select('#mapa').removeClass('visibility_hid');  
+                   Snap.select('#mapa').animate({opacity : 1},rhythm);
+                 });    
+            }); 
           }
-
     );
-
 }
 
 function drawerMouseOn(element){
