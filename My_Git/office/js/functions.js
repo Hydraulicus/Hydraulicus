@@ -67,7 +67,10 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
         Snap.plugin( function( Snap, Element, Paper, global ) {
 
 		Element.prototype.drawAtPath = function( path, timer, options) {
-
+// option.scale > 0  - changing scale
+// option.scale = 1 -  scale remain stady
+// option.scale don't defined -      scale = ( (len-val) / len ); scale = ( scale > 0.5 ) ? scale : 0.5;
+// 
 			var myObject = this, bbox = this.getBBox(1);
 			var point, movePoint = {}, len = path.getTotalLength(), from = 0, to = len, drawpath = 0, easing = mina.linear, callback;
 			var startingTransform = ''; 
@@ -87,13 +90,24 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
 				if( options.startingTransform ) {
 					startingTransform = options.startingTransform;
 				};
+        // if ( options.scale ) {
+        
+
+        //   console.log( options.scale);
+        // }
+
 				callback = options.callback || function() {};
 			};
 
 			Snap.animate(from, to , function( val ) {
+        var scalefactor = 1
+        var scale = ( (len-val) / len ); scale = ( scale > 0.5 ) ? scale : 0.5; //
+        if ( options.scale ) {
+          scalefactor = options.scale;
+         scale = (1 - ( (len-val) / len )) * scalefactor;
+        }
 
-        var scale = ((len-val)/len); scale = (scale > 0.5) ? scale : 0.5; //console.log(scale);
-		        	point = path.getPointAtLength( val );
+		        point = path.getPointAtLength( val );
     				movePoint.x = point.x - bbox.cx; movePoint.y = point.y - bbox.cy;
     				myObject.transform( startingTransform + 't' + movePoint.x + ',' + movePoint.y + 'r' + point.alpha+'s'+scale);
 
