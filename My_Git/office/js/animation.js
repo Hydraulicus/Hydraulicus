@@ -7,7 +7,7 @@ var rhythm = 300, //ms, of knee shacking
       nNorm = 1500 / normSpeedK,
       cycle = nNorm+ nfast + nNorm;
 
-      var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[]
+      var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubbles_arr = [], path4bubble = []
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,pulseShow=false
@@ -15,7 +15,7 @@ var rhythm = 300, //ms, of knee shacking
          ,timeTyping = 0
          ,steamGradient
          ,path4throwing
-         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin, plant, can, flowers,water;
+         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin, plant, can, flowers,waterб ,cooler,Glass,Cooler,water_into_glass,waterInGlass;
 
 var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup, calendarPaper;
 var transitionNote = 't0,0s0.1';
@@ -202,8 +202,46 @@ Snap.select('#annotation').attr({cursor : 'default', 'opacity' : 0});
 Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
-
+dispenserAnimation();
+clockAnimation();
 };//end of init function
+
+
+
+function clockAnimation(){
+hourhand = Snap.select("#hourhand").attr({'cursor' : 'pointer'});
+minutehand = Snap.select("#minutehand").attr({'cursor' : 'pointer'});
+}
+
+function dispenserAnimation(){
+              animSvg.add(Snap.parse(cooler));
+            Cooler = Snap.select('#cooler')
+                         .attr({cursor : 'pointer'})
+                         .click(coolerClick)
+                         .mouseover(coolerOver)
+                         .mouseout(coolerOut);
+
+            animSvg.add(Snap.parse(glass));  
+            Glass = Snap.select('#glass')    
+                         .attr({cursor : 'pointer',opacity : 0})      
+                         .click(coolerClick)
+                         .mouseover(coolerOver)
+                         .mouseout(coolerOut);
+
+
+            for (var n_bubble in bubbles){ 
+               bubbles_arr[n_bubble] = animSvg.add(Snap.parse(bubbles[n_bubble]));//.attr({opacity:0});
+            }
+            Snap.selectAll('.bubble').attr({opacity:0});
+
+            for (var n_path in path4bubbles){
+                     path4bubble[n_path] = animSvg.path(path4bubbles[n_path]).addClass('fil3');//.attr({class:'fil3'});
+            }  
+
+            setTimeout(function(){bubbleStart()}, rhythm*randomInteger(0, 30));
+            setTimeout(function(){bubbleStart()}, rhythm*randomInteger(0, 20));
+            setTimeout(function(){bubbleStart()}, rhythm*randomInteger(0, 50));
+}
 
 function drawCalendar(){
   animSvg.add(Snap.parse(wallcalendar));
@@ -296,7 +334,7 @@ function drawerMouseOff(element){
 
 function plantClick(){
             if(!can.hasClass('active')) {
-                    can.addClass('active');
+                    can.addClass('active').attr({opacity : 1});
                     can.animate({'transform': 'r-15 30 1020'},rhythm*3,mina.easyinout,function(){
                                      for (var w in water){ waterDraw( water[w])};
                     });
@@ -661,6 +699,82 @@ function mapClick(ev){
   console.log('Click on map',pulseShow);
 
 }
+
+function bubbleStart(){
+             n_bubble = randomInteger(0, bubbles_arr.length-1);
+             n_bubble = Math.abs(n_bubble);//((n_bubble < 0 ) ? 1 : n_bubble);
+             n_path  = randomInteger(0, path4bubble.length-1);
+             n_path  = Math.abs(n_path);//((n_path < 0 ) ? 1 : n_path);
+             var bubble_el_arr = Snap.selectAll('.bubble');
+             var bubble_el     = bubble_el_arr[n_bubble];
+             var bubble_new =  bubble_el.clone().attr({ opacity: .75 });
+             var path_el = path4bubble[n_path];
+             bubblesUp( bubble_new,  path_el ); //Animate along a path
+}
+       
+
+function coolerClick(){
+             if(!Glass.hasClass('active')){
+                             Glass.attr({opacity:.80});
+                             animSvg.select('#water_top').attr({opacity:.80});
+                             Glass.addClass('active');
+                             water_into_glass = animSvg.paper.line(1766,600,1766,600).attr({"stroke-width" : 4, stroke : '#BBFFFF'}).animate({'y2':675}, rhythm*1, mina.easeinout, function(){ filling(); })  ;  
+               }              
+}
+
+function filling(){
+
+            var theglassMasked    = animSvg.polyline(glass_mask).attr({opacity :.75, "stroke-width" : 2, stroke : '#55FFFF', fill : "#55FFFF"}); 
+            theglassMasked.attr({cursor : 'pointer'})      
+                          .click(coolerClick)
+                          .mouseover(coolerOver)
+                          .mouseout(coolerOut);
+
+            waterInGlass = animSvg.path(water_in_glass).attr({ fill : "#BBFFFF" });
+
+            theglassMasked.attr({ mask:  waterInGlass});//!
+            animSvg.select('#glass_bottom').animate({fill : '#42d1d1'},rhythm*3);
+            waterInGlass.animate({transform : 't420,-36'},rhythm*10,mina.easeinout,function(){ water_off(); });              
+
+}
+function water_off(){
+            animSvg.select('#water_top').animate({fill : '#55FFFF', opacity: .8}, rhythm);
+            water_into_glass.addClass('visibility_hid');
+            setTimeout( function(){ glassDisapear(); }, rhythm*10 );
+
+}
+function glassDisapear(){
+            Glass.animate({opacity : 0} , rhythm*10 ,mina.easyinout);
+            waterInGlass.animate({opacity : 0} , rhythm*10 , mina.easyinout , function(){ start_position(); });
+            animSvg.select('#water_top').animate({fill : '#FAFAFA'}, rhythm*10);
+            animSvg.select('#glass_bottom').animate({fill : '#FAFAFA'}, rhythm*10);
+
+}
+function start_position(){
+            waterInGlass.attr({transform : 't0,0'});
+            Glass.removeClass('active');
+}
+function coolerOver(){
+
+            Glass.animate({opacity:.8},rhythm);
+            animSvg.select('#water_top').animate({opacity:.8},rhythm);
+
+}
+function coolerOut(){
+            if(!Glass.hasClass('active')){
+                               Glass.animate({opacity:0},rhythm);
+              }                 
+}
+
+function bubblesUp( el, xpath ) {
+            el.drawAtPath( xpath, 2750, {scale : 1.3, callback:function(){el.animate({opacity:0},   rhythm * 0.3,   function(){el.remove(); bubbleStart();} )  }}    );
+};
+
+function randomInteger(min, max) {
+            var rand = min - 0.5 + Math.random() * (max - min + 1)
+            rand = Math.round(rand);
+            return rand;
+  }
 
 function drawObjects()
     {
