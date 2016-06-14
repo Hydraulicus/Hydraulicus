@@ -207,10 +207,22 @@ clockAnimation();
 };//end of init function
 
 
+function shifter(val) {
+  var cx = 1842;
+  var cy = 149;
+  var startshift = 75;
+  return [val+startshift, cx, cy].join(' ');
+}
 
 function clockAnimation(){
-hourhand = Snap.select("#hourhand").attr({'cursor' : 'pointer'});
-minutehand = Snap.select("#minutehand").attr({'cursor' : 'pointer'});
+var date = new Date();
+var hoursAngle = 360 * date.getHours() / 12 + date.getMinutes() / 2;
+var minuteAngle = 360 * date.getMinutes() / 60;
+var secAngle = 360 * date.getSeconds() / 60;
+
+var hourhand = Snap.select("#hourhand").transform('r'+shifter(hoursAngle)).animate({transform : shifter(hoursAngle+360)},43200*1000);
+// var minutehand = Snap.select("#minutehand").transform('r'+shifter(minuteAngle)).animate({transform : shifter(minuteAngle+360)},3600*1);
+var minutehand = Snap.select("#minutehand").transform('r'+shifter(minuteAngle)).animate({transform : 'r'+shifter(minuteAngle+360)},3600*1000);
 }
 
 function dispenserAnimation(){
