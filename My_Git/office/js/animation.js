@@ -214,7 +214,7 @@ minutehand = Snap.select("#minutehand").attr({'cursor' : 'pointer'});
 }
 
 function dispenserAnimation(){
-              animSvg.add(Snap.parse(cooler));
+             animSvg.add(Snap.parse(cooler));
             Cooler = Snap.select('#cooler')
                          .attr({cursor : 'pointer'})
                          .click(coolerClick)
@@ -229,18 +229,21 @@ function dispenserAnimation(){
                          .mouseout(coolerOut);
 
 
-            for (var n_bubble in bubbles){ 
-               bubbles_arr[n_bubble] = animSvg.add(Snap.parse(bubbles[n_bubble]));//.attr({opacity:0});
-            }
-            Snap.selectAll('.bubble').attr({opacity:0});
+            bubble = animSvg.add(Snap.parse(bubbles));
+            Snap.select('.bubble').attr({opacity:0});
 
             for (var n_path in path4bubbles){
-                     path4bubble[n_path] = animSvg.path(path4bubbles[n_path]).addClass('fil3');//.attr({class:'fil3'});
+                     path4bubble[n_path] = animSvg.path(path4bubbles[n_path]).addClass('fil3');
             }  
 
-            setTimeout(function(){bubbleStart()}, rhythm*randomInteger(0, 30));
+            setTimeout(function(){bubbleStart()}, rhythm*randomInteger(20, 60));
             setTimeout(function(){bubbleStart()}, rhythm*randomInteger(0, 20));
-            setTimeout(function(){bubbleStart()}, rhythm*randomInteger(0, 50));
+            setTimeout(function(){bubbleStart()}, rhythm*randomInteger(60, 170));
+            
+            
+            animSvg.add(Snap.parse(bottle));  
+            var Bottle = Snap.select('#bottle')
+                             .attr({opacity:0.8});
 }
 
 function drawCalendar(){
@@ -701,15 +704,23 @@ function mapClick(ev){
 }
 
 function bubbleStart(){
-             n_bubble = randomInteger(0, bubbles_arr.length-1);
-             n_bubble = Math.abs(n_bubble);//((n_bubble < 0 ) ? 1 : n_bubble);
+             
+
              n_path  = randomInteger(0, path4bubble.length-1);
-             n_path  = Math.abs(n_path);//((n_path < 0 ) ? 1 : n_path);
-             var bubble_el_arr = Snap.selectAll('.bubble');
-             var bubble_el     = bubble_el_arr[n_bubble];
-             var bubble_new =  bubble_el.clone().attr({ opacity: .75 });
+             n_path  = Math.abs(n_path);
+            
+
+             var bubble_el = Snap.select('.bubble');
+             var bubble_opacity = randomInteger(5, 10) * 0.1;
+             var bubble_scale = randomInteger(0.1, 10);
+             
+             var bubble_new =  bubble_el.clone().attr({ opacity: bubble_opacity , scale : bubble_scale});
+
+            
              var path_el = path4bubble[n_path];
-             bubblesUp( bubble_new,  path_el ); //Animate along a path
+             bubblesUp( bubble_new,  path_el );
+
+
 }
        
 
@@ -718,8 +729,11 @@ function coolerClick(){
                              Glass.attr({opacity:.80});
                              animSvg.select('#water_top').attr({opacity:.80});
                              Glass.addClass('active');
+          
                              water_into_glass = animSvg.paper.line(1766,600,1766,600).attr({"stroke-width" : 4, stroke : '#BBFFFF'}).animate({'y2':675}, rhythm*1, mina.easeinout, function(){ filling(); })  ;  
                }              
+
+
 }
 
 function filling(){
@@ -732,25 +746,31 @@ function filling(){
 
             waterInGlass = animSvg.path(water_in_glass).attr({ fill : "#BBFFFF" });
 
-            theglassMasked.attr({ mask:  waterInGlass});//!
+            theglassMasked.attr({ mask:  waterInGlass});
             animSvg.select('#glass_bottom').animate({fill : '#42d1d1'},rhythm*3);
             waterInGlass.animate({transform : 't420,-36'},rhythm*10,mina.easeinout,function(){ water_off(); });              
 
 }
 function water_off(){
-            animSvg.select('#water_top').animate({fill : '#55FFFF', opacity: .8}, rhythm);
+            animSvg.select('#water_top').animate({fill : '#42d1d1', opacity: .4}, rhythm);
             water_into_glass.addClass('visibility_hid');
             setTimeout( function(){ glassDisapear(); }, rhythm*10 );
 
 }
 function glassDisapear(){
+
+            
+
             Glass.animate({opacity : 0} , rhythm*10 ,mina.easyinout);
+
             waterInGlass.animate({opacity : 0} , rhythm*10 , mina.easyinout , function(){ start_position(); });
+            
             animSvg.select('#water_top').animate({fill : '#FAFAFA'}, rhythm*10);
             animSvg.select('#glass_bottom').animate({fill : '#FAFAFA'}, rhythm*10);
 
 }
 function start_position(){
+
             waterInGlass.attr({transform : 't0,0'});
             Glass.removeClass('active');
 }
@@ -761,13 +781,19 @@ function coolerOver(){
 
 }
 function coolerOut(){
+
             if(!Glass.hasClass('active')){
                                Glass.animate({opacity:0},rhythm);
               }                 
 }
 
 function bubblesUp( el, xpath ) {
-            el.drawAtPath( xpath, 2750, {scale : 1.3, callback:function(){el.animate({opacity:0},   rhythm * 0.3,   function(){el.remove(); bubbleStart();} )  }}    );
+
+            el.drawAtPath( xpath, 2750, {scale : 1.1, callback:function(){el.animate({opacity:0},   rhythm * 0.3,   function(){el.remove(); bubbleStart();} )  }}    );
+
+
+
+
 };
 
 function randomInteger(min, max) {
@@ -775,6 +801,7 @@ function randomInteger(min, max) {
             rand = Math.round(rand);
             return rand;
   }
+
 
 function drawObjects()
     {
