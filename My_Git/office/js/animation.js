@@ -116,7 +116,7 @@ throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'rais
 //draw chear           dashi[1].callOnFinished = function() {};
 
 
-
+dispenserAnimation();
 animSvg.add(Snap.parse(throwPaper));
 animSvg.add(Snap.parse(bin));
 Bin = Snap.select('#bin')
@@ -202,7 +202,7 @@ Snap.select('#annotation').attr({cursor : 'default', 'opacity' : 0});
 Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
-dispenserAnimation();
+
 clockAnimation();
 };//end of init function
 
@@ -220,9 +220,8 @@ var hoursAngle = 360 * date.getHours() / 12 + date.getMinutes() / 2;
 var minuteAngle = 360 * date.getMinutes() / 60;
 var secAngle = 360 * date.getSeconds() / 60;
 
-var hourhand = Snap.select("#hourhand").transform('r'+shifter(hoursAngle)).animate({transform : shifter(hoursAngle+360)},43200*1000);
-// var minutehand = Snap.select("#minutehand").transform('r'+shifter(minuteAngle)).animate({transform : shifter(minuteAngle+360)},3600*1);
-var minutehand = Snap.select("#minutehand").transform('r'+shifter(minuteAngle)).animate({transform : 'r'+shifter(minuteAngle+360)},3600*1000);
+var hourhand = Snap.select("#hourhand").transform('r'+shifter(hoursAngle)).animate({transform : shifter(hoursAngle+360*12)},43200*12*1000);
+var minutehand = Snap.select("#minutehand").transform('r'+shifter(minuteAngle)).animate({transform : 'r'+shifter(minuteAngle+360*60)},3600*60*1000);
 }
 
 function dispenserAnimation(){
