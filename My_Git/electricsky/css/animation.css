@@ -4,7 +4,14 @@
   visibility: hidden
 }
 .neontubes {
-	/*fill : #333;*/
-	/*stroke : #333;*/
-	stroke-width : 0;
+	fill : #334;
+	stroke : #334;
+	stroke-width : 6;
+	opacity: 0.55;
+}
+.neontubesinside {
+	fill : #fff;
+	stroke : #fff;
+	stroke-width : 0.5;
+	opacity: 0.5;
 }
