@@ -354,3 +354,15 @@ var path4bubbles = [ 'M1760 563c0,0 -7,-23 -7,-85 0,-12 14,-31 15,-38'
 
 var bottle = ' <g id="bottle"><polygon fill="#85E1E4" points="1718,543 1815,543 1815,447 1718,447 "/></g><path fill="#59C3CA" d="M1720 543l94 0c4,0 7,3 7,7l0 3c0,4 -3,7 -7,7l-94 0c-4,0 -7,-3 -7,-7l0 -3c0,-4 3,-7 7,-7z"/><path fill="#59C3CA" d="M1720 486l94 0c4,0 7,4 7,7l0 3c0,4 -3,7 -7,7l-94 0c-4,0 -7,-3 -7,-7l0 -3c0,-3 3,-7 7,-7z"/><path fill="#59C3CA" d="M1720 432l94 0c4,0 7,3 7,7l0 2c0,4 -3,7 -7,7l-94 0c-4,0 -7,-3 -7,-7l0 -2c0,-4 3,-7 7,-7z"/>';                    
 
+
+var rectangle_under_printer = '<rect fill="#3F3F3F" x="1357" y="323" width="90.9116" height="15.0239"/>';
+
+var sheet = '<g id="sheet">  <polygon fill="white" stroke="white" stroke-width="0.566929" points="1362,326 1438,326 1438,197 1362,197 "/>  <g transform="matrix(-1 -5.29691E-014 5.29691E-014 -1 2391.1 858.978)">   <text x="955" y="548"  fill="black" font-weight="normal" font-size="10px" font-family="Arial">We are actually</text>   <text x="1022" y="548"  fill="black" font-weight="normal" font-size="10px" font-family="Arial"> </text>   <text x="1017" y="548"  fill="black" font-weight="normal" font-size="10px" font-family="Arial">  </text>  </g>  <g transform="matrix(-1 -5.29691E-014 5.29691E-014 -1 2391.1 858.978)">   <text x="955" y="561"  fill="black" font-weight="normal" font-size="10px" font-family="Arial">a very green </text>  </g>  <g transform="matrix(-1 -5.29691E-014 5.29691E-014 -1 2391.1 858.978)">   <text x="955" y="574"  fill="black" font-weight="normal" font-size="10px" font-family="Arial">company and </text>  </g>  <g transform="matrix(-1 -5.29691E-014 5.29691E-014 -1 2391.1 858.978)">   <text x="955" y="587"  fill="black" font-weight="normal" font-size="10px" font-family="Arial">do not print so </text>  </g>  <g transform="matrix(-1 -5.29691E-014 5.29691E-014 -1 2391.1 858.978)">   <text x="955" y="600"  fill="black" font-weight="normal" font-size="10px" font-family="Arial">much.</text>  </g> </g>';
+
+var printer = '<g id="printer"><g><path fill="#3F3F3F" d="M1362 325l77 0 -77 0zm-18 -72l113 0 0 85 -18 0 0 -13 -77 0 0 13 -18 0 0 -85z"/></g>  <path fill="none" stroke="black" stroke-width="0.566929" d="M1362 325l77 0m-95 -72l113 0 0 85 -18 0 0 -13 -77 0 0 13 -18 0 0 -85z"/>  <path fill="#1FB1E9" d="M1452 338l0 0 0 -23 -104 0 0 23 -7 0c-7,0 -12,-5 -12,-12l0 -59c0,-8 6,-14 14,-14l2 0 0 30c0,6 5,12 12,12l86 0c7,0 14,-6 14,-14l0 -28 4 0c8,0 14,6 14,14l0 59c0,7 -5,12 -12,12l-11 0z"/> </g>';
+
+var blue_light = '<path id="blue_light" fill="#1D8EA3" d="M1446 274c2,0 4,-2 4,-4 0,-3 -2,-4 -4,-4 -2,0 -4,1 -4,4 0,2 2,4 4,4z"/>';
+
+var red_light = '<path id="red_light" fill="#ED6E59" d="M1420 274c2,0 4,-2 4,-4 0,-3 -2,-4 -4,-4 -2,0 -4,1 -4,4 0,2 2,4 4,4z"/>';
+
+var yellow_light = '<path id="yellow_light" fill="#EDC80A" d="M1433 274c2,0 4,-2 4,-4 0,-3 -2,-4 -4,-4 -2,0 -4,1 -4,4 0,2 2,4 4,4z"/>';

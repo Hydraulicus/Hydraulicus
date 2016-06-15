@@ -15,7 +15,7 @@ var rhythm = 300, //ms, of knee shacking
          ,timeTyping = 0
          ,steamGradient
          ,path4throwing
-         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin, plant, can, flowers,waterб ,cooler,Glass,Cooler,water_into_glass,waterInGlass;
+         ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin, plant, can, flowers,waterб ,cooler,Glass,Cooler,water_into_glass,waterInGlass,_sheet, _printer, _blue_light, _red_light, _yellow_light;
 
 var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup, calendarPaper;
 var transitionNote = 't0,0s0.1';
@@ -204,6 +204,7 @@ Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
 
 clockAnimation();
+sheetprinters();
 };//end of init function
 
   var clocK = {cx : 1842, cy : 149};
@@ -257,6 +258,54 @@ function dispenserAnimation(){
             var Bottle = Snap.select('#bottle')
                              .attr({opacity:0.8});
 }
+
+function sheetprinters(){
+  animSvg.add(Snap.parse(rectangle_under_printer)); 
+            animSvg.add(Snap.parse(sheet)); 
+            animSvg.add(Snap.parse(printer)); 
+            animSvg.add(Snap.parse(blue_light)); 
+            animSvg.add(Snap.parse(red_light)); 
+            animSvg.add(Snap.parse(yellow_light)); 
+
+            _sheet         = Snap.select('#sheet').click(printerClick);
+
+            _printer       = Snap.select('#printer')
+                                           .attr({cursor : 'pointer'})      
+                                           .click(printerClick);
+
+            _blue_light    = Snap.select('#blue_light').attr({opacity : 0});
+
+            _red_light     = Snap.select('#red_light').attr({opacity:0.8});
+
+            _yellow_light  = Snap.select('#yellow_light').attr({opacity:0.8});
+
+             blueStart();
+}
+
+function printerClick(){
+            if (!_printer.hasClass('active')){
+
+                        _printer.addClass('active');
+                        _sheet.animate({transform: "t0,80"}, rhythm*10, mina.easyinout , function(){setTimeout(function(){sheetDisapear()},rhythm*30);});
+            }
+
+}
+
+function sheetDisapear(){
+
+             _sheet.animate({opacity : 0} , rhythm*6 , mina.easyinout , function(){  _sheet.attr({transform: ""}); _sheet.animate({opacity : 1}, rhythm*2, function(){ _printer.removeClass('active');}); })
+
+            
+}
+function blueStart(){
+
+              _blue_light.animate({opacity : 1} , rhythm*2 , mina.easyinout , function(){ blueOff(); })
+
+}
+ function blueOff(){
+
+             _blue_light.animate({opacity : 0} , rhythm*2 , mina.easyinout , function(){ blueStart(); })
+ }
 
 function drawCalendar(){
   animSvg.add(Snap.parse(wallcalendar));
