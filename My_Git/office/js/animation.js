@@ -206,15 +206,15 @@ lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.
 clockAnimation();
 };//end of init function
 
-
+  var clocK = {cx : 1842, cy : 149};
 function shifter(val) {
-  var cx = 1842;
-  var cy = 149;
-  var startshift = 75;
-  return [val+startshift, cx, cy].join(' ');
+
+  var startshift = 77.5;
+  return [val+startshift, clocK.cx, clocK.cy].join(' ');
 }
 
 function clockAnimation(){
+
 var date = new Date();
 var hoursAngle = 360 * date.getHours() / 12 + date.getMinutes() / 2;
 var minuteAngle = 360 * date.getMinutes() / 60;
@@ -222,6 +222,7 @@ var secAngle = 360 * date.getSeconds() / 60;
 
 var hourhand = Snap.select("#hourhand").transform('r'+shifter(hoursAngle)).animate({transform : shifter(hoursAngle+360*12)},43200*12*1000);
 var minutehand = Snap.select("#minutehand").transform('r'+shifter(minuteAngle)).animate({transform : 'r'+shifter(minuteAngle+360*60)},3600*60*1000);
+var secondhand = animSvg.line(clocK.cx, clocK.cy, clocK.cx-50, clocK.cy).attr({'stroke-width' : 1, 'stroke' : 'red'}).transform('r'+shifter(secAngle)).animate({transform : 'r'+shifter(minuteAngle+360*3600)},60*1000*3600);
 }
 
 function dispenserAnimation(){
