@@ -1,5 +1,10 @@
 
-.bg { background-color: #bbb; }
+.bg { background-color: #111224; }
 .visibility_hid{
   visibility: hidden
+}
+.neontubes {
+	fil : "#333";
+	stroke : "#333";
+	stroke-width : "1";
 }
