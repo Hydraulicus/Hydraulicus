@@ -3,6 +3,10 @@
 .visibility_hid{
   visibility: hidden
 }
+.whiteflag{
+  visibility: hidden
+}
+
 .neontubes {
 	fill : #334;
 	stroke : #334;
