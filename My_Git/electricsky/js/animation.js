@@ -10,7 +10,7 @@ var tubes = []
 function initAnimation (obj) {
     animSvg = Snap(obj.blck); 
     rhythm = obj.rhythm * 1000;
-    glow = animSvg.filter(Snap.filter.shadow(0, 5, 3, '#99f'));
+    glow = animSvg.filter(Snap.filter.shadow(0, 4, 3, '#99f'));
 var deskpattern = animSvg.line(0, 10, 0, 0).attr({
         fill: "none",
         stroke: "#333",
@@ -21,23 +21,21 @@ drawObjects();
 Snap.select('#signdesk').attr({fill : deskpattern})
 
 
- // lightTube('#tube1');
- // lightTube.callOnFinished ('#tube2');
-
-
-
-
 };//end of init function
 
 function lightTube(idtubeN) {
- if (idtubeN >= (tubes.length-1)) {
-  console.log(idtubeN,tubes.length);
+ if (idtubeN > (tubes.length-1)) {
   return;
  }
  
  tubes[idtubeN].initDraw();
  tubes[idtubeN].callOnFinished = function(){
-     Snap.select("#tube"+idtubeN).attr({stroke : '#eef', filter: glow}).animate({'stroke-width':5},100, function(){idtubeN++; lightTube(idtubeN)})
+  
+  // console.log(idtubeN,tubes.length);
+     Snap.select("#tube"+idtubeN)
+     .attr({stroke : 'rgba(190,215,250,0.85)', filter: glow})
+     // .attr({stroke : 'rgba(50,50,75,0.85)'})
+     .animate({ 'stroke-width' : 4 },50, function(){idtubeN++; lightTube(idtubeN)})
    }
 }
 
@@ -49,18 +47,12 @@ function drawObjects()
 
       for (var i in tubesPath)
         {
-         tubes[i] = new lightning (tubesPath[i], '', 50)
+           // animSvg.add(Snap.parse(tubesPath[j]));
+           tubes[i] = new lightning (tubesPath[i], '', 50);
+           // console.log(i);
+           if ( i == tubesPath.length-1) lightTube(0);
         }
-        lightTube(0);
-      // tubes[0].initDraw();
-// tubes[0].callOnFinished = function(){ lightTube(1); }
-
-
-
-
-// tubes[4].initDraw();
-// tubes[6].initDraw();
-
+        
        }
 
 
@@ -112,9 +104,10 @@ lightning.prototype.draw = function() {         // this is the main animation bi
     this.group.append( myPath );
 
      myPath.attr({
-       fill: 'none',
+       fill: '#fff',
        "fill-rule" : "nonzero",
        "stroke-linejoin" : "round",
+       "stroke-linecap" : "round",
        "stroke-dasharray": this.leng + " " + this.leng,
        "stroke-dashoffset": this.leng
      });
