@@ -8,6 +8,7 @@ var rhythm = 300, //ms, of knee shacking
       cycle = nNorm+ nfast + nNorm;
 
       var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubbles_arr = [], path4bubble = []
+        , portoBlocks = [] //array for text blocks of services popup
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,pulseShow=false
@@ -16,10 +17,10 @@ var rhythm = 300, //ms, of knee shacking
          ,steamGradient
          ,path4throwing
          ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin, plant, can, flowers,waterб ,cooler,Glass,Cooler,water_into_glass,waterInGlass,_sheet, _printer, _blue_light, _red_light, _yellow_light;
-
-var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup, calendarPaper;
+var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup, calendarPaper, servicesSet, shalfesSet;
 var transitionNote = 't0,0s0.1';
 var transitionNoteEnd = 't0,0s1';
+var clocK = {cx : 1842, cy : 149};
 
 function initAnimation (obj) {
     animSvg = Snap(obj.blck); 
@@ -101,7 +102,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- constantAnimation();
+ // constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -114,9 +115,11 @@ throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'rais
 
           // dashi[1].callOnFinished = function() { dashi[2].initDraw();};
 //draw chear           dashi[1].callOnFinished = function() {};
+shalfesSetDraw();
+sheetprinters();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+drawCalendar();
 
-
-dispenserAnimation();
+// dispenserAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 animSvg.add(Snap.parse(throwPaper));
 animSvg.add(Snap.parse(bin));
 Bin = Snap.select('#bin')
@@ -126,7 +129,6 @@ animSvg.add(Snap.parse(SecondCup));
 strawCup = Snap.select('#strawcup');
 secondFingers = animSvg.path(AbassFingers[0]).addClass('fil2').attr({'opacity':0});
 
-// Snap.parse(clouds);
 
 animSvg.polygon(0,500, 558,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud1')});
 animSvg.polygon(0,500, 548,500, 548,0, 0,0).attr({fill : 'white', mask : Snap.select('#cloud2')});
@@ -148,10 +150,12 @@ drawObjects();
             for (var f in flowers){ animSvg.add(Snap.parse(flowers[f]));}
             animSvg.selectAll('.flowers').forEach(function(flower, index){flower.attr({'transform': 's0 0'});});
 
-drawCalendar();
+
 animSvg.add(Snap.parse(bigopenedfile));
+
 drawerHandler();
 // animSvg.add(Snap.parse(portfello));//add portofello
+servicesPopUpDraw();
 
 animSvg.add(Snap.parse(mapa));//add MAP
 animSvg.add(Snap.parse(bigOpenedFile));//file full size , initialized hidden 
@@ -181,7 +185,7 @@ SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2)
 // laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ laptopOn(2)}, function(){ laptopOff(2)});
 
 secondsweater = Snap.select('#secondsweater'); 
-SecondConstAnimation();
+// SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
@@ -203,19 +207,101 @@ Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
 
-clockAnimation();
-sheetprinters();
+// clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+
+
+
+
 };//end of init function
 
-  var clocK = {cx : 1842, cy : 149};
-function shifter(val) {
+function shalfesSetDraw(){
+    shalfesSet = animSvg.paper.g()
+          .attr({'id' : 'services', 'cursor' : 'pointer'})
+          .click(shalfesSetClick);
+        for (var j in shelfs) { shalfesSet.add(Snap.parse(shelfs[j])) };  
+}
 
+
+function servicesPopUpDraw() {
+var servicePattern = animSvg
+ .path("M10-5-10,15M15,0,0,15M0-5-20,15").attr({
+        fill: "none",
+        stroke: "#ddd"
+    }).pattern(0, 0, 10, 10);
+
+var serviceBackground = animSvg.polyline(221,137, 1699,137, 1699,995, 221,995).attr({fill : "#fff"});
+var serviceBackgroundPatterned = animSvg.polyline(221,137, 1699,137, 1699,995, 221,995).attr({fill : servicePattern});
+
+    servicesSet = animSvg.paper.g().attr({'id' : 'services'}).addClass("visibility_hid").transform('t600 -500,s0.01');
+    servicesSet.add(serviceBackground).add(serviceBackgroundPatterned);
+
+      for (var j in servicesPopUp) { 
+          if( Object.prototype.toString.call( servicesPopUp[j] ) === '[object Array]' ) {//text with background are array
+              // console.log(servicesPopUp[j]);
+              // console.log('!');
+
+              portoBlocks.push(animSvg.paper.g());//create group for thisblock and add it to array
+                         
+              // console.log(portoBlocks.length-1);
+              var tempString = '';
+              servicesPopUp[j].forEach(function(element, index){ tempString += element; })// 
+              portoBlocks[portoBlocks.length-1].add(Snap.parse(tempString)).attr({'id' : portoBlocks.length-1});
+              var tempcoord = portoBlocks[portoBlocks.length-1].getBBox();
+              // console.log(tempcoord);
+              // console.log(portoBlocks[portoBlocks.length-1].attr('id'),tempcoord);
+              // var bobo = paper.multitext(251, 252, textblocks[0], 453,  { "font-size": "20px" });
+              var bobo = animSvg.multitext(tempcoord.x+35, tempcoord.y+35, textblocks[portoBlocks.length-1], tempcoord.w-35,  { "font-size": "20px", "font-family":'Arial'  });
+              portoBlocks[portoBlocks.length-1].add(bobo);
+              portoBlocks[portoBlocks.length-1].transform('s1 0.001 '+tempcoord.x+' '+tempcoord.y)
+          }
+          else { 
+                  var unit_= Snap.parse(servicesPopUp[j]);
+                  servicesSet.add(unit_);
+                }
+
+          if (j == servicesPopUp.length-1) {
+            // Snap.select("#block_0")
+            Snap.selectAll(".blocks").forEach(function(element){element.mouseover(mouseOnGrayTitle).mouseout(mouseOutGrayTitle);})
+               
+                
+          }
+        };//end for
+      // Snap.select('#services')
+};
+
+function mouseOnGrayTitle (){
+  var that = parseInt( this.attr('id').split('_')[1] );
+  var tempcoord = portoBlocks[that].getBBox();
+  // console.log(that,tempcoord);
+  // portoBlocks[portoBlocks.length-1].stop().animate( {transform : 's1 1 '+tempcoord.x+' '+tempcoord.y}, rhythm, mina.backout)
+  portoBlocks[that].stop().animate( {transform : 's1 1 '+tempcoord.x+' '+tempcoord.y}, rhythm*0.3, mina.easeinout)
+}
+
+function mouseOutGrayTitle (){
+  var that = parseInt( this.attr('id').split('_')[1] );
+  var tempcoord = portoBlocks[that].getBBox();
+  // portoBlocks[portoBlocks.length-1].stop().animate( {transform : 's1 0.001 '+tempcoord.x+' '+tempcoord.y}, rhythm, mina.backin )
+  portoBlocks[that].stop().animate( {transform : 's1 0.001 '+tempcoord.x+' '+tempcoord.y}, rhythm*0.3, mina.easeinout )
+}
+
+function shalfesSetClick(){
+  console.log('shalfesSetClick');
+  Snap.select('#mapa').animate({opacity : 0},rhythm*0.5);
+  Snap.select("#servicesCross").click(servicesPopUpClose).attr({'cursor' : 'pointer'});
+  servicesSet.removeClass("visibility_hid").stop().animate({transform : transitionNoteEnd},  rhythm*1.5,  mina.backout);
+}
+
+function servicesPopUpClose() {
+  Snap.select("#servicesCross").unclick(servicesPopUpClose);
+  servicesSet.stop().animate({transform : 't600 -500,s0.01'}, rhythm*1.5,  mina.backin, function(){servicesSet.addClass("visibility_hid"); Snap.select('#mapa').animate({opacity : 1},rhythm*0.5);});
+}
+  
+function shifter(val) {
   var startshift = 77.5;
   return [val+startshift, clocK.cx, clocK.cy].join(' ');
 }
 
 function clockAnimation(){
-
 var date = new Date();
 var hoursAngle = 360 * date.getHours() / 12 + date.getMinutes() / 2;
 var minuteAngle = 360 * date.getMinutes() / 60;
@@ -349,7 +435,6 @@ function drawerClick(element){
    operadedFile = Snap.selectAll('.'+gettegId); 
    operadedFilePrevAttr.d = operadedFile[0].attr('d'); 
    operadedFilePrevAttr.parenT = operadedFile[0].parent(); 
-    // Snap.select('#mapa').addClass('visibility_hid');
     Snap.select('#mapa').animate({opacity : 0},rhythm);
     
 
@@ -518,7 +603,7 @@ satellitesGroup.forEach(function(element3, index) { element3.attr({'opacity' : 0
 
 function circlePulse(el)
 { 
-    console.log(pulseShow,el.attr('class'));
+    // console.log(pulseShow,el.attr('class'));
     if (!pulseShow) return
     setTimeout(function(){el.attr({r : 1, opacity : 1, 'stroke-width' : 1}).animate({r : 25, opacity : 0, 'stroke-width' : 5}, 900, mina.easeinout, function(){el.attr({'stroke' : 'red'}); el.attr({'stroke' : 'red'});circlePulse(el)});}, 200);
 }
@@ -851,10 +936,6 @@ function coolerOut(){
 function bubblesUp( el, xpath ) {
 
             el.drawAtPath( xpath, 2750, {scale : 1.1, callback:function(){el.animate({opacity:0},   rhythm * 0.3,   function(){el.remove(); bubbleStart();} )  }}    );
-
-
-
-
 };
 
 function randomInteger(min, max) {
@@ -870,5 +951,5 @@ function drawObjects()
         { 
           animSvg.add(Snap.parse(objects[j]))
         }
-       }
+   }
 

@@ -3,9 +3,16 @@
           font-family: Cavorting; 
           src: url('cavorting.otf');
         }
-
+    .visibility_hid{  visibility: hidden }
     .hidden_{opacity: 0;}
 
+/*    .servistextblock {
+      margin : 2rem ;
+      font : 1.2em/1em sans-serif; 
+      font-weight : normal;
+      line-height : 1.25;
+    }
+*/
     .str5 {stroke:#F9CA6B;stroke-width:1}
     .str6 {stroke:#CCCCCC;stroke-width:1} 
     .str0 {stroke:#EF977C;stroke-width:7;stroke-linecap:round}
@@ -32,7 +39,13 @@
     .fil22 {fill:#7E89A8}
     .fil24 {fill:#E6E6E6}
     
-
+    .fnt1 {fill:black; font-weight:normal;font-size:14.4px;font-family:'Arial'}
+    .fnt6 {fill:black; font-weight:normal;font-size:17px;font-family:'Arial'}
+    .fnt2 {fill:black; font-weight:normal;font-size:19px;font-family:'Arial'}
+    .fnt0 {fill:black; font-weight:bold;font-size:19px;font-family:'Arial'}
+    .fnt3 {fill:black; font-weight:bold;font-size:19px;font-family:'Arial'}
+    .fnt4 {fill:black; font-weight:normal;font-size:36px;font-family:'Arial'}
+    .fnt5 {fill:black; font-weight:bold;font-size:36px;font-family:'Arial'}
 
 .tabletop0 {stroke:#F9CA6B;stroke-width:2}
 .tabletop1 {stroke:#E0BF94;stroke-width:2}
@@ -48,9 +61,7 @@
 .ruber {fill:#F29785}
 .bg { background-color: #bbb; }
 .throwPaper1 {fill:white; stroke:#E6E6E6; stroke-width:1.5}
-.visibility_hid{
-  visibility: hidden
-}
+
 
 .clouds1 {
   -webkit-animation: cloudsfly 33s normal linear infinite;
