@@ -102,7 +102,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- // constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+ constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -119,7 +119,7 @@ shalfesSetDraw();
 sheetprinters();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 drawCalendar();
 
-// dispenserAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+dispenserAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 animSvg.add(Snap.parse(throwPaper));
 animSvg.add(Snap.parse(bin));
 Bin = Snap.select('#bin')
@@ -154,7 +154,6 @@ drawObjects();
 animSvg.add(Snap.parse(bigopenedfile));
 
 drawerHandler();
-// animSvg.add(Snap.parse(portfello));//add portofello
 servicesPopUpDraw();
 
 animSvg.add(Snap.parse(mapa));//add MAP
@@ -185,7 +184,7 @@ SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2)
 // laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ laptopOn(2)}, function(){ laptopOff(2)});
 
 secondsweater = Snap.select('#secondsweater'); 
-// SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
@@ -207,7 +206,7 @@ Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
 
-// clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 
 
@@ -220,7 +219,6 @@ function shalfesSetDraw(){
           .click(shalfesSetClick);
         for (var j in shelfs) { shalfesSet.add(Snap.parse(shelfs[j])) };  
 }
-
 
 function servicesPopUpDraw() {
 var servicePattern = animSvg
@@ -286,14 +284,14 @@ function mouseOutGrayTitle (){
 
 function shalfesSetClick(){
   console.log('shalfesSetClick');
-  Snap.select('#mapa').animate({opacity : 0},rhythm*0.5);
+  Snap.select('#mapa').animate({opacity : 0},rhythm*0.75, function(){this.addClass('visibility_hid');  });
   Snap.select("#servicesCross").click(servicesPopUpClose).attr({'cursor' : 'pointer'});
   servicesSet.removeClass("visibility_hid").stop().animate({transform : transitionNoteEnd},  rhythm*1.5,  mina.backout);
 }
 
 function servicesPopUpClose() {
   Snap.select("#servicesCross").unclick(servicesPopUpClose);
-  servicesSet.stop().animate({transform : 't600 -500,s0.01'}, rhythm*1.5,  mina.backin, function(){servicesSet.addClass("visibility_hid"); Snap.select('#mapa').animate({opacity : 1},rhythm*0.5);});
+  servicesSet.stop().animate({transform : 't600 -500,s0.01'}, rhythm*1.5,  mina.backin, function(){servicesSet.addClass("visibility_hid"); Snap.select('#mapa').removeClass('visibility_hid').animate({opacity : 1},rhythm*0.5);});
 }
   
 function shifter(val) {
