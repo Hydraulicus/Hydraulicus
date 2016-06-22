@@ -313,11 +313,9 @@ var bigopenedfile = [
 var bigOpenedFile = [
 '<g id="bigopenedfile">'
 ,'<path id="innerfile" class="filesfromdrawers visibility_hid" fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.5" d="M616 104l657 0c17,0 30,14 30,31l0 847c0,17 -13,30 -30,30l-657 0 0 -908z"/>'
+,'<g id="text_title"></g>'
 ,'<path fill="#FFCC00" id="semytransparentfirstpage"  class="filesfromdrawers visibility_hid" fill-opacity="0.85" stroke="#FFCC00" stroke-width="0.5" stroke-opacity="0.85" d="M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z"/>'
-,'<line  class="filesfromdrawers visibility_hid "  fill="none" stroke="#FFCC00" stroke-width="4.99975" x1="1239" y1="168" x2="1271" y2= "136" /><line  class="filesfromdrawers visibility_hid"  fill="none" stroke="#FFCC00" stroke-width="4.99975" x1="1239" y1="136" x2="1271" y2= "168" />'
-,'<circle fill="FFCC00" id="fileclosecross" fill-opacity="0.01"  class="filesfromdrawers visibility_hid" stroke="#FFCC00" stroke-width="4.99975" cx="1255" cy="152" r="31"/>'
- // ,'</g>'
- ,'</g>'
+,'</g>'
 ]
 
 // var portfello = '<path fill="#A87C58" d="M361 815l153 0c2,0 3,1 3,3l0 106c0,2 -1,4 -3,4l-153 0c-2,0 -4,-2 -4,-4l0 -106c0,-2 2,-3 4,-3z"/><path fill="#C8A079" d="M414 815l46 0 0 -18c0,-2 -1,-3 -2,-3l-42 0c-1,0 -2,1 -2,3l0 18zm-53 0l8 0 0 -4 22 0 0 4 19 0 0 -20c0,-3 2,-5 4,-5l47 0c2,0 4,2 4,5l0 20 21 0 0 -4 22 0 1 4 5 0c2,0 3,1 3,3l0 54 -160 0 0 -54c0,-2 2,-3 4,-3z"/><polygon fill="#C6C8C6" points="425,872 450,872 450,865 425,865 "/><polygon fill="#EBEBEB" points="425,878 450,878 450,872 425,872 "/>';
@@ -385,7 +383,6 @@ var servicesPopUp = [
     ,'<image x="337" y="285" width="280" height="214" xlink:href="jpg/rapid.png"/>'
 	,'<polygon id="block_0"  class="blocks" fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="251,168 704,168 704,252 251,252 "/>'
 		  ,['<g id="curtine0"><rect fill-opacity="0.8"  fill="#dbdbdb" x="251" y="252" width="453" height="299"/>'
-		  ,''
 			// ,'<svg xmlns="http://www.w3.org/2000/svg" width="1453" height="1299"><foreignObject x="251" y="252" width="453" height="299"><body xmlns="http://www.w3.org/1999/xhtml"><div class="servistextblock">'+textblocks[0]+'</div></body></foreignObject></svg>'
 			,'</g>'
 		   ]
@@ -475,3 +472,13 @@ var shelfs = [
 ]
 
 
+
+var tabs = [
+	  '<path fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.566929" d="M1283 134l61 0c5,0 10,5 10,10l0 50c0,6 -5,11 -10,11l-61 0 0 -71z"/><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1306" y1="182" x2="1331" y2= "157" /><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1306" y1="157" x2="1331" y2= "182" /><circle fill="FFCC00" id="fileclosecross" fill-opacity="0.01"  class="filesfromdrawers visibility_hid" stroke="#FFCC00" stroke-width="5" cx="1319" cy="169" r="25"/>'
+
+      ,'<path class="tab" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 216l61 0c5,0 10,5 10,11l0 120c0,5 -5,10 -10,10l-61 0 0 -141z"/>'
+      ,'<path class="tab" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 375l61 0c5,0 10,5 10,11l0 119c0,6 -5,11 -10,11l-61 0 0 -141z"/>'
+      ,'<path class="tab" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 534l61 0c5,0 10,5 10,10l0 120c0,6 -5,11 -10,11l-61 0 0 -141z"/>'
+      ,'<path class="tab" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 693l61 0c5,0 10,4 10,10l0 120c0,6 -5,10 -10,10l-61 0 0 -140z"/>'
+      ,'<path class="tab" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 851l61 0c5,0 10,5 10,11l0 120c0,5 -5,10 -10,10l-61 0 0 -141z"/>'
+]

@@ -30,7 +30,7 @@ function initAnimation (obj) {
     animSvg.add(Snap.parse(windw));//add underwindow and floor
   
 
-carpet = animSvg.path(carpetD).attr({fill:'#A2C3BE'});/*carpet*/
+ carpet = animSvg.path(carpetD).attr({fill:'#A2C3BE'});/*carpet*/
  brand[0] = animSvg.path(brandNameD).transform("t0,-5").attr({fill:'#8FB4B4'});/*brandName*/
  brand[1] = animSvg.path(brandNameD).transform("t0,-5").attr({fill:'#ABC9C5'}).animate({ transform: 't0,0' }, rhythm*3, mina.easeInOutQuad);/*brandName*/
 
@@ -50,9 +50,6 @@ GhaziElbow = animSvg.circle(595, 625, 21).attr({opacity:1, id : 'elbow'}).addCla
 kneeR = animSvg.select('#kneeR');
 pants = animSvg.select('#pants');
 
-// GhaziFace = Snap.selectAll('.Ghaziface').forEach(function(element, index) {
-//     element.attr({cursor : "pointer"}).hover(GhaziMouseOn, GhaziMouseOff); 
-// });
 GhaziFaceSet = animSvg.paper.g();
 SecondFaceSet = animSvg.paper.g();
 
@@ -155,8 +152,8 @@ animSvg.add(Snap.parse(bigopenedfile));
 
 drawerHandler();
 servicesPopUpDraw();
-
 animSvg.add(Snap.parse(mapa));//add MAP
+bookmarks.draw();
 animSvg.add(Snap.parse(bigOpenedFile));//file full size , initialized hidden 
 circlesssss = animSvg.add(Snap.parse(circles)) ;//add circles around pins of marks
 
@@ -208,10 +205,9 @@ lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.
 
 clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
-
-
-
 };//end of init function
+
+
 
 function shalfesSetDraw(){
     shalfesSet = animSvg.paper.g()
@@ -235,19 +231,11 @@ var serviceBackgroundPatterned = animSvg.polyline(221,137, 1699,137, 1699,995, 2
 
       for (var j in servicesPopUp) { 
           if( Object.prototype.toString.call( servicesPopUp[j] ) === '[object Array]' ) {//text with background are array
-              // console.log(servicesPopUp[j]);
-              // console.log('!');
-
               portoBlocks.push(animSvg.paper.g());//create group for thisblock and add it to array
-                         
-              // console.log(portoBlocks.length-1);
               var tempString = '';
               servicesPopUp[j].forEach(function(element, index){ tempString += element; })// 
               portoBlocks[portoBlocks.length-1].add(Snap.parse(tempString)).attr({'id' : portoBlocks.length-1});
               var tempcoord = portoBlocks[portoBlocks.length-1].getBBox();
-              // console.log(tempcoord);
-              // console.log(portoBlocks[portoBlocks.length-1].attr('id'),tempcoord);
-              // var bobo = paper.multitext(251, 252, textblocks[0], 453,  { "font-size": "20px" });
               var bobo = animSvg.multitext(tempcoord.x+35, tempcoord.y+35, textblocks[portoBlocks.length-1], tempcoord.w-35,  { "font-size": "20px", "font-family":'Arial'  });
               portoBlocks[portoBlocks.length-1].add(bobo);
               portoBlocks[portoBlocks.length-1].transform('s1 0.001 '+tempcoord.x+' '+tempcoord.y)
@@ -258,10 +246,7 @@ var serviceBackgroundPatterned = animSvg.polyline(221,137, 1699,137, 1699,995, 2
                 }
 
           if (j == servicesPopUp.length-1) {
-            // Snap.select("#block_0")
             Snap.selectAll(".blocks").forEach(function(element){element.mouseover(mouseOnGrayTitle).mouseout(mouseOutGrayTitle);})
-               
-                
           }
         };//end for
       // Snap.select('#services')
@@ -271,7 +256,6 @@ function mouseOnGrayTitle (){
   var that = parseInt( this.attr('id').split('_')[1] );
   var tempcoord = portoBlocks[that].getBBox();
   // console.log(that,tempcoord);
-  // portoBlocks[portoBlocks.length-1].stop().animate( {transform : 's1 1 '+tempcoord.x+' '+tempcoord.y}, rhythm, mina.backout)
   portoBlocks[that].stop().animate( {transform : 's1 1 '+tempcoord.x+' '+tempcoord.y}, rhythm*0.3, mina.easeinout)
 }
 
@@ -417,11 +401,75 @@ function drawerHandler()
 
 var operadedFile, operadedFilePrevAttr = {}, thisDrawer, gettegId, clickDrawerEvent = false;
 
+function fileTitle (){
+  var text = [];
+  this.show  = function (){
+      text[0] = animSvg.multitext(955, 420, getallcabinetdata["results"]['cabinetTitle'], 500,{ "font-size": "5rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
+      text[1] = animSvg.multitext(740, 720, getallcabinetdata["results"]['cabinetDescription'] , 500,{ "font-size": "1.5rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
+      // Snap.select('#text_title').add(text);
+      text.forEach(function(element) {element.transform("t-500,100 s0.1,0.1").animate({transform : "t0,0 s1,1"}, rhythm*3, mina.backout);})
+  }
+  this.hide = function () {
+      text.forEach(function(element) {element.animate({transform : "t-500,100 s0.1,0.1"}, rhythm*3, mina.backin, function(){this.remove()});})
+  }
+}
+var titleText = new fileTitle();
+var bookmarks = new fileTabs();
+
+var bookmarkGroup ;
+
+function fileTabs(){
+  var bookmark = [];
+  var temp = [];
+
+this.draw = function(){
+    bookmarkGroup = animSvg.paper.g().transform('t-40,0').attr({'id' : 'bookmarkgroup'}).addClass('visibility_hid');
+     temp[0] = '<text class="bookmarks" x="914" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1206)">' + getallcabinetdata["results"]['items'][0]['tab_text'] + '</text>';
+     temp[1] = '<text class="bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1365)">' + getallcabinetdata["results"]['items'][1]['tab_text'] + '</text>';
+     temp[2] = '<text class="bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1524)">' + getallcabinetdata["results"]['items'][2]['tab_text'] + '</text>';
+     temp[3] = '<text class="bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1683)">' + getallcabinetdata["results"]['items'][3]['tab_text'] + '</text>';
+     temp[4] = '<text class="bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1842)">' + getallcabinetdata["results"]['items'][4]['tab_text'] + '</text>';
+    for (var j in tabs)
+        { 
+          bookmark[j]= {'tab' : Snap.parse(tabs[j]), 'text' :  Snap.parse(temp[j]), 'cover' : ''};
+          bookmarkGroup
+          .add(bookmark[j].tab)
+          .add(Snap.parse(temp))
+          ;
+          // bookmark[j].transform("t-500,100 s0.1,0.1").animate({transform : "t0,0 s1,1"}, rhythm*3, mina.backout);
+         // bookmarkGroup.transform("t-500,100 s0.1,0.1").animate({transform : "t0,0 s1,1"}, rhythm*3, mina.backout);
+          // animSvg.add(bookmark[j])
+        }
+
+        Snap.selectAll('.bookmarks').forEach(function(element) { element.attr({cursor : 'pointer'}).hover(hoverIn, hoverOut) })
+}
+
+  hoverIn = function(element){ console.log('hover In',element) }
+  hoverOut = function(element){ console.log('hover Out',element) }
+
+  this.show = function(){
+    // console.log('bookmarkGroup show',bookmarkGroup);
+    bookmarkGroup.removeClass('visibility_hid')
+    // .attr({cursor : 'pointer'})
+    .animate({'transform' : 't0,0'}, rhythm, mina.backout)
+    // .hover(hoverIn, hoverOut);
+  }
+  this.hide = function(){
+    bookmarkGroup.animate({'transform' : 't-40,0 '},rhythm,mina.backin, function(){bookmarkGroup.addClass('visibility_hid')});
+  }
+
+};
+
 function drawerClick(element){
    if  (clickDrawerEvent) return;
    clickDrawerEvent = true;
-   var shiftout='t0,18';
-   gettegId=this.attr("id");
+
+   titleText.show();
+    
+    
+
+   var shiftout = 't0,18';
+   gettegId = this.attr("id");
    thisDrawer = this;
    this.stop()
        .unhover(drawerMouseOn, drawerMouseOff)
@@ -433,26 +481,29 @@ function drawerClick(element){
    operadedFile = Snap.selectAll('.'+gettegId); 
    operadedFilePrevAttr.d = operadedFile[0].attr('d'); 
    operadedFilePrevAttr.parenT = operadedFile[0].parent(); 
-    Snap.select('#mapa').animate({opacity : 0},rhythm);
-    
-
+   Snap.select('#mapa').animate({opacity : 0},rhythm);
+       
    operadedFile[0].animate({"d" : innerfileD}, rhythm*3, mina.backout, function(){
         Snap.select("#fileclosecross").click(fileClose).attr({cursor : "pointer"});
+
         Snap.selectAll('.filesfromdrawers').forEach(function(element, index) 
               {
                   element.removeClass('visibility_hid'); 
               });
-        Snap.select("#semytransparentfirstpage").animate({"d" : outerfileD, "opacity" : 0.5}, rhythm*5, mina.easeinout)
+        Snap.select("#semytransparentfirstpage").animate({"d" : outerfileD, "opacity" : 0.5}, rhythm*5, mina.easeinout, function(){bookmarks.show();})
        })
 }
 
 //close file
 function fileClose () {
   // console.log('Click - close file');
+  bookmarks.hide();
+  // delete titleText;
   Snap.select("#fileclosecross").unclick(fileClose);
   document.body.removeEventListener('click', fileClose, true); 
   Snap.select("#semytransparentfirstpage").animate({"d" : "M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z", "opacity" : 0.85}, rhythm*2, mina.easeinout
           ,function(){
+              titleText.hide();
               Snap.selectAll('.filesfromdrawers').forEach(function(element, index) { element.addClass('visibility_hid'); });
               operadedFile.animate({"d" :operadedFilePrevAttr.d }, rhythm*3, mina.backin, function(){ thisDrawer.hover(drawerMouseOn, drawerMouseOff).animate({'transform' : 't0,0'}, rhythm, mina.easeinout);  Snap.selectAll('.'+gettegId).forEach(function(element, index) 
                 {  element.stop().attr({transform : 's1,0.5'}); 
@@ -547,18 +598,6 @@ function lampTurnOnOff(){
   Snap.select('#lamp').toggleClass('fil10on');
   Snap.select('#ghazisviter').toggleClass('fil1on');
 }
-
-// function laptopOn(n){//n = 0 - Ghazi laptop, n = 2 second laptop  
-// var morphingPoint = (n == 0) ? '632,500' : '1130,500';
-// Snap.select('#laptoptop'+n).stop().animate({transform : 's0.01,1,'+morphingPoint},300, mina.easeinout);
-// Snap.select('#laptopbottom'+n).stop().animate({transform : 's0.7,1,'+morphingPoint},300, mina.easeinout)
-// }
-
-// function laptopOff(n){
-// var morphingPoint = (n == 0) ? '632,500' : '1130,500';
-// Snap.select('#laptoptop'+n).stop().animate({transform : 's1,1,'+morphingPoint},300, mina.easeinout);  
-// Snap.select('#laptopbottom'+n).stop().animate({transform : 's1,1,'+morphingPoint},300, mina.easeinout)
-// }
 
 function stopEvent(ev) {
   ev.stopPropagation();
