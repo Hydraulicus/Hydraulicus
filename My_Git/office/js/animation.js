@@ -115,7 +115,6 @@ throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'rais
 shalfesSetDraw();
 sheetprinters();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 drawCalendar();
-
 dispenserAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 animSvg.add(Snap.parse(throwPaper));
 animSvg.add(Snap.parse(bin));
@@ -238,7 +237,7 @@ var serviceBackgroundPatterned = animSvg.polyline(221,137, 1699,137, 1699,995, 2
               var tempcoord = portoBlocks[portoBlocks.length-1].getBBox();
               var bobo = animSvg.multitext(tempcoord.x+35, tempcoord.y+35, textblocks[portoBlocks.length-1], tempcoord.w-35,  { "font-size": "20px", "font-family":'Arial'  });
               portoBlocks[portoBlocks.length-1].add(bobo);
-              portoBlocks[portoBlocks.length-1].transform('s1 0.001 '+tempcoord.x+' '+tempcoord.y)
+              portoBlocks[portoBlocks.length-1].transform('s1 0.001 '+tempcoord.x+' '+tempcoord.y).addClass("visibility_hid")
           }
           else { 
                   var unit_= Snap.parse(servicesPopUp[j]);
@@ -256,14 +255,14 @@ function mouseOnGrayTitle (){
   var that = parseInt( this.attr('id').split('_')[1] );
   var tempcoord = portoBlocks[that].getBBox();
   // console.log(that,tempcoord);
-  portoBlocks[that].stop().animate( {transform : 's1 1 '+tempcoord.x+' '+tempcoord.y}, rhythm*0.3, mina.easeinout)
+  portoBlocks[that].stop().removeClass("visibility_hid").animate( {transform : 's1 1 '+tempcoord.x+' '+tempcoord.y}, rhythm*0.3, mina.easeinout)
 }
 
 function mouseOutGrayTitle (){
   var that = parseInt( this.attr('id').split('_')[1] );
   var tempcoord = portoBlocks[that].getBBox();
   // portoBlocks[portoBlocks.length-1].stop().animate( {transform : 's1 0.001 '+tempcoord.x+' '+tempcoord.y}, rhythm, mina.backin )
-  portoBlocks[that].stop().animate( {transform : 's1 0.001 '+tempcoord.x+' '+tempcoord.y}, rhythm*0.3, mina.easeinout )
+  portoBlocks[that].stop().animate( {transform : 's1 0.001 '+tempcoord.x+' '+tempcoord.y}, rhythm*0.3, mina.easeinout ).addClass("visibility_hid")
 }
 
 function shalfesSetClick(){
@@ -404,58 +403,132 @@ var operadedFile, operadedFilePrevAttr = {}, thisDrawer, gettegId, clickDrawerEv
 function fileTitle (){
   var text = [];
   this.show  = function (){
+      titlePage = true;
       text[0] = animSvg.multitext(955, 420, getallcabinetdata["results"]['cabinetTitle'], 500,{ "font-size": "5rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
       text[1] = animSvg.multitext(740, 720, getallcabinetdata["results"]['cabinetDescription'] , 500,{ "font-size": "1.5rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
-      // Snap.select('#text_title').add(text);
       text.forEach(function(element) {element.transform("t-500,100 s0.1,0.1").animate({transform : "t0,0 s1,1"}, rhythm*3, mina.backout);})
   }
   this.hide = function () {
       text.forEach(function(element) {element.animate({transform : "t-500,100 s0.1,0.1"}, rhythm*3, mina.backin, function(){this.remove()});})
   }
+  
+  this.shiftAwayPage = function (){
+    console.log('title shiftAwayPage');
+    // console.log(Snap.select('#text_title').attr('fill'));
+    Snap.select('#text_title')
+        .clone()
+        .add(text)
+        .animate({transform : 't-345,0 s0.01,1'}, rhythm*3, mina.easeinout, function(){ titlePage = false; this.remove()});
+  } 
 }
+
+
+function portfolioPage (itemN){
+  // var itemN = this.itemN;
+  var text = [];
+  var followPage;
+  this.show  = function (){
+      
+      console.log(itemN);
+      text[0] = animSvg.multitext(955, 210, getallcabinetdata["results"]['items'][itemN]['title'], 500,{ "font-size": "3rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
+      text[1] = animSvg.multitext(730, 280, getallcabinetdata["results"]['items'][itemN]['subtitle'], 500,{ "font-size": "2rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
+      text[2] = animSvg.multitext(730, 730, getallcabinetdata["results"]['items'][itemN]['description'], 520,{ "font-size": "1.2rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
+      text[3] = animSvg.image(getallcabinetdata["results"]['items'][itemN]['image_url'], 688, 320, 552, 345);
+      text[4] = animSvg.multitext(880, 950, getallcabinetdata["results"]['items'][itemN]['add_date'], 500,{ "font-size": "1rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
+      text[5] = Snap.parse('  <polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="683,374 683,315 742,315 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="684,612 684,670 742,670 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="1245,374 1245,315 1186,315 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="1245,612 1245,670 1186,670 "/>');
+       followPage = Snap.select('#text_title').clone();
+       followPage.add(text[0]).add(text[1]).add(text[2]).add(text[3]).add(text[4]).add(text[5]);
+       // text.forEach(function(element){ followPage.add(elem); }) ;
+  }
+  this.hide = function () {
+      text.forEach(function(element) {element.animate({transform : "t-500,100 s0.1,0.1"}, rhythm*3, mina.backin, function(){this.remove()});})
+  }
+  
+  this.shiftAwayPage = function (){
+    followPage.animate({transform : 't-345,0 s0.01,1'}, rhythm, mina.easeinout, function(){this.remove()});
+  } 
+}
+
+
 var titleText = new fileTitle();
 var bookmarks = new fileTabs();
+var titlePage = false;
+
 
 var bookmarkGroup ;
 
 function fileTabs(){
-  var bookmark = [];
-  var temp = [];
+  var bookmark = [], temp = [], covers = [], pages;
 
 this.draw = function(){
     bookmarkGroup = animSvg.paper.g().transform('t-40,0').attr({'id' : 'bookmarkgroup'}).addClass('visibility_hid');
-     temp[0] = '<text class="bookmarks" x="914" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1206)">' + getallcabinetdata["results"]['items'][0]['tab_text'] + '</text>';
-     temp[1] = '<text class="bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1365)">' + getallcabinetdata["results"]['items'][1]['tab_text'] + '</text>';
-     temp[2] = '<text class="bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1524)">' + getallcabinetdata["results"]['items'][2]['tab_text'] + '</text>';
-     temp[3] = '<text class="bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1683)">' + getallcabinetdata["results"]['items'][3]['tab_text'] + '</text>';
-     temp[4] = '<text class="bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1842)">' + getallcabinetdata["results"]['items'][4]['tab_text'] + '</text>';
+     temp[0] = ''//closer cross here;
+     temp[1] = '<text id="text_1" class="tab1 bookmarks" x="914" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1206)">' + getallcabinetdata["results"]['items'][0]['tab_text'] + '</text>';
+     temp[2] = '<text id="text_2" class="tab2 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1365)">' + getallcabinetdata["results"]['items'][1]['tab_text'] + '</text>';
+     temp[3] = '<text id="text_3" class="tab3 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1524)">' + getallcabinetdata["results"]['items'][2]['tab_text'] + '</text>';
+     temp[4] = '<text id="text_4" class="tab4 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1683)">' + getallcabinetdata["results"]['items'][3]['tab_text'] + '</text>';
+     temp[5] = '<text id="text_5" class="tab5 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1842)">' + getallcabinetdata["results"]['items'][4]['tab_text'] + '</text>';
     for (var j in tabs)
         { 
-          bookmark[j]= {'tab' : Snap.parse(tabs[j]), 'text' :  Snap.parse(temp[j]), 'cover' : ''};
+          bookmark[j]= {'tab' : Snap.parse(tabs[j]), 'text' :  Snap.parse(temp[j]), 'cover' : Snap.parse(tabcovers[j])};
           bookmarkGroup
           .add(bookmark[j].tab)
-          .add(Snap.parse(temp))
+          .add(bookmark[j].text)
+          .add(bookmark[j].cover)
           ;
-          // bookmark[j].transform("t-500,100 s0.1,0.1").animate({transform : "t0,0 s1,1"}, rhythm*3, mina.backout);
-         // bookmarkGroup.transform("t-500,100 s0.1,0.1").animate({transform : "t0,0 s1,1"}, rhythm*3, mina.backout);
-          // animSvg.add(bookmark[j])
         }
-
-        Snap.selectAll('.bookmarks').forEach(function(element) { element.attr({cursor : 'pointer'}).hover(hoverIn, hoverOut) })
+        // bookmarkGroup.add(temp);
+        Snap.selectAll('.tabcover').forEach(function(element) { element.attr({cursor : 'pointer'}).hover(hoverIn, hoverOut).click(clickTab) })
 }
 
-  hoverIn = function(element){ console.log('hover In',element) }
-  hoverOut = function(element){ console.log('hover Out',element) }
+  clickTab = function(event){
+    var targetElement = event.target || event.srcElement,
+    indexEl = targetElement.id.split('_');
+
+    Snap.selectAll('.activetab')[0].removeClass('activetab').animate({fill : "#666666"}, rhythm * 0.5, mina.backin); 
+    Snap.select('#tabtext_'+indexEl[1])
+        .addClass('activetab')
+        .animate({transform : "s1.2,1.2"}, rhythm * 0.5, mina.backin, function(){this.animate({transform : "s1,1"}, rhythm * 0.5, mina.backout)});
+console.log( indexEl[1]);
+    if ( indexEl[1] === '0' ) //cross pressed
+        {  
+          if (typeof pages !== "undefined") {pages.shiftAwayPage();  }
+          fileClose(); 
+          return 
+        } 
+
+    if ( titlePage ) { titleText.shiftAwayPage(); } 
+      else 
+        { pages.shiftAwayPage(); }
+
+
+
+ pages = new portfolioPage(parseInt(indexEl[1])-1);
+    pages.show();
+  }
+
+
+
+  hoverIn = function(event){ 
+    // console.log('hover In',element) ;
+    var targetElement = event.target || event.srcElement,
+    indexEl = targetElement.id.split('_');
+    Snap.select('#tabtext_'+indexEl[1]).animate({fill : "#3F3F3F"}, rhythm * 0.5, mina.backin);
+  }
+  hoverOut = function(event){ 
+    var targetElement = event.target || event.srcElement,
+    indexEl = targetElement.id.split('_');
+    element = Snap.select('#tabtext_'+indexEl[1]); 
+   if ( ! element.hasClass('activetab') ) { element.animate({fill : "#666666"}, rhythm * 0.5, mina.backin); }
+ }
 
   this.show = function(){
-    // console.log('bookmarkGroup show',bookmarkGroup);
     bookmarkGroup.removeClass('visibility_hid')
-    // .attr({cursor : 'pointer'})
     .animate({'transform' : 't0,0'}, rhythm, mina.backout)
-    // .hover(hoverIn, hoverOut);
   }
   this.hide = function(){
-    bookmarkGroup.animate({'transform' : 't-40,0 '},rhythm,mina.backin, function(){bookmarkGroup.addClass('visibility_hid')});
+    bookmarkGroup.animate({'transform' : 't-40,0 '},rhythm,mina.backin, function(){bookmarkGroup.addClass('visibility_hid'); 
+                                                                                  });
   }
 
 };
@@ -463,10 +536,7 @@ this.draw = function(){
 function drawerClick(element){
    if  (clickDrawerEvent) return;
    clickDrawerEvent = true;
-
    titleText.show();
-    
-    
 
    var shiftout = 't0,18';
    gettegId = this.attr("id");
@@ -484,7 +554,7 @@ function drawerClick(element){
    Snap.select('#mapa').animate({opacity : 0},rhythm);
        
    operadedFile[0].animate({"d" : innerfileD}, rhythm*3, mina.backout, function(){
-        Snap.select("#fileclosecross").click(fileClose).attr({cursor : "pointer"});
+        // Snap.select("#fileclosecross").click(fileClose).attr({cursor : "pointer"});
 
         Snap.selectAll('.filesfromdrawers').forEach(function(element, index) 
               {
@@ -498,6 +568,7 @@ function drawerClick(element){
 function fileClose () {
   // console.log('Click - close file');
   bookmarks.hide();
+
   // delete titleText;
   Snap.select("#fileclosecross").unclick(fileClose);
   document.body.removeEventListener('click', fileClose, true); 

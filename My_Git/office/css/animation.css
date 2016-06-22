@@ -46,7 +46,9 @@
     .fnt3 {fill:black; font-weight:bold;font-size:19px;font-family:'Arial'}
     .fnt4 {fill:black; font-weight:normal;font-size:36px;font-family:'Arial'}
     .fnt5 {fill:black; font-weight:bold;font-size:36px;font-family:'Arial'}
-
+/*
+.activtab{fill:#3F3F3F;}
+.tabs{fill:#666;}*/
 .tabletop0 {stroke:#F9CA6B;stroke-width:2}
 .tabletop1 {stroke:#E0BF94;stroke-width:2}
 .chear {stroke:#888;stroke-width:2;fill:#828486}

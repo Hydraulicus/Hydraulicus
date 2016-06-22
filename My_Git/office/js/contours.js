@@ -312,8 +312,9 @@ var bigopenedfile = [
 
 var bigOpenedFile = [
 '<g id="bigopenedfile">'
-,'<path id="innerfile" class="filesfromdrawers visibility_hid" fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.5" d="M616 104l657 0c17,0 30,14 30,31l0 847c0,17 -13,30 -30,30l-657 0 0 -908z"/>'
-,'<g id="text_title"></g>'
+,'<g id="text_title"><path id="innerfile" class="filesfromdrawers visibility_hid" fill="#3F3F3F" stroke="#aaa" stroke-width="2.5" d="M616 104l657 0c17,0 30,14 30,31l0 847c0,17 -13,30 -30,30l-657 0 0 -908z"/></g>'
+// ,'<g id="text_title"><path id="innerfile" class="filesfromdrawers visibility_hid" fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.5" d="M616 104l657 0c17,0 30,14 30,31l0 847c0,17 -13,30 -30,30l-657 0 0 -908z"/></g>'
+// ,'<g id="text_title"></g>'
 ,'<path fill="#FFCC00" id="semytransparentfirstpage"  class="filesfromdrawers visibility_hid" fill-opacity="0.85" stroke="#FFCC00" stroke-width="0.5" stroke-opacity="0.85" d="M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z"/>'
 ,'</g>'
 ]
@@ -471,14 +472,22 @@ var shelfs = [
   // ,'<path fill="#E0BF94" d="M1536 191l-25 0 -100 0 -26 0 -7 0 -35 0c-50,1 -47,-7 -45,18l437 0 1 -18 -200 0z"/><path fill="#E0BF94" d="M1296 338l0 18 438 0 0 -18 -92 0 -48 0 -3 0 -26 0 -1 0c-89,0 -178,0 -268,0z"/>'
 ]
 
-
-
 var tabs = [
-	  '<path fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.566929" d="M1283 134l61 0c5,0 10,5 10,10l0 50c0,6 -5,11 -10,11l-61 0 0 -71z"/><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1306" y1="182" x2="1331" y2= "157" /><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1306" y1="157" x2="1331" y2= "182" /><circle fill="FFCC00" id="fileclosecross" fill-opacity="0.01"  class="filesfromdrawers visibility_hid" stroke="#FFCC00" stroke-width="5" cx="1319" cy="169" r="25"/>'
+	  // '<path id="tabtext_0"  class="tab0 tabs activetab" fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.5" d="M1283 134l61 0c5,0 10,5 10,10l0 50c0,6 -5,11 -10,11l-61 0 0 -71z"/><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1306" y1="182" x2="1331" y2= "157" /><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1306" y1="157" x2="1331" y2= "182" /><circle fill="FFCC00" id="fileclosecross" fill-opacity="0.01"  class="filesfromdrawers visibility_hid" stroke="#FFCC00" stroke-width="5" cx="1319" cy="169" r="25"/>'
+	  '<path id="tabtext_0"  class="tab0 tabs activetab" fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.5" d="M1283 134l61 0c5,0 10,5 10,10l0 50c0,6 -5,11 -10,11l-61 0 0 -71z"/> <path id="fileclosecross" fill-opacity="0.01"  class="filesfromdrawers visibility_hid"  fill="none" stroke="#FFCC00" stroke-width="5" d="M1327 187c10,0 18,-8 18,-18 0,-9 -8,-17 -18,-17 -10,0 -18,8 -18,17 0,10 8,18 18,18"/><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1318" y1="178" x2="1336" y2= "160" /><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1318" y1="160" x2="1336" y2= "178" /> '
+   
+      ,'<path id="tabtext_1" class="tab1 tabs" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 216l61 0c5,0 10,5 10,11l0 120c0,5 -5,10 -10,10l-61 0 0 -141z"/>'
+      ,'<path id="tabtext_2" class="tab2 tabs" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 375l61 0c5,0 10,5 10,11l0 119c0,6 -5,11 -10,11l-61 0 0 -141z"/>'
+      ,'<path id="tabtext_3" class="tab3 tabs" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 534l61 0c5,0 10,5 10,10l0 120c0,6 -5,11 -10,11l-61 0 0 -141z"/>'
+      ,'<path id="tabtext_4" class="tab4 tabs" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 693l61 0c5,0 10,4 10,10l0 120c0,6 -5,10 -10,10l-61 0 0 -140z"/>'
+      ,'<path id="tabtext_5" class="tab5 tabs" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 851l61 0c5,0 10,5 10,11l0 120c0,5 -5,10 -10,10l-61 0 0 -141z"/>'
+]
 
-      ,'<path class="tab" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 216l61 0c5,0 10,5 10,11l0 120c0,5 -5,10 -10,10l-61 0 0 -141z"/>'
-      ,'<path class="tab" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 375l61 0c5,0 10,5 10,11l0 119c0,6 -5,11 -10,11l-61 0 0 -141z"/>'
-      ,'<path class="tab" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 534l61 0c5,0 10,5 10,10l0 120c0,6 -5,11 -10,11l-61 0 0 -141z"/>'
-      ,'<path class="tab" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 693l61 0c5,0 10,4 10,10l0 120c0,6 -5,10 -10,10l-61 0 0 -140z"/>'
-      ,'<path class="tab" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 851l61 0c5,0 10,5 10,11l0 120c0,5 -5,10 -10,10l-61 0 0 -141z"/>'
+var tabcovers = [
+	   '<path id="tabcover_0" class="tabcover" fill-opacity="0.01" fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.5" d="M1283 134l61 0c5,0 10,5 10,10l0 50c0,6 -5,11 -10,11l-61 0 0 -71z"/>'
+      ,'<path id="tabcover_1" class="tabcover" fill-opacity="0.01" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 216l61 0c5,0 10,5 10,11l0 120c0,5 -5,10 -10,10l-61 0 0 -141z"/>'
+      ,'<path id="tabcover_2" class="tabcover" fill-opacity="0.01" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 375l61 0c5,0 10,5 10,11l0 119c0,6 -5,11 -10,11l-61 0 0 -141z"/>'
+      ,'<path id="tabcover_3" class="tabcover" fill-opacity="0.01" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 534l61 0c5,0 10,5 10,10l0 120c0,6 -5,11 -10,11l-61 0 0 -141z"/>'
+      ,'<path id="tabcover_4" class="tabcover" fill-opacity="0.01" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 693l61 0c5,0 10,4 10,10l0 120c0,6 -5,10 -10,10l-61 0 0 -140z"/>'
+      ,'<path id="tabcover_5" class="tabcover" fill-opacity="0.01" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 851l61 0c5,0 10,5 10,11l0 120c0,5 -5,10 -10,10l-61 0 0 -141z"/>'
 ]
