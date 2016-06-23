@@ -99,7 +99,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- // constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+ constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -113,9 +113,9 @@ throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'rais
           // dashi[1].callOnFinished = function() { dashi[2].initDraw();};
 //draw chear           dashi[1].callOnFinished = function() {};
 shalfesSetDraw();
-// sheetprinters();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+sheetprinters();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 drawCalendar();
-// dispenserAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+dispenserAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 animSvg.add(Snap.parse(throwPaper));
 animSvg.add(Snap.parse(bin));
 Bin = Snap.select('#bin')
@@ -176,11 +176,8 @@ var spichCross2 = animSvg.path(secondSpeech.cross)
 GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).attr({'id' : 'speech1'}).attr({'visibility' : 'hidden'});
 SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'}).attr({'visibility' : 'hidden'});
 
-// laptop[0]=Snap.select('#macbook').attr({cursor : 'pointer'}).hover(function(){ laptopOn(0)}, function(){ laptopOff(0)});
-// laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ laptopOn(2)}, function(){ laptopOff(2)});
-
 secondsweater = Snap.select('#secondsweater'); 
-// SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
@@ -202,7 +199,7 @@ Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
 
-// clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 };//end of init function
 
