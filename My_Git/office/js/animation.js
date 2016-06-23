@@ -99,7 +99,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+ // constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -113,9 +113,9 @@ throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'rais
           // dashi[1].callOnFinished = function() { dashi[2].initDraw();};
 //draw chear           dashi[1].callOnFinished = function() {};
 shalfesSetDraw();
-sheetprinters();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+// sheetprinters();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 drawCalendar();
-dispenserAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+// dispenserAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 animSvg.add(Snap.parse(throwPaper));
 animSvg.add(Snap.parse(bin));
 Bin = Snap.select('#bin')
@@ -180,7 +180,7 @@ SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2)
 // laptop[0]=Snap.select('#macbook2').attr({cursor : 'pointer'}).hover(function(){ laptopOn(2)}, function(){ laptopOff(2)});
 
 secondsweater = Snap.select('#secondsweater'); 
-SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+// SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
@@ -202,7 +202,7 @@ Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
 
-clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+// clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 };//end of init function
 
@@ -413,8 +413,7 @@ function fileTitle (){
   }
   
   this.shiftAwayPage = function (){
-    console.log('title shiftAwayPage');
-    // console.log(Snap.select('#text_title').attr('fill'));
+    // console.log('title shiftAwayPage');
     Snap.select('#text_title')
         .clone()
         .add(text)
@@ -427,9 +426,9 @@ function portfolioPage (itemN){
   // var itemN = this.itemN;
   var text = [];
   var followPage;
+
   this.show  = function (){
-      
-      console.log(itemN);
+      // console.log(itemN);
       text[0] = animSvg.multitext(955, 210, getallcabinetdata["results"]['items'][itemN]['title'], 500,{ "font-size": "3rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
       text[1] = animSvg.multitext(730, 280, getallcabinetdata["results"]['items'][itemN]['subtitle'], 500,{ "font-size": "2rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
       text[2] = animSvg.multitext(730, 730, getallcabinetdata["results"]['items'][itemN]['description'], 520,{ "font-size": "1.2rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
@@ -445,7 +444,7 @@ function portfolioPage (itemN){
   }
   
   this.shiftAwayPage = function (){
-    followPage.animate({transform : 't-345,0 s0.01,1'}, rhythm, mina.easeinout, function(){this.remove()});
+    followPage.stop().animate({transform : 't-345,0 s0.01,1'}, rhythm, mina.easeinout, function(){this.remove()});
   } 
 }
 
@@ -477,7 +476,6 @@ this.draw = function(){
           .add(bookmark[j].cover)
           ;
         }
-        // bookmarkGroup.add(temp);
         Snap.selectAll('.tabcover').forEach(function(element) { element.attr({cursor : 'pointer'}).hover(hoverIn, hoverOut).click(clickTab) })
 }
 
@@ -489,24 +487,21 @@ this.draw = function(){
     Snap.select('#tabtext_'+indexEl[1])
         .addClass('activetab')
         .animate({transform : "s1.2,1.2"}, rhythm * 0.5, mina.backin, function(){this.animate({transform : "s1,1"}, rhythm * 0.5, mina.backout)});
-console.log( indexEl[1]);
     if ( indexEl[1] === '0' ) //cross pressed
         {  
-          if (typeof pages !== "undefined") {pages.shiftAwayPage();  }
+          if (typeof pages !== "undefined") { pages.shiftAwayPage();  }
           fileClose(); 
           return 
         } 
 
-    if ( titlePage ) { titleText.shiftAwayPage(); } 
+    if ( titlePage ) { titleText.shiftAwayPage();  } 
       else 
-        { pages.shiftAwayPage(); }
-
-
-
- pages = new portfolioPage(parseInt(indexEl[1])-1);
-    pages.show();
+        if (typeof pages !== "undefined")  { pages.shiftAwayPage();   }
+     titlePage = false; 
+    // console.log('start new page',(parseInt(indexEl[1])-1));
+     pages = new portfolioPage(parseInt(indexEl[1])-1);
+     pages.show();
   }
-
 
 
   hoverIn = function(event){ 
@@ -527,8 +522,7 @@ console.log( indexEl[1]);
     .animate({'transform' : 't0,0'}, rhythm, mina.backout)
   }
   this.hide = function(){
-    bookmarkGroup.animate({'transform' : 't-40,0 '},rhythm,mina.backin, function(){bookmarkGroup.addClass('visibility_hid'); 
-                                                                                  });
+    bookmarkGroup.stop().animate({'transform' : 't-40,0 '},rhythm,mina.backin, function(){bookmarkGroup.addClass('visibility_hid'); });
   }
 
 };
@@ -569,7 +563,6 @@ function fileClose () {
   // console.log('Click - close file');
   bookmarks.hide();
 
-  // delete titleText;
   Snap.select("#fileclosecross").unclick(fileClose);
   document.body.removeEventListener('click', fileClose, true); 
   Snap.select("#semytransparentfirstpage").animate({"d" : "M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z", "opacity" : 0.85}, rhythm*2, mina.easeinout
@@ -579,7 +572,6 @@ function fileClose () {
               operadedFile.animate({"d" :operadedFilePrevAttr.d }, rhythm*3, mina.backin, function(){ thisDrawer.hover(drawerMouseOn, drawerMouseOff).animate({'transform' : 't0,0'}, rhythm, mina.easeinout);  Snap.selectAll('.'+gettegId).forEach(function(element, index) 
                 {  element.stop().attr({transform : 's1,0.5'}); 
                    clickDrawerEvent = false;
-                   // Snap.select('#mapa').removeClass('visibility_hid');  
                    Snap.select('#mapa').animate({opacity : 1},rhythm);
                  });    
             }); 
