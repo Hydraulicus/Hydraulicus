@@ -3,6 +3,12 @@
           font-family: Cavorting; 
           src: url('cavorting.otf');
         }
+      @font-face {
+          font-weight:normal;
+          font-family: digital-7; 
+          src: url('digital-7italic.otf');
+        }
+
     .visibility_hid{  visibility: hidden }
     .hidden_{opacity: 0;}
 

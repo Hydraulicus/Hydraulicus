@@ -80,7 +80,7 @@ var objects = [
 ,'<path class="fil8 lamp" d="M479 526c15,-12 33,-29 47,-41l1 -2c-1,-1 0,0 -1,-1 -2,-2 -1,-1 -2,-2l-50 45 16 103 5 -1 -16 -101z"/><path class="fil9 lamp" d="M478 532c4,0 7,-3 7,-7 0,-3 -3,-7 -7,-7 -4,0 -7,4 -7,7 0,4 3,7 7,7z"/><path class="fil10 str1" id="lamp" d="M584 493c2,2 4,6 4,10 0,8 -7,15 -15,15 -4,0 -8,-2 -10,-5l21 -20z"/><path class="fil11 lamp" d="M568 457c14,0 26,7 34,17l-59 59c-10,-8 -17,-20 -17,-34 0,-4 1,-9 3,-13 -4,-3 -6,-7 -6,-11 0,-9 7,-15 15,-15 4,0 7,1 9,3 7,-4 14,-6 21,-6z"/><path class="fil9 lamp" d="M495 641l16 0c0,-9 -8,-16 -16,-16 -9,0 -17,7 -17,16l17 0z"/>'
 ,'</g>'
 
-,'<g id="phone"><polygon fill="#F9F9F6" points="274,529 367,529 367,464 274,464 "/><polygon fill="#8CCDD8" points="314,489 360,489 360,470 314,470 "/><polygon fill="#00CCFF" points="321,478 354,478 354,475 321,475 "/><polygon fill="#00CCFF" points="321,484 337,484 337,481 321,481 "/><polygon fill="#CCCCCC" points="314,503 320,503 320,497 314,497 "/><polygon fill="#CCCCCC" points="314,513 320,513 320,507 314,507 "/><polygon fill="#CCCCCC" points="314,523 320,523 320,517 314,517 "/><polygon fill="#CCCCCC" points="324,503 330,503 330,497 324,497 "/><polygon fill="#CCCCCC" points="324,513 330,513 330,507 324,507 "/><polygon fill="#CCCCCC" points="324,523 330,523 330,517 324,517 "/><polygon fill="#CCCCCC" points="334,503 340,503 340,497 334,497 "/><polygon fill="#CCCCCC" points="334,513 340,513 340,507 334,507 "/><polygon fill="#CCCCCC" points="334,523 340,523 340,517 334,517 "/><polygon fill="#CCCCCC" points="344,503 350,503 350,497 344,497 "/><polygon fill="#CCCCCC" points="344,513 350,513 350,507 344,507 "/><polygon fill="#85E1E4" points="344,523 350,523 350,517 344,517 "/><polygon fill="#CCCCCC" points="354,503 360,503 360,497 354,497 "/><polygon fill="#CCCCCC" points="354,513 360,513 360,507 354,507 "/><polygon fill="#E8745D" points="354,523 360,523 360,517 354,517 "/><path fill="#CCCCCC" d="M284 456l21 0c1,0 2,1 2,2l0 76c0,1 -1,2 -2,2l-21 0c-2,0 -2,-1 -2,-2l0 -76c0,-1 0,-2 2,-2z"/></g>'
+,'<g id="phone"><polygon fill="#F9F9F6" points="274,529 367,529 367,464 274,464 "/><polygon fill="#8CCDD8" points="314,489 360,489 360,470 314,470 "/><polygon fill="#00CCFF" points="321,478 354,478 354,475 321,475 "/><polygon fill="#00CCFF" points="321,484 337,484 337,481 321,481 "/><polygon fill="#CCCCCC" points="314,503 320,503 320,497 314,497 "/><polygon fill="#CCCCCC" points="314,513 320,513 320,507 314,507 "/><polygon fill="#CCCCCC" points="314,523 320,523 320,517 314,517 "/><polygon fill="#CCCCCC" points="324,503 330,503 330,497 324,497 "/><polygon fill="#CCCCCC" points="324,513 330,513 330,507 324,507 "/><polygon fill="#CCCCCC" points="324,523 330,523 330,517 324,517 "/><polygon fill="#CCCCCC" points="334,503 340,503 340,497 334,497 "/><polygon fill="#CCCCCC" points="334,513 340,513 340,507 334,507 "/><polygon fill="#CCCCCC" points="334,523 340,523 340,517 334,517 "/><polygon fill="#CCCCCC" points="344,503 350,503 350,497 344,497 "/><polygon fill="#CCCCCC" points="344,513 350,513 350,507 344,507 "/><polygon fill="#85E1E4" points="344,523 350,523 350,517 344,517 "/><polygon fill="#CCCCCC" points="354,503 360,503 360,497 354,497 "/><polygon fill="#CCCCCC" points="354,513 360,513 360,507 354,507 "/><polygon fill="#E8745D" points="354,523 360,523 360,517 354,517 "/><path fill="#CCCCCC" d="M284 456l21 0c1,0 2,1 2,2l0 76c0,1 -1,2 -2,2l-21 0c-2,0 -2,-1 -2,-2l0 -76c0,-1 0,-2 2,-2z"/><polygon id="phoneCover" fill-opacity="0.01" fill="#F9F9F6" points="274,529 367,529 367,464 274,464 "/></g>'
 
  ,'<g id="clocks">'
   ,'<path fill="white" d="M1842 207c32,0 58,-26 58,-58 0,-32 -26,-57 -58,-57 -32,0 -57,25 -57,57 0,32 25,58 57,58z"/>'
@@ -377,32 +377,33 @@ var textblocks = [
 ];
 
 
+var semitransparentCovers = [
+       '<polygon id="block_0" class="blocks" fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="0" points="251,168 704,168 704,496 251,496 "/>'
+	  ,'<polygon id="block_1" class="blocks" fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="0" points="251,581 704,581 704,955 251,955 "/>'
+	  ,'<polygon id="block_2" class="blocks" fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="0" points="734,581 1187,581 1187,955 734,955 "/>'
+	  ,'<polygon id="block_3" class="blocks" fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="0" points="734,168 1187,168 1187,542 734,542 "/>'
+	  ,'<polygon id="block_4" class="blocks" fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="0" points="1217,168 1670,168 1670,542 1217,542 "/>'
+	  ,'<polygon id="block_5" class="blocks" fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="0" points="1217,581 1670,581 1670,955 1217,955 "/>'
+	  ]
+
 
 var servicesPopUp = [
 	'<polygon fill="#E2E2E2" fill-opacity="1" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="251,168 704,168 704,252 251,252 "/>'
 	,'<text x="342" y="232"  class="fil4 fnt1">THE FASTEST WAY TO TEST YOU IDEA!</text><text x="394" y="206"  class="fil4 fnt3">Rapid Prototyping</text>'
     ,'<image x="337" y="285" width="280" height="214" xlink:href="jpg/rapid.png"/>'
-	,'<polygon id="block_0"  class="blocks" fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="251,168 704,168 704,252 251,252 "/>'
-		  ,['<g id="curtine0"><rect fill-opacity="0.8"  fill="#dbdbdb" x="251" y="252" width="453" height="299"/>'
-			// ,'<svg xmlns="http://www.w3.org/2000/svg" width="1453" height="1299"><foreignObject x="251" y="252" width="453" height="299"><body xmlns="http://www.w3.org/1999/xhtml"><div class="servistextblock">'+textblocks[0]+'</div></body></foreignObject></svg>'
-			,'</g>'
+		  ,['<g id="curtine0"><rect fill-opacity="0.8"  fill="#dbdbdb" x="251" y="252" width="453" height="299"/></g>'
+			,''
 		   ]
-
-
-
 	  ,'<polygon fill="#E2E2E2" fill-opacity="1" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="251,581 704,581 704,665 251,665 "/>'
 	   ,'<text x="392" y="621"  class="fil4 fnt3">Websites &amp; Design</text><text x="341" y="644"  class="fil4 fnt1">FROM BLOGS TO BAKERIES TO BANKS</text>' 
 		,'<image x="291" y="668" width="374" height="285" xlink:href="jpg/site_design.png"/>'
-	  ,'<polygon id="block_1" class="blocks" fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="251,581 704,581 704,665 251,665 "/>'
 		  ,['<g id="curtine1"><rect fill-opacity="0.8"  fill="#dbdbdb" x="251" y="665" width="453" height="299"/>'
-				// ,'<svg xmlns="http://www.w3.org/2000/svg" ><foreignObject x="251" y="665" width="453" height="299"><body xmlns="http://www.w3.org/1999/xhtml"><div class="servistextblock">'+textblocks[0]+'</div></body></foreignObject></svg>'
 				,'</g>'
 		   ]
 
 	  ,'<polygon fill="#E2E2E2" fill-opacity="1" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="734,581 1187,581 1187,665 734,665 "/>'
 	  ,'<text x="903" y="620" class="fnt0">Mobile Apps</text><text x="820" y="644" class="fnt1">THERE &quot;SHOULD BE&quot; AN APP FOR THAT!</text>'
 	  ,'<image x="820" y="704" width="280" height="214" xlink:href="jpg/mobile_apps.png"/>'
-	  ,'<polygon id="block_2" class="blocks" fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="734,581 1187,581 1187,665 734,665 "/>'
 		  ,['<g id="curtine2"><rect fill-opacity="0.8"  fill="#dbdbdb" x="734" y="665" width="453" height="299"/>'
 				,'</g>'
 		   ]
@@ -410,18 +411,12 @@ var servicesPopUp = [
 	  ,'<polygon fill="#E2E2E2" fill-opacity="1" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="734,168 1187,168 1187,252 734,252 "/>'
       ,'<text x="818" y="232"  class="fnt1">COMPLEX APPLICATIONS MADE USABLE</text><text x="877" y="206"  class="fnt3">Web Development</text>'
 	   ,'<image x="673" y="249" width="574" height="285" xlink:href="jpg/web_dev.png"/>'
-	  ,'<polygon id="block_3" class="blocks"  fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="734,168 1187,168 1187,252 734,252 "/>'
 		  ,['<g id="curtine3"><rect fill-opacity="0.8"  fill="#dbdbdb" x="734" y="252" width="453" height="299"/>'
 				,'</g>'
 		   ]
-  
-
-
-
   ,'<polygon fill="#E2E2E2" fill-opacity="1" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="1217,168 1670,168 1670,252 1217,252 "/>'
 	  ,'<text x="1306" y="232"  class="fil4 fnt1">OPEN BILLIONS OF STORE LOCATIONS</text><text x="1383" y="207"  class="fil4 fnt3">E-Commerce</text>'
    ,'<image x="1279" y="267" width="327" height="250" xlink:href="jpg/ecommerce.png"/>'
-  ,'<polygon id="block_4" class="blocks"  fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="1217,168 1670,168 1670,252 1217,252 "/>'
 		  ,['<g id="curtine4"><rect fill-opacity="0.8"  fill="#dbdbdb" x="1217" y="252" width="453" height="299"/>'
 				,'</g>'
 		   ]
@@ -429,7 +424,7 @@ var servicesPopUp = [
   ,'<polygon fill="#E2E2E2" fill-opacity="1" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="1217,581 1670,581 1670,665 1217,665 "/>'
   ,'<text x="1274" y="621"  class="fil4 fnt3">Business Consulting &amp; Development</text><text x="1276" y="644"  class="fil4 fnt1">SOLID ADVICE FROM SERIAL ENTREPRENEURS</text>'
 	,'<image x="1302" y="704" width="280" height="214" xlink:href="jpg/business_dev.png"/>'
-  ,'<polygon id="block_5" class="blocks"  fill="#E2E2E2" fill-opacity="0.01" stroke="#E6E6E6" stroke-width="0.5" stroke-opacity="1" points="1217,581 1670,581 1670,665 1217,665 "/>'
+  
 		  ,['<g id="curtine5"><rect fill-opacity="0.8"  fill="#dbdbdb" x="1217" y="665" width="453" height="299"/>'
 				,'</g>'
 		   ]
@@ -490,4 +485,25 @@ var tabcovers = [
       ,'<path id="tabcover_3" class="tabcover" fill-opacity="0.01" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 534l61 0c5,0 10,5 10,10l0 120c0,6 -5,11 -10,11l-61 0 0 -141z"/>'
       ,'<path id="tabcover_4" class="tabcover" fill-opacity="0.01" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 693l61 0c5,0 10,4 10,10l0 120c0,6 -5,10 -10,10l-61 0 0 -140z"/>'
       ,'<path id="tabcover_5" class="tabcover" fill-opacity="0.01" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 851l61 0c5,0 10,5 10,11l0 120c0,5 -5,10 -10,10l-61 0 0 -141z"/>'
+]
+
+
+var phonePopUp = [
+ '<path fill="#00CCFF" fill-opacity="0.4" stroke="#026493" stroke-width="4" stroke-opacity="0.4" d="M65 127l544 0c11,0 20,9 20,20l0 324c0,11 -9,20 -20,20l-544 0c-11,0 -20,-9 -20,-20l0 -324c0,-11 9,-20 20,-20z"/>'
+  ,'<path id="phonepopupcross" fill="#00CCFF" fill-opacity="0.01" stroke="#026493" stroke-width="2" d="M598 173c9,0 16,-7 16,-16 0,-9 -7,-16 -16,-16 -8,0 -16,7 -16,16 0,9 8,16 16,16zm-8 -8l16 -16m0 16l-16 -16"/>'
+  ,'<text x="238" y="173"  fill="#024260" font-weight="normal" font-size="24px" font-family="Arial">Startup Workshop</text>'
+  ,'<text x="137" y="207"  fill="#024260" font-weight="normal" font-size="18px" font-family="Arial">We would love to chat about your projects and ideas!</text>'
+  ,'<text x="228" y="327"  fill="#024260" font-weight="normal" font-size="18px" font-family="Arial">What can we help you with: </text>'
+  ,'<text x="180" y="365"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Send us an email: </text>'
+  ,'<text x="331" y="364"  fill="#026493" stroke="#026493" stroke-width="0.5" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7"> ideas@sw.ai </text>'
+  ,'<text x="244" y="389"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Or call us:</text>'
+  ,'<text x="331" y="389"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7"> (+1) 408.396.0881 </text>'
+  ,'<text x="225" y="437"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">340 S. Lemon Ave #8349, </text>'
+  ,'<text x="239" y="461"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">Walnut, CA 91789 USA</text>'
+  ,'<text x="336" y="245"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">Name: </text>'
+  ,'<text x="336" y="269"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">Email: </text>'
+  ,'<text x="336" y="293"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">Phone: </text>'
+  ,'<text x="272" y="245"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Name: </text>'
+  ,'<text x="275" y="269"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Email: </text>'
+  ,'<text x="268" y="293"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Phone: </text>'
 ]

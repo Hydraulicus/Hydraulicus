@@ -7,8 +7,9 @@ var rhythm = 300, //ms, of knee shacking
       nNorm = 1500 / normSpeedK,
       cycle = nNorm+ nfast + nNorm;
 
-      var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubbles_arr = [], path4bubble = []
-        , portoBlocks = [] //array for text blocks of services popup
+var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubbles_arr = [], path4bubble = []
+         ,portoBlocks = [] //array for text blocks of services popup
+         ,constPlay = true //developer mode flag - to play constant animation
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,pulseShow=false
@@ -17,7 +18,7 @@ var rhythm = 300, //ms, of knee shacking
          ,steamGradient
          ,path4throwing
          ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin, plant, can, flowers,waterб ,cooler,Glass,Cooler,water_into_glass,waterInGlass,_sheet, _printer, _blue_light, _red_light, _yellow_light;
-var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup, calendarPaper, servicesSet, shalfesSet;
+var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup, calendarPaper, servicesSet, shalfesSet, semitransparentCoversSet;
 var transitionNote = 't0,0s0.1';
 var transitionNoteEnd = 't0,0s1';
 var clocK = {cx : 1842, cy : 149};
@@ -81,15 +82,11 @@ GhaziFaceSet.add(GhaziSmile);
 
 steamGradient = animSvg.gradient("l(0, 0, 1, 1)#efefef-#fff-#efefef");
 mugSteam = animSvg.path(steam[0]+steam[1]+steam[2]+steam[3]).attr({opacity : 1, fill : steamGradient});
-
-mug = animSvg.path(mugD)
-              .attr({stroke:'#1FB1E9', 'stroke-width':1, fill : '#1FB1E9', 'fill-rule' : "evenodd"});
-
+mug = animSvg.path(mugD).attr({stroke:'#1FB1E9', 'stroke-width':1, fill : '#1FB1E9', 'fill-rule' : "evenodd"});
 mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"});
 fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
 
 Secondsmile = Snap.select('#secondsmile');
-
 SecondFace = animSvg.ellipse(1215, 438, 46, 70) //ellipse for face hover effect
                    .attr({opacity : 0, cursor : "pointer"})
                    .hover(SecondMouseOn, SecondMouseOff)
@@ -99,7 +96,7 @@ secondhands[0] = Snap.select('#lefthand');
 secondhands[1] = Snap.select('#righthand');
 secondEyes[0] = Snap.select('.eye0');
 secondEyes[1] = Snap.select('.eye1');
- constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+if ( constPlay ) constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -110,12 +107,10 @@ throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'rais
           dashi[0].initDraw(); 
           dashi[0].callOnFinished = function() {dashi[1].initDraw(); }; 
 
-          // dashi[1].callOnFinished = function() { dashi[2].initDraw();};
-//draw chear           dashi[1].callOnFinished = function() {};
 shalfesSetDraw();
-sheetprinters();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+if ( constPlay ) sheetprinters();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 drawCalendar();
-dispenserAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+if ( constPlay ) dispenserAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 animSvg.add(Snap.parse(throwPaper));
 animSvg.add(Snap.parse(bin));
 Bin = Snap.select('#bin')
@@ -150,7 +145,9 @@ drawObjects();
 animSvg.add(Snap.parse(bigopenedfile));
 
 drawerHandler();
+
 servicesPopUpDraw();
+
 animSvg.add(Snap.parse(mapa));//add MAP
 bookmarks.draw();
 animSvg.add(Snap.parse(bigOpenedFile));//file full size , initialized hidden 
@@ -177,7 +174,7 @@ GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).at
 SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'}).attr({'visibility' : 'hidden'});
 
 secondsweater = Snap.select('#secondsweater'); 
-SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+if ( constPlay ) SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
@@ -199,9 +196,31 @@ Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
 
-clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+if ( constPlay ) clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+
+phonePopupDraw();
 
 };//end of init function
+
+
+var phonePopupGroup;
+function phonePopupDraw(){
+    Snap.select('#phoneCover').click(phoneClick).attr({cursor : "pointer"});
+   phonePopupGroup = animSvg.paper.g().attr({'id' : 'services'}).addClass("visibility_hid").transform('t0 150,s0.01');
+   for (var j in phonePopUp) {    
+                  phonePopupGroup.add(Snap.parse(phonePopUp[j]));     
+   }
+}
+
+function phoneClick(){
+  phonePopupGroup.removeClass('visibility_hid').animate({transform : "t0 50,s1 1"}, rhythm, mina.backout);
+  Snap.select('#phonepopupcross').click(phoneClose).attr({cursor : "pointer"});
+}
+
+function phoneClose(){
+   // console.log('phoneClick');
+  phonePopupGroup.animate({transform : "t0 200,s0.01"}, rhythm, mina.backin, function(){this.addClass('visibility_hid')});
+}
 
 
 
@@ -222,7 +241,8 @@ var servicePattern = animSvg
 var serviceBackground = animSvg.polyline(221,137, 1699,137, 1699,995, 221,995).attr({fill : "#fff"});
 var serviceBackgroundPatterned = animSvg.polyline(221,137, 1699,137, 1699,995, 221,995).attr({fill : servicePattern});
 
-    servicesSet = animSvg.paper.g().attr({'id' : 'services'}).addClass("visibility_hid").transform('t600 -500,s0.01');
+
+    servicesSet = animSvg.paper.g().attr({'id' : 'services'}).addClass("visibility_hid").transform('t600 -350,s0.01');
     servicesSet.add(serviceBackground).add(serviceBackgroundPatterned);
 
       for (var j in servicesPopUp) { 
@@ -234,18 +254,22 @@ var serviceBackgroundPatterned = animSvg.polyline(221,137, 1699,137, 1699,995, 2
               var tempcoord = portoBlocks[portoBlocks.length-1].getBBox();
               var bobo = animSvg.multitext(tempcoord.x+35, tempcoord.y+35, textblocks[portoBlocks.length-1], tempcoord.w-35,  { "font-size": "20px", "font-family":'Arial'  });
               portoBlocks[portoBlocks.length-1].add(bobo);
-              portoBlocks[portoBlocks.length-1].transform('s1 0.001 '+tempcoord.x+' '+tempcoord.y).addClass("visibility_hid")
+              portoBlocks[portoBlocks.length-1].transform('s1 0.005 '+tempcoord.x+' '+tempcoord.y).addClass("visibility_hid")
           }
+
           else { 
                   var unit_= Snap.parse(servicesPopUp[j]);
                   servicesSet.add(unit_);
                 }
+        }//end for
 
-          if (j == servicesPopUp.length-1) {
-            Snap.selectAll(".blocks").forEach(function(element){element.mouseover(mouseOnGrayTitle).mouseout(mouseOutGrayTitle);})
-          }
-        };//end for
-      // Snap.select('#services')
+    semitransparentCoversSet = animSvg.paper.g().attr({'id' : ''}).addClass("visibility_hid");
+
+        for (var j in semitransparentCovers) { 
+                  semitransparentCoversSet.add(Snap.parse(semitransparentCovers[j]));
+          if (j == semitransparentCovers.length-1) { Snap.selectAll(".blocks").forEach(function(element){element.mouseover(mouseOnGrayTitle).mouseout(mouseOutGrayTitle);}) }
+        }//end for
+
 };
 
 function mouseOnGrayTitle (){
@@ -262,15 +286,19 @@ function mouseOutGrayTitle (){
   portoBlocks[that].stop().animate( {transform : 's1 0.001 '+tempcoord.x+' '+tempcoord.y}, rhythm*0.3, mina.easeinout ).addClass("visibility_hid")
 }
 
+
 function shalfesSetClick(){
   console.log('shalfesSetClick');
   Snap.select('#mapa').animate({opacity : 0},rhythm*0.75, function(){this.addClass('visibility_hid');  });
   Snap.select("#servicesCross").click(servicesPopUpClose).attr({'cursor' : 'pointer'});
   servicesSet.removeClass("visibility_hid").stop().animate({transform : transitionNoteEnd},  rhythm*1.5,  mina.backout);
+  semitransparentCoversSet.removeClass("visibility_hid")//.stop().animate({transform : transitionNoteEnd},  rhythm*1.5,  mina.backout);
+
 }
 
 function servicesPopUpClose() {
   Snap.select("#servicesCross").unclick(servicesPopUpClose);
+  semitransparentCoversSet.addClass("visibility_hid");
   servicesSet.stop().animate({transform : 't600 -500,s0.01'}, rhythm*1.5,  mina.backin, function(){servicesSet.addClass("visibility_hid"); Snap.select('#mapa').removeClass('visibility_hid').animate({opacity : 1},rhythm*0.5);});
 }
   
@@ -427,13 +455,13 @@ function portfolioPage (itemN){
   this.show  = function (){
       // console.log(itemN);
       text[0] = animSvg.multitext(955, 210, getallcabinetdata["results"]['items'][itemN]['title'], 500,{ "font-size": "3rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
-      text[1] = animSvg.multitext(730, 280, getallcabinetdata["results"]['items'][itemN]['subtitle'], 500,{ "font-size": "2rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
+      text[1] = animSvg.multitext(955, 280, getallcabinetdata["results"]['items'][itemN]['subtitle'], 500,{ "font-size": "2rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
       text[2] = animSvg.multitext(730, 730, getallcabinetdata["results"]['items'][itemN]['description'], 520,{ "font-size": "1.2rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
       text[3] = animSvg.image(getallcabinetdata["results"]['items'][itemN]['image_url'], 688, 320, 552, 345);
-      text[4] = animSvg.multitext(880, 950, getallcabinetdata["results"]['items'][itemN]['add_date'], 500,{ "font-size": "1rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
+      // text[4] = animSvg.multitext(880, 950, getallcabinetdata["results"]['items'][itemN]['add_date'], 500,{ "font-size": "1rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
       text[5] = Snap.parse('  <polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="683,374 683,315 742,315 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="684,612 684,670 742,670 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="1245,374 1245,315 1186,315 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="1245,612 1245,670 1186,670 "/>');
        followPage = Snap.select('#text_title').clone();
-       followPage.add(text[0]).add(text[1]).add(text[2]).add(text[3]).add(text[4]).add(text[5]);
+       followPage.add(text[0]).add(text[1]).add(text[2]).add(text[3]).add(text[5]);
        // text.forEach(function(element){ followPage.add(elem); }) ;
   }
   this.hide = function () {
