@@ -9,7 +9,7 @@ var rhythm = 300, //ms, of knee shacking
 
 var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubbles_arr = [], path4bubble = []
          ,portoBlocks = [] //array for text blocks of services popup
-         ,constPlay = true //developer mode flag - to play constant animation
+         ,constPlay = false //developer mode flag - to play constant animation
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,pulseShow=false
@@ -18,7 +18,7 @@ var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubble
          ,steamGradient
          ,path4throwing
          ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin, plant, can, flowers,waterб ,cooler,Glass,Cooler,water_into_glass,waterInGlass,_sheet, _printer, _blue_light, _red_light, _yellow_light;
-var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup, calendarPaper, servicesSet, shalfesSet, semitransparentCoversSet;
+var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup, calendarPaper, servicesSet, shalfesSet, semitransparentCoversSet, phonePopupGroup;
 var transitionNote = 't0,0s0.1';
 var transitionNoteEnd = 't0,0s1';
 var clocK = {cx : 1842, cy : 149};
@@ -203,7 +203,6 @@ phonePopupDraw();
 };//end of init function
 
 
-var phonePopupGroup;
 function phonePopupDraw(){
     Snap.select('#phoneCover').click(phoneClick).attr({cursor : "pointer"});
    phonePopupGroup = animSvg.paper.g().attr({'id' : 'services'}).addClass("visibility_hid").transform('t0 150,s0.01');

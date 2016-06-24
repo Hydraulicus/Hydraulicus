@@ -1,2 +1,9 @@
-var getallcabinetdata =
+var 
+getallcabinetdata =
 {"code":200,"status":"ok","results":{"cabinetTitle":"News","cabinetDescription":"We will add a description here for the main opening screen","items":[{"id":"6","tab_text":"Jobs","title":"Squirrel Jobs","subtitle":"Web App","description":"will add details here blah blah blah will add details here blah blah blah will add details here blah blah blah","image_url":"http://www.graphicsfuel.com/wp-content/uploads/2016/01/harcover-book-mockup.jpg","add_date":"2016-06-14 11:16:39"},{"id":"5","tab_text":"DA","title":"Digital Anarchy","subtitle":"E-Commerce Platform","description":"will add details here blah blah blah will add details here blah blah blah will add details here blah blah blah","image_url":"http://www.graphicsfuel.com/wp-content/uploads/2016/01/standing-business-cards-mockup.jpg","add_date":"2016-06-14 11:16:27"},{"id":"4","tab_text":"Inflo","title":"Inflo.IO","subtitle":"Design Services","description":"will add details here blah blah blah will add details here blah blah blah will add details here blah blah blah","image_url":"https://www.mockupworld.co/wp-content/uploads/edd/2015/09/Free-Macbook-Pro-PSD-Mockup.jpg","add_date":"2016-06-14 11:16:16"},{"id":"3","tab_text":"Design","title":"Design","subtitle":"Services ","description":"will add details here blah blah blah will add details here blah blah blah will add details here blah blah blah","image_url":"http://www.webdesigndev.com/wp-content/uploads/2015/01/Cutout-Logo-MockUp-e1421779051582.jpg","add_date":"2016-06-14 11:16:05"},{"id":"2","tab_text":"IAG","title":"It's A Grind","subtitle":"Mobile App","description":"will add details here blah blah blah will add details here blah blah blah will add details here blah blah blah","image_url":"https://d13yacurqjgara.cloudfront.net/users/599747/screenshots/2361951/dribbble.jpg","add_date":"2016-06-14 11:12:29"}]}}
+,
+
+getphonepopupdata = 
+{"code":200,"status":"ok","results":{name : "Name", email : "E-MAIL", phone : "phone"}
+}
+
