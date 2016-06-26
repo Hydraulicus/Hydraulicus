@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Discover the world with City Lit</title>
+
+		<link href="ammap/ammap.css" rel="stylesheet">
+		<link href="css/dist/app.min.css" rel="stylesheet">
+
+	</head>
+	<body>
+
+		<div class="wrap">
+
+			<header class="header js-header">
+				<div class="header__inner h-clearfix">
+					<div class="h-pull-left">
+						<h1>Discover the world with City Lit</h1>
+					</div>
+					<div class="h-pull-right">
+						<div class="header__instructions">
+							<p>Click on a country...</p>
+							<select class="js-language-choice">
+								<option value="">or select a language</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<div class="scene js-scene">
+
+				<div class="map js-map"></div>
+
+				<div class="country-info-box -arrow-left is-hidden js-country-info-box"></div>
+				<div class="language-info-box -arrow-top is-hidden js-language-info-box"></div>
+
+				<div class="top10-info-box js-demand-info-box is-hidden">
+					<h3 class="top10-info-box__title">In demand by UK employers</h3>
+					<p>These rankings are based on a survey carried out for the CBI Education & skills survey, in which 542 UK firm managers were asked which languages are useful to their business.</p>
+				</div>
+
+				<div class="top10-info-box js-difficulty-info-box is-hidden">
+					<h3 class="top10-info-box__title">Amount of hours it takes a native English speaker</h3>
+					<p>The Foreign Service institute of the U.S department of state compiles learning expectations for many languages based on the amount of hours it takes a native English speaker to achieve speaking and reading proficiency. </p>
+				</div>
+
+				<div class="top10-info-box js-speakers-info-box is-hidden">
+					<h3 class="top10-info-box__title">Languages with the most speakers</h3>
+					<p>The world's most widely spoken languages by number of native speakers and as a second language, according to figures from UNESCO (The United Nations’ Educational, Scientific and Cultural Organization).</p>
+				</div>
+
+				<div class="bubble -bubble-big js-bubble-legend is-hidden">
+					<p class="bubble__text js-bubble-text">= class<br>hours</p>
+				</div>
+
+			</div>
+
+			<footer class="footer js-footer">
+				<div class="footer__inner">
+					<img src="img/top10languages.png" alt="Top 10 languages">
+					<a href="#" class="footer__link js-top-demand -person-icon -color-green">in demand by UK employers</a>
+					<a href="#" class="footer__link js-top-speakers -bubble-icon -color-purple">with the most speakers</a>
+					<a href="#" class="footer__link js-top-difficulty -book-icon -color-red">ranked by difficulty to learn</a>
+				</div>
+			</footer>
+
+		</div>
+
+		<script src="ammap/ammap.js"></script>
+		<script src="ammap/maps/js/worldLowCustom.js"></script>
+		<script src="js/dist/app.min.js"></script>
+	</body>
+</html>
