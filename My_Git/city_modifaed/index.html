@@ -9,6 +9,7 @@
 
 		<link href="ammap/ammap.css" rel="stylesheet">
 		<link href="css/dist/app.min.css" rel="stylesheet">
+		<link href="css/splashpage.css" rel="stylesheet">
 
 	</head>
 	<body>
@@ -30,6 +31,7 @@
 					</div>
 				</div>
 			</header>
+
 
 			<div class="scene js-scene">
 
@@ -56,9 +58,11 @@
 				<div class="bubble -bubble-big js-bubble-legend is-hidden">
 					<p class="bubble__text js-bubble-text">= class<br>hours</p>
 				</div>
-
-			</div>
-
+				 <div id="4splashpage" class="flexcontainer" style='position: absolute; top : 1px; width:100%; height: 100%; margin: auto'>
+					<svg id="splashpage" class="flexchild" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" >
+			   		</svg>
+				 </div>
+			</div> <!-- end of scene -->
 			<footer class="footer js-footer">
 				<div class="footer__inner">
 					<img src="img/top10languages.png" alt="Top 10 languages">
@@ -73,5 +77,7 @@
 		<script src="ammap/ammap.js"></script>
 		<script src="ammap/maps/js/worldLowCustom.js"></script>
 		<script src="js/dist/app.min.js"></script>
+		<script src="js/snap.svg-min.js"></script>
+		<script src="js/splashpage.js"></script>
 	</body>
 </html>
