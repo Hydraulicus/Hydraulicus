@@ -1,15 +1,6 @@
-@font-face {
-  font-weight:normal;
-  font-family: AvenirNextLT; 
-  src: url('avenirnextltpro-regular.otf');
-}
-@font-face {
-  font-weight:bold;
-  font-family: AvenirNextLT; 
-  src: url('avenirnextltpro-bold.otf');
-}
+
 .flexcontainer {
-  display: flex; /* or inline-flex */
+  display: flex; 
   height: 100%; 
 }
 .flexchild {
