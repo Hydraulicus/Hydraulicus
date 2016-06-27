@@ -1,0 +1,75 @@
+// -----------------------------------------------------------------------------
+// Tooltip
+// -----------------------------------------------------------------------------
+
+.tooltip {
+	background-color: #fff;
+	box-shadow: 2px 2px 7px -1px rgba(0, 0, 0, 0.5);
+	color: #575252;
+	font-size: 1.6rem;
+	opacity: 1;
+	padding: 0.2rem 0.5rem;
+	position: absolute;
+	transform: translateY( 0 );
+	transition: all 0.5s ease-in-out;
+	z-index: 10;
+
+	&:after {
+		background-color: #fff;
+		bottom: 0;
+		content: "";
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: -1;
+	}
+
+	b {
+		font-weight: 800;
+	}
+
+	&.-arrow-top:before {
+		border: 0.8rem solid #fff;
+		box-shadow: 2px 1px 7px -1px rgba(0, 0, 0, 0.5);
+		content: "";
+		display: block;
+		height: 0;
+		left: 50%;
+		margin-left: -1.2rem;
+		position: absolute;
+		top: 0.1rem;
+		transform-origin: 0 0;
+		transform: rotate( -45deg );
+		width: 0;
+		z-index: -1;
+	}
+
+	&.-arrow-bottom:before {
+		border: 0.8rem solid #fff;
+		bottom: -1.5rem;
+		box-shadow: 2px 1px 7px 1px rgba(0, 0, 0, 0.5);
+		content: "";
+		display: block;
+		height: 0;
+		left: 50%;
+		margin-left: -1.2rem;
+		position: absolute;
+		transform-origin: 0 0;
+		transform: rotate( -45deg );
+		width: 0;
+		z-index: -1;
+	}
+
+	&.is-hidden {
+		opacity: 0;
+
+		&.-arrow-top {
+			transform: translateY( -1rem );
+		}
+
+		&.-arrow-bottom {
+			transform: translateY( 1rem );
+		}
+	}
+}
