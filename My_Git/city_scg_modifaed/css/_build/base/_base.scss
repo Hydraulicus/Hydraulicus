@@ -1,0 +1,28 @@
+// -----------------------------------------------------------------------------
+// Basic general styles
+// -----------------------------------------------------------------------------
+
+html {
+	box-sizing: border-box;
+}
+
+html, body {
+	overflow: hidden;
+}
+
+body {
+	background-color: #575354;
+	line-height: 1.4;
+}
+
+*, *::before, *::after {
+	box-sizing: inherit;
+}
+
+img {
+	display: inline-block;
+	height: auto;
+	max-height: 100%;
+	max-width: 100%;
+	width: auto;
+}
