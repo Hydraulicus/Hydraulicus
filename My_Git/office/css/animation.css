@@ -5,20 +5,38 @@
         }
       @font-face {
           font-weight:normal;
-          font-family: digital-7; 
+          font-family: "digital-7"; 
           src: url('digital-7italic.otf');
         }
+    .flexcontainer {
+      display: flex; 
+      height: 100%; 
+       justify-content: center;
+
+    }
+    .flexchild {
+      /*width: 100%;  */
+      /*height: 100%;*/
+      /*margin: auto;  */
+        flex: 0 0 100%;
+    }
+
+    .macbookbackground{
+      border: 1px solid red;
+      
+       background-image: url(mackboock.svg);
+      background-repeat: no-repeat;
+    background-position: center;
+  -webkit-background-size: 100% 100%;           /* Safari 3.0 */
+     -moz-background-size: 100% 100%;           /* Gecko 1.9.2 (Firefox 3.6) */
+       -o-background-size: 100% 100%;           /* Opera 9.5 */
+          background-size: 100% 100%;           /* Gecko 2.0 (Firefox 4.0) and other CSS3-compliant browsers */
+     }
 
     .visibility_hid{  visibility: hidden }
+    .display_none{  display: none }
     .hidden_{opacity: 0;}
 
-/*    .servistextblock {
-      margin : 2rem ;
-      font : 1.2em/1em sans-serif; 
-      font-weight : normal;
-      line-height : 1.25;
-    }
-*/
     .str5 {stroke:#F9CA6B;stroke-width:1}
     .str6 {stroke:#CCCCCC;stroke-width:1} 
     .str0 {stroke:#EF977C;stroke-width:7;stroke-linecap:round}

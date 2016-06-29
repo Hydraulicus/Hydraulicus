@@ -9,7 +9,7 @@ var rhythm = 300, //ms, of knee shacking
 
 var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubbles_arr = [], path4bubble = []
          ,portoBlocks = [] //array for text blocks of services popup
-         ,constPlay = true //developer mode flag - to play constant animation
+         ,constPlay = false //developer mode flag - to play constant animation
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,pulseShow=false
@@ -199,9 +199,50 @@ lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.
 if ( constPlay ) clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 phonePopupDraw();
-
+laptopEvents();
 };//end of init function
 
+function laptopEvents(){
+  Snap.select("#macbook").click(laptopPortfolioAnimation).attr({'cursor' : 'pointer'});
+  Snap.select("#macbook2").click(laptopPortfolioAnimation).attr({'cursor' : 'pointer'});
+}
+
+function laptopPortfolioAnimation(){
+$("#4splashpage").removeClass("display_none");
+showMacbook()
+// showModalMacbook()
+}
+
+var bigMacBookSnap;
+function showMacbook(){
+  // console.log('showMacbook');
+  
+  bigMacBookSnap = Snap("#splashMacBook")
+  .attr({ viewBox: "0 0 1920 1080", preserveAspectRatio : "xMidYMid meet"})
+  .click(removebigMacBook);
+  bigMacBookSnap.add(Snap.parse(bigSizeLaptop));
+  // Snap.select("#bigcross").transform('s0.01,0.01').removeClass("visibility_hid").animate({transform : "s1,1"}, rhythm, mina.backout, function(){});
+  var bigCross = Snap.select("#bigcross").attr({'cursor' : 'pointer'});
+  var bigArrow = Snap.select("#bigarrow").attr({'cursor' : 'pointer'});
+  var macbookinterfaceLine = Snap.select("#macbookinterface");
+  var bigMac = Snap.select("#bigmacbook");
+  bigMac.append(bigCross).append(bigArrow).append(macbookinterfaceLine);
+  bigMac.transform('s0.01,0.01').removeClass("visibility_hid").animate({transform : "s1,1"}, rhythm, mina.backout, function(){});
+}  
+
+function showModalMacbook(){
+  // console.log('showMacbook');
+  $("#4splashpage")
+      .bind('click',removebigMacBook);
+}  
+
+
+function removebigMacBook(){
+  // console.log('removebigMacBook');
+  // console.log(bigMacBookSnap);
+  $("#4splashpage").addClass("display_none");
+  bigMacBookSnap.clear();
+}
 
 function phonePopupDraw(){
     Snap.select('#phoneCover').click(phoneClick).attr({cursor : "pointer"});
@@ -1028,30 +1069,21 @@ function water_off(){
 
 }
 function glassDisapear(){
-
-            
-
             Glass.animate({opacity : 0} , rhythm*10 ,mina.easyinout);
-
             waterInGlass.animate({opacity : 0} , rhythm*10 , mina.easyinout , function(){ start_position(); });
-            
             animSvg.select('#water_top').animate({fill : '#FAFAFA'}, rhythm*10);
             animSvg.select('#glass_bottom').animate({fill : '#FAFAFA'}, rhythm*10);
 
 }
 function start_position(){
-
             waterInGlass.attr({transform : 't0,0'});
             Glass.removeClass('active');
 }
 function coolerOver(){
-
             Glass.animate({opacity:.8},rhythm);
             animSvg.select('#water_top').animate({opacity:.8},rhythm);
-
 }
 function coolerOut(){
-
             if(!Glass.hasClass('active')){
                                Glass.animate({opacity:0},rhythm);
               }                 
