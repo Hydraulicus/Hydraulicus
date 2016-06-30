@@ -9,7 +9,7 @@ var rhythm = 300, //ms, of knee shacking
 
 var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubbles_arr = [], path4bubble = []
          ,portoBlocks = [] //array for text blocks of services popup
-         ,constPlay = true //developer mode flag - to play constant animation
+         ,constPlay = false //developer mode flag - to play constant animation
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,pulseShow=false
@@ -153,25 +153,7 @@ bookmarks.draw();
 animSvg.add(Snap.parse(bigOpenedFile));//file full size , initialized hidden 
 circlesssss = animSvg.add(Snap.parse(circles)) ;//add circles around pins of marks
 
-var spich1 = animSvg.path(Ghazi[3].speechOut).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
-var spich2 = animSvg.path(Ghazi[3].speechIn).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
-var spich3 = animSvg.path(secondSpeech.outer).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
-var spich4 = animSvg.path(secondSpeech.inner).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
-
-
-var spichCross1 = animSvg.path(Ghazi[3].speechCross)
-                        .attr({stroke :'#ccc', fill : '#fff', 'stroke-width' : 3})
-                        .attr({cursor : 'pointer'})
-                        .click(function() { GhaziSpich.animate({transform : myMatrix}, 750,  mina.backin);})
-                        ;
-var spichCross2 = animSvg.path(secondSpeech.cross)
-                        .attr({stroke :'#ccc', fill : '#fff', 'stroke-width' : 3})
-                        .attr({cursor : 'pointer'})
-                        .click(function() { SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin);})
-                        ; 
-
-GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).attr({'id' : 'speech1'}).attr({'visibility' : 'hidden'});
-SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'}).attr({'visibility' : 'hidden'});
+speeches();
 
 secondsweater = Snap.select('#secondsweater'); 
 if ( constPlay ) SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
@@ -213,29 +195,34 @@ showMacbook()
 // showModalMacbook()
 }
 
-var bigMacBookSnap;
+var bigMacBookSnap, bigArrow, MacBookTitle, currentPage;
+
 function showMacbook(){
   // console.log('showMacbook');
-  
-  bigMacBookSnap = Snap("#splashMacBook")
-  .attr({ viewBox: "0 0 1920 1080", preserveAspectRatio : "xMidYMid meet"})
-  .click(removebigMacBook);
+  currentPage = -1;//show title page
+  bigMacBookSnap = Snap("#splashMacBook").attr({ viewBox: "0 0 1920 1080", preserveAspectRatio : "xMidYMid meet"});
   bigMacBookSnap.add(Snap.parse(bigSizeLaptop));
   // Snap.select("#bigcross").transform('s0.01,0.01').removeClass("visibility_hid").animate({transform : "s1,1"}, rhythm, mina.backout, function(){});
-  var bigCross = Snap.select("#bigcross").attr({'cursor' : 'pointer'});
-  var bigArrow = Snap.select("#bigarrow").attr({'cursor' : 'pointer'});
+  var bigCross = Snap.select("#bigcross").attr({'cursor' : 'pointer'}).click(removebigMacBook);
+   bigArrow = Snap.select("#bigarrow").attr({'cursor' : 'pointer'}).click(nextPageInMacBook);
   var macbookinterfaceLine = Snap.select("#macbookinterface");
   var bigMac = Snap.select("#bigmacbook");
   bigMac.append(bigCross).append(bigArrow).append(macbookinterfaceLine);
   bigMac.transform('s0.01,0.01').removeClass("visibility_hid").animate({transform : "s1,1"}, rhythm, mina.backout, function(){});
+  MacBookTitle = new titleMacBookPage();
+  MacBookTitle.show()
+  
 }  
 
-function showModalMacbook(){
-  // console.log('showMacbook');
-  $("#4splashpage")
-      .bind('click',removebigMacBook);
-}  
-
+function nextPageInMacBook(nPage){
+  if (currentPage === -1)  {MacBookTitle.hide(); delete MacBookTitle }
+    else MacBookPage.hide();
+  ++currentPage;
+  if (currentPage > getallcabinetdata["results"]['items'].length-1) currentPage = 0;
+  MacBookPage = new portfolioMacBookPage(currentPage);
+   MacBookPage.show();
+  bigArrow.hover(MacBookPage.blurePage, MacBookPage.unblurePage);
+}
 
 function removebigMacBook(){
   // console.log('removebigMacBook');
@@ -244,6 +231,67 @@ function removebigMacBook(){
   bigMacBookSnap.clear();
 }
 
+function titleMacBookPage (itemN){
+  var text = [];
+  var followPage;
+  var lotoftext = " Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non  proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ";
+  var RightList = '';
+
+  this.show  = function (){
+      console.clear(); 
+getallcabinetdata["results"]['items'].forEach(function(element) { RightList+="__"+"- "+element["title"]; console.log( element["title"] );})
+      text[0] = bigMacBookSnap.multitext(805, 240, getallcabinetdata["results"]['items'][0]['title'], 500, { "font-size": "3rem","fill":"white","font-family" : "Arial","text-anchor" : "middle" });
+      text[1] = bigMacBookSnap.multitext(805, 310, lotoftext, 800, { "font-size": "2rem","fill":"white","font-family" : "Arial","text-anchor" : "middle" });
+
+
+      text[2] = bigMacBookSnap.multiList(1250, 230, RightList, 320, { "font-size": "2rem","fill":"white","font-family" : "Arial","text-anchor" : "start" });
+
+      // text[3] = bigMacBookSnap.image(getallcabinetdata["results"]['items'][itemN]['image_url'], 343, 363, 875, 539);
+      // text[4] = animSvg.multitext(880, 950, getallcabinetdata["results"]['items'][itemN]['add_date'], 500,{ "font-size": "1rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
+       followPage = Snap.select('#bigmacbook');
+       // followPage.add(Snap.circle(500,500,200).attr({fill : 'red'}));
+       followPage.add(text[0]).add(text[1]).add(text[2]);
+  }
+  this.hide = function () {
+      text.forEach(function(element) { element.remove();})
+  }
+  
+
+}
+
+function portfolioMacBookPage (itemN){
+  var text = [];
+  var followPage;
+  var f = bigMacBookSnap.filter(Snap.filter.blur(10, 10));
+  var filterChild = f.node.firstChild;
+
+  this.show  = function (){
+      text[0] = bigMacBookSnap.multitext(805, 240, getallcabinetdata["results"]['items'][itemN]['title'], 500, { "font-size": "3rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
+      text[1] = bigMacBookSnap.multitext(805, 310, getallcabinetdata["results"]['items'][itemN]['subtitle'], 500, { "font-size": "2rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
+      text[2] = bigMacBookSnap.multitext(1250, 230, getallcabinetdata["results"]['items'][itemN]['description'], 320, { "font-size": "1.2rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
+      text[3] = bigMacBookSnap.image(getallcabinetdata["results"]['items'][itemN]['image_url'], 343, 363, 875, 539);
+       followPage = Snap.select('#bigmacbook');
+        text.forEach(function(element) {element.attr({filter: f});});
+        Snap.animate( 20, 0, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm );
+       followPage.add(text[0]).add(text[1]).add(text[2]).add(text[3]);
+  }
+  this.hide = function () {
+      text.forEach(function(element) {element.remove();})
+  }
+
+  this.blurePage = function (){
+    Snap.animate( 0, 20, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm );
+  }   
+  this.unblurePage = function (){
+    Snap.animate( 20, 0, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm );
+  } 
+
+}
+
+// var MacBookPage = new portfolioMacBookPage(0);
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 function phonePopupDraw(){
     Snap.select('#phoneCover').click(phoneClick).attr({cursor : "pointer"});
    phonePopupGroup = animSvg.paper.g().attr({'id' : 'services'}).addClass("visibility_hid").transform('t0 150,s0.01');
@@ -1012,6 +1060,25 @@ function mapClick(ev){
   Snap.select('#annotation').attr({'opacity' : 1});
   console.log('Click on map',pulseShow);
 
+}
+
+function speeches(){
+  var spich1 = animSvg.path(Ghazi[3].speechOut).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
+  var spich2 = animSvg.path(Ghazi[3].speechIn).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
+  var spich3 = animSvg.path(secondSpeech.outer).attr({stroke:'#ccc', fill : '#ccc', 'stroke-width':1});
+  var spich4 = animSvg.path(secondSpeech.inner).attr({stroke:'#ccc', fill : '#fff', 'stroke-width':1});
+  var spichCross1 = animSvg.path(Ghazi[3].speechCross)
+                          .attr({stroke :'#ccc', fill : '#fff', 'stroke-width' : 3})
+                          .attr({cursor : 'pointer'})
+                          .click(function() { GhaziSpich.animate({transform : myMatrix}, 750,  mina.backin);})
+                          ;
+  var spichCross2 = animSvg.path(secondSpeech.cross)
+                          .attr({stroke :'#ccc', fill : '#fff', 'stroke-width' : 3})
+                          .attr({cursor : 'pointer'})
+                          .click(function() { SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin);})
+                          ; 
+  GhaziSpich = animSvg.paper.g(spich1, spich2, spichCross1).transform(myMatrix).attr({'id' : 'speech1'}).attr({'visibility' : 'hidden'});
+  SecondSpeech = animSvg.paper.g(spich3, spich4, spichCross2).transform(myMatrix2).attr({'id' : 'speech2'}).attr({'visibility' : 'hidden'});
 }
 
 function bubbleStart(){
