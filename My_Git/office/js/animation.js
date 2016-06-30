@@ -9,7 +9,7 @@ var rhythm = 300, //ms, of knee shacking
 
 var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubbles_arr = [], path4bubble = []
          ,portoBlocks = [] //array for text blocks of services popup
-         ,constPlay = false //developer mode flag - to play constant animation
+         ,constPlay = true //developer mode flag - to play constant animation
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,pulseShow=false
