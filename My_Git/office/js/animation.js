@@ -190,12 +190,21 @@ function laptopEvents(){
 }
 
 function laptopPortfolioAnimation(){
-$("#4splashpage").removeClass("display_none");
-showMacbook()
-// showModalMacbook()
+    $("#4splashpage").removeClass("display_none");
+    showMacbook();
+
+    $.ajax({
+      url: "http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData",
+      dataType: 'json',
+      type: "GET",
+      success: function(data){
+        console.log( "Retriev data: " + data );
+      }
+    });
+
 }
 
-var bigMacBookSnap, bigArrow, MacBookTitle, currentPage;
+var bigMacBookSnap, bigArrow, MacBookTitle, currentPage, bigMac;
 
 function showMacbook(){
   // console.log('showMacbook');
@@ -206,7 +215,7 @@ function showMacbook(){
   var bigCross = Snap.select("#bigcross").attr({'cursor' : 'pointer'}).click(removebigMacBook);
    bigArrow = Snap.select("#bigarrow").attr({'cursor' : 'pointer'}).click(nextPageInMacBook);
   var macbookinterfaceLine = Snap.select("#macbookinterface");
-  var bigMac = Snap.select("#bigmacbook");
+  bigMac = Snap.select("#bigmacbook");
   bigMac.append(bigCross).append(bigArrow).append(macbookinterfaceLine);
   bigMac.transform('s0.01,0.01').removeClass("visibility_hid").animate({transform : "s1,1"}, rhythm, mina.backout, function(){});
   MacBookTitle = new titleMacBookPage();
@@ -225,10 +234,11 @@ function nextPageInMacBook(nPage){
 }
 
 function removebigMacBook(){
-  // console.log('removebigMacBook');
+  console.log('removebigMacBook');
   // console.log(bigMacBookSnap);
-  $("#4splashpage").addClass("display_none");
-  bigMacBookSnap.clear();
+  bigMac.animate({transform : "s0.01,0.0"}, rhythm, mina.backin, function(){ $("#4splashpage").addClass("display_none"); bigMacBookSnap.clear();});
+  //
+  
 }
 
 function titleMacBookPage (itemN){
