@@ -193,16 +193,34 @@ function laptopPortfolioAnimation(){
     $("#4splashpage").removeClass("display_none");
     showMacbook();
 
+// $.getJSON('http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData&callback=?', function(data){
+//     console.log( "Retriev data: " + data );
+// });
+
     $.ajax({
-      url: "http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData",
-      dataType: 'json',
       type: "GET",
+      // data: {},
+      // url: "http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData",
+      url: "http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData&callback=mycallback",
+      // url: "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=processJSON&tags=monkey&tagmode=any&format=json",
+      // jsonpCallback: 'callback',
+      dataType: 'jsonp',
+      // jsonp: 'jsonp',
       success: function(data){
-        console.log( "Retriev data: " + data );
-      }
+        console.log( "Retriev data: ", data );
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+      console.log(xhr.status);
+      console.log(thrownError);
+    }
     });
 
 }
+
+// callback = function callback() {}
+mycallback = function(data){
+  alert(data.foo);
+};
 
 var bigMacBookSnap, bigArrow, MacBookTitle, currentPage, bigMac;
 
