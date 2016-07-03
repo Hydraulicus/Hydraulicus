@@ -193,27 +193,21 @@ function laptopPortfolioAnimation(){
     $("#4splashpage").removeClass("display_none");
     showMacbook();
 
-// $.getJSON('http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData&callback=?', function(data){
-//     console.log( "Retriev data: " + data );
-// });
-
-    $.ajax({
-      type: "GET",
-      // data: {},
-      // url: "http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData",
-      url: "http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData&callback=mycallback",
-      // url: "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=processJSON&tags=monkey&tagmode=any&format=json",
-      // jsonpCallback: 'callback',
-      dataType: 'jsonp',
-      // jsonp: 'jsonp',
-      success: function(data){
-        console.log( "Retriev data: ", data );
-      },
-      error: function (xhr, ajaxOptions, thrownError) {
-      console.log(xhr.status);
-      console.log(thrownError);
-    }
-    });
+    // $.ajax({
+    //   type: "GET",
+    //   // data: {},
+    //   // url: "http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData",
+    //   url: "http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData&callback=mycallback",
+    //   // jsonpCallback: 'callback',
+    //   dataType: 'jsonp',
+    //   success: function(data){
+    //     console.log( "Retriev data: ", data );
+    //   },
+    //   error: function (xhr, ajaxOptions, thrownError) {
+    //   console.log(xhr.status);
+    //   console.log(thrownError);
+    // }
+    // });
 
 }
 
@@ -245,7 +239,7 @@ function nextPageInMacBook(nPage){
   if (currentPage === -1)  {MacBookTitle.hide(); delete MacBookTitle }
     else MacBookPage.hide();
   ++currentPage;
-  if (currentPage > getallcabinetdata["results"]['items'].length-1) currentPage = 0;
+  if (currentPage > getAllPortfolioData["results"]['items'].length-1) currentPage = 0;
   MacBookPage = new portfolioMacBookPage(currentPage);
    MacBookPage.show();
   bigArrow.hover(MacBookPage.blurePage, MacBookPage.unblurePage);
@@ -262,22 +256,20 @@ function removebigMacBook(){
 function titleMacBookPage (itemN){
   var text = [];
   var followPage;
-  var lotoftext = " Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non  proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ";
+  var lotoftext = getPortfolioTitle.description;
   var RightList = '';
 
   this.show  = function (){
       console.clear(); 
-getallcabinetdata["results"]['items'].forEach(function(element) { RightList+="__"+"- "+element["title"]; console.log( element["title"] );})
-      text[0] = bigMacBookSnap.multitext(805, 240, getallcabinetdata["results"]['items'][0]['title'], 500, { "font-size": "3rem","fill":"white","font-family" : "Arial","text-anchor" : "middle" });
-      text[1] = bigMacBookSnap.multitext(805, 310, lotoftext, 800, { "font-size": "2rem","fill":"white","font-family" : "Arial","text-anchor" : "middle" });
+      Snap.select("#topbox").attr({fill : "#" + getPortfolioTitle["backColor1"]});
+      Snap.select("#rightbox").attr({fill : "#" + getPortfolioTitle["backColor2"]});
+      getAllPortfolioData["results"]['items'].forEach(function(element) { RightList+="__"+"- "+element["title"]; });
+      text[0] = bigMacBookSnap.multitext(805, 240, getPortfolioTitle["title"], 500, { "font-size": "3rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
+      text[1] = bigMacBookSnap.multitext(805, 310, lotoftext, 800, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
 
+      text[2] = bigMacBookSnap.multiList(1250, 230, RightList, 320, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "start" });
 
-      text[2] = bigMacBookSnap.multiList(1250, 230, RightList, 320, { "font-size": "2rem","fill":"white","font-family" : "Arial","text-anchor" : "start" });
-
-      // text[3] = bigMacBookSnap.image(getallcabinetdata["results"]['items'][itemN]['image_url'], 343, 363, 875, 539);
-      // text[4] = animSvg.multitext(880, 950, getallcabinetdata["results"]['items'][itemN]['add_date'], 500,{ "font-size": "1rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
        followPage = Snap.select('#bigmacbook');
-       // followPage.add(Snap.circle(500,500,200).attr({fill : 'red'}));
        followPage.add(text[0]).add(text[1]).add(text[2]);
   }
   this.hide = function () {
@@ -290,18 +282,34 @@ getallcabinetdata["results"]['items'].forEach(function(element) { RightList+="__
 function portfolioMacBookPage (itemN){
   var text = [];
   var followPage;
-  var f = bigMacBookSnap.filter(Snap.filter.blur(10, 10));
-  var filterChild = f.node.firstChild;
+  var f = bigMacBookSnap.filter(Snap.filter.blur(10, 10)), filterChild = f.node.firstChild;
 
   this.show  = function (){
-      text[0] = bigMacBookSnap.multitext(805, 240, getallcabinetdata["results"]['items'][itemN]['title'], 500, { "font-size": "3rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
-      text[1] = bigMacBookSnap.multitext(805, 310, getallcabinetdata["results"]['items'][itemN]['subtitle'], 500, { "font-size": "2rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
-      text[2] = bigMacBookSnap.multitext(1250, 230, getallcabinetdata["results"]['items'][itemN]['description'], 320, { "font-size": "1.2rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
-      text[3] = bigMacBookSnap.image(getallcabinetdata["results"]['items'][itemN]['image_url'], 343, 363, 875, 539);
+      Snap.select("#topbox").attr({fill : "#" + getAllPortfolioData["results"]['items'][itemN]["backColor1"]});
+      Snap.select("#rightbox").attr({fill : "#" + getAllPortfolioData["results"]['items'][itemN]["backColor2"]});
+      Snap.select("#bottombox").attr({fill : "#" + getAllPortfolioData["results"]['items'][itemN]["backColor3"]});
+
+      if (typeof getAllPortfolioData["results"]['items'][itemN]['image1URL'] !== "undefined" ) { text[0] = bigMacBookSnap.image(getAllPortfolioData["results"]['items'][itemN]['image1URL'], 341, 161, 879, 203); }
+      if (typeof getAllPortfolioData["results"]['items'][itemN]['image2URL'] !== "undefined" ) { text[1] = bigMacBookSnap.image(getAllPortfolioData["results"]['items'][itemN]['image2URL'], 341, 363, 879, 539); }
+      if (typeof getAllPortfolioData["results"]['items'][itemN]['image3URL'] !== "undefined" ) { text[2] = bigMacBookSnap.image(getAllPortfolioData["results"]['items'][itemN]['image3URL'], 1218, 161, 360, 680); }
+      // if (window.getAllPortfolioData["results"]['items'][itemN]['image1URL']){ console.log("defined"); text[0] = bigMacBookSnap.image(getAllPortfolioData["results"]['items'][itemN]['image1URL'], 341, 161, 879, 203); }
+
+        text[3] = bigMacBookSnap.multitext(805, 240, getAllPortfolioData["results"]['items'][itemN]['title'], 500, { "font-size": "3rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
+        text[4] = bigMacBookSnap.multitext(1250, 330, getAllPortfolioData["results"]['items'][itemN]['description'], 320, { "font-size": "1.2rem","fill":" #FFF8DC","font-family" : "Arial","text-anchor" : "start" });
+      
+      var titleShow = (getAllPortfolioData["results"]['items'][itemN]["showImageTitle"] == 1) ? true : false; //show whether titles
+
+      if (titleShow) {
+        text[5] = bigMacBookSnap.multitext(805, 330, getAllPortfolioData["results"]['items'][itemN]['image1Title'], 500, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
+        text[6] = bigMacBookSnap.multitext(805, 870, getAllPortfolioData["results"]['items'][itemN]['image2Title'], 500, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
+        text[7] = bigMacBookSnap.multitext(1405, 230, getAllPortfolioData["results"]['items'][itemN]['image3Title'], 500, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
+      }
+
        followPage = Snap.select('#bigmacbook');
         text.forEach(function(element) {element.attr({filter: f});});
         Snap.animate( 20, 0, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm );
-       followPage.add(text[0]).add(text[1]).add(text[2]).add(text[3]);
+       // followPage.add(text[0]).add(text[1]).add(text[2]).add(text[3]);
+       text.forEach( function(element) {followPage.add(element) });
   }
   this.hide = function () {
       text.forEach(function(element) {element.remove();})
