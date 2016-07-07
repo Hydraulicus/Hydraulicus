@@ -9,7 +9,7 @@ var rhythm = 300, //ms, of knee shacking
 
 var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubbles_arr = [], path4bubble = []
          ,portoBlocks = [] //array for text blocks of services popup
-         ,constPlay = true //developer mode flag - to play constant animation
+         ,constPlay = false //developer mode flag - to play constant animation
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,pulseShow=false
@@ -212,9 +212,9 @@ function laptopPortfolioAnimation(){
 }
 
 // callback = function callback() {}
-mycallback = function(data){
-  alert(data.foo);
-};
+// mycallback = function(data){
+//   alert(data.foo);
+// };
 
 var bigMacBookSnap, bigArrow, MacBookTitle, currentPage, bigMac;
 
@@ -230,53 +230,21 @@ function showMacbook(){
   bigMac = Snap.select("#bigmacbook");
   bigMac.append(bigCross).append(bigArrow).append(macbookinterfaceLine);
   bigMac.transform('s0.01,0.01').removeClass("visibility_hid").animate({transform : "s1,1"}, rhythm, mina.backout, function(){});
-  MacBookTitle = new titleMacBookPage();
-  MacBookTitle.show()
-  
+  nextPageInMacBook(currentPage);
 }  
 
 function nextPageInMacBook(nPage){
-  if (currentPage === -1)  {MacBookTitle.hide(); delete MacBookTitle }
-    else MacBookPage.hide();
+  if ( typeof MacBookPage !== "undefined")  { MacBookPage.hide(); }
   ++currentPage;
   if (currentPage > getAllPortfolioData["results"]['items'].length-1) currentPage = 0;
   MacBookPage = new portfolioMacBookPage(currentPage);
    MacBookPage.show();
-  bigArrow.hover(MacBookPage.blurePage, MacBookPage.unblurePage);
+  // bigArrow.hover(MacBookPage.blurePage, MacBookPage.unblurePage);
 }
 
 function removebigMacBook(){
   console.log('removebigMacBook');
-  // console.log(bigMacBookSnap);
   bigMac.animate({transform : "s0.01,0.0"}, rhythm, mina.backin, function(){ $("#4splashpage").addClass("display_none"); bigMacBookSnap.clear();});
-  //
-  
-}
-
-function titleMacBookPage (itemN){
-  var text = [];
-  var followPage;
-  var lotoftext = getPortfolioTitle.description;
-  var RightList = '';
-
-  this.show  = function (){
-      console.clear(); 
-      Snap.select("#topbox").attr({fill : "#" + getPortfolioTitle["backColor1"]});
-      Snap.select("#rightbox").attr({fill : "#" + getPortfolioTitle["backColor2"]});
-      getAllPortfolioData["results"]['items'].forEach(function(element) { RightList+="__"+"- "+element["title"]; });
-      text[0] = bigMacBookSnap.multitext(805, 240, getPortfolioTitle["title"], 500, { "font-size": "3rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
-      text[1] = bigMacBookSnap.multitext(805, 310, lotoftext, 800, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
-
-      text[2] = bigMacBookSnap.multiList(1250, 230, RightList, 320, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "start" });
-
-       followPage = Snap.select('#bigmacbook');
-       followPage.add(text[0]).add(text[1]).add(text[2]);
-  }
-  this.hide = function () {
-      text.forEach(function(element) { element.remove();})
-  }
-  
-
 }
 
 function portfolioMacBookPage (itemN){
@@ -289,28 +257,30 @@ function portfolioMacBookPage (itemN){
       Snap.select("#rightbox").attr({fill : "#" + getAllPortfolioData["results"]['items'][itemN]["backColor2"]});
       Snap.select("#bottombox").attr({fill : "#" + getAllPortfolioData["results"]['items'][itemN]["backColor3"]});
 
-      if (typeof getAllPortfolioData["results"]['items'][itemN]['image1URL'] !== "undefined" ) { text[0] = bigMacBookSnap.image(getAllPortfolioData["results"]['items'][itemN]['image1URL'], 341, 161, 879, 203); }
-      if (typeof getAllPortfolioData["results"]['items'][itemN]['image2URL'] !== "undefined" ) { text[1] = bigMacBookSnap.image(getAllPortfolioData["results"]['items'][itemN]['image2URL'], 341, 363, 879, 539); }
-      if (typeof getAllPortfolioData["results"]['items'][itemN]['image3URL'] !== "undefined" ) { text[2] = bigMacBookSnap.image(getAllPortfolioData["results"]['items'][itemN]['image3URL'], 1218, 161, 360, 680); }
-      // if (window.getAllPortfolioData["results"]['items'][itemN]['image1URL']){ console.log("defined"); text[0] = bigMacBookSnap.image(getAllPortfolioData["results"]['items'][itemN]['image1URL'], 341, 161, 879, 203); }
-
-        text[3] = bigMacBookSnap.multitext(805, 240, getAllPortfolioData["results"]['items'][itemN]['title'], 500, { "font-size": "3rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
-        text[4] = bigMacBookSnap.multitext(1250, 330, getAllPortfolioData["results"]['items'][itemN]['description'], 320, { "font-size": "1.2rem","fill":" #FFF8DC","font-family" : "Arial","text-anchor" : "start" });
+        text[0] = bigMacBookSnap.image(getAllPortfolioData["results"]['items'][itemN]['image1URL'], 343, 363, 875, 539); 
+        text[1] = bigMacBookSnap.multitext(805, 240, getAllPortfolioData["results"]['items'][itemN]['title'], 500, { "font-size": "3rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
+        text[2] = bigMacBookSnap.multitext(1250, 330, getAllPortfolioData["results"]['items'][itemN]['description'], 320, { "font-size": "1.2rem","fill":" #FFF8DC","font-family" : "Arial","text-anchor" : "start" });
       
       var titleShow = (getAllPortfolioData["results"]['items'][itemN]["showImageTitle"] == 1) ? true : false; //show whether titles
 
-      if (titleShow) {
-        text[5] = bigMacBookSnap.multitext(805, 330, getAllPortfolioData["results"]['items'][itemN]['image1Title'], 500, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
-        text[6] = bigMacBookSnap.multitext(805, 870, getAllPortfolioData["results"]['items'][itemN]['image2Title'], 500, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
-        text[7] = bigMacBookSnap.multitext(1405, 230, getAllPortfolioData["results"]['items'][itemN]['image3Title'], 500, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" });
+      if (titleShow) 
+      {
+        text[3] = bigMacBookSnap.multitext(495, 330, getAllPortfolioData["results"]['items'][itemN]['image1Title'], 500, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" }).attr({cursor : "pointer"}).click(function(){ showImage(1) });
+        text[4] = bigMacBookSnap.multitext(785, 330, getAllPortfolioData["results"]['items'][itemN]['image2Title'], 500, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" }).attr({cursor : "pointer"}).click(function(){ showImage(2) });
+        text[5] = bigMacBookSnap.multitext(1070, 330, getAllPortfolioData["results"]['items'][itemN]['image3Title'], 500, { "font-size": "2rem","fill":"#FFF8DC","font-family" : "Arial","text-anchor" : "middle" }).attr({cursor : "pointer"}).click(function(){ showImage(3) });
       }
 
        followPage = Snap.select('#bigmacbook');
         text.forEach(function(element) {element.attr({filter: f});});
         Snap.animate( 20, 0, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm );
-       // followPage.add(text[0]).add(text[1]).add(text[2]).add(text[3]);
        text.forEach( function(element) {followPage.add(element) });
   }
+
+  showImage = function(TitleNumber) {
+    text[0].remove();
+    text[0] = bigMacBookSnap.image(getAllPortfolioData["results"]['items'][itemN]['image'+TitleNumber+'URL'], 343, 363, 875, 539); 
+  }
+
   this.hide = function () {
       text.forEach(function(element) {element.remove();})
   }
@@ -321,7 +291,6 @@ function portfolioMacBookPage (itemN){
   this.unblurePage = function (){
     Snap.animate( 20, 0, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm );
   } 
-
 }
 
 // var MacBookPage = new portfolioMacBookPage(0);
