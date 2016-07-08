@@ -903,7 +903,7 @@ function  strawDrinking(){
   stroke_Back = timingBack.reduce(function(sum, current) { return sum + current; }, 0); 
 
 // console.clear(); console.log(stroke_Rise);
-secondhands[1].animate({d : handD[1]}, kRithm* rhythm * 0.5, mina.linear,// character take cup
+secondhands[1].stop().animate({d : handD[1]}, kRithm* rhythm * 0.5, mina.linear,// character take cup
   function()
    {  Nframe=0;
       frameChanging(secondhands[1], strokeRise, timingRise);
@@ -919,7 +919,7 @@ secondhands[1].animate({d : handD[1]}, kRithm* rhythm * 0.5, mina.linear,// char
               strawCup.animate({transform : 't0,0'}, stroke_Back, mina.linear);
               secondsweater.animate({ d : secondSweater[0]}, stroke_Back, mina.linear);
               secondFingers.animate({ d : AbassFingers[0]}, stroke_Back, mina.linear, function()
-                { secondFingers.attr({'opacity':0}); secondhands[1].animate({d  : handD[0]}, kRithm * rhythm * 0.5, mina.linear, function(){ SecondConstAnimation()}) });
+                { secondFingers.attr({'opacity':0}); secondhands[1].stop().animate({d  : handD[0]}, kRithm * rhythm * 0.5, mina.linear, function(){ SecondConstAnimation()}) });
              }, stoptime) 
           });
      }
