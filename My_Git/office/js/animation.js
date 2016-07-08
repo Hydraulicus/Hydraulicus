@@ -156,7 +156,8 @@ circlesssss = animSvg.add(Snap.parse(circles)) ;//add circles around pins of mar
 speeches();
 
 secondsweater = Snap.select('#secondsweater'); 
-if ( constPlay ) SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+// if ( constPlay ) 
+SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
@@ -853,47 +854,89 @@ function throwHandDrawing(){
     // console.log(throwHandGroup);
   }
 
+function SecondConstAnimation()
+{ var time = normSpeedK;
+  if ((timeTyping > nNorm) && (timeTyping < (nNorm + nfast))){time = fastSpeedK;};
+  if (timeTyping == nNorm) {secondFaceDown(rhythm, 3000)};
+  if (timeTyping == cycle) 
+      {
+        timeTyping = (-1)*nNorm;
+        strawDrinking();
+        return
+      };
+  secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
+  secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function()
+    {secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
+}
 
 var Nframe;
 function frameChanging(part, arr, timings) {
   if (Nframe > arr.length-1) { return }
     else  
      {  Nframe++;
+      // console.log(Nframe);
         part.animate({d : arr[Nframe-1]}, timings[Nframe-1], mina.linear, function(){(frameChanging(part, arr, timings)) })   
     }
-
 }
 
 function  strawDrinking(){
-  var stoptime = 300,
+  var stoptime = rhythm,
   kRithm = 1,
   strokeRise = [ handD[1], handD[2], handD[3], handD[4] ],
-  timingRise = [100 * kRithm,200* kRithm,180* kRithm,300* kRithm ],//msec
+  timingRise = [ 10 * kRithm, 220* kRithm, 280* kRithm, 300* kRithm ],//msec
+
   strokeBack = [ handD[3], handD[2], handD[1] ],
-  timingBack = [630* kRithm, 180* kRithm, 220* kRithm],//msec
+  timingBack = [ 630* kRithm, 280* kRithm, 260* kRithm ],//msec
+
+
+  //with mina.easeinout
+  // strokeRise = [ handD[1], handD[2], handD[3], handD[4] ],
+  // timingRise = [100 * kRithm, 200* kRithm, 180* kRithm, 300* kRithm ],//msec
+  // strokeBack = [ handD[3], handD[2], handD[1] ],
+  // timingBack = [630* kRithm, 180* kRithm, 220* kRithm],//msec
+  //=============
+
 
   stroke = timingRise.reduce(function(sum, current) {// calculating whole time of animation  
   return sum + current;
 }, 0);
 
-
-secondhands[1].animate({d : handD[1]}, rhythm * 0.5, mina.linear,// character take cup
+console.clear();
+secondhands[1].animate({d : handD[1]}, kRithm* rhythm * 0.5, mina.linear,// character take cup
   function()
    {  Nframe=0;
       frameChanging(secondhands[1], strokeRise, timingRise);
-      secondFingers.animate({ d : AbassFingers[1]}, 1000, mina.easeinout).attr({'opacity':1});
-      secondsweater.animate({ d : secondSweater[1]}, 1000);
-      strawCup.animate({transform : 't178,-68'}, 1000, mina.easeinout, function()
+      secondFingers.animate({ d : AbassFingers[1]}, kRithm * 1000, mina.linear).attr({'opacity' : 1});
+      secondsweater.animate({ d : secondSweater[1]}, kRithm * 1000);
+      strawCup.animate({transform : 't178,-68'}, kRithm * 1000, mina.linear, function()
           {
             setTimeout(function(){
               //return stroke
               Nframe=0; frameChanging(secondhands[1], strokeBack, timingBack);
-              strawCup.animate({transform : 't0,0'},1200, mina.easeinout);
-              secondsweater.animate({ d : secondSweater[0]}, 1000*2, mina.easeinout);
-              secondFingers.animate({ d : AbassFingers[0]},1200, mina.easeinout, function(){ secondFingers.attr({'opacity':0}); secondhands[1].animate({d  : handD[0]}, rhythm*0.5, mina.linear, function(){ SecondConstAnimation()}) });
+              strawCup.animate({transform : 't0,0'}, kRithm * 1200, mina.linear);
+              secondsweater.animate({ d : secondSweater[0]}, kRithm * 1000*2, mina.linear);
+              secondFingers.animate({ d : AbassFingers[0]}, kRithm * 1200, mina.linear, function()
+                { secondFingers.attr({'opacity':0}); secondhands[1].animate({d  : handD[0]}, kRithm * rhythm * 0.5, mina.linear, function(){ SecondConstAnimation()}) });
              }, stoptime) 
           });
-     } 
+     }
+
+  // function() //with mina.easeinout
+  //  {  Nframe=0;
+  //     frameChanging(secondhands[1], strokeRise, timingRise);
+  //     secondFingers.animate({ d : AbassFingers[1]}, 1000, mina.easeinout).attr({'opacity':1});
+  //     secondsweater.animate({ d : secondSweater[1]}, 1000);
+  //     strawCup.animate({transform : 't178,-68'}, 1000, mina.easeinout, function()
+  //         {
+  //           setTimeout(function(){
+  //             //return stroke
+  //             Nframe=0; frameChanging(secondhands[1], strokeBack, timingBack);
+  //             strawCup.animate({transform : 't0,0'},1200, mina.easeinout);
+  //             secondsweater.animate({ d : secondSweater[0]}, 1000*2, mina.easeinout);
+  //             secondFingers.animate({ d : AbassFingers[0]},1200, mina.easeinout, function(){ secondFingers.attr({'opacity':0}); secondhands[1].animate({d  : handD[0]}, rhythm*0.5, mina.linear, function(){ SecondConstAnimation()}) });
+  //            }, stoptime) 
+  //         });
+  //    } 
           );    
  Nframe=0;
 }
@@ -910,21 +953,6 @@ function constantAnimation()
         setTimeout(function(){timeKnee = timeKneeShake; constantAnimation()}, rhythm*5)
       }
     }
-
-function SecondConstAnimation()
-{ var time = normSpeedK;
-  if ((timeTyping > nNorm) && (timeTyping < (nNorm + nfast))){time = fastSpeedK;};
-  if (timeTyping == nNorm) {secondFaceDown(rhythm, 3000)};
-  if (timeTyping == cycle) 
-      {
-        // console.log(timeTyping,nfast,nNorm,'agian');
-        timeTyping = (-1)*nNorm;
-        strawDrinking();
-        return
-      };
-  secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
-  secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function(){secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
-}
 
 function mugClick(){
    var time = 800;
