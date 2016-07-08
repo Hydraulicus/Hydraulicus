@@ -856,17 +856,17 @@ function throwHandDrawing(){
 
 function SecondConstAnimation()
 { var time = normSpeedK;
-  // if ((timeTyping > nNorm) && (timeTyping < (nNorm + nfast))){time = fastSpeedK;};
-  // if (timeTyping == nNorm) {secondFaceDown(rhythm, 3000)};
-  // if (timeTyping == cycle) 
-  //     {
-  //       timeTyping = (-1)*nNorm;
+  if ((timeTyping > nNorm) && (timeTyping < (nNorm + nfast))){time = fastSpeedK;};
+  if (timeTyping == nNorm) {secondFaceDown(rhythm, 3000)};
+  if (timeTyping == cycle) 
+      {
+        timeTyping = (-1)*nNorm;
         strawDrinking();
-  //       return
-  //     };
-  // secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
-  // secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function()
-  //   {secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
+        return
+      };
+  secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
+  secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function()
+    {secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
 }
 
 var Nframe;
@@ -883,7 +883,7 @@ function frameChanging(part, arr, timings) {
 
 function  strawDrinking(){
   var stoptime = rhythm,
-  kRithm = 3,
+  kRithm = 1,
   strokeRise = [ handD[1], handD[2], handD[3], handD[4] ],
   timingRise = [ 10 * kRithm, 200* kRithm, 200* kRithm, 400* kRithm ],//msec
 
