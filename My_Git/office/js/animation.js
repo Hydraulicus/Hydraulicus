@@ -9,7 +9,7 @@ var rhythm = 300, //ms, of knee shacking
 
 var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubbles_arr = [], path4bubble = []
          ,portoBlocks = [] //array for text blocks of services popup
-         ,constPlay = true //developer mode flag - to play constant animation
+         ,constPlay = false //developer mode flag - to play constant animation
          ,clickFlag = false
          ,drinkOrYawn = true //flag - to show  drink coffe or Yawn
          ,pulseShow=false
@@ -856,17 +856,17 @@ function throwHandDrawing(){
 
 function SecondConstAnimation()
 { var time = normSpeedK;
-  if ((timeTyping > nNorm) && (timeTyping < (nNorm + nfast))){time = fastSpeedK;};
-  if (timeTyping == nNorm) {secondFaceDown(rhythm, 3000)};
-  if (timeTyping == cycle) 
-      {
-        timeTyping = (-1)*nNorm;
+  // if ((timeTyping > nNorm) && (timeTyping < (nNorm + nfast))){time = fastSpeedK;};
+  // if (timeTyping == nNorm) {secondFaceDown(rhythm, 3000)};
+  // if (timeTyping == cycle) 
+  //     {
+  //       timeTyping = (-1)*nNorm;
         strawDrinking();
-        return
-      };
-  secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
-  secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function()
-    {secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
+  //       return
+  //     };
+  // secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
+  // secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function()
+  //   {secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
 }
 
 var Nframe;
@@ -875,15 +875,15 @@ function frameChanging(part, arr, timings) {
     else  
      {  Nframe++;
       // console.log(Nframe);
-        part.animate({d : arr[Nframe-1]}, timings[Nframe-1], mina.linear, function(){(frameChanging(part, arr, timings)) })   
+        part.animate({d : arr[Nframe-1]}, timings[Nframe-1], mina.linear, function(){ setTimeout( function(){ frameChanging(part, arr, timings) }, 50 )} )   
     }
 }
 
 function  strawDrinking(){
   var stoptime = rhythm,
-  kRithm = 1,
+  kRithm = 3,
   strokeRise = [ handD[1], handD[2], handD[3], handD[4] ],
-  timingRise = [ 10 * kRithm, 220* kRithm, 280* kRithm, 300* kRithm ],//msec
+  timingRise = [ 10 * kRithm, 200* kRithm, 200* kRithm, 400* kRithm ],//msec
 
   strokeBack = [ handD[3], handD[2], handD[1] ],
   timingBack = [ 630* kRithm, 280* kRithm, 260* kRithm ],//msec
@@ -897,25 +897,26 @@ function  strawDrinking(){
   //=============
 
 
-  stroke = timingRise.reduce(function(sum, current) {// calculating whole time of animation  
-  return sum + current;
-}, 0);
+  stroke_Rise = timingRise.reduce(function(sum, current) { return sum + current; }, 0), // calculating whole time of animation 
+  stroke_Back = timingBack.reduce(function(sum, current) { return sum + current; }, 0); 
 
-console.clear();
+// console.clear(); console.log(stroke_Rise);
 secondhands[1].animate({d : handD[1]}, kRithm* rhythm * 0.5, mina.linear,// character take cup
   function()
    {  Nframe=0;
       frameChanging(secondhands[1], strokeRise, timingRise);
-      secondFingers.animate({ d : AbassFingers[1]}, kRithm * 1000, mina.linear).attr({'opacity' : 1});
       secondsweater.animate({ d : secondSweater[1]}, kRithm * 1000);
-      strawCup.animate({transform : 't178,-68'}, kRithm * 1000, mina.linear, function()
+      secondFingers.attr({'opacity' : 1});
+      secondFingers.animate({ d : AbassFingers[1]}, stroke_Rise, mina.linear);
+      strawCup.animate({transform : 't178,-68'}, stroke_Rise, mina.linear, function()
           {
             setTimeout(function(){
               //return stroke
-              Nframe=0; frameChanging(secondhands[1], strokeBack, timingBack);
-              strawCup.animate({transform : 't0,0'}, kRithm * 1200, mina.linear);
-              secondsweater.animate({ d : secondSweater[0]}, kRithm * 1000*2, mina.linear);
-              secondFingers.animate({ d : AbassFingers[0]}, kRithm * 1200, mina.linear, function()
+              Nframe=0; 
+              frameChanging(secondhands[1], strokeBack, timingBack);
+              strawCup.animate({transform : 't0,0'}, stroke_Back, mina.linear);
+              secondsweater.animate({ d : secondSweater[0]}, stroke_Back, mina.linear);
+              secondFingers.animate({ d : AbassFingers[0]}, stroke_Back, mina.linear, function()
                 { secondFingers.attr({'opacity':0}); secondhands[1].animate({d  : handD[0]}, kRithm * rhythm * 0.5, mina.linear, function(){ SecondConstAnimation()}) });
              }, stoptime) 
           });
