@@ -875,7 +875,9 @@ function frameChanging(part, arr, timings) {
     else  
      {  Nframe++;
       // console.log(Nframe);
-        part.animate({d : arr[Nframe-1]}, timings[Nframe-1], mina.linear, function(){ setTimeout( function(){ frameChanging(part, arr, timings) }, 50 )} )   
+      // setTimeout( function(){ 
+            part.stop().animate({d : arr[Nframe-1]}, timings[Nframe-1], mina.linear, function(){ frameChanging(part, arr, timings) } )   
+        // }, 50 )
     }
 }
 
