@@ -94,8 +94,7 @@ SecondFace = animSvg.ellipse(1215, 438, 46, 70) //ellipse for face hover effect
                    .click(function() { SecondSpeech.animate({transform : orMatrix2}, 1000,  mina.bounce).attr({visibility : 'visible'});  document.body.addEventListener('click', fnClose, true);});
 
 
-// if ( constPlay )
- constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+if ( constPlay ) constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -958,18 +957,18 @@ secondhands[1].stop().animate({"x1": "1025", "x2" : "1092"}, kRithm* rhythm * 0.
 
 function constantAnimation()
   { 
-    mugClick();
-    // if (timeKnee !== 0) 
-    //   {
-    //     kneeR.animate({ d : Ghazi[1].kneeR }, rhythm, mina.easeInOutQuad);
-    //     pants.animate({ d : Ghazi[1].pants }, rhythm, mina.easeInOutQuad, kneeAnimationStart);
-    //   }
-    //   else 
-    //   { if (drinkOrYawn) {handToMouth(); drinkOrYawn = false; gradientAnim ()} else {mugClick(); drinkOrYawn = true}; 
-    //     setTimeout(function(){timeKnee = timeKneeShake; constantAnimation()}, rhythm*5)
-    //   }
+    // mugClick();
+    if (timeKnee !== 0) 
+      {
+        kneeR.animate({ d : Ghazi[1].kneeR }, rhythm, mina.easeInOutQuad);
+        pants.animate({ d : Ghazi[1].pants }, rhythm, mina.easeInOutQuad, kneeAnimationStart);
+      }
+      else 
+      { if (drinkOrYawn) {handToMouth(); drinkOrYawn = false; gradientAnim ()} else {mugClick(); drinkOrYawn = true}; 
+        setTimeout(function(){timeKnee = timeKneeShake; constantAnimation()}, rhythm*5)
+      }
     }
-    
+
 var leftDrinkHand;
 function mugClick(){
    var time = rhythm*2.75;
