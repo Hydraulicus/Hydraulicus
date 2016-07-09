@@ -961,16 +961,16 @@ secondhands[1].stop().animate({"x1": "1025", "x2" : "1092"}, kRithm* rhythm * 0.
 
 function constantAnimation()
   { 
-    mugClick();
-    // if (timeKnee !== 0) 
-    //   {
-    //     kneeR.animate({ d : Ghazi[1].kneeR }, rhythm, mina.easeInOutQuad);
-    //     pants.animate({ d : Ghazi[1].pants }, rhythm, mina.easeInOutQuad, kneeAnimationStart);
-    //   }
-    //   else 
-    //   { if (drinkOrYawn) {handToMouth(); drinkOrYawn = false; gradientAnim ()} else {mugClick(); drinkOrYawn = true}; 
-    //     setTimeout(function(){timeKnee = timeKneeShake; constantAnimation()}, rhythm*5)
-    //   }
+    // mugClick();
+    if (timeKnee !== 0) 
+      {
+        kneeR.animate({ d : Ghazi[1].kneeR }, rhythm, mina.easeInOutQuad);
+        pants.animate({ d : Ghazi[1].pants }, rhythm, mina.easeInOutQuad, kneeAnimationStart);
+      }
+      else 
+      { if (drinkOrYawn) {handToMouth(); drinkOrYawn = false; gradientAnim ()} else {mugClick(); drinkOrYawn = true}; 
+        setTimeout(function(){timeKnee = timeKneeShake; constantAnimation()}, rhythm*5)
+      }
     }
 
 var leftDrinkHand;
