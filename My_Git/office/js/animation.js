@@ -79,6 +79,7 @@ GhaziMoustache = Snap.select('#moustache');
 leftHand = animSvg.path(lHand).addClass('fil2');
 GhaziSmile = animSvg.path('M723 473c1,0 2,1 1,2 -5,2 -12,2 -17,0 -1,-1 0,-2 1,-2 5,2 10,2 15,0z').addClass('fil2').transform('s0').attr({opacity:0});
 GhaziFaceSet.add(GhaziSmile); 
+leftDrinkHand = animSvg.line(632, 625, 832, 625).attr({"stroke-width" : 36, "stroke" : "#EF977C", "stroke-linecap" : "round"}).addClass("visibility_hid");
 
 steamGradient = animSvg.gradient("l(0, 0, 1, 1)#efefef-#fff-#efefef");
 mugSteam = animSvg.path(steam[0]+steam[1]+steam[2]+steam[3]).attr({opacity : 1, fill : steamGradient});
@@ -93,7 +94,8 @@ SecondFace = animSvg.ellipse(1215, 438, 46, 70) //ellipse for face hover effect
                    .click(function() { SecondSpeech.animate({transform : orMatrix2}, 1000,  mina.bounce).attr({visibility : 'visible'});  document.body.addEventListener('click', fnClose, true);});
 
 
-if ( constPlay ) constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+// if ( constPlay )
+ constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
@@ -153,8 +155,7 @@ circlesssss = animSvg.add(Snap.parse(circles)) ;//add circles around pins of mar
 speeches();
 
 secondsweater = Snap.select('#secondsweater'); 
-// if ( constPlay ) 
-SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+if ( constPlay ) SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
@@ -858,20 +859,20 @@ function SecondConstAnimation()
 
   secondhands[0] = Snap.select('#lefthand');
   secondhands[1] = Snap.select('#righthand');
-       strawDrinking();
-  // if ((timeTyping > nNorm) && (timeTyping < (nNorm + nfast))){time = fastSpeedK;};
-  // if (timeTyping == nNorm) {secondFaceDown(rhythm, 3000)};
-  // if (timeTyping == cycle) 
-  //     {
-  //       timeTyping = (-1)*nNorm;
-  //       strawDrinking();
-  //       return
-  //     };
-  // secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
-  // // secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function()
-  //   // {secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
-  // secondhands[1].animate({y1 : "620"}, time, mina.bounce, function()
-  //   {secondhands[1].animate({y1 : "624"}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
+       // strawDrinking();
+  if ((timeTyping > nNorm) && (timeTyping < (nNorm + nfast))){time = fastSpeedK;};
+  if (timeTyping == nNorm) {secondFaceDown(rhythm, 3000)};
+  if (timeTyping == cycle) 
+      {
+        timeTyping = (-1)*nNorm;
+        strawDrinking();
+        return
+      };
+  secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
+  // secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function()
+    // {secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
+  secondhands[1].animate({y1 : "620"}, time, mina.bounce, function()
+    {secondhands[1].animate({y1 : "624"}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
 }
 
 var Nframe;
@@ -909,27 +910,27 @@ function  strawDrinking(){
 
 // console.clear(); console.log(stroke_Rise);
 // secondhands[1].stop().animate({d : handD[1]}, kRithm* rhythm * 0.5, mina.linear,// character take cup
-secondhands[1].stop().animate({"x1": "1025", "x2" : "1092"}, kRithm* rhythm * 0.5, mina.linear,// character take cup
+secondhands[1].stop().animate({"x1": "1025", "x2" : "1092"}, kRithm* rhythm * 0.5, mina.easeinout,// character take cup
   function()
    {  Nframe=0;
       // frameChanging(secondhands[1], strokeRise, timingRise);
-      secondhands[1].stop().animate({"x1": "1185", "y1" : "550",  "x2" : "1114", "y2" : "612"}, stroke_Rise, mina.linear);
+      secondhands[1].stop().animate({"x1": "1185", "y1" : "550",  "x2" : "1114", "y2" : "612"}, stroke_Rise, mina.easeinout);
       secondsweater.animate({ d : secondSweater[1]}, kRithm * 1000);
       secondFingers.attr({'opacity' : 1});
-      secondFingers.animate({ d : AbassFingers[1]}, stroke_Rise, mina.linear);
-      strawCup.animate({transform : 't178,-68'}, stroke_Rise, mina.linear, function()
+      secondFingers.animate({ d : AbassFingers[1]}, stroke_Rise, mina.easeinout);
+      strawCup.animate({transform : 't178,-68'}, stroke_Rise, mina.easeinout, function()
           {
             setTimeout(function(){
               //return stroke
               Nframe=0; 
               // frameChanging(secondhands[1], strokeBack, timingBack);
-              secondhands[1].stop().animate({"x1": "1025", "y1" : "624",  "x2" : "1092", "y2" : "624"}, stroke_Back, mina.linear);
-              strawCup.animate({transform : 't0,0'}, stroke_Back, mina.linear);
-              secondsweater.animate({ d : secondSweater[0]}, stroke_Back, mina.linear);
-              secondFingers.animate({ d : AbassFingers[0]}, stroke_Back, mina.linear, function()
+              secondhands[1].stop().animate({"x1": "1025", "y1" : "624",  "x2" : "1092", "y2" : "624"}, stroke_Back, mina.easeinout);
+              strawCup.animate({transform : 't0,0'}, stroke_Back, mina.easeinout);
+              secondsweater.animate({ d : secondSweater[0]}, stroke_Back);
+              secondFingers.animate({ d : AbassFingers[0]}, stroke_Back, mina.easeinout, function()
                 { secondFingers.attr({'opacity':0}); 
                 // secondhands[1].stop().animate({d  : handD[0]}, kRithm * rhythm * 0.5, mina.linear, 
-                secondhands[1].stop().animate({x1 : "1092", y1 : "625",  x2 : "1220", y2 : "625"}, kRithm * rhythm * 0.5, mina.linear, 
+                secondhands[1].stop().animate({x1 : "1092", y1 : "625",  x2 : "1220", y2 : "625"}, kRithm * rhythm * 0.5, mina.easeinout, 
                   function(){ SecondConstAnimation()}) });
              }, stoptime) 
           });
@@ -957,65 +958,81 @@ secondhands[1].stop().animate({"x1": "1025", "x2" : "1092"}, kRithm* rhythm * 0.
 
 function constantAnimation()
   { 
-    if (timeKnee !== 0) 
-      {
-        kneeR.animate({ d : Ghazi[1].kneeR }, rhythm, mina.easeInOutQuad);
-        pants.animate({ d : Ghazi[1].pants }, rhythm, mina.easeInOutQuad, kneeAnimationStart);
-      }
-      else 
-      { if (drinkOrYawn) {handToMouth(); drinkOrYawn = false; gradientAnim ()} else {mugClick(); drinkOrYawn = true}; 
-        setTimeout(function(){timeKnee = timeKneeShake; constantAnimation()}, rhythm*5)
-      }
+    mugClick();
+    // if (timeKnee !== 0) 
+    //   {
+    //     kneeR.animate({ d : Ghazi[1].kneeR }, rhythm, mina.easeInOutQuad);
+    //     pants.animate({ d : Ghazi[1].pants }, rhythm, mina.easeInOutQuad, kneeAnimationStart);
+    //   }
+    //   else 
+    //   { if (drinkOrYawn) {handToMouth(); drinkOrYawn = false; gradientAnim ()} else {mugClick(); drinkOrYawn = true}; 
+    //     setTimeout(function(){timeKnee = timeKneeShake; constantAnimation()}, rhythm*5)
+    //   }
     }
-
+    
+var leftDrinkHand;
 function mugClick(){
-   var time = 800;
-   leftHand.stop().attr({d:lHand});//Stop animation
+   var time = rhythm*2.75;
+   leftHand.stop().attr({d:lHand}).addClass("visibility_hid");//Stop animation
+  
    GhaziFaceSet.stop().transform('t0,0');//Stop animation
    
-    animSvg.selectAll('path circle').forEach(function(element, index) {element.stop()  });//Stop all animation
-    leftHand.stop().animate({d : Ghazi[1].lHand},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1}); setTimeout(function(){ mugDrink(time, function(){mugMouseOff()}) }, time*0.33)});
+    animSvg.selectAll('path circle').forEach(function(element, index) { element.stop() });//Stop all animation
+    // leftHand.stop().animate({d : Ghazi[1].lHand},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1}); setTimeout(function(){ mugDrink(time, function(){mugMouseOff()}) }, time*0.33)});
+     leftDrinkHand.stop().removeClass("visibility_hid").animate({x1 : "832", y1 : "625",  x2 : "905", y2 : "625"}, rhythm, mina.easeinout, function()
+          {
+            fingersOnMug0.attr({opacity:1}); setTimeout(function(){ mugDrink(time) }, rhythm)
+          }
+        );
 }
 
-function mugDrink(time, callback){
+function mugDrink(time){
   clickFlag = true;
-  var stopTime = time*0.375;
-  var frames = [Ghazi[1].lHand
-  ,'M846 601c-17,17 -2,2 -19,19 -7,7 -18,7 -24,0l0 0c-7,-7 -7,-18 0,-25 17,-17 1,-2 18,-19 7,-7 18,-7 25,0l0 0c7,7 7,18 0,25z'
-  ,'M818 552c0,25 0,19 0,44 0,9 -8,17 -18,17l0 0c-9,0 -17,-8 -17,-17 0,-25 0,-19 0,-44 0,-9 8,-17 17,-17l0 0c10,0 18,8 18,17z'
-  ,'M750 500c14,20 43,58 57,77 6,8 4,19 -4,25l0 0c-8,5 -19,3 -25,-4 -13,-20 -43,-58 -56,-78 -6,-8 -4,-19 4,-24l0 0c8,-6 19,-4 24,4z'
-  ],
+  var stopTime = rhythm;
+  // var frames = [Ghazi[1].lHand
+  // ,'M846 601c-17,17 -2,2 -19,19 -7,7 -18,7 -24,0l0 0c-7,-7 -7,-18 0,-25 17,-17 1,-2 18,-19 7,-7 18,-7 25,0l0 0c7,7 7,18 0,25z'
+  // ,'M818 552c0,25 0,19 0,44 0,9 -8,17 -18,17l0 0c-9,0 -17,-8 -17,-17 0,-25 0,-19 0,-44 0,-9 8,-17 17,-17l0 0c10,0 18,8 18,17z'
+  // ,'M750 500c14,20 43,58 57,77 6,8 4,19 -4,25l0 0c-8,5 -19,3 -25,-4 -13,-20 -43,-58 -56,-78 -6,-8 -4,-19 4,-24l0 0c8,-6 19,-4 24,4z'
+  // ],
   mugd = 'M729 527c0,1 -7,2 -16,2 -9,0 -16,-1 -16,-2l-2 -13c0,-7 -1,-16 -3,-28 0,-1 0,-8 0,-8 0,-1 9,-2 21,-2 12,0 21,1 21,2 0,0 -5,49 -5,49zm-36 -37l2 20c-1,-6 -1,-10 -2,-20z';
+  
   mugInsude.attr({'opacity':0});
-  leftHand.stop().animate({d:frames[1]}, time*0.235, mina.linear, 
-    function(){ leftHand.stop().animate({d:frames[2]},time*0.15,mina.linear 
-      , function(){ leftHand.stop().animate({d:frames[3]}, time*0.65, mina.easeOutQuad  
-         ,function(){setTimeout(
-        //back stroke
-                       function(){ leftHand.stop().animate({d:frames[2]}, time*0.35, mina.easeInQuad
-                        , function(){ leftHand.stop().animate({d:frames[1]}, time*0.2, mina.linear
-                           , function(){ leftHand.stop().animate({d:frames[0]}, time*0.48, mina.easeOutQuad, callback);})})
-                    }, stopTime)
-        })
-      })
-     }
+
+leftDrinkHand.animate({x1 : "793", y1 : "592",  x2 : "735", y2 : "515"}, time, mina.easeOutQuad 
+
+  // leftHand.stop().animate({d:frames[1]}, time*0.235, mina.linear, 
+  //   function(){ leftHand.stop().animate({d:frames[2]},time*0.15,mina.linear 
+  //     , function(){ leftHand.stop().animate({d:frames[3]}, time*0.65, mina.easeOutQuad  
+  //        ,function(){setTimeout(
+  //       //back stroke
+  //                      function(){ leftHand.stop().animate({d:frames[2]}, time*0.35, mina.easeInQuad
+  //                       , function(){ leftHand.stop().animate({d:frames[1]}, time*0.2, mina.linear
+  //                          , function(){ leftHand.stop().animate({d:frames[0]}, time*0.48, mina.easeOutQuad, callback);})})
+  //                   }, stopTime)
+  //       })
+  //     })
+  //    }
     );
 
   mug.animate({d:mugd},time,mina.easeOutQuad, 
     function(){
-      setTimeout(function()
-                  { mug.animate({d:mugD},time,mina.linear, 
-                        function(){mugInsude.attr({'opacity':1});}
-                        )
-                  }, stopTime
-                )
+      // setTimeout(function()
+                  // { mug.animate({d:mugD},time,mina.linear, function(){mugInsude.attr({'opacity':1});})
+                  // }, stopTime
+                // )
               }
               );
   GhaziSviter.stop().animate({d:Ghazi[3].sviter},time,mina.easeOutQuad);
   fingersOnMug0.animate({d:GhaziFingers[1]},time,mina.easeOutQuad,
         function(){
           setTimeout( 
-              function(){fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.linear); GhaziSviter.stop().animate({d:Ghazi[2].sviter}, time, mina.easeout)}
+              function()
+                      {
+                          GhaziSviter.stop().animate({d:Ghazi[2].sviter}, time, mina.easeInOutQuad);
+                          fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.easeInOutQuad); 
+                          leftDrinkHand.animate({x1 : "832", y1 : "625",  x2 : "905", y2 : "625"}, time, mina.easeInOutQuad );
+                          mug.animate({d:mugD},time,mina.easeInOutQuad, function(){ mugInsude.attr({'opacity':1}); fingersOnMug0.attr({'opacity':0}); leftDrinkHand.animate({x1 : "830", y1 : "625",  x2 : "630", y2 : "625"}, time, mina.easeInOutQuad, function(){this.addClass("visibility_hid");  leftHand.removeClass("visibility_hid"); mugMouseOff()} );})
+                      }
                     , stopTime
                     )
                   }
