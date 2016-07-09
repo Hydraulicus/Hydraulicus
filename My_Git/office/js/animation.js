@@ -98,8 +98,7 @@ SecondFace = animSvg.ellipse(1215, 438, 46, 70) //ellipse for face hover effect
                    .click(function() { SecondSpeech.animate({transform : orMatrix2}, 1000,  mina.bounce).attr({visibility : 'visible'});  document.body.addEventListener('click', fnClose, true);});
 
 
-// if ( constPlay )
- constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+ if ( constPlay ) constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 // throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
 
