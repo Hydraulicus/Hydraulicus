@@ -92,10 +92,7 @@ SecondFace = animSvg.ellipse(1215, 438, 46, 70) //ellipse for face hover effect
                    .hover(SecondMouseOn, SecondMouseOff)
                    .click(function() { SecondSpeech.animate({transform : orMatrix2}, 1000,  mina.bounce).attr({visibility : 'visible'});  document.body.addEventListener('click', fnClose, true);});
 
-secondhands[0] = Snap.select('#lefthand');
-secondhands[1] = Snap.select('#righthand');
-secondEyes[0] = Snap.select('.eye0');
-secondEyes[1] = Snap.select('.eye1');
+
 if ( constPlay ) constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
 
 throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
@@ -856,17 +853,25 @@ function throwHandDrawing(){
 
 function SecondConstAnimation()
 { var time = normSpeedK;
-  if ((timeTyping > nNorm) && (timeTyping < (nNorm + nfast))){time = fastSpeedK;};
-  if (timeTyping == nNorm) {secondFaceDown(rhythm, 3000)};
-  if (timeTyping == cycle) 
-      {
-        timeTyping = (-1)*nNorm;
-        strawDrinking();
-        return
-      };
-  secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
-  secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function()
-    {secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
+  secondEyes[0] = Snap.select('.eye0');
+  secondEyes[1] = Snap.select('.eye1');
+
+  secondhands[0] = Snap.select('#lefthand');
+  secondhands[1] = Snap.select('#righthand');
+       strawDrinking();
+  // if ((timeTyping > nNorm) && (timeTyping < (nNorm + nfast))){time = fastSpeedK;};
+  // if (timeTyping == nNorm) {secondFaceDown(rhythm, 3000)};
+  // if (timeTyping == cycle) 
+  //     {
+  //       timeTyping = (-1)*nNorm;
+  //       strawDrinking();
+  //       return
+  //     };
+  // secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
+  // // secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function()
+  //   // {secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
+  // secondhands[1].animate({y1 : "620"}, time, mina.bounce, function()
+  //   {secondhands[1].animate({y1 : "624"}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
 }
 
 var Nframe;
@@ -903,10 +908,12 @@ function  strawDrinking(){
   stroke_Back = timingBack.reduce(function(sum, current) { return sum + current; }, 0); 
 
 // console.clear(); console.log(stroke_Rise);
-secondhands[1].stop().animate({d : handD[1]}, kRithm* rhythm * 0.5, mina.linear,// character take cup
+// secondhands[1].stop().animate({d : handD[1]}, kRithm* rhythm * 0.5, mina.linear,// character take cup
+secondhands[1].stop().animate({"x1": "1025", "x2" : "1092"}, kRithm* rhythm * 0.5, mina.linear,// character take cup
   function()
    {  Nframe=0;
-      frameChanging(secondhands[1], strokeRise, timingRise);
+      // frameChanging(secondhands[1], strokeRise, timingRise);
+      secondhands[1].stop().animate({"x1": "1185", "y1" : "550",  "x2" : "1114", "y2" : "612"}, stroke_Rise, mina.linear);
       secondsweater.animate({ d : secondSweater[1]}, kRithm * 1000);
       secondFingers.attr({'opacity' : 1});
       secondFingers.animate({ d : AbassFingers[1]}, stroke_Rise, mina.linear);
@@ -915,11 +922,15 @@ secondhands[1].stop().animate({d : handD[1]}, kRithm* rhythm * 0.5, mina.linear,
             setTimeout(function(){
               //return stroke
               Nframe=0; 
-              frameChanging(secondhands[1], strokeBack, timingBack);
+              // frameChanging(secondhands[1], strokeBack, timingBack);
+              secondhands[1].stop().animate({"x1": "1025", "y1" : "624",  "x2" : "1092", "y2" : "624"}, stroke_Back, mina.linear);
               strawCup.animate({transform : 't0,0'}, stroke_Back, mina.linear);
               secondsweater.animate({ d : secondSweater[0]}, stroke_Back, mina.linear);
               secondFingers.animate({ d : AbassFingers[0]}, stroke_Back, mina.linear, function()
-                { secondFingers.attr({'opacity':0}); secondhands[1].stop().animate({d  : handD[0]}, kRithm * rhythm * 0.5, mina.linear, function(){ SecondConstAnimation()}) });
+                { secondFingers.attr({'opacity':0}); 
+                // secondhands[1].stop().animate({d  : handD[0]}, kRithm * rhythm * 0.5, mina.linear, 
+                secondhands[1].stop().animate({x1 : "1092", y1 : "625",  x2 : "1220", y2 : "625"}, kRithm * rhythm * 0.5, mina.linear, 
+                  function(){ SecondConstAnimation()}) });
              }, stoptime) 
           });
      }
