@@ -87,7 +87,7 @@ mug = animSvg.path(mugD).attr({stroke:'#1FB1E9', 'stroke-width':1, fill : '#1FB1
 mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"});
 // fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
 fingersOnMug0 = animSvg.g();
-GhaziFingers.forEach(function(element){fingersOnMug0.add(animSvg.line(element[0], element[1], element[2], element[3]).attr({"stroke-width" : 8, "stroke" : "#EF977C", "stroke-linecap" : "round"}))});
+GhaziFingers.forEach(function(element){fingersOnMug0.attr({'opacity':0}).add(animSvg.line(element[0], element[1], element[2], element[3]).attr({"stroke-width" : 8, "stroke" : "#EF977C", "stroke-linecap" : "round"}))});
 // path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
 
 
@@ -1033,7 +1033,7 @@ leftDrinkHand.animate({x1 : "793", y1 : "592",  x2 : "735", y2 : "508"}, time, m
               function()
                       {
                           GhaziSviter.stop().animate({d:Ghazi[2].sviter}, time, mina.easeInOutQuad);
-                          fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.easeInOutQuad); 
+                          // fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.easeInOutQuad); 
                           fingersOnMug0.animate({transform:"t0,0 s1,1"},time,mina.easeInOutQuad);
                           // fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.easeInOutQuad); 
                           leftDrinkHand.animate({x1 : "832", y1 : "625",  x2 : "905", y2 : "625"}, time, mina.easeInOutQuad );

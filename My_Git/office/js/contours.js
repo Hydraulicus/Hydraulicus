@@ -50,10 +50,7 @@ sviter : '<path class="fil1" id="ghazisviter" d="M601 603c6,-23 18,-49 25,-72 6,
 
 var rHand = 'M830 642l-50 0c-10,0 -18,-8 -18,-18 0,-9 8,-17 18,-17l50 0c10,0 18,8 18,17 0,10 -8,18 -18,18z';//d for animation
 var lHand = 'M831 642l-50 0c-11,1 -22,1 -33,2 -2,0 -3,-1 -4,-3 0,-2 2,-4 4,-4l18 -1c0,-1 -1,-2 -1,-2l-26 1c-2,0 -4,-1 -4,-3 0,-2 1,-4 3,-4l24 -1c0,-1 0,-1 0,-2l-28 1c-2,0 -3,-1 -3,-3 0,-2 1,-4 3,-4l30 -1c0,-1 0,-1 0,-2l-26 1c-1,0 -3,-1 -3,-3 0,-2 1,-4 3,-4l34 -1c2,-1 3,-1 5,-2l-9 -3c-2,-1 -3,-3 -2,-4 1,-2 3,-3 5,-2l19 7c0,0 1,1 1,1l38 1c10,-1 18,6 19,16 0,10 -7,18 -17,19z';//d for animation
-var GhaziFingers = [[920, 606, 931, 606], [917, 615, 931, 615],[919, 624, 929, 624],[921, 633, 927, 633]//,[922, 641, 933, 641]
-// 'M923 615c-2,0 -4,-2 -4,-4 0,-3 2,-4 4,-4l9 -1c2,0 4,2 4,5 0,2 -2,4 -4,4l-9 0zM922 624c-3,0 -5,-2 -5,-4 0,-3 2,-5 5,-5l9 0c3,0 5,2 5,4 0,3 -2,5 -5,5l-9 0zM923 641c-3,0 -5,-1 -5,-4 0,-2 2,-4 4,-4l10 0c2,0 4,2 4,4 0,2 -2,4 -4,4l-9 0zM922 633c-2,0 -4,-2 -4,-5 0,-2 2,-4 4,-4l10 0c2,0 4,2 4,4 0,2 -2,4 -4,4l-10 1z'
-// ,'M705 496c-2,0 -4,-2 -4,-3 1,-2 2,-4 4,-4l34 4c2,1 4,2 4,4 -1,2 -2,4 -4,3l-34 -4zm-5 9c-2,0 -3,-2 -3,-4 0,-2 2,-3 4,-3l31 3c2,1 4,2 3,4 0,2 -2,4 -4,3l-31 -3zm6 19c-2,-1 -3,-2 -3,-4 0,-2 2,-4 4,-3l35 3c2,1 4,2 4,4 -1,2 -2,3 -4,3l-36 -3zm-4 -10c-2,0 -3,-2 -3,-4 0,-2 2,-3 4,-3l35 4c2,0 3,2 3,4 0,2 -2,3 -4,3l-35 -4z'
-]
+var GhaziFingers = [[920, 606, 931, 606], [917, 615, 931, 615],[919, 624, 929, 624],[921, 633, 927, 633]];
 // var GhaziFingers = [
 // 'M923 615c-2,0 -4,-2 -4,-4 0,-3 2,-4 4,-4l9 -1c2,0 4,2 4,5 0,2 -2,4 -4,4l-9 0zM922 624c-3,0 -5,-2 -5,-4 0,-3 2,-5 5,-5l9 0c3,0 5,2 5,4 0,3 -2,5 -5,5l-9 0zM923 641c-3,0 -5,-1 -5,-4 0,-2 2,-4 4,-4l10 0c2,0 4,2 4,4 0,2 -2,4 -4,4l-9 0zM922 633c-2,0 -4,-2 -4,-5 0,-2 2,-4 4,-4l10 0c2,0 4,2 4,4 0,2 -2,4 -4,4l-10 1z'
 // ,'M705 496c-2,0 -4,-2 -4,-3 1,-2 2,-4 4,-4l34 4c2,1 4,2 4,4 -1,2 -2,4 -4,3l-34 -4zm-5 9c-2,0 -3,-2 -3,-4 0,-2 2,-3 4,-3l31 3c2,1 4,2 3,4 0,2 -2,4 -4,3l-31 -3zm6 19c-2,-1 -3,-2 -3,-4 0,-2 2,-4 4,-3l35 3c2,1 4,2 4,4 -1,2 -2,3 -4,3l-36 -3zm-4 -10c-2,0 -3,-2 -3,-4 0,-2 2,-3 4,-3l35 4c2,0 3,2 3,4 0,2 -2,3 -4,3l-35 -4z'
@@ -484,25 +481,39 @@ var tabcovers = [
 ]
 
 
-var phonePopUp = [
+var phonePopUp = [//cutted vertion wihtout name, e-mails, phone
  '<path fill="#00CCFF" fill-opacity="0.4" stroke="#026493" stroke-width="4" stroke-opacity="0.4" d="M65 127l544 0c11,0 20,9 20,20l0 324c0,11 -9,20 -20,20l-544 0c-11,0 -20,-9 -20,-20l0 -324c0,-11 9,-20 20,-20z"/>'
   ,'<path id="phonepopupcross" fill="#00CCFF" fill-opacity="0.01" stroke="#026493" stroke-width="2" d="M598 173c9,0 16,-7 16,-16 0,-9 -7,-16 -16,-16 -8,0 -16,7 -16,16 0,9 8,16 16,16zm-8 -8l16 -16m0 16l-16 -16"/>'
-  ,'<text x="238" y="173"  fill="#024260" font-weight="normal" font-size="24px" font-family="Arial">Startup Workshop</text>'
-  ,'<text x="137" y="207"  fill="#024260" font-weight="normal" font-size="18px" font-family="Arial">We would love to chat about your projects and ideas!</text>'
-  ,'<text x="228" y="327"  fill="#024260" font-weight="normal" font-size="18px" font-family="Arial">What can we help you with: </text>'
-  ,'<text x="180" y="365"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Send us an email: </text>'
-  ,'<text x="331" y="364"  fill="#026493" stroke="#026493" stroke-width="0.5" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7"> ideas@sw.ai </text>'
-  ,'<text x="244" y="389"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Or call us:</text>'
-  ,'<text x="331" y="389"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7"> (+1) 408.396.0881 </text>'
-  ,'<text x="225" y="437"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">340 S. Lemon Ave #8349, </text>'
-  ,'<text x="239" y="461"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">Walnut, CA 91789 USA</text>'
-  ,'<text x="336" y="245"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">' + getphonepopupdata["results"]["name"] + '</text>'
-  ,'<text x="336" y="269"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">' + getphonepopupdata["results"]["email"] + ' </text>'
-  ,'<text x="336" y="293"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">' + getphonepopupdata["results"]["phone"] + ' </text>'
-  ,'<text x="272" y="245"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Name: </text>'
-  ,'<text x="275" y="269"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Email: </text>'
-  ,'<text x="268" y="293"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Phone: </text>'
+  ,'<text x="238" y="180"  fill="#024260" font-weight="normal" font-size="28px" font-family="Arial">Startup Workshop</text>'
+  ,'<text x="137" y="227"  fill="#024260" font-weight="normal" font-size="20px" font-family="Arial">We would love to chat about your projects and ideas!</text>'
+  ,'<text x="160" y="305"  fill="#024260" font-style="italic" font-weight="normal" font-size="20px" font-family="Arial">Send us an email: </text>'
+  ,'<a href="mailto:ideas@sw.ai?subject=Idea&body=Your%20message"><text x="335" y="304"  fill="#026493" stroke="#026493" stroke-width="0.5" font-style="italic" font-weight="normal" font-size="28px" font-family="digital-7"> ideas@sw.ai </text></a>'
+  ,'<text x="230" y="339"  fill="#024260" font-style="italic" font-weight="normal" font-size="20px" font-family="Arial">Or call us:</text>'
+  ,'<text x="335" y="339"  fill="#024260" font-style="italic" font-weight="normal" font-size="28px" font-family="digital-7"> (+1) 408.396.0881 </text>'
+  ,'<text x="212" y="417"  fill="#024260" font-style="italic" font-weight="normal" font-size="28px" font-family="digital-7">340 S. Lemon Ave #8349, </text>'
+  ,'<text x="230" y="460"  fill="#024260" font-style="italic" font-weight="normal" font-size="28px" font-family="digital-7">Walnut, CA 91789 USA</text>'
 ]
+
+//full vertion wiht name, e-mails, phone
+// var phonePopUp = [
+//  '<path fill="#00CCFF" fill-opacity="0.4" stroke="#026493" stroke-width="4" stroke-opacity="0.4" d="M65 127l544 0c11,0 20,9 20,20l0 324c0,11 -9,20 -20,20l-544 0c-11,0 -20,-9 -20,-20l0 -324c0,-11 9,-20 20,-20z"/>'
+//   ,'<path id="phonepopupcross" fill="#00CCFF" fill-opacity="0.01" stroke="#026493" stroke-width="2" d="M598 173c9,0 16,-7 16,-16 0,-9 -7,-16 -16,-16 -8,0 -16,7 -16,16 0,9 8,16 16,16zm-8 -8l16 -16m0 16l-16 -16"/>'
+//   ,'<text x="238" y="173"  fill="#024260" font-weight="normal" font-size="24px" font-family="Arial">Startup Workshop</text>'
+//   ,'<text x="137" y="207"  fill="#024260" font-weight="normal" font-size="18px" font-family="Arial">We would love to chat about your projects and ideas!</text>'
+//   // ,'<text x="228" y="327"  fill="#024260" font-weight="normal" font-size="18px" font-family="Arial">What can we help you with: </text>'
+//   ,'<text x="180" y="365"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Send us an email: </text>'
+//   ,'<text x="331" y="364"  fill="#026493" stroke="#026493" stroke-width="0.5" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7"> ideas@sw.ai </text>'
+//   ,'<text x="244" y="389"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Or call us:</text>'
+//   ,'<text x="331" y="389"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7"> (+1) 408.396.0881 </text>'
+//   ,'<text x="225" y="437"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">340 S. Lemon Ave #8349, </text>'
+//   ,'<text x="239" y="461"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">Walnut, CA 91789 USA</text>'
+//   ,'<text x="336" y="245"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">' + getphonepopupdata["results"]["name"] + '</text>'
+//   ,'<text x="336" y="269"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">' + getphonepopupdata["results"]["email"] + ' </text>'
+//   ,'<text x="336" y="293"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">' + getphonepopupdata["results"]["phone"] + ' </text>'
+//   ,'<text x="272" y="245"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Name: </text>'
+//   ,'<text x="275" y="269"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Email: </text>'
+//   ,'<text x="268" y="293"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Phone: </text>'
+// ]
 
 var bigSizeLaptop = [
 '<g id="bigmacbook" class="visibility_hid"><rect fill="black" stroke="black" stroke-width="0.5" x="295" y="71" width="1330" height="920" rx="48" ry="48"/> <path fill="#B3B3B3" d="M1774 957l-1628 0c-7,52 59,52 86,52l1454 0c19,-1 88,9 88,-52z"/>  <rect fill="#BFBFBF" x="146" y="957" width="1628" height="31"/> <circle fill="#00CCFF" cx="959" cy="105" r="4"/> <path fill="#CCCCCC" d="M1074 957l-229 0c-1,21 8,21 12,21l205 0c3,-1 12,4 12,-21z"/><polygon id="rightbox" fill="#A3C968" stroke="#A3C968" stroke-width="0.5" points="1218,161 1577,161 1577,902 1218,902 "/><polygon id="topbox" fill="#669999" stroke="#669999" stroke-width="0.5" points="1218,161 343,161 343,902 1218,902 "/><polygon id="bottombox" fill="none" stroke="none" stroke-width="0" points="1218,363 343,363 343,902 1218,902 "/></g>'
