@@ -1,0 +1,10 @@
+@font-face {
+  font-weight:normal;
+  font-family: "Corbert-ExtraBold"; 
+  src: url('../fonts/The Northern Block - Corbert ExtraBold.otf');
+}
+
+
+.visibility_hid{  visibility: hidden }
+.display_none{  display: none }
+.bg { background-color: #aaa; }
