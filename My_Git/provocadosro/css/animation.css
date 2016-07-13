@@ -1,7 +1,18 @@
 @font-face {
-  font-weight:normal;
+  font-weight: bold;
   font-family: "Corbert-ExtraBold"; 
   src: url('../fonts/The Northern Block - Corbert ExtraBold.otf');
+}
+@font-face {
+  font-weight: normal;
+  font-family: "Corbert"; 
+  src: url('../fonts/The Northern Block - Corbert.otf');
+}
+
+@font-face {
+  font-weight: medium;
+  font-family: "Corbert-Medium"; 
+  src: url('../fonts/The Northern Block - Corbert Medium.otf');
 }
 
 
@@ -10,7 +21,7 @@
 .bg { background-color: #aaa; }
 
 
-.flexcontainer {
+/*.flexcontainer {
   display: -webkit-flex;
   display: flex;
 flex-wrap: nowrap;
@@ -24,8 +35,7 @@ flex: 0 0 auto;
 
 .bottomBar {
     background: #ccc;
-  /*min-height: 100%;*/
   border: 0px solid black;
   border-radius: 50%;
 }
-.iconblock {}
+.iconblock {}*/

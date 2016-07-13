@@ -53,7 +53,6 @@
      <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.0.0.min.js"><\/script>')</script>    	
      --> 
      <script src="js/snap.svg-min.js"></script>
-     <script src="js/getallcabinetdata.js"></script>
      <script src="js/functions.js"></script>
      <script src="js/contours.js"></script>
      <script src="js/animation.js"></script>
@@ -61,14 +60,19 @@
        initAnimation({
         hexagon : "#animation" // point to SVG id
         ,bottombar : "#bottombar" // point to SVG id
-        ,rhythm : 0.25 //sec, duration if transition animation
+        ,rhythm : 0.125 //sec, duration if transition animation
         ,hexagonSegmentsData : [
-          {pathToIco : "icons/ico1.svg", color : ""},
-          {pathToIco : "icons/ico2.svg", color : ""},
-          {pathToIco : "icons/ico3.svg", color : ""},
-          {pathToIco : "icons/ico4.svg", color : ""},
-          {pathToIco : "icons/ico5.svg", color : ""},
-          {pathToIco : "icons/ico6.svg", color : ""},
+          {pathToIco : "icons/ico1.svg", name : "ar", color : "", title : "ANALÝZA RIZIK", text : "ar Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. "},
+
+          {pathToIco : "icons/ico2.svg", name : "mr", color : "", title : "MINIMALIZACE RIZIK", text : "mr Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+
+          {pathToIco : "icons/ico3.svg", name : "sp", color : "", title : "SPRÁVA POJIŠTĚNÍ", text : "sp Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+
+          {pathToIco : "icons/ico4.svg", name : "pp", color : "", title : "POJISTNÝ PROGRAM", text : "pp Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+
+          {pathToIco : "icons/ico5.svg", name : "rs", color : "", title : "ŘEŠENÍ ŠKOD", text : "rs Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+          
+          {pathToIco : "icons/ico6.svg", name : "ps", color : "", title : "PORADENSTVÍ A SLUŽBY", text : "ps Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
         ]
        });
      </script>

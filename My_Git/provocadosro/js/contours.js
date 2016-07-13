@@ -280,6 +280,14 @@ bottomBar = [
 //   <polyline fill="none" fill-rule="nonzero" stroke="white" stroke-width="2.02954" points="51,313 30,277 51,239 "/>
 //   <polygon fill="white" fill-rule="nonzero" points="452,28 444,21 449,16 456,24 464,16 468,21 461,28 468,36 464,41 456,33 449,41 444,36 "/>
 
-
-
 ]  
+
+,intoClone = [
+  '<path fill="none" id="topiconplace"  fill-rule="nonzero" fill-opacity="0.25" stroke="white" stroke-width="3" stroke-opacity="0.25" d="M381 102c0,34 -27,62 -62,62 -34,0 -62,-28 -62,-62 0,-34 28,-62 62,-62 35,0 62,28 62,62"/>'
+  // ,'<text x="202" y="228"  fill="white" font-weight="normal" font-size="30px" font-family="Arial">ANALГќZA RIZIK</text>'
+  // ,'<text x="169" y="316"  fill="white" font-weight="normal" font-size="67px" font-family="Arial">PЕ™i tvorbД› </text>'
+  // ,'<text x="160" y="437"  fill="white" font-weight="normal" font-size="67px" font-family="Arial">pojistnГ©ho </text>'
+  ,'<polyline fill="none" id="arrowleft" fill-rule="nonzero" stroke="white" stroke-width="8.3" points="568,236 590,272 568,309 "/>'
+  ,'<polyline fill="none" id="arrowright" fill-rule="nonzero" stroke="white" stroke-width="8.3" points="51,309 29,273 51,236 "/>'
+  ,'<polygon id="closecross" fill="white" fill-rule="nonzero" points="446,28 439,20 443,16 451,24 458,16 463,21 455,28 463,36 458,40 451,32 443,40 439,36 "/>'
+]
