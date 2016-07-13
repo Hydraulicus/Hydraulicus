@@ -74,7 +74,11 @@ righthand = Snap.select('#handr');
 GhaziFace = animSvg.ellipse(715, 438, 46, 70) //ellipse for face hover effect
                    .attr({opacity : 0, cursor : "pointer"})
                    .hover(GhaziMouseOn, GhaziMouseOff)
-                   .click(function() {GhaziSpich.animate({transform : orMatrix}, 1000,  mina.bounce).attr({visibility : 'visible'});  document.body.addEventListener('click', fnClose, true);});
+                   .click(function() 
+                      {
+                        GhaziSpich.animate({transform : orMatrix}, 1000,  mina.bounce).attr({visibility : 'visible'});  
+                        // document.body.addEventListener('click', fnClose, true);
+                      });
 GhaziMoustache = Snap.select('#moustache');
 leftHand = animSvg.path(lHand).addClass('fil2');
 GhaziSmile = animSvg.path('M723 473c1,0 2,1 1,2 -5,2 -12,2 -17,0 -1,-1 0,-2 1,-2 5,2 10,2 15,0z').addClass('fil2').transform('s0').attr({opacity:0});
@@ -85,22 +89,22 @@ steamGradient = animSvg.gradient("l(0, 0, 1, 1)#efefef-#fff-#efefef");
 mugSteam = animSvg.path(steam[0]+steam[1]+steam[2]+steam[3]).attr({opacity : 1, fill : steamGradient});
 mug = animSvg.path(mugD).attr({stroke:'#1FB1E9', 'stroke-width':1, fill : '#1FB1E9', 'fill-rule' : "evenodd"});
 mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"});
-// fingersOnMug0 = animSvg.path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
 fingersOnMug0 = animSvg.g();
 GhaziFingers.forEach(function(element){fingersOnMug0.attr({'opacity':0}).add(animSvg.line(element[0], element[1], element[2], element[3]).attr({"stroke-width" : 8, "stroke" : "#EF977C", "stroke-linecap" : "round"}))});
-// path(GhaziFingers[0]).addClass('fil2').attr({'opacity':0});
 
 
 Secondsmile = Snap.select('#secondsmile');
 SecondFace = animSvg.ellipse(1215, 438, 46, 70) //ellipse for face hover effect
                    .attr({opacity : 0, cursor : "pointer"})
                    .hover(SecondMouseOn, SecondMouseOff)
-                   .click(function() { SecondSpeech.animate({transform : orMatrix2}, 1000,  mina.bounce).attr({visibility : 'visible'});  document.body.addEventListener('click', fnClose, true);});
+                   .click(function() 
+                     {
+                        SecondSpeech.animate({transform : orMatrix2}, 1000,  mina.bounce).attr({visibility : 'visible'});  
+                        // document.body.addEventListener('click', fnClose, true);
+                      });
 
 
- if ( constPlay ) constantAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
-
-// throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
+ if ( constPlay ) constantAnimation();
 
         for (var i in dashing)
           { 
@@ -110,9 +114,9 @@ SecondFace = animSvg.ellipse(1215, 438, 46, 70) //ellipse for face hover effect
           dashi[0].callOnFinished = function() {dashi[1].initDraw(); }; 
 
 shalfesSetDraw();
-if ( constPlay ) sheetprinters();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+if ( constPlay ) sheetprinters();
 drawCalendar();
-if ( constPlay ) dispenserAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+if ( constPlay ) dispenserAnimation();
 animSvg.add(Snap.parse(throwPaper));
 animSvg.add(Snap.parse(bin));
 Bin = Snap.select('#bin')
@@ -158,7 +162,7 @@ circlesssss = animSvg.add(Snap.parse(circles)) ;//add circles around pins of mar
 speeches();
 
 secondsweater = Snap.select('#secondsweater'); 
-if ( constPlay ) SecondConstAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+if ( constPlay ) SecondConstAnimation();
 throwedPaper = Snap.select('#throwpaper').attr({opacity:0});
 
 
@@ -180,7 +184,7 @@ Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0});
 
 lampGroup = Snap.selectAll('.lamp').forEach(function(element, index) {  element.attr({'cursor' : 'pointer'}).click(lampTurnOnOff);  });
 
-if ( constPlay ) clockAnimation();//////////////////!!!!!!!!!!!!!!!!!!//////////////////////
+if ( constPlay ) clockAnimation();
 
 phonePopupDraw();
 laptopEvents();
@@ -194,38 +198,15 @@ function laptopEvents(){
 function laptopPortfolioAnimation(){
     $("#4splashpage").removeClass("display_none");
     showMacbook();
-
-    // $.ajax({
-    //   type: "GET",
-    //   // data: {},
-    //   // url: "http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData",
-    //   url: "http://ableserver.hopto.org/sw-api/utility.php?task=getAllPortfolioData&callback=mycallback",
-    //   // jsonpCallback: 'callback',
-    //   dataType: 'jsonp',
-    //   success: function(data){
-    //     console.log( "Retriev data: ", data );
-    //   },
-    //   error: function (xhr, ajaxOptions, thrownError) {
-    //   console.log(xhr.status);
-    //   console.log(thrownError);
-    // }
-    // });
-
 }
 
-// callback = function callback() {}
-// mycallback = function(data){
-//   alert(data.foo);
-// };
 
 var bigMacBookSnap, bigArrow, MacBookTitle, currentPage, bigMac;
 
 function showMacbook(){
-  // console.log('showMacbook');
   currentPage = -1;//show title page
   bigMacBookSnap = Snap("#splashMacBook").attr({ viewBox: "0 0 1920 1080", preserveAspectRatio : "xMidYMid meet"});
   bigMacBookSnap.add(Snap.parse(bigSizeLaptop));
-  // Snap.select("#bigcross").transform('s0.01,0.01').removeClass("visibility_hid").animate({transform : "s1,1"}, rhythm, mina.backout, function(){});
   var bigCross = Snap.select("#bigcross").attr({'cursor' : 'pointer'}).click(removebigMacBook);
    bigArrow = Snap.select("#bigarrow").attr({'cursor' : 'pointer'}).click(nextPageInMacBook);
   var macbookinterfaceLine = Snap.select("#macbookinterface");
@@ -241,7 +222,6 @@ function nextPageInMacBook(nPage){
   if (currentPage > getAllPortfolioData["results"]['items'].length-1) currentPage = 0;
   MacBookPage = new portfolioMacBookPage(currentPage);
    MacBookPage.show();
-  // bigArrow.hover(MacBookPage.blurePage, MacBookPage.unblurePage);
 }
 
 function removebigMacBook(){
@@ -295,10 +275,6 @@ function portfolioMacBookPage (itemN){
   } 
 }
 
-// var MacBookPage = new portfolioMacBookPage(0);
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
 function phonePopupDraw(){
     Snap.select('#phoneCover').click(phoneClick).attr({cursor : "pointer"});
    phonePopupGroup = animSvg.paper.g().attr({'id' : 'services'}).addClass("visibility_hid").transform('t0 150,s0.01');
@@ -313,11 +289,8 @@ function phoneClick(){
 }
 
 function phoneClose(){
-   // console.log('phoneClick');
   phonePopupGroup.animate({transform : "t0 200,s0.01"}, rhythm, mina.backin, function(){this.addClass('visibility_hid')});
 }
-
-
 
 function shalfesSetDraw(){
     shalfesSet = animSvg.paper.g()
@@ -370,14 +343,12 @@ var serviceBackgroundPatterned = animSvg.polyline(221,137, 1699,137, 1699,995, 2
 function mouseOnGrayTitle (){
   var that = parseInt( this.attr('id').split('_')[1] );
   var tempcoord = portoBlocks[that].getBBox();
-  // console.log(that,tempcoord);
   portoBlocks[that].stop().removeClass("visibility_hid").animate( {transform : 's1 1 '+tempcoord.x+' '+tempcoord.y}, rhythm*0.3, mina.easeinout)
 }
 
 function mouseOutGrayTitle (){
   var that = parseInt( this.attr('id').split('_')[1] );
   var tempcoord = portoBlocks[that].getBBox();
-  // portoBlocks[portoBlocks.length-1].stop().animate( {transform : 's1 0.001 '+tempcoord.x+' '+tempcoord.y}, rhythm, mina.backin )
   portoBlocks[that].stop().animate( {transform : 's1 0.001 '+tempcoord.x+' '+tempcoord.y}, rhythm*0.3, mina.easeinout ).addClass("visibility_hid")
 }
 
@@ -479,18 +450,12 @@ function printerClick(){
 }
 
 function sheetDisapear(){
-
              _sheet.animate({opacity : 0} , rhythm*6 , mina.easyinout , function(){  _sheet.attr({transform: ""}); _sheet.animate({opacity : 1}, rhythm*2, function(){ _printer.removeClass('active');}); })
-
-            
 }
 function blueStart(){
-
               _blue_light.animate({opacity : 1} , rhythm*2 , mina.easyinout , function(){ blueOff(); })
-
 }
  function blueOff(){
-
              _blue_light.animate({opacity : 0} , rhythm*2 , mina.easyinout , function(){ blueStart(); })
  }
 
@@ -500,8 +465,6 @@ function drawCalendar(){
 }
 
 function flipCalendar(){
-
-  // calendarDigBl.clone().addClass('cloned').animate({transform: 'skewX(25) translate(-75 170) scale(1 -0.05)'}, rhythm*13, mina.easeout, function(){console.log(this.attr('class')); this.remove()});
   calendarPaper.clone().addClass('cloned').animate({transform: 'skewX(25) translate(-75 170) scale(1 -0.05)'}, rhythm, mina.easeout
       ,function(){
         Snap.selectAll(".cloned .datesblocks").forEach(function(element, index) {  element.addClass("visibility_hid");   }) ; //horizontal position
@@ -533,7 +496,6 @@ function fileTitle (){
   }
   
   this.shiftAwayPage = function (){
-    // console.log('title shiftAwayPage');
     Snap.select('#text_title')
         .clone()
         .add(text)
@@ -541,23 +503,18 @@ function fileTitle (){
   } 
 }
 
-
 function portfolioPage (itemN){
-  // var itemN = this.itemN;
   var text = [];
   var followPage;
 
   this.show  = function (){
-      // console.log(itemN);
       text[0] = animSvg.multitext(955, 210, getallcabinetdata["results"]['items'][itemN]['title'], 500,{ "font-size": "3rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
       text[1] = animSvg.multitext(955, 280, getallcabinetdata["results"]['items'][itemN]['subtitle'], 500,{ "font-size": "2rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
       text[2] = animSvg.multitext(730, 730, getallcabinetdata["results"]['items'][itemN]['description'], 520,{ "font-size": "1.2rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
       text[3] = animSvg.image(getallcabinetdata["results"]['items'][itemN]['image_url'], 688, 320, 552, 345);
-      // text[4] = animSvg.multitext(880, 950, getallcabinetdata["results"]['items'][itemN]['add_date'], 500,{ "font-size": "1rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
       text[5] = Snap.parse('  <polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="683,374 683,315 742,315 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="684,612 684,670 742,670 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="1245,374 1245,315 1186,315 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="1245,612 1245,670 1186,670 "/>');
        followPage = Snap.select('#text_title').clone();
        followPage.add(text[0]).add(text[1]).add(text[2]).add(text[3]).add(text[5]);
-       // text.forEach(function(element){ followPage.add(elem); }) ;
   }
   this.hide = function () {
       text.forEach(function(element) {element.animate({transform : "t-500,100 s0.1,0.1"}, rhythm*3, mina.backin, function(){this.remove()});})
@@ -618,14 +575,12 @@ this.draw = function(){
       else 
         if (typeof pages !== "undefined")  { pages.shiftAwayPage();   }
      titlePage = false; 
-    // console.log('start new page',(parseInt(indexEl[1])-1));
      pages = new portfolioPage(parseInt(indexEl[1])-1);
      pages.show();
   }
 
 
   hoverIn = function(event){ 
-    // console.log('hover In',element) ;
     var targetElement = event.target || event.srcElement,
     indexEl = targetElement.id.split('_');
     Snap.select('#tabtext_'+indexEl[1]).animate({fill : "#3F3F3F"}, rhythm * 0.5, mina.backin);
@@ -668,8 +623,6 @@ function drawerClick(element){
    Snap.select('#mapa').animate({opacity : 0},rhythm);
        
    operadedFile[0].animate({"d" : innerfileD}, rhythm*3, mina.backout, function(){
-        // Snap.select("#fileclosecross").click(fileClose).attr({cursor : "pointer"});
-
         Snap.selectAll('.filesfromdrawers').forEach(function(element, index) 
               {
                   element.removeClass('visibility_hid'); 
@@ -680,9 +633,7 @@ function drawerClick(element){
 
 //close file
 function fileClose () {
-  // console.log('Click - close file');
   bookmarks.hide();
-
   Snap.select("#fileclosecross").unclick(fileClose);
   document.body.removeEventListener('click', fileClose, true); 
   Snap.select("#semytransparentfirstpage").animate({"d" : "M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z", "opacity" : 0.85}, rhythm*2, mina.easeinout
@@ -723,7 +674,6 @@ function plantClick(){
 }
 
 function waterDraw(xpath){
-
            var innerCircle = animSvg.path(xpath).attr({
                      fill            : "none",
                      stroke          : '#15B7E4',
@@ -734,28 +684,24 @@ function waterDraw(xpath){
                      class           : 'waters'
            });
 
-          Snap.animate(0,rhythm*0.3, function( value ){innerCircle.attr({ 'strokeDashoffset': value })},rhythm*5, function(){canPutInPlace();});
+          Snap.animate(0,rhythm*0.3, function( value ){innerCircle.attr({ 'strokeDashoffset': value })},rhythm*5, function(){canPutInPlace(); flowersGrowUp();});
 }
 
 function canPutInPlace(){
-            
                animSvg.selectAll('.waters').forEach(function(water, index){
                                  water.animate({opacity:0},rhythm);
                     });
-
-               can.animate({'transform': 'r-0 30 1020'},rhythm*3,mina.easyinout,function(){canDisapear();});//flowersGrowUp();
+               can.animate({'transform': 'r-0 30 1020'},rhythm*3,mina.easyinout,function(){canDisapear(); });//flowersGrowUp();
 }
 function flowersGrowUp(){
               animSvg.selectAll('.flowers').forEach(function(flower, index){
-                      
                                  flower.animate({'transform': 's1 1'},rhythm*10,mina.easyinout, function(){setTimeout( function(){flowerDissapear()}, rhythm*10 );});
                });
 }
 
 function canDisapear(){
-
             can.removeClass('active');
-            can.animate({opacity:0},rhythm*2,function(){setTimeout( function(){flowersGrowUp();}, rhythm*5 );});//flowerDissapear();
+            can.animate({opacity:0},rhythm*2,function(){});//flowerDissapear();
 }
 
 function flowerDissapear(){
@@ -765,14 +711,12 @@ function flowerDissapear(){
 }
 
 function plantOver(){
-
                can.animate({opacity:1},rhythm);     
 }
 
 function plantOut(){
                if(!can.hasClass('active')){
                             can.animate({opacity:0},rhythm);
-
                }
 }
 
@@ -845,14 +789,11 @@ function gradientAnim () {
 
 function throwHandDrawing(){
   throwHandGroup.clear();
-  // throwHandGroup = animSvg.paper.g().transform('r120,1090,624').attr({'id' : 'raisedThrowHand'});
       console.log(throwHandGroup);
     for (var i in throwHand) {
       throwHandGroup.add(Snap.parse(throwHand[i])).addClass('throwHandGroup');//.attr({stroke:'black','stroke-width':5});
     }
-
     throwPaper = Snap.select("#throwpaper");
-    // console.log(throwHandGroup);
   }
 
 function SecondConstAnimation()
@@ -872,8 +813,6 @@ function SecondConstAnimation()
         return
       };
   secondhands[0].animate({transform : 'r0.5,1200,625'}, time, mina.backin, function(){secondhands[0].animate({transform : 'r-0.5,1200,625'}, time, mina.backout)});
-  // secondhands[1].animate({transform : 'r0.5,850,625 '}, time, mina.bounce, function()
-    // {secondhands[1].animate({transform : 'r-0.5,850,625 '}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
   secondhands[1].animate({y1 : "620"}, time, mina.bounce, function()
     {secondhands[1].animate({y1 : "624"}, time, mina.bounce, function(){timeTyping++; SecondConstAnimation()})});
 }
@@ -883,10 +822,7 @@ function frameChanging(part, arr, timings) {
   if (Nframe > arr.length-1) { return }
     else  
      {  Nframe++;
-      // console.log(Nframe);
-      // setTimeout( function(){ 
-            part.stop().animate({d : arr[Nframe-1]}, timings[Nframe-1], mina.linear, function(){ frameChanging(part, arr, timings) } )   
-        // }, 50 )
+        part.stop().animate({d : arr[Nframe-1]}, timings[Nframe-1], mina.linear, function(){ frameChanging(part, arr, timings) } )   
     }
 }
 
@@ -900,23 +836,12 @@ function  strawDrinking(){
   timingBack = [ 630* kRithm, 280* kRithm, 260* kRithm ],//msec
 
 
-  //with mina.easeinout
-  // strokeRise = [ handD[1], handD[2], handD[3], handD[4] ],
-  // timingRise = [100 * kRithm, 200* kRithm, 180* kRithm, 300* kRithm ],//msec
-  // strokeBack = [ handD[3], handD[2], handD[1] ],
-  // timingBack = [630* kRithm, 180* kRithm, 220* kRithm],//msec
-  //=============
-
-
   stroke_Rise = timingRise.reduce(function(sum, current) { return sum + current; }, 0), // calculating whole time of animation 
   stroke_Back = timingBack.reduce(function(sum, current) { return sum + current; }, 0); 
 
-// console.clear(); console.log(stroke_Rise);
-// secondhands[1].stop().animate({d : handD[1]}, kRithm* rhythm * 0.5, mina.linear,// character take cup
 secondhands[1].stop().animate({"x1": "1025", "x2" : "1092"}, kRithm* rhythm * 0.5, mina.easeinout,// character take cup
   function()
    {  Nframe=0;
-      // frameChanging(secondhands[1], strokeRise, timingRise);
       secondhands[1].stop().animate({"x1": "1185", "y1" : "550",  "x2" : "1114", "y2" : "612"}, stroke_Rise, mina.easeinout);
       secondsweater.animate({ d : secondSweater[1]}, kRithm * 1000);
       secondFingers.attr({'opacity' : 1});
@@ -924,44 +849,23 @@ secondhands[1].stop().animate({"x1": "1025", "x2" : "1092"}, kRithm* rhythm * 0.
       strawCup.animate({transform : 't178,-68'}, stroke_Rise, mina.easeinout, function()
           {
             setTimeout(function(){
-              //return stroke
               Nframe=0; 
-              // frameChanging(secondhands[1], strokeBack, timingBack);
               secondhands[1].stop().animate({"x1": "1025", "y1" : "624",  "x2" : "1092", "y2" : "624"}, stroke_Back, mina.easeinout);
               strawCup.animate({transform : 't0,0'}, stroke_Back, mina.easeinout);
               secondsweater.animate({ d : secondSweater[0]}, stroke_Back);
               secondFingers.animate({ d : AbassFingers[0]}, stroke_Back, mina.easeinout, function()
                 { secondFingers.attr({'opacity':0}); 
-                // secondhands[1].stop().animate({d  : handD[0]}, kRithm * rhythm * 0.5, mina.linear, 
-                secondhands[1].stop().animate({x1 : "1092", y1 : "625",  x2 : "1220", y2 : "625"}, kRithm * rhythm * 0.5, mina.easeinout, 
-                  function(){ SecondConstAnimation()}) });
-             }, stoptime) 
-          });
-     }
-
-  // function() //with mina.easeinout
-  //  {  Nframe=0;
-  //     frameChanging(secondhands[1], strokeRise, timingRise);
-  //     secondFingers.animate({ d : AbassFingers[1]}, 1000, mina.easeinout).attr({'opacity':1});
-  //     secondsweater.animate({ d : secondSweater[1]}, 1000);
-  //     strawCup.animate({transform : 't178,-68'}, 1000, mina.easeinout, function()
-  //         {
-  //           setTimeout(function(){
-  //             //return stroke
-  //             Nframe=0; frameChanging(secondhands[1], strokeBack, timingBack);
-  //             strawCup.animate({transform : 't0,0'},1200, mina.easeinout);
-  //             secondsweater.animate({ d : secondSweater[0]}, 1000*2, mina.easeinout);
-  //             secondFingers.animate({ d : AbassFingers[0]},1200, mina.easeinout, function(){ secondFingers.attr({'opacity':0}); secondhands[1].animate({d  : handD[0]}, rhythm*0.5, mina.linear, function(){ SecondConstAnimation()}) });
-  //            }, stoptime) 
-  //         });
-  //    } 
-          );    
+                  secondhands[1].stop().animate({x1 : "1092", y1 : "625",  x2 : "1220", y2 : "625"}, kRithm * rhythm * 0.5, mina.easeinout, 
+                      function(){ SecondConstAnimation()}) });
+                 }, stoptime) 
+              });
+         }
+             );    
  Nframe=0;
 }
 
 function constantAnimation()
   { 
-    // mugClick();
     if (timeKnee !== 0) 
       {
         kneeR.animate({ d : Ghazi[1].kneeR }, rhythm, mina.easeInOutQuad);
@@ -981,7 +885,6 @@ function mugClick(){
    GhaziFaceSet.stop().transform('t0,0');//Stop animation
    
     animSvg.selectAll('path circle').forEach(function(element, index) { element.stop() });//Stop all animation
-    // leftHand.stop().animate({d : Ghazi[1].lHand},200,mina.easeinout, function(){fingersOnMug0.attr({opacity:1}); setTimeout(function(){ mugDrink(time, function(){mugMouseOff()}) }, time*0.33)});
      leftDrinkHand.stop().removeClass("visibility_hid").animate({x1 : "832", y1 : "625",  x2 : "905", y2 : "625"}, rhythm, mina.easeinout, function()
           {
             fingersOnMug0.attr({opacity:1}); setTimeout(function(){ mugDrink(time) }, rhythm)
@@ -992,50 +895,21 @@ function mugClick(){
 function mugDrink(time){
   clickFlag = true;
   var stopTime = rhythm;
-  // var frames = [Ghazi[1].lHand
-  // ,'M846 601c-17,17 -2,2 -19,19 -7,7 -18,7 -24,0l0 0c-7,-7 -7,-18 0,-25 17,-17 1,-2 18,-19 7,-7 18,-7 25,0l0 0c7,7 7,18 0,25z'
-  // ,'M818 552c0,25 0,19 0,44 0,9 -8,17 -18,17l0 0c-9,0 -17,-8 -17,-17 0,-25 0,-19 0,-44 0,-9 8,-17 17,-17l0 0c10,0 18,8 18,17z'
-  // ,'M750 500c14,20 43,58 57,77 6,8 4,19 -4,25l0 0c-8,5 -19,3 -25,-4 -13,-20 -43,-58 -56,-78 -6,-8 -4,-19 4,-24l0 0c8,-6 19,-4 24,4z'
-  // ],
   mugd = 'M729 527c0,1 -7,2 -16,2 -9,0 -16,-1 -16,-2l-2 -13c0,-7 -1,-16 -3,-28 0,-1 0,-8 0,-8 0,-1 9,-2 21,-2 12,0 21,1 21,2 0,0 -5,49 -5,49zm-36 -37l2 20c-1,-6 -1,-10 -2,-20z';
   
   mugInsude.attr({'opacity':0});
-
-leftDrinkHand.animate({x1 : "793", y1 : "592",  x2 : "735", y2 : "508"}, time, mina.easeOutQuad 
-
-  // leftHand.stop().animate({d:frames[1]}, time*0.235, mina.linear, 
-  //   function(){ leftHand.stop().animate({d:frames[2]},time*0.15,mina.linear 
-  //     , function(){ leftHand.stop().animate({d:frames[3]}, time*0.65, mina.easeOutQuad  
-  //        ,function(){setTimeout(
-  //       //back stroke
-  //                      function(){ leftHand.stop().animate({d:frames[2]}, time*0.35, mina.easeInQuad
-  //                       , function(){ leftHand.stop().animate({d:frames[1]}, time*0.2, mina.linear
-  //                          , function(){ leftHand.stop().animate({d:frames[0]}, time*0.48, mina.easeOutQuad, callback);})})
-  //                   }, stopTime)
-  //       })
-  //     })
-  //    }
+  leftDrinkHand.animate({x1 : "793", y1 : "592",  x2 : "735", y2 : "508"}, time, mina.easeOutQuad 
     );
 
-  mug.animate({d:mugd},time,mina.easeOutQuad, 
-    function(){
-      // setTimeout(function()
-                  // { mug.animate({d:mugD},time,mina.linear, function(){mugInsude.attr({'opacity':1});})
-                  // }, stopTime
-                // )
-              }
-              );
+  mug.animate({d:mugd},time,mina.easeOutQuad, function(){});
   GhaziSviter.stop().animate({d:Ghazi[3].sviter},time,mina.easeOutQuad);
-  // fingersOnMug0.animate({d:GhaziFingers[1]},time,mina.easeOutQuad,
   fingersOnMug0.animate({transform:"t-200,-117 s1.75,1"},time,mina.easeOutQuad,
         function(){
           setTimeout( 
               function()
                       {
                           GhaziSviter.stop().animate({d:Ghazi[2].sviter}, time, mina.easeInOutQuad);
-                          // fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.easeInOutQuad); 
                           fingersOnMug0.animate({transform:"t0,0 s1,1"},time,mina.easeInOutQuad);
-                          // fingersOnMug0.animate({d:GhaziFingers[0]}, time, mina.easeInOutQuad); 
                           leftDrinkHand.animate({x1 : "832", y1 : "625",  x2 : "905", y2 : "625"}, time, mina.easeInOutQuad );
                           mug.animate({d:mugD},time,mina.easeInOutQuad, function(){ mugInsude.attr({'opacity':1}); fingersOnMug0.attr({'opacity':0}); leftDrinkHand.animate({x1 : "830", y1 : "625",  x2 : "630", y2 : "625"}, time, mina.easeInOutQuad, function(){this.addClass("visibility_hid");  leftHand.removeClass("visibility_hid"); mugMouseOff()} );})
                       }
@@ -1102,24 +976,21 @@ function SecondMouseOff() {  Secondsmile.animate({d : 'M1207 477l13 0c0,0 1,1 1,
 
 //close cpeech bubble when a user clicks outside of them
 function fnClose () {
-  console.log('Click - close bubble');
   GhaziSpich.animate({transform : myMatrix}, 750,  mina.backin, function(){ GhaziSpich.attr({visibility : 'hidden'}); }); 
   SecondSpeech.animate({transform : myMatrix2}, 750,  mina.backin, function(){ SecondSpeech.attr({visibility : 'hidden'}); }); 
   document.body.removeEventListener('click', fnClose, true); 
 }
 
 function mapClose (ev) {
-console.log('mapClose');
   map4events.animate({transform : 't0,-1s1'}, 550,  mina.backout).attr({cursor : 'pointer'}).click(mapClick); 
   Snap.select('#closer').attr({cursor : 'default', 'opacity' : 0}).unclick(mapClose);   
   // document.body.removeEventListener('click', mapClose, true); 
   HQGroup.forEach(function(element1, index) { element1.attr({'opacity' : 0}).transform( transitionNote); });
-regionalsGroup.forEach(function(element2, index) { element2.attr({'opacity' : 0}).transform( transitionNote); });
-satellitesGroup.forEach(function(element3, index) { element3.attr({'opacity' : 0}).transform( transitionNote); });
-Snap.select('#annotation').attr({'opacity' : 0});
-pulseShow = false; 
-Snap.selectAll('.circles').forEach(function(element, index) {element.stop().attr({r : 1, 'stroke' : 'none'});});//stop ALL circles animations
-
+  regionalsGroup.forEach(function(element2, index) { element2.attr({'opacity' : 0}).transform( transitionNote); });
+  satellitesGroup.forEach(function(element3, index) { element3.attr({'opacity' : 0}).transform( transitionNote); });
+  Snap.select('#annotation').attr({'opacity' : 0});
+  pulseShow = false; 
+  Snap.selectAll('.circles').forEach(function(element, index) {element.stop().attr({r : 1, 'stroke' : 'none'});});//stop ALL circles animations
 }
 
 function mapClick(ev){
@@ -1129,7 +1000,6 @@ function mapClick(ev){
   Snap.select('#closer').stop().animate({transform : 't-20,-75s4.65'}, 750,  mina.bounce).attr({cursor : 'pointer', 'opacity' : 1}).click(mapClose);  
   Snap.select('#annotation').attr({'opacity' : 1});
   console.log('Click on map',pulseShow);
-
 }
 
 function speeches(){
@@ -1152,23 +1022,14 @@ function speeches(){
 }
 
 function bubbleStart(){
-             
-
              n_path  = randomInteger(0, path4bubble.length-1);
              n_path  = Math.abs(n_path);
-            
-
              var bubble_el = Snap.select('.bubble');
              var bubble_opacity = randomInteger(5, 10) * 0.1;
              var bubble_scale = randomInteger(0.1, 10);
-             
              var bubble_new =  bubble_el.clone().attr({ opacity: bubble_opacity , scale : bubble_scale});
-
-            
              var path_el = path4bubble[n_path];
              bubblesUp( bubble_new,  path_el );
-
-
 }
        
 
@@ -1227,7 +1088,6 @@ function coolerOut(){
 }
 
 function bubblesUp( el, xpath ) {
-
             el.drawAtPath( xpath, 2750, {scale : 1.1, callback:function(){el.animate({opacity:0},   rhythm * 0.3,   function(){el.remove(); bubbleStart();} )  }}    );
 };
 

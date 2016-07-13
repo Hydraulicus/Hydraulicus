@@ -17,7 +17,6 @@ var Ghazi =
 sviter : '<path class="fil1" id="ghazisviter" d="M601 603c6,-23 18,-49 25,-72 6,-17 14,-30 33,-34 10,-1 22,0 31,0l26 0 26 0c10,0 21,-1 31,0 17,3 26,13 33,34 7,23 19,49 25,72 12,2 22,7 22,21 0,28 -50,27 -55,4l-5 -20c0,0 -18,64 -20,71l0 0 0 0c-8,3 -31,5 -57,4 -26,1 -50,-1 -57,-4l0 0 0 0 0 0 -20 -71c-10,10 -24,36 -44,36 -11,0 -21,-9 -21,-20 0,-11 9,-20 20,-21l7 0z"/>'
 ,shadowsviter : '<path fill="#006696" d="M780 652l-7 27c-1,4 -53,5 -58,5 -26,0 -55,-3 -56,-5l-8 -27 129 0z"/> <path fill="#006696" d="M674 496c6,0 11,1 16,1 24,0 61,-3 83,0 17,3 26,13 33,34l1 6 -133 -41z"/>'
 ,pants : '<path class="fil7" id="pants" d="M603 729l226 0 0 0c14,0 25,-11 25,-25 0,-13 -11,-25 -25,-25l0 0 -226 0c-14,0 -25,12 -25,25 0,14 11,25 25,25z"/>'
-// ,fingersR : '<g><line class="fil3 str0" x1="655" y1="600" x2="636" y2= "608" /><line class="fil3 str0" x1="687" y1="611" x2="651" y2= "611" /><line class="fil3 str0" x1="691" y1="619" x2="658" y2= "620" /><line class="fil3 str0" x1="688" y1="628" x2="662" y2= "629" /><line class="fil3 str0" x1="679" y1="638" x2="648" y2= "638" /></g>'
 ,handR : '<path class="fil2" id="handr" d="M596 642l50 0c10,0 18,-8 18,-18 0,-9 -8,-17 -18,-17l-50 0c-10,0 -18,8 -18,17 0,10 8,18 18,18z"/>'
 ,kneeR : '<path class="fil12" id="kneeR" d="M628 699l63 175c2,3 3,6 3,10 0,13 -11,23 -24,23 -10,0 -19,-7 -22,-15l-63 -176c-2,-3 -3,-6 -3,-10 0,-12 11,-23 24,-23 10,0 19,7 22,16z"/>' 
 ,foot : '<path class="fil12" d="M740 874l64 -175c3,-9 12,-16 22,-16 13,0 23,11 23,23 0,4 -1,7 -2,10l-64 176c-3,8 -11,15 -22,15 -12,0 -23,-10 -23,-23 0,-4 1,-7 2,-10z"/><path class="fil19" d="M651 883c10,2 13,1 20,7 14,12 7,15 13,14 3,4 16,-6 20,11l-83 0c1,-9 2,-10 5,-16 3,-3 4,-5 8,-7 4,-4 8,-9 17,-9zM781 883c-10,2 -13,1 -20,7 -13,12 -6,15 -12,14 -4,4 -17,-6 -21,11l83 0c-1,-9 -2,-10 -5,-16 -3,-3 -4,-5 -8,-7 -4,-4 -8,-9 -17,-9z"/><path class="fil18" d="M645 891c3,0 6,-3 6,-7 0,-3 -3,-6 -6,-6 -4,0 -7,3 -7,6 0,4 3,7 7,7zM787 891c4,0 7,-3 7,-7 0,-3 -3,-6 -7,-6 -4,0 -6,3 -6,6 0,4 2,7 6,7z"/>'
@@ -51,10 +50,6 @@ sviter : '<path class="fil1" id="ghazisviter" d="M601 603c6,-23 18,-49 25,-72 6,
 var rHand = 'M830 642l-50 0c-10,0 -18,-8 -18,-18 0,-9 8,-17 18,-17l50 0c10,0 18,8 18,17 0,10 -8,18 -18,18z';//d for animation
 var lHand = 'M831 642l-50 0c-11,1 -22,1 -33,2 -2,0 -3,-1 -4,-3 0,-2 2,-4 4,-4l18 -1c0,-1 -1,-2 -1,-2l-26 1c-2,0 -4,-1 -4,-3 0,-2 1,-4 3,-4l24 -1c0,-1 0,-1 0,-2l-28 1c-2,0 -3,-1 -3,-3 0,-2 1,-4 3,-4l30 -1c0,-1 0,-1 0,-2l-26 1c-1,0 -3,-1 -3,-3 0,-2 1,-4 3,-4l34 -1c2,-1 3,-1 5,-2l-9 -3c-2,-1 -3,-3 -2,-4 1,-2 3,-3 5,-2l19 7c0,0 1,1 1,1l38 1c10,-1 18,6 19,16 0,10 -7,18 -17,19z';//d for animation
 var GhaziFingers = [[920, 606, 931, 606], [917, 615, 931, 615],[919, 624, 929, 624],[921, 633, 927, 633]];
-// var GhaziFingers = [
-// 'M923 615c-2,0 -4,-2 -4,-4 0,-3 2,-4 4,-4l9 -1c2,0 4,2 4,5 0,2 -2,4 -4,4l-9 0zM922 624c-3,0 -5,-2 -5,-4 0,-3 2,-5 5,-5l9 0c3,0 5,2 5,4 0,3 -2,5 -5,5l-9 0zM923 641c-3,0 -5,-1 -5,-4 0,-2 2,-4 4,-4l10 0c2,0 4,2 4,4 0,2 -2,4 -4,4l-9 0zM922 633c-2,0 -4,-2 -4,-5 0,-2 2,-4 4,-4l10 0c2,0 4,2 4,4 0,2 -2,4 -4,4l-10 1z'
-// ,'M705 496c-2,0 -4,-2 -4,-3 1,-2 2,-4 4,-4l34 4c2,1 4,2 4,4 -1,2 -2,4 -4,3l-34 -4zm-5 9c-2,0 -3,-2 -3,-4 0,-2 2,-3 4,-3l31 3c2,1 4,2 3,4 0,2 -2,4 -4,3l-31 -3zm6 19c-2,-1 -3,-2 -3,-4 0,-2 2,-4 4,-3l35 3c2,1 4,2 4,4 -1,2 -2,3 -4,3l-36 -3zm-4 -10c-2,0 -3,-2 -3,-4 0,-2 2,-3 4,-3l35 4c2,0 3,2 3,4 0,2 -2,3 -4,3l-35 -4z'
-// ]
 
 var objects = [
 	'<g id="macbook"><path id="laptopbottom0" class="fil22 str6" d="M800 635l-169 0c-1,6 6,6 8,6l152 0c2,0 9,2 9,-6z"/><g id="laptoptop0"><path class="fil22 str6" d="M636 524l158 0c4,0 6,3 6,7l0 101c0,4 -2,7 -6,7l-158 0c-3,0 -6,-3 -6,-7l0 -101c0,-4 3,-7 6,-7z"/><path class="fil24" d="M723 582c0,-1 0,-2 1,-3 0,-1 0,-1 0,-1l1 -1c0,-1 -1,-1 -1,-2 -4,-2 -6,1 -8,1 -2,0 -3,-1 -5,-1 -5,0 -7,5 -6,10 0,2 3,9 7,9 1,0 2,-1 4,-1 1,0 3,1 4,1 3,0 6,-5 6,-7 0,0 0,0 -1,0 0,0 0,0 0,-1 -2,-1 -2,-2 -2,-4zM715 575c2,0 3,-1 4,-2 1,-1 2,-2 1,-4 -1,0 -3,1 -3,2 -1,1 -2,2 -2,4z"/></g></g>'
@@ -133,10 +128,7 @@ var second = [
    ,'<path class="secondface" fill="#EBCA9C" id="secondsmile" d="M1207 477l13 0c0,0 1,1 1,2 0,0 -1,1 -1,1l-13 0c-1,0 -2,-1 -2,-1 0,-1 1,-2 2,-2z"/>'
    ,'<path class="secondface" fill="#EF9887" d="M1248 432c2,0 3,1 5,2 2,3 2,7 0,10 -2,1 -3,2 -5,2l0 -14z"/>'
    ,'<path class="secondface" fill="#EF9887" d="M1178 432c-1,0 -3,1 -4,2 -3,3 -3,7 0,10 1,1 3,2 4,2l0 -14z"/>'
-	  
 	,',<g id="lefthand"><path fill="#EF977C" d="M1333 642l-50 0c-10,0 -18,-8 -18,-18 0,-9 8,-17 18,-17l50 0c10,0 18,8 18,17 0,10 -8,18 -18,18z"/><line class="fil3 str0" x1="1242" y1="611" x2="1278" y2= "611" /><line class="fil3 str0" x1="1238" y1="619" x2="1271" y2= "620" /><line class="fil3 str0" x1="1241" y1="628" x2="1267" y2= "629" /><line class="fil3 str0" x1="1250" y1="638" x2="1281" y2= "638" /></g>'
-
-	// ,'<path id="righthand" fill="#EF977C" d="M1159 606l-66 0c-9,0 -17,9 -16,18 0,10 9,17 18,17l66 0c9,-1 17,-9 16,-18 0,-10 -8,-17 -18,-17z"/>'
 	,'<line id="righthand" stroke="#EF977C" stroke-width="36" stroke-linecap="round" x1="1092" y1="625" x2="1220" y2="625" />'
 ]
 var AbassFingers = [//Abbas right hand fingers
@@ -145,10 +137,8 @@ var AbassFingers = [//Abbas right hand fingers
 	
   ]
 var secondSweater = [
-// "M1098 603c6,-23 18,-49 25,-72 6,-17 14,-30 33,-34 20,0 91,0 114,0 17,3 26,13 33,34 7,23 19,49 25,72l7 0c11,1 20,10 20,21 0,11 -10,20 -21,20 -6,0 -12,-2 -16,-7 -5,-6 -22,-29 -28,-29l-20 71c-14,6 -101,5 -114,0l-11 -38c-3,0 -8,0 -13,0 -3,5 -34,3 -40,3 -11,0 -21,-9 -21,-20 0,-11 9,-20 20,-21l7 0z"
 "M1098 603c6,-23 18,-49 25,-72 6,-17 14,-30 33,-34 10,-1 22,0 31,0l26 0 26 0c10,0 21,-1 31,0 17,3 26,13 33,34 7,23 19,49 25,72l7 0c11,1 20,10 20,21 0,11 -10,20 -21,20 -6,0 -12,-2 -16,-7l-25 -29c-1,0 -2,0 -3,0l-20 71 0 0 0 0c-7,3 -31,5 -57,4 -26,1 -50,-1 -57,-4l0 0 -11 -38c0,0 -1,0 -2,0l-11 0c-3,5 -34,3 -40,3 -11,0 -21,-9 -21,-20 0,-11 9,-20 20,-21l7 0z"
 ,"M1094 595c6,-22 22,-41 29,-64 6,-17 14,-30 33,-34 10,-1 22,0 31,0l26 0 26 0c10,0 21,-1 31,0 17,3 26,13 33,34 7,23 19,49 25,72l7 0c11,1 20,10 20,21 0,11 -10,20 -21,20 -6,0 -12,-2 -16,-7l-25 -29c-1,0 -2,0 -3,0l-20 71 0 0 0 0c-7,3 -31,5 -57,4 -26,1 -50,-1 -57,-4l0 0 -11 -38c0,0 -1,0 -2,0l-11 0c-3,5 -12,-5 -19,-5 -11,0 -20,-9 -20,-20 -1,-6 0,-12 0,-12l1 -9z"
-// ,"M1115 581c3,-22 3,-26 8,-50 6,-17 14,-30 33,-34 22,0 91,-1 114,0 17,3 26,13 33,34 7,23 19,49 25,72l7 0c11,1 20,10 20,21 0,11 -10,20 -21,20 -6,0 -12,-2 -16,-7 -5,-6 -22,-29 -28,-29l-20 71c-1,4 -52,5 -57,4 -26,1 -50,-1 -57,-4l-11 -38c-6,0 -14,2 -23,0 -3,-2 -3,-4 -9,-5 -11,0 -20,-9 -20,-21 0,-11 8,-20 19,-20l3 -14z"
 ];
   var handD = [//Abbas right hand
   'M1159 606l-66 0c-9,0 -17,9 -16,18 0,10 9,17 18,17l66 0c9,-1 17,-9 16,-18 0,-10 -8,-17 -18,-17z'//norm pos
@@ -179,37 +169,33 @@ var mapa = ['<g id="mapa">'
 ,'<g><path fill="#E6001A" d="M1100 178l3 -5c7,-11 -13,-10 -6,0l3 5zm0 -10c1,0 1,1 1,2 0,0 0,1 -1,1 -1,0 -1,-1 -1,-1 0,-1 0,-2 1,-2z"/><path fill="#AC1141" d="M1100 167c1,0 3,1 3,3 0,1 -2,2 -3,2 -1,0 -2,-1 -2,-2 0,-2 1,-3 2,-3zm0 1c1,0 1,1 1,2 0,0 0,1 -1,1 -1,0 -1,-1 -1,-1 0,-1 0,-2 1,-2z"/></g>'
 ,'<g><path fill="#E6001A" d="M1109 219l3 -5c7,-11 -12,-11 -6,0l3 5zm0 -10c1,0 2,0 2,1 0,1 -1,1 -2,1 0,0 -1,0 -1,-1 0,-1 1,-1 1,-1z"/><path fill="#AC1141" d="M1109 208c2,0 3,1 3,2 0,1 -1,3 -3,3 -1,0 -2,-2 -2,-3 0,-1 1,-2 2,-2zm0 1c1,0 2,0 2,1 0,1 -1,1 -2,1 0,0 -1,0 -1,-1 0,-1 1,-1 1,-1z"/></g>'
 
-,'<g id="hqgroup"><g id="california" class="marks hq"><path fill="black" stroke="black" stroke-width="0.5" d="M893 162l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="894" y="173"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">CALIFORNIA, USA</text></g></g>'
-,'<g id="california" class="marks hq"><path fill="black" stroke="black" stroke-width="0.5" d="M893 162l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="894" y="173"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">CALIFORNIA, USA</text></g>'
-,'<g id="dallas" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.5" d="M914 170l50 0c0,0 1,0 1,1l0 13c0,1 -1,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,-1 -2,-2l0 -13c0,-1 1,-1 2,-1z"/><text x="928" y="182" fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">DALLAS</text></g>'
-,'<g id="argentina" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.5" d="M954 239l50 0c1,0 2,1 2,2l0 13c0,1 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,0 -1,-1l0 -13c0,-1 1,-2 1,-2z"/><text x="963" y="251"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">ARGENTINA</text></g>'
-,'<g id="india" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.5" d="M1085 187l50 0c0,0 1,0 1,1l0 13c0,1 -1,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,-1 -2,-2l0 -13c0,-1 1,-1 2,-1z"/><text x="1102" y="198"  fill="white" font-weight="normal" font-size="7.35506px" font-family="Cavorting">INDIA</text></g>'
-,'<g id="europe" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.5" d="M1038 159l50 0c0,0 1,1 1,1l0 14c0,1 -1,1 -1,1l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,0 -2,-1l0 -14c0,0 1,-1 2,-1z"/><text x="1038" y="171"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">EASTERN EUROPE</text></g>'
-,'<g id="pakistan" class="marks regional"><path fill="black" stroke="black" stroke-width="0.5" d="M1074 170l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1087" y="182"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">PAKISTAN</text></g>'
-,'<g id="afrika" class="marks regional"><path fill="black" stroke="black" stroke-width="0.5" d="M1015 195l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1025" y="207"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">CAMEROON</text></g>'
-,'<g id="russia" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.5" d="M1076 147l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="1090" y="158"  fill="white" font-weight="normal" font-size="7.35477px" font-family="Cavorting">RUSSIA</text></g>'
-
+,'<g id="hqgroup"><g id="california" class="marks hq"><path fill="black" stroke="black" stroke-width="0.5" d="M893 162l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="894" y="173"  fill="white" font-weight="normal" font-size="7.4px" font-family="Cavorting" >Walnut,CA,USA</text></g></g>'
+,'<g id="california" class="marks hq"><path fill="black" stroke="black" stroke-width="0.5" d="M893 162l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="918" y="173"  fill="white" font-weight="normal" font-size="7.4px" font-family="Cavorting" text-anchor="middle">Walnut, CA, USA</text></g>'
+,'<g id="dallas" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.5" d="M914 170l50 0c0,0 1,0 1,1l0 13c0,1 -1,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,-1 -2,-2l0 -13c0,-1 1,-1 2,-1z"/><text x="939" y="182" fill="white" font-weight="normal" font-size="7.4px" font-family="Cavorting" text-anchor="middle">Dallax, TX, USA</text></g>'
+,'<g id="argentina" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.5" d="M945 239l70 0c1,0 2,1 2,2l0 13c0,1 -1,1 -2,1l-33 0 -2 2 -1 -2 -34 0c0,0 -1,0 -1,-1l0 -13c0,-1 1,-2 1,-2z"/><text x="981" y="251" fill="white" font-weight="normal" font-size="7.4px" font-family="Cavorting" text-anchor="middle">Buenos Aires, Argentina</text></g>'
+,'<g id="india" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.5" d="M1085 187l50 0c0,0 1,0 1,1l0 13c0,1 -1,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,-1 -2,-2l0 -13c0,-1 1,-1 2,-1z"/><text x="1111" y="198" fill="white" font-weight="normal" font-size="7.4px" font-family="Cavorting" text-anchor="middle">Banglore, India</text></g>'
+,'<g id="europe" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.5" d="M1038 159l50 0c0,0 1,1 1,1l0 14c0,1 -1,1 -1,1l-24 0 -1 2 -2 -2 -23 0c-1,0 -2,0 -2,-1l0 -14c0,0 1,-1 2,-1z"/><text x="1063" y="171" fill="white" font-weight="normal" font-size="7.4px" font-family="Cavorting" text-anchor="middle">Kramatorsk, Ukraine</text></g>'
+,'<g id="pakistan" class="marks regional"><path fill="black" stroke="black" stroke-width="0.5" d="M1074 170l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1099" y="182" fill="white" font-weight="normal" font-size="7.4px" font-family="Cavorting" text-anchor="middle">Karachi, Pakistan</text></g>'
+,'<g id="afrika" class="marks regional"><path fill="black" stroke="black" stroke-width="0.5" d="M1015 195l50 0c1,0 2,1 2,1l0 14c0,0 -1,1 -2,1l-23 0 -2 2 -1 -2 -24 0c0,0 -1,-1 -1,-1l0 -14c0,0 1,-1 1,-1z"/><text x="1040" y="207" fill="white" font-weight="normal" font-size="7.4px" font-family="Cavorting" text-anchor="middle">Yaoundé, Cameroon</text></g>'
+,'<g id="russia" class="marks satellite"><path fill="black" stroke="black" stroke-width="0.5" d="M1076 147l50 0c1,0 1,0 1,1l0 13c0,1 0,2 -1,2l-24 0 -1 2 -2 -2 -23 0c-1,0 -1,-1 -1,-2l0 -13c0,-1 0,-1 1,-1z"/><text x="1102" y="158" fill="white" font-weight="normal" font-size="7.4px" font-family="Cavorting" text-anchor="middle">Omsk, Russia</text></g>'
 ,'<path id = "clickablemap" fill="white" d="M897 117l305 0c6,0 12,6 12,12l0 181c0,6 -6,12 -12,12l-305 0c-7,0 -12,-6 -12,-12l0 -181c0,-6 5,-12 12,-12z"/>'
-
 ,'</g>'
 ,'<g id="hqpost">'
 ,'<polygon fill="#F9FD64" points="905,295 943,292 946,334 909,337 "/><polygon fill="#956434" points="918,282 925,282 926,299 919,299 "/>'
-,'<g  transform="matrix(0.996195 -0.0871557 0.0871557 0.996195 -87.0107 -130.508)"><text x="960" y="540"  fill="black" font-weight="normal" font-size="18.4666px" font-family="Cavorting">HQ</text></g>'
+,'<g  transform="matrix(0.996195 -0.0871557 0.0871557 0.996195 -87.0107 -130.508)"><text x="960" y="540"  fill="black" font-weight="normal" font-size="18.5px" font-family="Cavorting">HQ</text></g>'
 ,'</g>'
 ,'<g id="regionalpost">'
 ,'<polygon fill="#F9FD64" points="1181,184 1218,180 1222,222 1184,225 "/><polygon fill="#956434" points="1197,172 1204,172 1203,189 1197,189 "/>'
-,'<g transform="matrix(0.996195 -0.0871557 0.0871557 0.996195 181.724 -247.971)"><text x="960" y="540"  fill="black" font-weight="normal" font-size="11.6048px" font-family="Cavorting">Regional</text></g>'
-,'<g id="officespost" transform="matrix(0.996195 -0.0871557 0.0871557 0.996195 185.224 -237.138)"><text x="960" y="540"  fill="black" font-weight="normal" font-size="11.6048px" font-family="Cavorting">Offices</text></g>'
+,'<g transform="matrix(0.996195 -0.0871557 0.0871557 0.996195 181.724 -247.971)"><text x="960" y="540"  fill="black" font-weight="normal" font-size="11.6px" font-family="Cavorting">Regional</text></g>'
+,'<g id="officespost" transform="matrix(0.996195 -0.0871557 0.0871557 0.996195 185.224 -237.138)"><text x="960" y="540"  fill="black" font-weight="normal" font-size="11.6px" font-family="Cavorting">Offices</text></g>'
 ,'</g>'
 ,'<g id="satellitepost">'
 ,'<polygon fill="#F9FD64" points="1188,253 1225,254 1223,297 1186,294 "/><polygon fill="#956434" points="1202,244 1209,243 1210,260 1203,260 "/>'
 ,'<g transform="matrix(0.996195 0.0871557 -0.0871557 0.996195 281.86 -345.455)"><text x="960" y="540"  fill="black" font-weight="normal" font-size="11.8049px" font-family="Cavorting">Satellite</text></g>'
-,'<g id="locationspost" transform="matrix(0.996195 0.0871557 -0.0871557 0.996195 279.123 -334.879)"><text x="960" y="540"  fill="black" font-weight="normal" font-size="11.37px" font-family="Cavorting">Locations</text></g>'
+,'<g id="locationspost" transform="matrix(0.996195 0.0871557 -0.0871557 0.996195 279.123 -334.879)"><text x="960" y="540"  fill="black" font-weight="normal" font-size="11.4px" font-family="Cavorting">Locations</text></g>'
 ,'</g>'
-
 ,'</g>'
-
-,'<text id="closer" x="1044" y="120" fill="white" stroke="white" stroke-width="0.216" font-weight="normal" font-size="15.133px" font-family="Cavorting">X</text>'
+,'<text id="closer" x="1044" y="120" fill="white" stroke="white" stroke-width="0.216" font-weight="normal" font-size="15.1px" font-family="Cavorting">X</text>'
 
 ];
 
@@ -306,13 +292,9 @@ var bigopenedfile = [
 var bigOpenedFile = [
 '<g id="bigopenedfile">'
 ,'<g id="text_title"><path id="innerfile" class="filesfromdrawers visibility_hid" fill="#3F3F3F" stroke="#aaa" stroke-width="2.5" d="M616 104l657 0c17,0 30,14 30,31l0 847c0,17 -13,30 -30,30l-657 0 0 -908z"/></g>'
-// ,'<g id="text_title"><path id="innerfile" class="filesfromdrawers visibility_hid" fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.5" d="M616 104l657 0c17,0 30,14 30,31l0 847c0,17 -13,30 -30,30l-657 0 0 -908z"/></g>'
-// ,'<g id="text_title"></g>'
 ,'<path fill="#FFCC00" id="semytransparentfirstpage"  class="filesfromdrawers visibility_hid" fill-opacity="0.85" stroke="#FFCC00" stroke-width="0.5" stroke-opacity="0.85" d="M616 104c219,0 438,0 657,0 17,0 30,14 30,31l0 847c0,17 -13,30 -30,30 -219,0 -438,0 -657,0l0 -908z"/>'
 ,'</g>'
 ]
-
-// var portfello = '<path fill="#A87C58" d="M361 815l153 0c2,0 3,1 3,3l0 106c0,2 -1,4 -3,4l-153 0c-2,0 -4,-2 -4,-4l0 -106c0,-2 2,-3 4,-3z"/><path fill="#C8A079" d="M414 815l46 0 0 -18c0,-2 -1,-3 -2,-3l-42 0c-1,0 -2,1 -2,3l0 18zm-53 0l8 0 0 -4 22 0 0 4 19 0 0 -20c0,-3 2,-5 4,-5l47 0c2,0 4,2 4,5l0 20 21 0 0 -4 22 0 1 4 5 0c2,0 3,1 3,3l0 54 -160 0 0 -54c0,-2 2,-3 4,-3z"/><polygon fill="#C6C8C6" points="425,872 450,872 450,865 425,865 "/><polygon fill="#EBEBEB" points="425,878 450,878 450,872 425,872 "/>';
 
 var wallcalendar = [
 '<g id="calendarpaper">'
@@ -324,19 +306,10 @@ var wallcalendar = [
   ,'<path fill="white" stroke="white" stroke-width="0.5" d="M654 170l5 0 0 -13 -5 0 0 13zm135 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13zm-15 0l5 0 0 -13 -5 0 0 13z"/>'
 ]
 var cooler = '<g id="cooler"><path fill="#AEAEAE" d="M1800 569c-2,0 -8,-1 -8,-9l-49 0c0,8 -6,9 -8,9l-17 0c-7,0 -12,5 -12,12l0 251c0,7 5,12 12,12l99 0c7,0 12,-5 12,-12l0 -251c0,-7 -5,-12 -12,-12l-17 0z"/>  <polygon fill="#85E1E4" points="1718,543 1815,543 1815,447 1718,447 "/>  <path fill="#59C3CA" d="M1720 543l94 0c4,0 7,3 7,7l0 3c0,4 -3,7 -7,7l-94 0c-4,0 -7,-3 -7,-7l0 -3c0,-4 3,-7 7,-7z"/>  <path fill="#59C3CA" d="M1720 486l94 0c4,0 7,4 7,7l0 3c0,4 -3,7 -7,7l-94 0c-4,0 -7,-3 -7,-7l0 -3c0,-3 3,-7 7,-7z"/>  <path fill="#59C3CA" d="M1720 430l94 0c4,0 7,3 7,7l0 2c0,4 -3,7 -7,7l-94 0c-4,0 -7,-3 -7,-7l0 -2c0,-4 3,-7 7,-7z"/>  <path fill="#E6E6E6" d="M1739 750l55 0c1,0 2,0 2,2l0 39c0,1 -1,2 -2,2l-55 0c-1,0 -2,-1 -2,-2l0 -39c0,-2 1,-2 2,-2z"/>  <path fill="none" stroke="#E6E6E6" stroke-width="0.5" d="M1739 750l55 0c1,0 2,0 2,2l0 39c0,1 -1,2 -2,2l-55 0c-1,0 -2,-1 -2,-2l0 -39c0,-2 1,-2 2,-2z"/>  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="753" x2="1791" y2= "753" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="756" x2="1791" y2= "756" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="759" x2="1791" y2= "759" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="762" x2="1791" y2= "762" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="765" x2="1791" y2= "765" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="768" x2="1791" y2= "768" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="771" x2="1791" y2= "771" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="774" x2="1791" y2= "774" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="777" x2="1791" y2= "777" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="780" x2="1791" y2= "780" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="783" x2="1791" y2= "783" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="786" x2="1791" y2= "786" />  <line fill="none" stroke="#B3B3B3" stroke-width="2.00013" x1="1742" y1="789" x2="1791" y2= "789" />  <path fill="#E6E6E6" d="M1738 600l57 0c4,0 8,4 8,8l0 89c0,4 -4,8 -8,8l-57 0c-4,0 -8,-4 -8,-8l0 -89c0,-4 4,-8 8,-8z"/>  <path fill="#8C8C8C" d="M1732 676l69 0c4,0 8,3 8,8l0 13c0,4 -4,8 -8,8l-69 0c-4,0 -8,-4 -8,-8l0 -13c0,-5 4,-8 8,-8z"/>  <path fill="#AFD6EF" d="M1782 617l0 0c3,0 6,3 6,6l0 27c0,3 -3,6 -6,6 -3,0 -6,-3 -6,-6l0 -27c0,-3 3,-6 6,-6z"/>  <path fill="#15B7E4" d="M1782 656l0 0c-3,0 -6,-3 -6,-6l0 -6 12 0 0 6c0,3 -3,6 -6,6z"/>  <path fill="none" stroke="#15B7E4" stroke-width="0.216" d="M1782 656l0 0c-3,0 -6,-3 -6,-6l0 -6 12 0 0 6c0,3 -3,6 -6,6z"/>  <path fill="#EFD6CF" d="M1751 617l0 0c4,0 6,3 6,6l0 27c0,3 -2,6 -6,6 -3,0 -6,-3 -6,-6l0 -27c0,-3 3,-6 6,-6z"/>  <path fill="#E2AA95" d="M1751 656l0 0c-3,0 -5,-3 -5,-6l0 -6 11 0 0 6c0,3 -2,6 -6,6z"/> </g>';
-
-
 var glass = '<g id="glass"><polygon fill="#FAFAFA" stroke="#CCCCCC" stroke-width="0.5" points="1781,676 1785,635 1748,635 1752,676 "/><path fill="#E6E6E6" id="glass_bottom" stroke="#E6E6E6" stroke-width="0.5" d="M1781 676c-7,-4 -21,-5 -29,0 7,4 22,5 29,0z"/><path fill="white" stroke="#CCCCCC" stroke-width="0.5" d="M1785 635c-9,-4 -27,-4 -37,0 9,5 28,5 37,0z"/><path fill="#FAFAFA" stroke="#CCCCCC" id="water_top" stroke-width="0.5" d="M1784 645c-9,-4 -26,-5 -35,0 9,4 26,4 35,0z"/></g>';
-
-var glass_mask = '1781,676, 1785,635, 1748,635, 1752,676, 1781,676';//'1781 676 1785 635 1748 635 1752 676 1781 676z';
-
-
+var glass_mask = '1781,676, 1785,635, 1748,635, 1752,676, 1781,676';
 var water_in_glass = 'M1791 682c0,0 8,175 8,172 0,-3 -483,-10 -483,-15 0,-4 0,-158 0,-158 0,0 26,3 46,1 20,-3 14,-1 28,-1 14,0 17,7 32,2 14,-4 21,-7 43,-2 22,5 16,8 38,-1 23,-9 36,-8 53,-1 16,7 25,-2 48,-3 24,0 15,1 36,7 21,7 33,4 45,-2 11,-6 19,-3 28,0 8,4 15,5 30,0 14,-5 48,1 48,1z';
-
 var bubbles = ' <g class="bubble">   <path fill="#006696" d="M1759 471c4,0 7,-3 7,-7 0,-4 -3,-8 -7,-8 -4,0 -8,4 -8,8 0,4 4,7 8,7z"/>  <g id="_1179359311824">   <path fill="#C9DFE9" d="M1758 468c4,0 7,-3 7,-6 0,-2 -3,-5 -7,-5 -3,0 -6,3 -6,5 0,3 3,6 6,6z"/>   <path fill="#E4EFF4" d="M1758 464c3,0 5,-1 5,-2 0,-2 -2,-3 -5,-3 -2,0 -5,1 -5,3 0,1 3,2 5,2z"/>   <path fill="#F4F8FA" d="M1758 462c2,0 3,-1 3,-1 0,0 -1,0 -3,0 -2,0 -3,0 -3,0 0,0 1,1 3,1z"/>  </g>  <circle fill="white" cx="1758" cy="461" r="2"/></g>';
-
-
-
 var path4bubbles = [ 'M1760 563c0,0 -7,-23 -7,-85 0,-12 14,-31 15,-38'
                     ,'M1770 563c0,0 1,-23 -7,-85 -8,-12 7,-31 8,-38'  
                     ,'M1770 563c0,0 8,-22 5,-86 -3,-15 -5,-30 -4,-37'
@@ -344,21 +317,12 @@ var path4bubbles = [ 'M1760 563c0,0 -7,-23 -7,-85 0,-12 14,-31 15,-38'
                     ];
 
 var bottle = ' <g id="bottle"><polygon fill="#85E1E4" points="1718,543 1815,543 1815,447 1718,447 "/></g><path fill="#59C3CA" d="M1720 543l94 0c4,0 7,3 7,7l0 3c0,4 -3,7 -7,7l-94 0c-4,0 -7,-3 -7,-7l0 -3c0,-4 3,-7 7,-7z"/><path fill="#59C3CA" d="M1720 486l94 0c4,0 7,4 7,7l0 3c0,4 -3,7 -7,7l-94 0c-4,0 -7,-3 -7,-7l0 -3c0,-3 3,-7 7,-7z"/><path fill="#59C3CA" d="M1720 432l94 0c4,0 7,3 7,7l0 2c0,4 -3,7 -7,7l-94 0c-4,0 -7,-3 -7,-7l0 -2c0,-4 3,-7 7,-7z"/>';                    
-
-
 var rectangle_under_printer = '<rect fill="#3F3F3F" x="1357" y="323" width="90.9116" height="15.0239"/>';
-
 var sheet = ' <path fill="#E0BF94" d="M1536 191l-25 0 -100 0 -26 0 -7 0 -35 0c-50,1 -47,-7 -45,18l437 0 1 -18 -200 0z"/><path fill="#E0BF94" d="M1296 338l0 18 438 0 0 -18 -92 0 -48 0 -3 0 -26 0 -1 0c-89,0 -178,0 -268,0z"/><g id="sheet"> <polygon fill="white" stroke="white" stroke-width="0.5" points="1362,326 1438,326 1438,197 1362,197 "/>  <text x="1373" y="277"  fill="black" font-weight="normal" font-size="11px" font-family="Arial">Go Green!    </text>  <text x="1373" y="293"  fill="black" font-weight="normal" font-size="11px" font-family="Arial">SW is  </text>  <text x="1373" y="309"  fill="black" font-weight="normal" font-size="11px" font-family="Arial">Paper Free</text> </g>';
-
 var printer = '<g id="printer"><g><path fill="#3F3F3F" d="M1362 325l77 0 -77 0zm-18 -72l113 0 0 85 -18 0 0 -13 -77 0 0 13 -18 0 0 -85z"/></g>  <path fill="none" stroke="black" stroke-width="0.5" d="M1362 325l77 0m-95 -72l113 0 0 85 -18 0 0 -13 -77 0 0 13 -18 0 0 -85z"/>  <path fill="#1FB1E9" d="M1452 338l0 0 0 -23 -104 0 0 23 -7 0c-7,0 -12,-5 -12,-12l0 -59c0,-8 6,-14 14,-14l2 0 0 30c0,6 5,12 12,12l86 0c7,0 14,-6 14,-14l0 -28 4 0c8,0 14,6 14,14l0 59c0,7 -5,12 -12,12l-11 0z"/> </g>';
-// var printer = '<g id="printer"><g><path fill="#3F3F3F" d="M1362 325l77 0 -77 0zm-18 -72l113 0 0 85 -18 0 0 -13 -77 0 0 13 -18 0 0 -85z"/></g>  <path fill="none" stroke="black" stroke-width="0.5" d="M1362 325l77 0m-95 -72l113 0 0 85 -18 0 0 -13 -77 0 0 13 -18 0 0 -85z"/>  <path fill="#1FB1E9" d="M1452 338l0 0 0 -23 -104 0 0 23 -7 0c-7,0 -12,-5 -12,-12l0 -59c0,-8 6,-14 14,-14l2 0 0 30c0,6 5,12 12,12l86 0c7,0 14,-6 14,-14l0 -28 4 0c8,0 14,6 14,14l0 59c0,7 -5,12 -12,12l-11 0z"/> </g><path fill="#E0BF94" d="M1536 191l-25 0 -100 0 -26 0 -7 0 -35 0c-50,1 -47,-7 -45,18l437 0 1 -18 -200 0z"/><path fill="#E0BF94" d="M1296 338l0 18 438 0 0 -18 -92 0 -48 0 -3 0 -26 0 -1 0c-89,0 -178,0 -268,0z"/>';
-
 var blue_light = '<path id="blue_light" fill="#1D8EA3" d="M1446 274c2,0 4,-2 4,-4 0,-3 -2,-4 -4,-4 -2,0 -4,1 -4,4 0,2 2,4 4,4z"/>';
-
 var red_light = '<path id="red_light" fill="#ED6E59" d="M1420 274c2,0 4,-2 4,-4 0,-3 -2,-4 -4,-4 -2,0 -4,1 -4,4 0,2 2,4 4,4z"/>';
-
 var yellow_light = '<path id="yellow_light" fill="#EDC80A" d="M1433 274c2,0 4,-2 4,-4 0,-3 -2,-4 -4,-4 -2,0 -4,1 -4,4 0,2 2,4 4,4z"/>';
-
 
 var textblocks = [
 "You have a great idea. You have a really good feeling about it. But will others actually find it to be as useful? The most sensible approach is to have us make a quick prototype of the idea and let your target market get a feel for it. It could go viral and we can quickly move onto a more mature product. Or if it does not pick up like you expected, at least you haven't put your house on mortgage just to find that out."
@@ -429,7 +393,6 @@ var servicesPopUp = [
 ]
 
 var shelfs = [
-  
   '<polygon fill="#E25B5E" stroke="#83939C" stroke-width="0.216" points="1397,191 1432,191 1432,86 1397,86 "/>'
   ,'<path fill="white" d="M1415 111l0 0 0 -2c1,0 1,-1 2,-1 0,0 0,-1 0,-2 0,0 0,-1 0,-1 -1,0 -1,-1 -1,-1 -1,0 -1,0 -1,1 0,0 0,0 -1,0 0,1 0,1 0,2 0,1 -1,2 -1,3 -1,0 -1,1 -2,1 -1,0 -1,-1 -2,-1 0,0 -1,-1 -1,-1 0,-1 0,-2 0,-2 0,-2 0,-3 1,-3 0,-1 1,-1 2,-1l0 2c0,0 -1,0 -1,0 0,1 0,1 0,2 0,0 0,1 0,1 0,0 0,0 1,0 0,0 0,0 0,0 0,0 1,-1 1,-2 0,-1 0,-2 1,-2 0,-1 0,-1 1,-1 0,-1 1,-1 2,-1 0,0 1,0 1,1 1,0 1,1 1,1 1,1 1,2 1,3 0,1 0,2 -1,3 -1,0 -2,1 -3,1zm0 10l0 0 0 -2c1,0 1,-1 2,-1 0,0 0,-1 0,-1 0,-1 0,-2 0,-2 -1,0 -1,-1 -1,-1 -1,0 -1,0 -1,1 0,0 0,0 -1,0 0,1 0,1 0,2 0,1 -1,2 -1,3 -1,0 -1,1 -2,1 -1,0 -1,-1 -2,-1 0,0 -1,-1 -1,-1 0,-1 0,-2 0,-2 0,-2 0,-3 1,-3 0,-1 1,-1 2,-1l0 2c0,0 -1,0 -1,0 0,1 0,1 0,2 0,0 0,1 0,1 0,0 0,0 1,0 0,0 0,0 0,0 0,0 1,-1 1,-2 0,-1 0,-2 1,-2 0,-1 0,-1 1,-1 0,-1 1,-1 2,-1 0,0 1,0 1,1 1,0 1,1 1,1 1,1 1,2 1,3 0,1 0,2 -1,3 -1,0 -2,1 -3,1zm0 3l0 0 0 -2c2,1 2,1 3,2 1,1 1,2 1,3 0,1 -1,2 -2,3 -1,1 -2,2 -4,2 -1,0 -3,-1 -4,-2 -1,-1 -1,-2 -1,-3 0,-2 0,-3 1,-4 0,0 1,0 2,-1l0 2c0,1 -1,1 -1,1 0,1 0,1 0,2 0,0 0,1 0,2 1,0 2,0 3,0 2,0 3,0 3,0 1,-1 1,-1 1,-2 0,-1 0,-1 -1,-2 0,0 0,0 -1,-1zm4 17l0 0 -11 -3 0 -2 11 3 0 2zm0 16l0 0 -11 0 0 -2 9 0 0 -6 2 0 0 8zm0 12l0 0 -11 0 0 -3 7 -2 -7 -2 0 -3 11 0 0 2 -9 0 9 2 0 2 -9 2 9 0 0 2zm0 7l0 0 -9 0 0 3 -2 0 0 -8 2 0 0 3 9 0 0 2zm0 13l-11 0 0 -2 4 0 0 -4 -4 0 0 -2 11 0 0 2 -5 0 0 4 5 0 0 2z"/>'
   ,'<path fill="none" stroke="white" stroke-width="0.216" d="M1415 111l0 0 0 -2c1,0 1,-1 2,-1 0,0 0,-1 0,-2 0,0 0,-1 0,-1 -1,0 -1,-1 -1,-1 -1,0 -1,0 -1,1 0,0 0,0 -1,0 0,1 0,1 0,2 0,1 -1,2 -1,3 -1,0 -1,1 -2,1 -1,0 -1,-1 -2,-1 0,0 -1,-1 -1,-1 0,-1 0,-2 0,-2 0,-2 0,-3 1,-3 0,-1 1,-1 2,-1l0 2c0,0 -1,0 -1,0 0,1 0,1 0,2 0,0 0,1 0,1 0,0 0,0 1,0 0,0 0,0 0,0 0,0 1,-1 1,-2 0,-1 0,-2 1,-2 0,-1 0,-1 1,-1 0,-1 1,-1 2,-1 0,0 1,0 1,1 1,0 1,1 1,1 1,1 1,2 1,3 0,1 0,2 -1,3 -1,0 -2,1 -3,1zm0 10l0 0 0 -2c1,0 1,-1 2,-1 0,0 0,-1 0,-1 0,-1 0,-2 0,-2 -1,0 -1,-1 -1,-1 -1,0 -1,0 -1,1 0,0 0,0 -1,0 0,1 0,1 0,2 0,1 -1,2 -1,3 -1,0 -1,1 -2,1 -1,0 -1,-1 -2,-1 0,0 -1,-1 -1,-1 0,-1 0,-2 0,-2 0,-2 0,-3 1,-3 0,-1 1,-1 2,-1l0 2c0,0 -1,0 -1,0 0,1 0,1 0,2 0,0 0,1 0,1 0,0 0,0 1,0 0,0 0,0 0,0 0,0 1,-1 1,-2 0,-1 0,-2 1,-2 0,-1 0,-1 1,-1 0,-1 1,-1 2,-1 0,0 1,0 1,1 1,0 1,1 1,1 1,1 1,2 1,3 0,1 0,2 -1,3 -1,0 -2,1 -3,1zm0 3l0 0 0 -2c2,1 2,1 3,2 1,1 1,2 1,3 0,1 -1,2 -2,3 -1,1 -2,2 -4,2 -1,0 -3,-1 -4,-2 -1,-1 -1,-2 -1,-3 0,-2 0,-3 1,-4 0,0 1,0 2,-1l0 2c0,1 -1,1 -1,1 0,1 0,1 0,2 0,0 0,1 0,2 1,0 2,0 3,0 2,0 3,0 3,0 1,-1 1,-1 1,-2 0,-1 0,-1 -1,-2 0,0 0,0 -1,-1zm4 17l0 0 -11 -3 0 -2 11 3 0 2zm0 16l0 0 -11 0 0 -2 9 0 0 -6 2 0 0 8zm0 12l0 0 -11 0 0 -3 7 -2 -7 -2 0 -3 11 0 0 2 -9 0 9 2 0 2 -9 2 9 0 0 2zm0 7l0 0 -9 0 0 3 -2 0 0 -8 2 0 0 3 9 0 0 2zm0 13l-11 0 0 -2 4 0 0 -4 -4 0 0 -2 11 0 0 2 -5 0 0 4 5 0 0 2z"/>'
@@ -446,24 +409,21 @@ var shelfs = [
   ,'<path fill="none" stroke="white" stroke-width="0.216" d="M1522 113l0 0 -7 -2 -1 3 -1 -1 1 -6 2 0 -1 3 7 1 0 2zm-9 6l0 0 0 -1c0,0 0,-1 0,-1 0,0 1,0 1,0 0,-1 0,-1 1,0 0,0 0,0 0,0 0,0 0,0 0,1 0,0 0,0 0,1l0 1 -2 -1zm6 4l0 0 1 -2 -4 -1 1 -1c0,-1 0,-1 0,-2 0,0 0,0 0,-1 0,0 0,0 -1,-1 0,0 0,0 -1,0 -1,0 -1,0 -2,0 0,0 -1,0 -1,1 0,0 0,1 -1,2l0 2 8 3zm-1 3l0 0 -8 -2 0 -2 9 2 -1 2zm-6 5l0 0 -2 0 0 -2c0,0 0,-1 0,-1 0,0 0,0 1,0 0,0 0,0 0,0 1,0 1,0 1,0 0,0 0,0 0,1 0,0 0,0 0,1l0 1zm4 3l0 0 0 -1 -3 -1 0 -1c0,0 0,0 0,0 0,-1 1,-1 1,-1 0,0 1,0 1,0l2 -1 1 -2 -2 0c-1,1 -1,1 -2,1 0,0 0,0 0,1 0,-1 0,-2 -1,-2 0,-1 -1,-1 -1,-1 -1,0 -1,0 -2,0 0,0 0,0 -1,1 0,0 0,1 0,2l-1 3 8 2zm-4 3l0 0 1 -2c1,1 1,1 2,2 0,1 0,1 0,2 -1,1 -1,2 -2,3 -1,0 -2,0 -3,0 -2,-1 -3,-1 -3,-2 -1,-1 -1,-2 -1,-3 0,-1 1,-2 2,-2 0,-1 1,-1 2,-1l-1 2c0,0 0,0 -1,0 0,0 0,1 0,1 -1,1 0,1 0,2 0,0 1,1 2,1 1,0 2,0 2,0 1,0 1,-1 1,-1 0,-1 0,-1 0,-1 0,-1 0,-1 -1,-1zm-3 13l0 0 0 -2c1,0 1,0 1,0 1,0 1,0 1,-1 0,0 0,-1 0,-1 0,-1 0,-1 -1,-1 0,0 0,0 0,0 0,0 0,0 -1,1 0,0 0,0 0,1 -1,1 -1,1 -2,2 0,0 -1,0 -2,0 0,0 0,0 -1,-1 0,0 0,-1 0,-1 0,-1 0,-1 0,-2 0,-1 1,-2 1,-2 1,0 2,0 2,0l0 1c0,0 -1,0 -1,1 0,0 -1,0 -1,1 0,0 0,1 0,1 0,0 1,0 1,0 0,0 0,0 0,0 1,0 1,0 1,-1 1,-1 1,-2 1,-2 1,0 1,0 2,-1 0,0 0,0 1,0 0,1 1,1 1,1 0,1 1,1 1,2 0,0 0,1 0,1 -1,1 -1,2 -2,3 0,0 -1,0 -2,0zm-2 3l0 0 0 3 -3 -2 3 -1zm4 -2l0 0 -9 1 0 2 7 6 1 -2 -2 -1 1 -4 2 0 0 -2zm-3 13l0 0 -9 0 1 -2 6 0 -5 -4 0 -1 8 5 -1 2zm-5 4l0 0 0 2 -3 -2 3 0zm5 -2l0 0 -10 1 0 2 7 5 1 -2 -2 -1 1 -3 2 -1 1 -1zm-12 8l1 -1 5 1c1,0 1,0 2,1 0,0 0,0 0,1 1,0 1,1 0,2 0,1 0,1 -1,1 0,1 -1,1 -2,1l0 -2c1,0 1,0 1,0 1,0 1,0 1,-1 0,0 0,0 0,-1 0,0 -1,0 -1,0l-6 -2z"/>'
   ,'<polygon fill="#EC95A1" stroke="#F9B5ED" stroke-width="0.5" points="1553,190 1578,190 1578,86 1553,86 "/>'
   ,'<g transform="matrix(0 -1 1 0 1032.41 1112.53)"><text x="960" y="540"  fill="white" font-weight="bold" font-size="13px" font-family="Arial">PHP</text>  </g>'
-  ,'<polygon fill="#666666" stroke="#666666" stroke-width="0.216" points="1581,191 1606,191 1606,64 1581,64 "/>'
+  ,'<polygon fill="#666666" stroke="#666666" stroke-width="0.2" points="1581,191 1606,191 1606,64 1581,64 "/>'
   ,'<g transform="matrix(0 -1 1 0 1060.75 1136.07)"><text x="960" y="540"  fill="white" font-style="italic" font-weight="bold" font-size="19.0001px" font-family="Arial">Phonegap</text> </g>'
   ,'<polygon fill="#608CA9" stroke="#AFAC8F" stroke-width="0.5" points="1614,190 1663,190 1663,82 1614,82 "/>'
   ,'<polygon fill="#C49A73" stroke="#A5936B" stroke-width="0.5" points="1542,338 1566,338 1566,233 1542,233 "/>'
-  ,'<g transform="matrix(0 -1 1 0 1022.09 1294.82)"> <text x="960" y="540"  fill="white" font-weight="bold" font-size="17.9997px" font-family="Arial">WEBSITES</text>  </g>'
+  ,'<g transform="matrix(0 -1 1 0 1022.09 1294.82)"> <text x="960" y="540"  fill="white" font-weight="bold" font-size="18px" font-family="Arial">WEBSITES</text>  </g>'
   ,'<polygon fill="#E25B5E" stroke="#49483B" stroke-width="0.5" points="1596,338 1644,338 1644,230 1596,230 "/>'
   ,'<g transform="matrix(0 -1 1 0 1085.7 1293.53)"><text x="960" y="540"  fill="white" font-style="italic" font-weight="bold" font-size="15.0001px" font-family="Arial">CONSULTING</text></g>'
   ,'<polygon fill="#6FC08F" stroke="#669999" stroke-width="0.5" points="1569,338 1594,338 1594,212 1569,212 "/>'
   ,'<g transform="matrix(0 -1 1 0 1047.12 1290.96)"><text x="960" y="540"  fill="white" font-style="italic" font-weight="bold" font-size="11px" font-family="Arial">WEB </text><text x="988" y="540"  fill="white" font-style="italic" font-weight="bold" font-size="11px" font-family="Arial">APPLICATIONS</text></g>'
   ,'<g transform="matrix(0 -1.13792 1 0 1096.85 1255.52)"><text x="960" y="540"  fill="#FCFCFC" font-weight="normal" font-size="11px" font-family="Arial">MOBILE </text></g>'
   ,'<g transform="matrix(0 -1.13792 1 0 1107.85 1276.62)"><text x="960" y="540"  fill="#FCFCFC" font-weight="normal" font-size="11px" font-family="Arial"> </text><text x="962" y="540"  fill="#FCFCFC" font-weight="normal" font-size="11px" font-family="Arial">APPLICATIONS</text></g>'
-  // ,'<path fill="#E0BF94" d="M1536 191l-25 0 -100 0 -26 0 -7 0 -35 0c-50,1 -47,-7 -45,18l437 0 1 -18 -200 0z"/><path fill="#E0BF94" d="M1296 338l0 18 438 0 0 -18 -92 0 -48 0 -3 0 -26 0 -1 0c-89,0 -178,0 -268,0z"/>'
 ]
 
 var tabs = [
-	  // '<path id="tabtext_0"  class="tab0 tabs activetab" fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.5" d="M1283 134l61 0c5,0 10,5 10,10l0 50c0,6 -5,11 -10,11l-61 0 0 -71z"/><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1306" y1="182" x2="1331" y2= "157" /><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1306" y1="157" x2="1331" y2= "182" /><circle fill="FFCC00" id="fileclosecross" fill-opacity="0.01"  class="filesfromdrawers visibility_hid" stroke="#FFCC00" stroke-width="5" cx="1319" cy="169" r="25"/>'
 	  '<path id="tabtext_0"  class="tab0 tabs activetab" fill="#3F3F3F" stroke="#3F3F3F" stroke-width="0.5" d="M1283 134l61 0c5,0 10,5 10,10l0 50c0,6 -5,11 -10,11l-61 0 0 -71z"/> <path id="fileclosecross" fill-opacity="0.01"  class="filesfromdrawers visibility_hid"  fill="none" stroke="#FFCC00" stroke-width="5" d="M1327 187c10,0 18,-8 18,-18 0,-9 -8,-17 -18,-17 -10,0 -18,8 -18,17 0,10 8,18 18,18"/><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1318" y1="178" x2="1336" y2= "160" /><line class="filesfromdrawers visibility_hid " fill="none" stroke="#FFCC00" stroke-width="5" x1="1318" y1="160" x2="1336" y2= "178" /> '
-   
       ,'<path id="tabtext_1" class="tab1 tabs" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 216l61 0c5,0 10,5 10,11l0 120c0,5 -5,10 -10,10l-61 0 0 -141z"/>'
       ,'<path id="tabtext_2" class="tab2 tabs" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 375l61 0c5,0 10,5 10,11l0 119c0,6 -5,11 -10,11l-61 0 0 -141z"/>'
       ,'<path id="tabtext_3" class="tab3 tabs" fill="#666666" stroke="#3F3F3F" stroke-width="0.5" d="M1283 534l61 0c5,0 10,5 10,10l0 120c0,6 -5,11 -10,11l-61 0 0 -141z"/>'
@@ -484,44 +444,21 @@ var tabcovers = [
 var phonePopUp = [//cutted vertion wihtout name, e-mails, phone
  '<path fill="#00CCFF" fill-opacity="0.4" stroke="#026493" stroke-width="4" stroke-opacity="0.4" d="M65 127l544 0c11,0 20,9 20,20l0 324c0,11 -9,20 -20,20l-544 0c-11,0 -20,-9 -20,-20l0 -324c0,-11 9,-20 20,-20z"/>'
   ,'<path id="phonepopupcross" fill="#00CCFF" fill-opacity="0.01" stroke="#026493" stroke-width="2" d="M598 173c9,0 16,-7 16,-16 0,-9 -7,-16 -16,-16 -8,0 -16,7 -16,16 0,9 8,16 16,16zm-8 -8l16 -16m0 16l-16 -16"/>'
-  ,'<text x="238" y="180"  fill="#024260" font-weight="normal" font-size="28px" font-family="Arial">Startup Workshop</text>'
-  ,'<text x="137" y="227"  fill="#024260" font-weight="normal" font-size="20px" font-family="Arial">We would love to chat about your projects and ideas!</text>'
-  ,'<text x="160" y="305"  fill="#024260" font-style="italic" font-weight="normal" font-size="20px" font-family="Arial">Send us an email: </text>'
+  ,'<text x="238" y="180"  fill="#024260" font-weight="normal" font-size="28px" font-family="digital-7">Startup Workshop</text>'
+  ,'<text x="137" y="227"  fill="#024260" font-weight="normal" font-size="20px" font-family="digital-7">We would love to chat about your projects and ideas!</text>'
+  ,'<text x="183" y="305"  fill="#024260" font-style="italic" font-weight="normal" font-size="20px" font-family="digital-7">Send us an email: </text>'
   ,'<a href="mailto:ideas@sw.ai?subject=Idea&body=Your%20message"><text x="335" y="304"  fill="#026493" stroke="#026493" stroke-width="0.5" font-style="italic" font-weight="normal" font-size="28px" font-family="digital-7"> ideas@sw.ai </text></a>'
-  ,'<text x="230" y="339"  fill="#024260" font-style="italic" font-weight="normal" font-size="20px" font-family="Arial">Or call us:</text>'
+  ,'<text x="230" y="339"  fill="#024260" font-style="italic" font-weight="normal" font-size="20px" font-family="digital-7">Or call us:</text>'
   ,'<text x="335" y="339"  fill="#024260" font-style="italic" font-weight="normal" font-size="28px" font-family="digital-7"> (+1) 408.396.0881 </text>'
   ,'<text x="212" y="417"  fill="#024260" font-style="italic" font-weight="normal" font-size="28px" font-family="digital-7">340 S. Lemon Ave #8349, </text>'
   ,'<text x="230" y="460"  fill="#024260" font-style="italic" font-weight="normal" font-size="28px" font-family="digital-7">Walnut, CA 91789 USA</text>'
 ]
 
-//full vertion wiht name, e-mails, phone
-// var phonePopUp = [
-//  '<path fill="#00CCFF" fill-opacity="0.4" stroke="#026493" stroke-width="4" stroke-opacity="0.4" d="M65 127l544 0c11,0 20,9 20,20l0 324c0,11 -9,20 -20,20l-544 0c-11,0 -20,-9 -20,-20l0 -324c0,-11 9,-20 20,-20z"/>'
-//   ,'<path id="phonepopupcross" fill="#00CCFF" fill-opacity="0.01" stroke="#026493" stroke-width="2" d="M598 173c9,0 16,-7 16,-16 0,-9 -7,-16 -16,-16 -8,0 -16,7 -16,16 0,9 8,16 16,16zm-8 -8l16 -16m0 16l-16 -16"/>'
-//   ,'<text x="238" y="173"  fill="#024260" font-weight="normal" font-size="24px" font-family="Arial">Startup Workshop</text>'
-//   ,'<text x="137" y="207"  fill="#024260" font-weight="normal" font-size="18px" font-family="Arial">We would love to chat about your projects and ideas!</text>'
-//   // ,'<text x="228" y="327"  fill="#024260" font-weight="normal" font-size="18px" font-family="Arial">What can we help you with: </text>'
-//   ,'<text x="180" y="365"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Send us an email: </text>'
-//   ,'<text x="331" y="364"  fill="#026493" stroke="#026493" stroke-width="0.5" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7"> ideas@sw.ai </text>'
-//   ,'<text x="244" y="389"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Or call us:</text>'
-//   ,'<text x="331" y="389"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7"> (+1) 408.396.0881 </text>'
-//   ,'<text x="225" y="437"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">340 S. Lemon Ave #8349, </text>'
-//   ,'<text x="239" y="461"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">Walnut, CA 91789 USA</text>'
-//   ,'<text x="336" y="245"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">' + getphonepopupdata["results"]["name"] + '</text>'
-//   ,'<text x="336" y="269"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">' + getphonepopupdata["results"]["email"] + ' </text>'
-//   ,'<text x="336" y="293"  fill="#024260" font-style="italic" font-weight="normal" font-size="24px" font-family="digital-7">' + getphonepopupdata["results"]["phone"] + ' </text>'
-//   ,'<text x="272" y="245"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Name: </text>'
-//   ,'<text x="275" y="269"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Email: </text>'
-//   ,'<text x="268" y="293"  fill="#024260" font-style="italic" font-weight="normal" font-size="18px" font-family="Arial">Phone: </text>'
-// ]
-
 var bigSizeLaptop = [
 '<g id="bigmacbook" class="visibility_hid"><rect fill="black" stroke="black" stroke-width="0.5" x="295" y="71" width="1330" height="920" rx="48" ry="48"/> <path fill="#B3B3B3" d="M1774 957l-1628 0c-7,52 59,52 86,52l1454 0c19,-1 88,9 88,-52z"/>  <rect fill="#BFBFBF" x="146" y="957" width="1628" height="31"/> <circle fill="#00CCFF" cx="959" cy="105" r="4"/> <path fill="#CCCCCC" d="M1074 957l-229 0c-1,21 8,21 12,21l205 0c3,-1 12,4 12,-21z"/><polygon id="rightbox" fill="#A3C968" stroke="#A3C968" stroke-width="0.5" points="1218,161 1577,161 1577,902 1218,902 "/><polygon id="topbox" fill="#669999" stroke="#669999" stroke-width="0.5" points="1218,161 343,161 343,902 1218,902 "/><polygon id="bottombox" fill="none" stroke="none" stroke-width="0" points="1218,363 343,363 343,902 1218,902 "/></g>'
-
 ,'<g id="bigcross"><ellipse fill="rgba(255,255,255,0.01)" stroke="#FFF8DC" stroke-width="14" cx="1251" cy="871" rx="22" ry="21"/><line fill="none" stroke="#FFF8DC" stroke-width="3" x1="1243" y1="878" x2="1258" y2= "864" /><line fill="none" stroke="#FFF8DC" stroke-width="3" x1="1243" y1="864" x2="1258" y2= "879" /></g>'
 ,'  <g id="bigarrow"><path id="" fill="#FFF8DC" fill-rule="nonzero" stroke="#FFF8DC" stroke-width="0.2" d="M1532 876l18 0 0 5 10 -10 -10 -10 0 5 -18 0 0 10zm33 14c-5,5 -11,9 -19,9 -8,0 -14,-4 -19,-9 -5,-5 -9,-11 -9,-19 0,-8 4,-14 9,-19 5,-5 11,-8 19,-8 8,0 14,3 19,8 5,5 9,11 9,19 0,8 -4,14 -9,19z"/><ellipse fill="rgba(255,255,255,0.1)" stroke="#FFF8DC" stroke-width="14" cx="1548" cy="871" rx="22" ry="21"/></g>'
-  // <g id="_3026444019744">
-   ,'<g id="macbookinterface"><path fill="#CCCCCC" stroke="#CCCCCC" stroke-width="1" d="M350 138l1219 0c4,0 8,2 8,4l0 19 -1235 0 0 -19c0,-2 4,-4 8,-4z"/><circle fill="red" cx="354" cy="149" r="5"/><circle fill="yellow" cx="371" cy="149" r="5"/><circle fill="#33CC66" cx="388" cy="149" r="5"/></g>'
+ ,'<g id="macbookinterface"><path fill="#CCCCCC" stroke="#CCCCCC" stroke-width="1" d="M350 138l1219 0c4,0 8,2 8,4l0 19 -1235 0 0 -19c0,-2 4,-4 8,-4z"/><circle fill="red" cx="354" cy="149" r="5"/><circle fill="yellow" cx="371" cy="149" r="5"/><circle fill="#33CC66" cx="388" cy="149" r="5"/></g>'
    // ,'<path fill="none" stroke="#B3B3B3" stroke-width="1.5" d="M357 153l-7 -7m0 7l7 -7"/>'
    // ,'<path fill="black" fill-rule="nonzero" d="M910 141l2 0c0,1 0,1 0,1 1,1 1,1 2,1 0,1 1,1 2,1 0,0 1,0 1,0 1,-1 1,-1 1,-1 1,-1 1,-1 1,-1 0,-1 0,-1 -1,-1 0,-1 0,-1 -1,-1 0,0 -1,-1 -2,-1 -1,0 -2,0 -3,-1 0,0 -1,0 -1,-1 0,0 0,-1 0,-1 0,-1 0,-2 0,-2 1,-1 1,-1 2,-2 1,0 1,0 2,0 1,0 2,0 3,0 0,1 1,1 1,2 1,0 1,1 1,2l-2 0c0,-1 0,-1 -1,-2 0,0 -1,0 -2,0 -1,0 -2,0 -2,0 0,0 -1,1 -1,1 0,1 0,1 1,2 0,0 1,0 2,1 2,0 3,0 3,0 1,1 1,1 2,2 0,0 0,1 0,2 0,0 0,1 0,1 -1,1 -1,2 -2,2 -1,0 -1,0 -2,0 -2,0 -3,0 -3,0 -1,0 -2,-1 -2,-2 -1,0 -1,-1 -1,-2z"/>'
   //  <path id="1" fill="black" fill-rule="nonzero" d="M925 145l-3 -13 1 0 2 9c0,1 1,1 1,2 0,-1 0,-2 0,-2l3 -9 2 0 2 7c0,1 1,3 1,4 0,0 0,-1 0,-2l2 -9 2 0 -3 13 -2 0 -3 -10c0,-1 0,-1 0,-1 0,0 0,1 -1,1l-2 10 -2 0z"/>
