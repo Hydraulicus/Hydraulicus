@@ -9,7 +9,21 @@ mina.easeInOutQuad = function (n) {//easing calculate
   return -0.5 * ( ( --n ) * ( n - 2 ) - 1 );
 };
 
-  
+
+var nextElement = function(db, key) {
+  for (var i = 0; i < db.length-1; i++) {
+    if (db[i].key === key) {  return db[i + 1].key;  }
+  }
+  return db[0].key;
+};
+
+var prevElement = function(db, key) {
+  for (var i = db.length-1; i > 0; i--) {
+    if (db[i].key === key) { return db[i - 1].key;  }
+  }
+  return db[db.length-1].key;
+};
+
 // =================================  auto text wraper  ====================================
 // http://stackoverflow.com/questions/27517482/how-to-auto-text-wrap-text-in-snap-svg
   Snap.plugin(function (Snap, Element, Paper, glob) {
