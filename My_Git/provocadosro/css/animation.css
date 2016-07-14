@@ -8,7 +8,6 @@
   font-family: "Corbert"; 
   src: url('../fonts/The Northern Block - Corbert.otf');
 }
-
 @font-face {
   font-weight: medium;
   font-family: "Corbert-Medium"; 
@@ -16,25 +15,5 @@
 }
 
 .visibility_hid{  visibility: hidden }
-.display_none{  display: none }
 .bg { background-color: #aaa; }
 
-
-/*.flexcontainer {
-  display: -webkit-flex;
-  display: flex;
-flex-wrap: nowrap;
-    justify-content: space-around;
-  align-items: center;
-
-}
-.flexblock {
-flex: 0 0 auto;
-}
-
-.bottomBar {
-    background: #ccc;
-  border: 0px solid black;
-  border-radius: 50%;
-}
-.iconblock {}*/

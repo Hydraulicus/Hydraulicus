@@ -1,18 +1,17 @@
 var rhythm = 300//ms
     ,hexagonSvg, bottomSvg, cloneFlag = false, group4clone, putclone, currentId, bottomWrapper
-    ,pathestoicons = [] ,hextext = [] ,textTitles = [], nameS = []
+    ,pathestoicons = [] ,hextext = [] ,textTitles = [], nameS = [], colors = []
     ,activeIconAttr = {fill : "rgba(200, 200, 200, 0.01)", opacity : 1, stroke : "gray", "stroke-width" : 2}
     ,passiveIconAttr = {fill : "#F1F1F1", opacity : 0.7, stroke : "#F1F1F1", "stroke-width" : 0}
     ; 
 
-
-
 function initAnimation (obj) {
+    rhythm=obj.rhythm;
     hexagonSvg = Snap(obj.hexagon); 
     bottomSvg = Snap(obj.bottombar); 
     rhythm = obj.rhythm * 1000;
     bottomWrapper = bottomSvg.g().attr({ "id" : "wraper"});
-    if (obj.hiddenBottomBar) bottomWrapper.transform("s0.01,0.01" );
+    if (obj.hiddenBottomBar) bottomWrapper.transform("s0.001,0.001" );
     
     drawObjects(hexagonSvg, objects);
     drawObjects(bottomWrapper, bottomBar);
@@ -23,7 +22,7 @@ function initAnimation (obj) {
     bindingHandling();
     buildingCloneLayer();
     setTextTitlesInHexagon();
-    
+    colorSegments();
 };//end of init function
 
 
@@ -38,15 +37,22 @@ function drawObjects(target_, objects_)
       for (var j in objects_)
         { 
           target_.add(Snap.parse(objects_[j]));
-          if  (j ==  objects_.length-1) {   }
         }
    }
+
+function colorSegments(){
+  Snap.selectAll(".segments").forEach( function(element) 
+        { var target = element.attr("id").split("-")[0];
+            element.attr({fill : "red"});
+            console.log(target,colors[target]);
+            element.attr({fill : colors[target]}); //color bottom icons according API
+        } 
+    )
+}
 
 setTextTitlesInHexagon = function (){
   Snap.selectAll(".titles").forEach( function(element) 
         { var target = element.attr("id").split("-")[0];
-            // console.log(target);
-            // console.log(element.node.textContent);
             element.node.textContent =  textTitles[target]
         } 
     )
@@ -73,8 +79,10 @@ function insertIconsInBar(target_, icons4insert)
             pathestoicons[icons4insert[i]["name"]] = icons4insert[i]["pathToIco"];
             hextext[icons4insert[i]["name"]] = icons4insert[i]["text"];
             textTitles[icons4insert[i]["name"]] = icons4insert[i]["title"];
-            // nameS[icons4insert[i]["name"]] = icons4insert[i]["name"];
              nameS.push( {"key" : icons4insert[i]["name"]} );
+
+            colors[icons4insert[i]["name"]] = icons4insert[i]["color"];
+            element.attr({fill : icons4insert[i]["color"]}); //color bottom icons according API
             i++;
         })
 }
@@ -90,8 +98,9 @@ function insertIconsInHex(target_, icons4insert)
             target_.image(icons4insert[i]["pathToIco"], x, y, h, h);
             target_.circle(icoBox.cx, icoBox.cy, icoBox.r1 * 1.2) // cover circle. need for bind events
                     .attr({fill : "#F1F1F1", opacity : 0.01, stroke : "black", "stroke-width" : 0, cursor : "pointer"})
-                    // .hover(hoverover, hoverout)
                     ;
+            // element.attr({fill : "red"}); //testing color bottom icons 
+            element.attr({fill : icons4insert[i]["color"]}); //color icons in hexagon according API
             i++;
         })
 }
@@ -232,3 +241,50 @@ function collapseAllSegment ()
       })  
     }
 
+var nextElement = function(db, key) {
+  for (var i = 0; i < db.length-1; i++) {
+    if (db[i].key === key) {  return db[i + 1].key;  }
+  }
+  return db[0].key;
+};
+
+var prevElement = function(db, key) {
+  for (var i = db.length-1; i > 0; i--) {
+    if (db[i].key === key) { return db[i - 1].key;  }
+  }
+  return db[db.length-1].key;
+};
+
+// =================================  auto text wraper  ====================================
+  Snap.plugin(function (Snap, Element, Paper, glob) {
+     Paper.prototype.multitext = function (x, y, txt, max_width, attributes) {
+
+        var svg = Snap();
+        var abc = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var temp = svg.text(0, 0, abc);
+        temp.attr(attributes);
+        var letter_width = temp.getBBox().width / abc.length;
+        svg.remove();
+
+        var words = txt.split(" ");
+        var width_so_far = 0, current_line=0, lines=[''];
+        for (var i = 0; i < words.length; i++) {
+
+           var l = words[i].length;
+           if (width_so_far + (l * letter_width) > max_width) {
+              lines.push('');
+              current_line++;
+              width_so_far = 0;
+           }
+           width_so_far += l * letter_width;
+           lines[current_line] += words[i] + " ";
+        }
+
+        var t = this.text(x,y,lines).attr(attributes);
+        t.selectAll("tspan:nth-child(n+2)").attr({
+           dy: "1.75em",
+           x: x
+        });
+        return t;
+     };
+  });
