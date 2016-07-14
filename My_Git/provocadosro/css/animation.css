@@ -14,6 +14,6 @@
   src: url('../fonts/The Northern Block - Corbert Medium.otf');
 }
 
-.visibility_hid{  visibility: hidden }
-.bg { background-color: #aaa; }
+.visibility_hid{  visibility: hidden } /* class used for SVG animation */
+.bg { background-color: #aaa; } /* class for body background */
 

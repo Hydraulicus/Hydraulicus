@@ -1,9 +1,12 @@
 var rhythm = 300//ms
-    ,hexagonSvg, bottomSvg, cloneFlag = false, group4clone, putclone, currentId, bottomWrapper
+    ,hexagonSvg, bottomSvg, cloneFlag = false, group4clone, putclone, currentId, bottomWrapper, clonedSegment, clone
     ,pathestoicons = [] ,hextext = [] ,textTitles = [], nameS = [], colors = []
-    ,activeIconAttr = {fill : "rgba(200, 200, 200, 0.01)", opacity : 1, stroke : "gray", "stroke-width" : 2}
-    ,passiveIconAttr = {fill : "#F1F1F1", opacity : 0.7, stroke : "#F1F1F1", "stroke-width" : 0}
+    ,activeIconAttr = {fill : "rgba(200, 200, 200, 0.01)", opacity : 1,  "stroke-width" : 2}
+    ,passiveIconAttr = {fill : "#F1F1F1", opacity : 0.7, "stroke-width" : 0}
     ; 
+
+var  f, filterChild;// filter for fadein fadeout when sliding
+
 
 function initAnimation (obj) {
     rhythm=obj.rhythm;
@@ -11,7 +14,7 @@ function initAnimation (obj) {
     bottomSvg = Snap(obj.bottombar); 
     rhythm = obj.rhythm * 1000;
     bottomWrapper = bottomSvg.g().attr({ "id" : "wraper"});
-    if (obj.hiddenBottomBar) bottomWrapper.transform("s0.001,0.001" );
+    bottomWrapper.transform("s0.001,0.001" ); //collapse bottom icon bar
     
     drawObjects(hexagonSvg, objects);
     drawObjects(bottomWrapper, bottomBar);
@@ -27,8 +30,10 @@ function initAnimation (obj) {
 
 
 function buildingCloneLayer(){
+    f = hexagonSvg.filter(Snap.filter.blur(0, 0)); filterChild = f.node.firstChild;
     group4clone = hexagonSvg.g().addClass("visibility_hid");
-    putclone = group4clone.g().attr({"id" : "putclone" });
+    clonedSegment = group4clone.g().attr({"id" : "clonedsegmentlayer" }); //layer for full stady hexagon for infoview mode
+    putclone = group4clone.g().attr({"id" : "putclone", filter: f }); //layer for elements for infoview mode
     intoClone.forEach( function (element) { group4clone.add(Snap.parse( element ));} ) 
 }
 
@@ -44,7 +49,7 @@ function colorSegments(){
   Snap.selectAll(".segments").forEach( function(element) 
         { var target = element.attr("id").split("-")[0];
             element.attr({fill : "red"});
-            console.log(target,colors[target]);
+            // console.log(target,colors[target]);
             element.attr({fill : colors[target]}); //color bottom icons according API
         } 
     )
@@ -62,15 +67,13 @@ function insertIconsInBar(target_, icons4insert)
 { var i=0;
   var arrayofIcoPlacess = Snap.selectAll(".bottomiconplace").forEach( function(element)
         {
-              // console.log(i);
-              // console.log(element.getBBox());
             var icoBox = element.getBBox();
             var  x = icoBox.x + ( icoBox.w - icoBox.r0 ) * 0.5,
                  y = icoBox.y + ( icoBox.h - icoBox.r0 ) * 0.5,
                  h = icoBox.r0;
             target_.image(icons4insert[i]["pathToIco"], x, y, h, h);
             target_.circle(icoBox.cx, icoBox.cy, icoBox.r1 * 1.2) // cover circle. need for bind events
-                    .attr({fill : "#F1F1F1", opacity : 0.7, stroke : "black", "stroke-width" : 0, cursor : "pointer"})
+                    .attr({fill : "#F1F1F1", opacity : 0.7, stroke : icons4insert[i]["color"], "stroke-width" : 0, cursor : "pointer"})
                     .attr({"id" : "circle_" + icons4insert[i]["name"]})
                     .addClass("icoInBar")
                     .hover(hoverover, hoverout)
@@ -96,27 +99,27 @@ function insertIconsInHex(target_, icons4insert)
                  y = icoBox.y + ( icoBox.h - icoBox.r0 ) * 0.5,
                  h = icoBox.r0;
             target_.image(icons4insert[i]["pathToIco"], x, y, h, h);
-            target_.circle(icoBox.cx, icoBox.cy, icoBox.r1 * 1.2) // cover circle. need for bind events
-                    .attr({fill : "#F1F1F1", opacity : 0.01, stroke : "black", "stroke-width" : 0, cursor : "pointer"})
+            target_.circle(icoBox.cx, icoBox.cy, icoBox.r1 * 1.2) //  circle. need for show hover effect
+                    .attr({id : "hexiconcircle_" + icons4insert[i]["name"], fill : "none", opacity : 0, stroke : icons4insert[i]["color"], "stroke-width" : 3, cursor : "pointer"})
                     ;
-            // element.attr({fill : "red"}); //testing color bottom icons 
             element.attr({fill : icons4insert[i]["color"]}); //color icons in hexagon according API
             i++;
         })
 }
 
 var hoverover = function() {  this.attr(activeIconAttr) };
-var hoverout = function() { this.attr(passiveIconAttr) };
+var hoverout = function() { this.attr(passiveIconAttr); Snap.select("#circle_"+currentId).attr(activeIconAttr); };
+
 var clickOnBottomBarIcon = function () {
   var targetId=this.attr("id").split("_")[1];
   currentId = targetId;
-  console.log("clickOnBottomBarIcon",targetId);
+  // console.log("clickOnBottomBarIcon",targetId);
   if (!cloneFlag) {
        preparingViewMode (targetId);
     }
     else 
     {
-      changeInfoIntoHexagonViewMode( targetId )
+      changeInfoIntoHexagonViewMode( targetId );
     }
 };
   
@@ -146,10 +149,11 @@ function drawHexagonViewMode (targetId) {    //animate to full hexagon
     unbindingHandling();
     currentId = targetId;
     group4clone.removeClass("visibility_hid").animate({"opacity" : 1}, rhythm);
-    var clone = Snap.select("#"+targetId+"-segment").clone();
-    putclone.add(clone);
+    clone = Snap.select("#"+targetId+"-segment").clone();
+    clonedSegment.add(clone);
     clone
       .stop()
+      .attr({"id" : "clonedsegment"})
       .animate({"d" : "M468 541c0,0 0,0 0,0 -3,2 -7,3 -10,3l-292 0c-3,0 -6,-1 -9,-2l0 0 0 0c-3,-2 -6,-5 -8,-8l-146 -252c-2,-3 -3,-7 -3,-10l0 0 1 0c0,-3 1,-7 3,-10l145 -252c2,-3 5,-6 8,-8l156 270 0 0 0 0 155 -269c3,2 5,4 7,7l145 252c2,3 3,7 3,10 0,4 -1,7 -3,10l-145 252c-2,3 -4,5 -7,7l0 0zm-155 -269l-156 -270c0,0 0,0 0,0 3,-1 6,-2 9,-2l292 0c3,0 7,1 10,3l-155 269z"}, 150, mina.easiinout
           , function ()
             {
@@ -162,14 +166,10 @@ function drawHexagonViewMode (targetId) {    //animate to full hexagon
                   putclone.multitext(320, 280, hextext[targetId], 355, { "font-size" : "14px", "text-anchor" : "middle", "fill" : "white", "stroke" : "white", "stroke-width" : "0.2", "font-weight" : "normal", "font-family" : "Corbert",  });
             }
           ) ;
-
       Snap.select("#circle_"+currentId).attr(activeIconAttr);      //set active icon in bottom bar
-      // Snap.select("#circle_"+currentId).node.animation({activeIconAttr},1000);      //set active icon in bottom bar
-      
 }
 
 var segmentClick = function() {
-    // currentId = targetId;
     var targetId=this.attr("id");
      preparingViewMode (targetId)
 }
@@ -185,19 +185,42 @@ function preparingViewMode (targetId) {
 
 var cloneClick = function (callback) {//close view mode of hexagon
   bottomWrapper.animate({"transform" : "s0.001,0.001"}, rhythm*2, mina.backin);
-  group4clone.animate({"opacity" : 0}, rhythm, function(){ cloneFlag = false; group4clone.addClass("visibility_hid"); putclone.clear(); collapseAllSegment (); bindingHandling() });
+  group4clone.animate({"opacity" : 0}, rhythm, function()
+      {
+         cloneFlag = false; 
+         group4clone.addClass("visibility_hid"); 
+         putclone.clear(); 
+         clonedSegment.clear(); 
+         collapseAllSegment (); 
+         bindingHandling() 
+       }
+     );
   Snap.selectAll(".icoInBar").forEach( function (element) { element.attr(passiveIconAttr); } ) ;
 }
 
 changeInfoIntoHexagonViewMode = function(par){ 
-   // console.log(currentId,par);
-   group4clone.animate({"opacity" : 0}, rhythm, function(){  group4clone.addClass("visibility_hid"); putclone.clear(); collapseAllSegment (); drawHexagonViewMode (par) });
+   Snap.animate( 0, 20, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm, function()
+      { 
+          putclone.clear(); 
+          autoOpeningInformationMode (par) 
+      }
+    );
   Snap.selectAll(".icoInBar").forEach( function (element) { element.attr(passiveIconAttr); } ) ;
 } 
 
-autoOpeningInformationMode = function () {
-  console.log("autoOpeningInformationMode");
-}
+autoOpeningInformationMode = function (targetId) {
+    currentId = targetId;
+    Snap.animate( 20, 0, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm);
+    clone.animate({"fill" : colors[targetId]}, rhythm);
+    var icoBox = Snap.select("#topiconplace").getBBox();
+    var  x = icoBox.x + ( icoBox.w - icoBox.r0 ) * 0.5,
+         y = icoBox.y + ( icoBox.h - icoBox.r0 ) * 0.5,
+         h = icoBox.r0;
+    putclone.image( pathestoicons[targetId], x, y, h, h);
+    putclone.add(Snap.parse('<text x="320" y="250" fill="white" stroke="white" stroke-width="0.2" font-weight="medium" font-size="30px" font-family="Corbert-Medium" text-anchor="middle">' + textTitles[targetId] + '</text>'));
+    putclone.multitext(320, 280, hextext[targetId], 355, { "font-size" : "14px", "text-anchor" : "middle", "fill" : "white", "stroke" : "white", "stroke-width" : "0.2", "font-weight" : "normal", "font-family" : "Corbert",  });
+    Snap.select("#circle_"+currentId).attr(activeIconAttr);
+  }
 
 
 function hoveroversegment () { 
@@ -205,18 +228,18 @@ function hoveroversegment () {
           targetId=that.attr("id"),
           target = Snap.select("#"+targetId+"-segment");
       // console.log( targetId );
-            // Snap.select("#mr-segment").attr({d : segmentcontours["mr"]}); 
-      target.stop().animate({d : segmentcontours[targetId]}, rhythm*2, mina.easinout);
+          Snap.select("#hexiconcircle_"+targetId).attr({ opacity : 0.5 }); 
+      // target.stop().animate({d : segmentcontours[targetId]}, rhythm*2, mina.easinout); // grow side segment to triangle
       Snap.select("#circle_"+targetId).attr(activeIconAttr);
   };
 
  function hoveroutsegment() { 
       // console.clear();
-  // console.log(cloneFlag);
       if ( cloneFlag ) {  return };
       var that = this,
       targetId=that.attr("id"),
       target = Snap.select("#"+targetId+"-segment");
+      Snap.select("#hexiconcircle_"+targetId).attr({opacity : 0}); 
       // oldD = target.data("oldD");
       // console.log("hoveroutsegment",target);
       // console.dir(Snap.selectAll(".segments"));
@@ -224,7 +247,7 @@ function hoveroversegment () {
       Snap.select("#circle_"+targetId).attr(passiveIconAttr);
       // console.log( Snap.select("#mr"));
       // Snap.select("#mr").attr({d : initialsegmentcontours["mr"]}); 
-      collapseAllSegment ();
+      // collapseAllSegment ();
   };
 
 function collapseAllSegment ()
@@ -237,9 +260,11 @@ function collapseAllSegment ()
               element.stop().attr({d : initialsegmentcontours[targetId.split("-")[0]]}); 
               return
             }
+        // element.stop().attr({d : initialsegmentcontours[targetId.split("-")[0]]}); 
         element.stop().animate({d : initialsegmentcontours[targetId.split("-")[0]]}, rhythm, mina.easinout); 
       })  
     }
+
 
 var nextElement = function(db, key) {
   for (var i = 0; i < db.length-1; i++) {
