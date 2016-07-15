@@ -214,7 +214,6 @@ changeInfoIntoHexagonViewMode = function(par){
                   putclone.clear(); 
                   autoOpeningInformationMode (par);          
         };
-  Snap.selectAll(".icoInBar").forEach( function (element) {  if (element.attr("id").split("_")[1] !== currentId)  element.attr(passiveIconAttr);  } ) ;
 } 
 
 autoOpeningInformationMode = function (targetId) {
@@ -234,7 +233,7 @@ autoOpeningInformationMode = function (targetId) {
     putclone.image( pathestoicons[targetId], x, y, h, h);
     putclone.add(Snap.parse('<text x="320" y="250" fill="white" stroke="white" stroke-width="0.2" font-weight="medium" font-size="30px" font-family="Corbert-Medium" text-anchor="middle">' + textTitles[targetId] + '</text>'));
     putclone.multitext(320, 280, hextext[targetId], 355, { "font-size" : "14px", "text-anchor" : "middle", "fill" : "white", "stroke" : "white", "stroke-width" : "0.2", "font-weight" : "normal", "font-family" : "Corbert",  });
-    Snap.select("#circle_"+currentId).attr(activeIconAttr);
+    Snap.selectAll(".icoInBar").forEach( function (element) {  if (element.attr("id").split("_")[1] == currentId)  { element.attr(activeIconAttr) } else { element.attr(passiveIconAttr);}  } ) ;
   }
 
 
