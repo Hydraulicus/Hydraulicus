@@ -23,12 +23,10 @@
 
 	 <div style='width:100%; height: auto; max-width:760px; margin: 1% auto; '><!-- wrapper for SVG-animation. You can setup width, height and other CSS parameters. -->
 	 
-  	<svg id="animation"  xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="1 0 623 545 " preserveAspectRatio="xMidYMid meet" style=" background-color: #efefef;"> </svg>
+  	<svg id="animation"  xmlns="http://www.w3.org/2000/svg" version="1.20" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="1 0 623 545 " preserveAspectRatio="xMidYMid meet" style=" background-color: #efefef;"> </svg>
     <svg id="bottombar"  xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-34 590 699 105 " preserveAspectRatio="xMidYMid meet" >
 
 	 </div>
-
-
 
      <script src="js/snap.svg-min.js"></script>
      <script src="js/contours.js"></script>
@@ -37,7 +35,7 @@
        initAnimation({
         hexagon : "#animation" //id of SVG, point out hexagon 
         ,bottombar : "#bottombar" //id of SVG, point out bottom icon bar 
-        ,rhythm : 0.150 //sec, duration of transition animation
+        ,rhythm : 0.125 //sec, duration of transition animation
         ,blur : true //true or false. Whether to show animation fade in / fade out the content. It can be turned off for mobile devices to avoid freezes and lags at high resolution of screen
 
         ,hexagonSegmentsData : [

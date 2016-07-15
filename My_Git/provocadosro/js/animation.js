@@ -8,10 +8,9 @@ var rhythm = 300//ms
 
 var  f, filterChild;// filter for fadein fadeout when sliding
 
-
 function initAnimation (obj) {
     blurFlag = obj.blur;
-    rhythm = obj.rhythm;
+    rhythm = obj.rhythm; 
     hexagonSvg = Snap(obj.hexagon); 
     bottomSvg = Snap(obj.bottombar); 
     rhythm = obj.rhythm * 1000;
@@ -155,7 +154,7 @@ function drawHexagonViewMode (targetId) {    //animate to full hexagon
     clone
       .stop()
       .attr({"id" : "clonedsegment"})
-      .animate({"d" : "M468 541c0,0 0,0 0,0 -3,2 -7,3 -10,3l-292 0c-3,0 -6,-1 -9,-2l0 0 0 0c-3,-2 -6,-5 -8,-8l-146 -252c-2,-3 -3,-7 -3,-10l0 0 1 0c0,-3 1,-7 3,-10l145 -252c2,-3 5,-6 8,-8l156 270 0 0 0 0 155 -269c3,2 5,4 7,7l145 252c2,3 3,7 3,10 0,4 -1,7 -3,10l-145 252c-2,3 -4,5 -7,7l0 0zm-155 -269l-156 -270c0,0 0,0 0,0 3,-1 6,-2 9,-2l292 0c3,0 7,1 10,3l-155 269z"}, 150, mina.easiinout
+      .animate({"d" : "M468 541c0,0 0,0 0,0 -3,2 -7,3 -10,3l-292 0c-3,0 -6,-1 -9,-2l0 0 0 0c-3,-2 -6,-5 -8,-8l-146 -252c-2,-3 -3,-7 -3,-10l0 0 1 0c0,-3 1,-7 3,-10l145 -252c2,-3 5,-6 8,-8l156 270 0 0 0 0 155 -269c3,2 5,4 7,7l145 252c2,3 3,7 3,10 0,4 -1,7 -3,10l-145 252c-2,3 -4,5 -7,7l0 0zm-155 -269l-156 -270c0,0 0,0 0,0 3,-1 6,-2 9,-2l292 0c3,0 7,1 10,3l-155 269z"}, rhythm, mina.easiinout
           , function ()
             {
                var icoBox = Snap.select("#topiconplace").getBBox();
@@ -178,15 +177,15 @@ var segmentClick = function() {
 function preparingViewMode (targetId) {
      cloneFlag = true;
      drawHexagonViewMode(targetId);
-     bottomWrapper.animate({"transform" : "s1,1"}, rhythm*3, mina.backout);
+     bottomWrapper.stop().animate({"transform" : "s1,1"}, rhythm, mina.easeinout);
      Snap.select("#closecross").attr({"cursor" : "pointer"}).click( cloneClick );
      Snap.select("#arrowright").attr({"cursor" : "pointer"}).click( function() { changeInfoIntoHexagonViewMode( nextElement(nameS, currentId) ) });
      Snap.select("#arrowleft").attr({"cursor" : "pointer"}).click( function() { changeInfoIntoHexagonViewMode( prevElement(nameS, currentId) ) } );
 }
 
 var cloneClick = function (callback) {//close view mode of hexagon
-  bottomWrapper.animate({"transform" : "s0.001,0.001"}, rhythm*2, mina.backin);
-  group4clone.animate({"opacity" : 0}, rhythm, function()
+  bottomWrapper.stop().animate({"transform" : "s0.001,0.001"}, rhythm, mina.easeinout);
+  group4clone.stop().animate({"opacity" : 0}, rhythm, function()
       {
          cloneFlag = false; 
          group4clone.addClass("visibility_hid"); 
@@ -199,7 +198,7 @@ var cloneClick = function (callback) {//close view mode of hexagon
   Snap.selectAll(".icoInBar").forEach( function (element) { element.attr(passiveIconAttr); } ) ;
 }
 
-changeInfoIntoHexagonViewMode = function(par){ 
+changeInfoIntoHexagonViewMode = function(par){  
    if ( blurFlag )
        {
            Snap.animate( 0, 20, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm, function()
