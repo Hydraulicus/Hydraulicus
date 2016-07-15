@@ -1,4 +1,5 @@
 var rhythm = 300//ms
+    ,blurFlag //whether to show animation fade in / fade out
     ,hexagonSvg, bottomSvg, cloneFlag = false, group4clone, putclone, currentId, bottomWrapper, clonedSegment, clone
     ,pathestoicons = [] ,hextext = [] ,textTitles = [], nameS = [], colors = []
     ,activeIconAttr = {fill : "rgba(200, 200, 200, 0.01)", opacity : 1,  "stroke-width" : 2}
@@ -9,7 +10,8 @@ var  f, filterChild;// filter for fadein fadeout when sliding
 
 
 function initAnimation (obj) {
-    rhythm=obj.rhythm;
+    blurFlag = obj.blur;
+    rhythm = obj.rhythm;
     hexagonSvg = Snap(obj.hexagon); 
     bottomSvg = Snap(obj.bottombar); 
     rhythm = obj.rhythm * 1000;
@@ -113,7 +115,6 @@ var hoverout = function() { this.attr(passiveIconAttr); Snap.select("#circle_"+c
 var clickOnBottomBarIcon = function () {
   var targetId=this.attr("id").split("_")[1];
   currentId = targetId;
-  // console.log("clickOnBottomBarIcon",targetId);
   if (!cloneFlag) {
        preparingViewMode (targetId);
     }
@@ -177,7 +178,7 @@ var segmentClick = function() {
 function preparingViewMode (targetId) {
      cloneFlag = true;
      drawHexagonViewMode(targetId);
-     bottomWrapper.animate({"transform" : "s1,1"}, rhythm*3, mina.elastic);
+     bottomWrapper.animate({"transform" : "s1,1"}, rhythm*3, mina.backout);
      Snap.select("#closecross").attr({"cursor" : "pointer"}).click( cloneClick );
      Snap.select("#arrowright").attr({"cursor" : "pointer"}).click( function() { changeInfoIntoHexagonViewMode( nextElement(nameS, currentId) ) });
      Snap.select("#arrowleft").attr({"cursor" : "pointer"}).click( function() { changeInfoIntoHexagonViewMode( prevElement(nameS, currentId) ) } );
@@ -199,19 +200,33 @@ var cloneClick = function (callback) {//close view mode of hexagon
 }
 
 changeInfoIntoHexagonViewMode = function(par){ 
-   Snap.animate( 0, 20, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm, function()
-      { 
-          putclone.clear(); 
-          autoOpeningInformationMode (par) 
-      }
-    );
-  Snap.selectAll(".icoInBar").forEach( function (element) { element.attr(passiveIconAttr); } ) ;
+   if ( blurFlag )
+       {
+           Snap.animate( 0, 20, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm, function()
+              { 
+                  putclone.clear(); 
+                  autoOpeningInformationMode (par); 
+              }
+            );
+        }
+        else
+        {
+                  putclone.clear(); 
+                  autoOpeningInformationMode (par);          
+        };
+  Snap.selectAll(".icoInBar").forEach( function (element) {  if (element.attr("id").split("_")[1] !== currentId)  element.attr(passiveIconAttr);  } ) ;
 } 
 
 autoOpeningInformationMode = function (targetId) {
     currentId = targetId;
-    Snap.animate( 20, 0, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm);
-    clone.animate({"fill" : colors[targetId]}, rhythm);
+    if ( blurFlag ) {
+          Snap.animate( 20, 0, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm);
+          clone.animate({"fill" : colors[targetId]}, rhythm);
+        }
+        else 
+        {
+         clone.attr({"fill" : colors[targetId]}); 
+        };
     var icoBox = Snap.select("#topiconplace").getBBox();
     var  x = icoBox.x + ( icoBox.w - icoBox.r0 ) * 0.5,
          y = icoBox.y + ( icoBox.h - icoBox.r0 ) * 0.5,
@@ -227,9 +242,7 @@ function hoveroversegment () {
       var that = this,
           targetId=that.attr("id"),
           target = Snap.select("#"+targetId+"-segment");
-      // console.log( targetId );
-          Snap.select("#hexiconcircle_"+targetId).attr({ opacity : 0.5 }); 
-      // target.stop().animate({d : segmentcontours[targetId]}, rhythm*2, mina.easinout); // grow side segment to triangle
+      Snap.select("#hexiconcircle_"+targetId).attr({ opacity : 0.5 }); 
       Snap.select("#circle_"+targetId).attr(activeIconAttr);
   };
 
@@ -240,14 +253,7 @@ function hoveroversegment () {
       targetId=that.attr("id"),
       target = Snap.select("#"+targetId+"-segment");
       Snap.select("#hexiconcircle_"+targetId).attr({opacity : 0}); 
-      // oldD = target.data("oldD");
-      // console.log("hoveroutsegment",target);
-      // console.dir(Snap.selectAll(".segments"));
-      // target.attr({d : initialsegmentcontours[targetId]});
       Snap.select("#circle_"+targetId).attr(passiveIconAttr);
-      // console.log( Snap.select("#mr"));
-      // Snap.select("#mr").attr({d : initialsegmentcontours["mr"]}); 
-      // collapseAllSegment ();
   };
 
 function collapseAllSegment ()
