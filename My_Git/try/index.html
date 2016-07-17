@@ -27,11 +27,12 @@
       printString("A Test", 1);
 
       function printString(String, position) {
+        position++; 
         var lettersLength = String.split('').length;
         var index =  ( position < lettersLength  )  ? position : position - 2 * ( position - lettersLength) ;
         console.log(String.split('', index ).join(''));
-        if ( position > ( (lettersLength - 1 ) * 2) ) return;
-         printString(String, position + 1);
+        if ( position > ( (lettersLength - 1 ) * 2) -1 ) return;
+         printString(String, position);
       }
      </script>
   </body>
