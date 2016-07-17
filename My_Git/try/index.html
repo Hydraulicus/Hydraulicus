@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="author" content="Alexei Zababurin" />
-    <meta name="description" content=" JS. SVG. animation.  SVG-animation. "/>
+    <meta name="description" content=" JS.  "/>
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta property="og:title" content="Alexei Zababurin office animation for Ghazi Farooq"/>
-    <meta property="og:site_name" content="Alexei Zababurin office animation for Ghazi Farooq"/>
-    <meta property="og:description" content="Alexei Zababurin office animation for Ghazi Farooq"/>
-    <title>Alexei Zababurin office animation for Ghazi Farooq</title>
+    <meta property="og:title" content="Alexei Zababurin JS test"/>
+    <meta property="og:site_name" content="Alexei Zababurin JS test"/>
+    <meta property="og:description" content="Alexei Zababurin JS test"/>
+    <title>Alexei Zababurin JS test</title>
 
 
 
@@ -24,14 +24,14 @@
 	
      <script type="text/javascript">
 
-  printString("A Test", 1);
+      printString("A Test", 1);
 
       function printString(String, position) {
         var lettersLength = String.split('').length;
-        var index =  ( position < lettersLength  )  ? position : position - 2*( position - lettersLength) ;
+        var index =  ( position < lettersLength  )  ? position : position - 2 * ( position - lettersLength) ;
         console.log(String.split('', index ).join(''));
-        if ( position > ( (lettersLength-1 ) * 2) ) return;
-         printString(String, position+1);
+        if ( position > ( (lettersLength - 1 ) * 2) ) return;
+         printString(String, position + 1);
       }
      </script>
   </body>
