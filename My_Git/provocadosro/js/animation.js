@@ -27,6 +27,7 @@ function initAnimation (obj) {
     buildingCloneLayer();
     setTextTitlesInHexagon();
     colorSegments();
+    bindEventstoArrow ();
 };//end of init function
 
 
@@ -169,6 +170,12 @@ function drawHexagonViewMode (targetId) {    //animate to full hexagon
       Snap.select("#circle_"+currentId).attr(activeIconAttr);      //set active icon in bottom bar
 }
 
+function bindEventstoArrow () {
+     Snap.select("#closecross").attr({"cursor" : "pointer"}).click( cloneClick );
+     Snap.select("#arrowright").attr({"cursor" : "pointer"}).click( function() { changeInfoIntoHexagonViewMode( nextElement(nameS, currentId) ) });
+     Snap.select("#arrowleft").attr({"cursor" : "pointer"}).click( function() { changeInfoIntoHexagonViewMode( prevElement(nameS, currentId) ) } );  
+}
+
 var segmentClick = function() {
     var targetId=this.attr("id");
      preparingViewMode (targetId)
@@ -178,9 +185,6 @@ function preparingViewMode (targetId) {
      cloneFlag = true;
      drawHexagonViewMode(targetId);
      bottomWrapper.stop().animate({"transform" : "s1,1"}, rhythm, mina.easeinout);
-     Snap.select("#closecross").attr({"cursor" : "pointer"}).click( cloneClick );
-     Snap.select("#arrowright").attr({"cursor" : "pointer"}).click( function() { changeInfoIntoHexagonViewMode( nextElement(nameS, currentId) ) });
-     Snap.select("#arrowleft").attr({"cursor" : "pointer"}).click( function() { changeInfoIntoHexagonViewMode( prevElement(nameS, currentId) ) } );
 }
 
 var cloneClick = function (callback) {//close view mode of hexagon
@@ -199,6 +203,7 @@ var cloneClick = function (callback) {//close view mode of hexagon
 }
 
 changeInfoIntoHexagonViewMode = function(par){  
+  
    if ( blurFlag )
        {
            Snap.animate( 0, 20, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm, function()
@@ -245,7 +250,6 @@ function hoveroversegment () {
   };
 
  function hoveroutsegment() { 
-      // console.clear();
       if ( cloneFlag ) {  return };
       var that = this,
       targetId=that.attr("id"),
