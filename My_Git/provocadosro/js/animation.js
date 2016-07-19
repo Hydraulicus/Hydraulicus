@@ -202,7 +202,7 @@ var cloneClick = function (callback) {//close view mode of hexagon
   Snap.selectAll(".icoInBar").forEach( function (element) { element.attr(passiveIconAttr); } ) ;
 }
 
-changeInfoIntoHexagonViewMode = function(par){  
+var changeInfoIntoHexagonViewMode = function(par){  
   
    if ( blurFlag )
        {
@@ -220,7 +220,7 @@ changeInfoIntoHexagonViewMode = function(par){
         };
 } 
 
-autoOpeningInformationMode = function (targetId) {
+var autoOpeningInformationMode = function (targetId) {
     currentId = targetId;
     if ( blurFlag ) {
           Snap.animate( 20, 0, function( value ) { filterChild.attributes[0].value = value + ',' + value;  }, rhythm);
@@ -262,14 +262,16 @@ function collapseAllSegment ()
     {
      Snap.selectAll(".segments").forEach( function (element) { 
 
-        var targetId = element.attr("id");
-        if (targetId.split("-")[0] == "mr") //it need becous mr have bug in contour animation
+         var targetId = element.attr("id").split("-")[0];
+         Snap.select("#hexiconcircle_"+targetId).attr({ opacity : 0 });
+
+        if (targetId == "s2") //it need becous mr have bug in contour animation
             { 
-              element.stop().attr({d : initialsegmentcontours[targetId.split("-")[0]]}); 
+              element.stop().attr({d : initialsegmentcontours[targetId]}); 
               return
             }
         // element.stop().attr({d : initialsegmentcontours[targetId.split("-")[0]]}); 
-        element.stop().animate({d : initialsegmentcontours[targetId.split("-")[0]]}, rhythm, mina.easinout); 
+        element.stop().animate({d : initialsegmentcontours[targetId]}, rhythm, mina.easinout); 
       })  
     }
 
