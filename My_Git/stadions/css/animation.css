@@ -1,0 +1,16 @@
+
+.visibility_hid{ visibility: hidden }
+.bg { background-color: #aaa; } /* class for body background */
+
+.sectors { fill:#F7F7F7; stroke:#010101;}
+.sectorsBlckStr { fill:#F7F7F7; stroke:#000000;}
+.sector026 { stroke-width:0.26 }
+.sector0131 { stroke-width:0.131 }
+.sector0523 { stroke-width:0.523 }
+
+.reddot { fill:#FF0000; cursor : pointer}
+.reddotarea {stroke:rgba(255,0,0,0.01); stroke-width:5;} /* enlage transparent active area of red dot */
+.reddotactive { opacity: 0.5}
+.reddotpassive { opacity: 1}
+
+.fnt5 {fill:#515050; stroke:#515050;  stroke-width:0.25; font-weight:normal; font-size:5px; font-family:'Helvetica'}

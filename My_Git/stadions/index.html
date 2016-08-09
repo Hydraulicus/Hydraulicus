@@ -1,0 +1,44 @@
+  <!DOCTYPE HTML>	
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="author" content="Alexei Zababurin" />
+    <meta name="description" content=" JS. SVG. animation.  SVG-animation. "/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta property="og:title" content="Alexei Zababurin animation for Evan Kaye"/>
+    <meta property="og:site_name" content="Alexei Zababurin animation for Evan Kaye"/>
+    <meta property="og:description" content="Alexei Zababurin animation for Evan Kaye"/>
+    <title>Alexei Zababurin animation for Evan Kaye</title>
+
+    <link rel="stylesheet" type="text/css" href="css/animation.css">
+
+  <style type="text/css">
+
+  </style>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>--> <!-- http://stackoverflow.com/questions/36831372/promise-is-undefined-in-ie --> 
+
+  </head>
+  <body class="bg">
+
+	 <div style='width:100%; height: auto; max-width:960px; margin: 1% auto; '><!-- wrapper for SVG-animation. You can setup width, height and other CSS parameters. -->
+	 
+  	<svg id="animation"  xmlns="http://www.w3.org/2000/svg" version="1.20" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 524 518 " preserveAspectRatio="xMidYMid meet" style=" background-color: #efefef;"> </svg>
+   
+	 </div>
+
+     <script src="js/snap.svg-min.js"></script>
+     <script src="js/contours.js"></script>
+     <script src="js/animation.js"></script>
+     <script type="text/javascript">
+       initAnimation({
+        svgTag : "#animation" //id of SVG, point out stadion SVG 
+        pathTosvgFile : "svg/YankeeStadium.svg",
+
+
+       });
+     </script>
+  </body>
+  
+
