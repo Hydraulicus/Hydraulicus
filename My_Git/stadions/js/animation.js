@@ -8,7 +8,7 @@ function initAnimation (obj) {
 //                                                 g.text(300,100, 'hover over me');
 //                                         } );
 
-     embdingSvgFile (stadionSvg, obj.pathTosvgFile);
+     embdingSvgFile (stadionSvg, obj.pathTosvgFile, performOfImage);
   // {
   //   Promise.all([//promise ES-2015. Dont work in IE. Uncomment line 20 in index.html
   //        drawObjects(stadionSvg, objects) //draw sectors
@@ -26,13 +26,18 @@ function initAnimation (obj) {
 };//end of init function
 
 function embdingSvgFile (target_, filePathName, callBack)
-  { console.log('try show ',filePathName)
+  { 
     var tux = Snap.load(filePathName, function ( loadedFragment ) {
                                                 target_.append( loadedFragment );
+                                                call(callBack);
                                                 // g.hover( hoverover, hoverout );
                                                 // g.text(300,100, 'hover over me');
                                         } );
   }
+
+function performOfImage () {
+  console.log('try performOfImage ');
+}
 
 function drawObjects(target_, objects_)
     { 
