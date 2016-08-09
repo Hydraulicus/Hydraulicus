@@ -28,7 +28,7 @@ function initAnimation (obj) {
 function embdingSvgFile (target_, filePathName, callBack)
   { console.log('try show ',filePathName)
     var tux = Snap.load(filePathName, function ( loadedFragment ) {
-                                                g.append( loadedFragment );
+                                                target_.append( loadedFragment );
                                                 // g.hover( hoverover, hoverout );
                                                 // g.text(300,100, 'hover over me');
                                         } );
