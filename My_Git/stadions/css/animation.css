@@ -14,8 +14,8 @@
 .reddotpassive { opacity: 1}
 
 .regions { fill:#AA0000; fill-opacity: 0.0; cursor : pointer}
-.regionactive { fill-opacity: 1}
-.regionpassive { fill-opacity: 0.5}
+.regionactive { fill-opacity: 0.75}
+.regionpassive { fill-opacity: 0.0}
 
 
 
