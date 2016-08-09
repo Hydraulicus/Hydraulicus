@@ -40,11 +40,12 @@ function performOfImage () {
   var arrayofDot = Snap.selectAll("#dot434B");
   console.log('try perform', arrayofDot);
 
-  // arrayofDot.forEach( function (element, j, arr) 
-  //             {
-  //                 target_.add(Snap.parse(objects_[j]));
-  //                 if (j == arr.length-1) { resolve(); }
-  //             } );
+  arrayofDot.forEach( function (element, j, arr) 
+              {
+                  // target_.add(Snap.parse(objects_[j]));
+                  // if (j == arr.length-1) { resolve(); }
+                  element.addClass("reddot reddotpassive reddotarea");
+              } );
 }
 
 function drawObjects(target_, objects_)
