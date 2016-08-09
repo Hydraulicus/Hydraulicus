@@ -21,7 +21,7 @@ function performOfImage () {
                   element .addClass("regions regionpassive ")
                           .hover(hoverover, hoverout)
                           .click(clickOnObject)//if this handler binded touchstart and touchend is reduntand  
-                          .touchstart(touchstartRedDot)
+                          .touchstart(touchstartObject)
                           .touchend(touchendObject);
               } );
 }
