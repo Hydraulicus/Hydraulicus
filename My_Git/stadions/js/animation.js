@@ -37,7 +37,7 @@ function embdingSvgFile (target_, filePathName, callBack)
   }
 
 function performOfImage () {
-  var  = Snap.selectAll("#dot434B");
+  var arrayofDot = Snap.selectAll("#dot434B");
   console.log('try perform', arrayofDot);
 
   // arrayofDot.forEach( function (element, j, arr) 
