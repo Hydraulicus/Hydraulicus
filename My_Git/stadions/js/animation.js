@@ -37,7 +37,13 @@ function embdingSvgFile (target_, filePathName, callBack)
   }
 
 function performOfImage () {
-  var arrayofDot = Snap.selectAll("#dot434B");
+  // var arrayofDot = Snap.selectAll("#dot434B");
+  var arrayofDot = Snap.selectAll("id$='dot'");
+  
+  // [id^='someId'] will match all ids starting with someId.
+  // document.querySelectorAll("div[id$='foo']")
+
+
   console.log('try perform', arrayofDot);
 
   arrayofDot.forEach( function (element, j, arr) 
