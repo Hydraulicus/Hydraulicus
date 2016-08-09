@@ -13,7 +13,7 @@ function embdingSvgFile (target_, filePathName, callBack)
   }
 
 function performOfImage () {
-  var arrayOfRegions = Snap.selectAll("path[id^='Stroke']");//select regions - all path tag which have id which start from "Stroke" 
+  var arrayOfRegions = Snap.selectAll("*[id^='Stroke']");//select regions - all tag which have id which start from "Stroke" 
   console.log('try perform', arrayOfRegions);
 
   arrayOfRegions.forEach( function (element, j) 
