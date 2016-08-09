@@ -42,9 +42,11 @@ function performOfImage () {
 
   arrayofDot.forEach( function (element, j, arr) 
               {
-                  // target_.add(Snap.parse(objects_[j]));
-                  // if (j == arr.length-1) { resolve(); }
-                  element.addClass("reddot reddotpassive reddotarea");
+                  element .addClass("reddot reddotpassive reddotarea")
+                          .hover(hoverover, hoverout)
+                          .click(clickOnRedDot)//if this handler binded touchstart and touchend is reduntand  
+                          .touchstart(touchstartRedDot)
+                          .touchend(touchendRedDot);
               } );
 }
 
