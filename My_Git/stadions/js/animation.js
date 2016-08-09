@@ -26,7 +26,7 @@ function initAnimation (obj) {
 };//end of init function
 
 function embdingSvgFile (target_, filePathName, callBack)
-  {
+  { console.log('try show ',filePathName)
     var tux = Snap.load(filePathName, function ( loadedFragment ) {
                                                 g.append( loadedFragment );
                                                 // g.hover( hoverover, hoverout );
