@@ -13,23 +13,23 @@ function embdingSvgFile (target_, filePathName, callBack)
   }
 
 function performOfImage () {
-  var arrayofDot = Snap.selectAll("path[id^='dot']");//select all path tag which have id which start from "dot"
-  // console.log('try perform', arrayofDot);
+  var arrayOfRegions = Snap.selectAll("path[id^='Stroke']");//select regions - all path tag which have id which start from "Stroke" 
+  // console.log('try perform', arrayOfRegions);
 
-  arrayofDot.forEach( function (element, j) 
+  arrayOfRegions.forEach( function (element, j) 
               {
-                  element .addClass("reddot reddotpassive reddotarea")
+                  element .addClass("regions regionpassive ")
                           .hover(hoverover, hoverout)
-                          .click(clickOnRedDot)//if this handler binded touchstart and touchend is reduntand  
+                          .click(clickOnObject)//if this handler binded touchstart and touchend is reduntand  
                           .touchstart(touchstartRedDot)
-                          .touchend(touchendRedDot);
+                          .touchend(touchendObject);
               } );
 }
 
 //Handlers
-var hoverover = function() { this.toggleClass("reddotpassive").toggleClass("reddotactive") };
-var hoverout = function() { this.toggleClass("reddotpassive").toggleClass("reddotactive") };
-var clickOnRedDot = function() { console.log("press on ", this.attr('id') ) }
-var touchstartRedDot = function() { console.log("touch start ", this.attr('id') ) }
-var touchendRedDot = function() { console.log("touch end ", this.attr('id') ) }
+var hoverover = function() { this.toggleClass("regionpassive").toggleClass("regionactive") };
+var hoverout = function() { this.toggleClass("regionpassive").toggleClass("regionactive") };
+var clickOnObject = function() { console.log("press on ", this.attr('id') ) }
+var touchstartObject = function() { console.log("touch start ", this.attr('id') ) }
+var touchendObject = function() { console.log("touch end ", this.attr('id') ) }
 

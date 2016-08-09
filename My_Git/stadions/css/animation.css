@@ -13,4 +13,10 @@
 .reddotactive { opacity: 0.5}
 .reddotpassive { opacity: 1}
 
+.regions { fill:#AA0000; fill-opacity: 0; cursor : pointer}
+.regionactive { fill-opacity: 1}
+.regionpassive { fill-opacity: 0}
+
+
+
 .fnt5 {fill:#515050; stroke:#515050;  stroke-width:0.25; font-weight:normal; font-size:5px; font-family:'Helvetica'}
