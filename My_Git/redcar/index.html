@@ -1,0 +1,34 @@
+  <!DOCTYPE HTML>	
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="author" content="Alexei Zababurin" />
+    <meta name="description" content=" JS. SVG. animation.  SVG-animation. "/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta property="og:title" content="Alexei Zababurin for Sarah Hill"/>
+    <meta property="og:site_name" content="Alexei Zababurin for Sarah Hill"/>
+    <meta property="og:description" content="Alexei Zababurin for Sarah Hill"/>
+    <title>Alexei Zababuri for Sarah Hill</title>
+    <link rel="stylesheet" type="text/css" href="css/animation.css">
+  </head>
+  <body class="bg">
+     <div class="flexcontainer" > 
+        <input class="flexchild" type="button" onclick="startMoving()" value="Start moving"/>
+     </div>
+  	 <div class="svgwapper"><!-- wrapper for SVG-animation. You can setup width, height and other CSS parameters. -->
+  	   	<svg id="animation"  xmlns="http://www.w3.org/2000/svg" version="1.20" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="750 0 1280 750 " preserveAspectRatio="xMidYMid meet"> </svg>
+  	 </div>
+     <script src="js/snap.svg-min.js"></script>
+     <script src="js/contours.js"></script>
+     <script src="js/animation.js"></script>
+     <script type="text/javascript">
+       initAnimation({
+        svgTag : "#animation" //id of SVG
+        ,rhythm : 0.25 //sec, duration of transition animation
+       });
+     </script>
+  </body>
+  
+
