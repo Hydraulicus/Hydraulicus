@@ -1,0 +1,43 @@
+.visibility_hid {
+    visibility: hidden
+}
+
+/* class used for SVG animation */
+.bg {
+    background-color: #aaa;
+}
+
+/* class for body background */
+
+.st0 {
+    fill: #B81E24;
+    font-family: 'CityD-Bold';
+}
+
+.st1 {
+    fill: #0B162E;
+    font-size: 85px;
+    letter-spacing: 0px;
+    font-family: 'CityD-Bold';
+}
+
+.st2 {
+    font-size: 37.7px;
+}
+
+.st3 {
+    fill: none;
+}
+
+.svgwapper {
+    width: 90%;
+    height: auto;
+    max-width: 1920px;
+    margin: 1% auto;
+}
+
+@font-face {
+    font-weight: bold;
+    font-family: "CityD-Bold";
+    src: url('cityb.ttf');
+}
