@@ -10,45 +10,31 @@
 </head>
 <body class="bg">
 <div class="flexcontainer">
-    <p>Enter top text:<input id='topinput' type="text" placeholder="Tigers" value="Tigers"></p>
+    <p>Enter top text:<input id='topinput' type="text" placeholder="TIGERS" value="TIGERS"></p>
     <p>Enter bottom text:<input id='bottominput' type="text" placeholder="FOOTBALL" value="FOOTBALL"></p>
 
 </div>
-<!--first approach of scaling-->
 <div class="svgwapper"><!-- wrapper for SVG-animation. You can setup width, height and other CSS parameters. -->
-    <svg version="1.1" id="ND1107.svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 453.5 170.1" style="background-color:#fff;" xml:space="preserve">
-
-	<text id="bottomtext0" class="st0 st2" x="227" y="138" text-anchor="middle"></text>
-	<defs>
-		<path id="SVGID_x5F_1_x5F_" class="st3" stroke-width="2px" stroke="red" d="M75.3,140.5c0-69.8,303.3-66,303.3-1"/>
-        <!--this path was modified in Adobe Illustrator - full ellipse was changed at curve,  like part of ellipse contour -->
-	</defs>
-	<text  x="0" y="0" class="st1" text-anchor="middle" ><textPath xlink:href="#SVGID_x5F_1_x5F_" startOffset="50%" id="toptext0"  >TIGERS</textPath></text>
+    <svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="285" width="960" viewBox="0 30 453.5 128.1" preserveAspectRatio="xMidYMid slice" style="background-color:#fff;">
+        <defs>
+            <style type="text/css">
+                <![CDATA[
+                @font-face {
+                    font-family: 'CityD-Bold';
+                    src: url('http://richardsoncap.synoptive.com/fonts/cityb.woff') format('woff'), url('http://richardsoncap.synoptive.com/fonts/cityb.woff') format('truetype');
+                    font-weight: bold;
+                }
+                ]]>
+            </style>
+            <path id="SVGID_x5F_1_x5F_" stroke="red" d="M378.6,140.6c0,28.3-68,51.2-151.9,51.2S74.9,168.9,74.9,140.6s68-51.2,151.9-51.2 S378.6,112.3,378.6,140.6z" />
+        </defs>
+        <text text-anchor="middle">
+            <textPath id="text-1" data-name="text-1" data-text-max="7" xlink:href="#SVGID_x5F_1_x5F_" startOffset="75%" text-anchor="middle" font-family="CityD-Bold" font-size="85" fill="#000000">TIGERS</textPath>
+        </text>
+        <text id="text-2" data-name="text-2" data-text-max="12" class="text-2" x="227" y="138" text-anchor="middle" dominant-baseline = "central" font-family="CityD-Bold" font-size="38" fill="#B81E24">FOOTBALL</text>
     </svg>
+
 </div>
-
-<!--second approach of scaling-->
-<div class="svgwapper"><!-- wrapper for SVG-animation. You can setup width, height and other CSS parameters. -->
-    <svg version="1.1" id="ND1107.svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 453.5 170.1" style="background-color:#fff;" xml:space="preserve">
-
-            <symbol id="bottomtext1symboltag" preserveAspectRatio="xMidYMid meet" viewBox="0 0 167 40">
-                <text id="bottomtext1" x="0" y="34" class="st0 st2" text-anchor="start" ></text>
-            </symbol>
-
-    <use id="bottomtextplace" xlink:href="#bottomtext1symboltag" x="106" y="105" width="246" height="39" />
-
-
-  	<defs>
-		<path id="SVGID_x5F_1_x5F_" class="st3" stroke-width="2px" stroke="red" d="M75.3,140.5c0-69.8,303.3-66,303.3-1"/>
-
-	</defs>
-
-        <text  x="0" y="0" class="st1" text-anchor="middle" ><textPath xlink:href="#SVGID_x5F_1_x5F_" startOffset="50%" id="toptext1"  >TIGERS</textPath></text>
-
-    </svg>
-</div>
-
-
 
 
 <script src="js/animation.js"></script>
@@ -56,4 +42,4 @@
     initial();
 </script>
 </body>
-
+  
