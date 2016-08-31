@@ -13,27 +13,34 @@
 .reddotactive { opacity: 0.5}
 .reddotpassive { opacity: 1}
 
-.regions {cursor : pointer}
-.regionactive { fill:#FFF7F7;}
-.regionpassive { fill:#F7F7F7;}
+.regions {
+    stroke: white;
+    stroke-width: 1px;
+}
 
+.regionactive {
+    cursor: pointer;
+    stroke-width: 3px;
+}
 
-
-.fnt5 {fill:#515050; stroke:#515050;  stroke-width:0.25; font-weight:normal; font-size:5px; font-family:'Helvetica'}
-
+.clickedregion {
+    stroke: blue;
+}
 
 .seats_tooltip {
-    position: absolute;
-    display: none;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    border:#d3d3d3 solid 1px;
-    background: #fff;
-    color: black;
-    font-family: Comfortaa, Verdana;
-    font-size: smaller;
-    padding: 8px;
-    pointer-events:none;
-    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+position: absolute;
+display: none;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+border:#d3d3d3 solid 1px;
+background: #fff;
+color: black;
+font-family: Comfortaa, Verdana;
+font-size: smaller;
+padding: 8px;
+pointer-events:none;
+box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.fnt5 {fill:#515050; stroke:#515050;  stroke-width:0.25; font-weight:normal; font-size:5px; font-family:'Helvetica'}
