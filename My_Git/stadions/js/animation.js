@@ -72,15 +72,22 @@ var mousemoveHandler = function (e) {
 
 var touchstartObject = function(e) {
     console.log("touch start ", this.attr('id') );
-    enlargement(this);
-    var x = e.touches[0].pageX,
-        y = e.touches[0].pageY;
-    console.log(x, ' ', y);
-    tooltip.style.top = x + 'px';
-    tooltip.style.left = y + 'px';
+
+    var rect = this.getBoundingClientRect();
+    var left = ev.clientX - rect.left - this.clientLeft + this.scrollLeft;
+    var top = ev.clientY - rect.top - this.clientTop + this.scrollTop;
+    tooltip.style.top = top + 'px';
+    tooltip.style.left = left + 'px';
+
+    //enlargement(this);
+    //var x = parseInt( e.touches[0].pageX ),
+    //    y = parseInt( e.touches[0].pageY );
+    //console.log(x, ' ', y);
+    //tooltip.style.top = x + 'px';
+    //tooltip.style.left = y + 'px';
 };
 
-var touchendObject = function() { console.log("touch end ", this.attr('id') ); returnsize(this); tooltip.style.display = 'none';};
+var touchendObject = function() { console.log("touch end ", this.attr('id') ); returnsize(this);};
 
 var clickOnObject = function() {
     console.log("press on ", this.attr('id') );  //toggle class clickedregion - toggle blue border
