@@ -40,7 +40,7 @@ function performOfImage () {
                           .hover(hoverover, hoverout)
                           //.mousemove(()=>{console.log("!")})
                           .mousemove(mousemoveHandler)
-                          .mousedown (clickOnObject)//if this handler binded touchstart and touchend is reduntand
+                          .click (clickOnObject)
                           .touchstart(touchstartObject)
                           .touchend(touchendObject);
               } );
