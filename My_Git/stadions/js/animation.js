@@ -73,9 +73,10 @@ var mousemoveHandler = function (e) {
 var touchstartObject = function(e) {
     console.log("touch start ", this.attr('id') );
 
-    var rect = this.getBoundingClientRect();
-    var left = ev.clientX - rect.left - this.clientLeft + this.scrollLeft;
-    var top = ev.clientY - rect.top - this.clientTop + this.scrollTop;
+    var rect = this.node.getBoundingClientRect();
+    console.log(rect);
+    var left = e.clientX - rect.left - this.clientLeft + this.scrollLeft;
+    var top = e.clientY - rect.top - this.clientTop + this.scrollTop;
     tooltip.style.top = top + 'px';
     tooltip.style.left = left + 'px';
 
