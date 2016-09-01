@@ -60,7 +60,7 @@ var hoverout = function() {
 };
 
 var mousemoveHandler = function (e) {
-    if (touchFlag) return;
+    //if (touchFlag) return;
     console.log("mousemoveHandler ",e);
         tooltip.style.top = e.clientY + 10 + 'px';
         tooltip.style.left = e.clientX + 10 + 'px';
@@ -100,7 +100,7 @@ var touchstartObject = function(e) {
     console.log("scrolltop = ",scrolltop, "  scrollleft = ",scrollleft);
     //var left = e.pageX - rect.left - this.clientLeft + this.scrollLeft;
     //var top = e.pageY    - rect.top - this.clientTop + this.scrollTop;
-    var top =   parseInt( e.touches[0].pageY ) ;
+    var top =   parseInt( e.touches[0].pageY );
     var left =  parseInt( e.touches[0].pageX );
     console.log("e.touches[0].pageY= ",e.touches[0].pageY, "  e.touches[0].pageX = ",e.touches[0].pageY);
 console.log(top, " ",left );
