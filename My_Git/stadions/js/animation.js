@@ -70,9 +70,14 @@ var mousemoveHandler = function (e) {
 
 };
 
-var touchstartObject = function() { console.log("touch start ", this.attr('id') ); enlargement(this); };
+var touchstartObject = function(e) {
+    console.log("touch start ", this.attr('id') );
+    enlargement(this);
+    tooltip.style.top = e.touches[0].clientY + 'px';
+    tooltip.style.left = e.touches[0].clientX + 'px';
+};
 
-var touchendObject = function() { console.log("touch end ", this.attr('id') ); returnsize(this) };
+var touchendObject = function() { console.log("touch end ", this.attr('id') ); returnsize(this); tooltip.style.display = 'none';};
 
 var clickOnObject = function() {
     console.log("press on ", this.attr('id') );  //toggle class clickedregion - toggle blue border
@@ -94,6 +99,7 @@ var enlargement = function (element) {
 
 var returnsize = function (element) {
     //element.removeClass("clickedregion"); //remove class clickedregion - ramove blue border
+    element.removeClass("regionactive");
     if ( enlarging ) {
             element.animate({ "transform" : "s 1,1" },200, mina.easeinout);
         };
