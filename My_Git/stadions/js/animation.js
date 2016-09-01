@@ -1,8 +1,10 @@
 var selectMask,
     touchFlag = false,
-    enlarging = true,//true o false. Whether enlaging of selected regions. Dont enlaging for mobile
+    enlarging = true,//true o false. Whether enlaging of selected regions
+    tooltips = true,//true o false. Whether show tooltips
     MSbrowser,
-    offsetXY = 10 //offset for tooltipe
+    offsetXY = 10, //offset for tooltipe
+    isMobile = detectmob() //Whether mobile device
     ;
 
 function initAnimation (obj) {
@@ -10,14 +12,24 @@ function initAnimation (obj) {
     selectMask = obj.selectMask;
 
     if ( typeof( obj.enlarging ) === 'undefined' ) {
-            enlarging = !detectmob(); // = true if no mobile,  = false if mobile detected
+            enlarging = !isMobile; // = true if no mobile,  = false if mobile detected
         }
         else {
             if ( obj.enlarging === "detect"  ) {
-                    enlarging = !detectmob(); // = true if no mobile,  = false if mobile detected
+                    enlarging = !isMobile;
                 }
                 else
                     if ( obj.enlarging === "no"  ) { enlarging = false };
+        }
+    if ( typeof( obj.tooltips ) === 'undefined' ) {
+            enlarging = !isMobile; // = true if no mobile,  = false if mobile detected
+        }
+        else {
+            if ( obj.enlarging === "detect"  ) {
+                tooltips = !isMobile;
+                }
+                else
+                    if ( obj.tooltips === "no"  ) { tooltips = false };
         }
 
 
@@ -60,7 +72,8 @@ var hoverout = function() {
 };
 
 var mousemoveHandler = function (event) {
-    if (touchFlag) return;
+    if ( touchFlag ) return;
+    if ( ! tooltips ) return;//dont show tooltips
     var e = event || window.event;
     tooltip.style.top = e.clientY + document.body.scrollTop + document.documentElement.scrollTop + offsetXY + 'px';
     tooltip.style.left = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft + offsetXY + 'px';
@@ -69,6 +82,8 @@ var mousemoveHandler = function (event) {
 var touchstartObject = function(e) {
     touchFlag = true;
     console.log("touch start ", this.attr('id') );
+
+    if ( ! tooltips ) return; //dont show tooltips
     tooltip.style.display = 'block';
     tooltip.innerHTML = "Sector " + this.attr('id').match(/\d+/)[0];
     var top =   parseInt( e.touches[0].pageY );
