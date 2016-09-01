@@ -1,5 +1,6 @@
 var selectMask,
-    enlarging = true//true o false. Whether enlaging of selected regions. Dont enlaging for mobile
+    enlarging = true,//true o false. Whether enlaging of selected regions. Dont enlaging for mobile
+    offsetY = 15 //offset for tooltipe
     ;
 
 function initAnimation (obj) {
@@ -60,8 +61,12 @@ var mousemoveHandler = function (e) {
     //console.log(e);
     //    tooltip.style.top = e.clientY + 10 + 'px';
     //    tooltip.style.left = e.clientX + 10 + 'px';
-        tooltip.style.top = e.clientY + 'px';
-        tooltip.style.left = e.clientX + 'px';
+
+    var scrolltop  = window.pageYOffset || document.documentElement.scrollTop,
+        scrollleft = window.pageXOffset || document.documentElement.scrollLeft;
+
+        //tooltip.style.top = scrolltop + e.clientY + offsetY + 'px';
+        //tooltip.style.left = scrollleft+ e.clientX + 'px';
 
         //var rect = e.getBoundingClientRect();
         //xCoordinate = e.touches[0].clientX - rect.left;
@@ -70,15 +75,33 @@ var mousemoveHandler = function (e) {
 
 };
 
+
+
+
 var touchstartObject = function(e) {
     console.log("touch start ", this.attr('id') );
 
+
     var rect = this.node.getBoundingClientRect();
     console.log(rect);
-    var left = e.clientX - rect.left - this.clientLeft + this.scrollLeft;
-    var top = e.clientY - rect.top - this.clientTop + this.scrollTop;
+    //var left = e.pageX - rect.left - this.clientLeft + this.scrollLeft;
+    //var top = e.pageY    - rect.top - this.clientTop + this.scrollTop;
+
+
+
+    var scrolltop  = window.pageYOffset || document.documentElement.scrollTop,
+        scrollleft = window.pageXOffset || document.documentElement.scrollLeft;
+
+    console.log("scrolltop = ",scrolltop, "  scrollleft = ",scrollleft);
+    //var left = e.pageX - rect.left - this.clientLeft + this.scrollLeft;
+    //var top = e.pageY    - rect.top - this.clientTop + this.scrollTop;
+    var top =   parseInt( e.touches[0].pageY ) ;
+    var left =  parseInt( e.touches[0].pageX );
+    console.log("e.touches[0].pageY= ",e.touches[0].pageY, "  e.touches[0].pageX = ",e.touches[0].pageY);
+console.log(top, " ",left );
     tooltip.style.top = top + 'px';
     tooltip.style.left = left + 'px';
+
 
     //enlargement(this);
     //var x = parseInt( e.touches[0].pageX ),
@@ -86,13 +109,19 @@ var touchstartObject = function(e) {
     //console.log(x, ' ', y);
     //tooltip.style.top = x + 'px';
     //tooltip.style.left = y + 'px';
+
+
+
 };
 
 var touchendObject = function() { console.log("touch end ", this.attr('id') ); returnsize(this);};
 
-var clickOnObject = function() {
+var clickOnObject = function(event) {
     console.log("press on ", this.attr('id') );  //toggle class clickedregion - toggle blue border
     this.toggleClass("clickedregion");
+    event.stopPropagation();
+    event.preventDefault();
+    // this fires once on all devices
 };
 
 var enlargement = function (element) {
