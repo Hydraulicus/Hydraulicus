@@ -1,4 +1,5 @@
 var selectMask,
+    touchFlag = false,
     enlarging = true,//true o false. Whether enlaging of selected regions. Dont enlaging for mobile
     offsetY = 15 //offset for tooltipe
     ;
@@ -39,7 +40,7 @@ function performOfImage () {
                           .hover(hoverover, hoverout)
                           //.mousemove(()=>{console.log("!")})
                           .mousemove(mousemoveHandler)
-                          .click(clickOnObject)//if this handler binded touchstart and touchend is reduntand
+                          .mousedown (clickOnObject)//if this handler binded touchstart and touchend is reduntand
                           .touchstart(touchstartObject)
                           .touchend(touchendObject);
               } );
@@ -59,6 +60,7 @@ var hoverout = function() {
 };
 
 var mousemoveHandler = function (e) {
+    if (touchFlag) return;
     console.log("mousemoveHandler ",e);
         tooltip.style.top = e.clientY + 10 + 'px';
         tooltip.style.left = e.clientX + 10 + 'px';
@@ -80,8 +82,10 @@ var mousemoveHandler = function (e) {
 
 
 var touchstartObject = function(e) {
+    touchFlag = true;
     console.log("touch start ", this.attr('id') );
-
+    tooltip.style.display = 'block';
+    tooltip.innerHTML = "Sector " + this.attr('id').match(/\d+/)[0];
 
     var rect = this.node.getBoundingClientRect();
     console.log(rect);
@@ -110,16 +114,19 @@ console.log(top, " ",left );
     //console.log(x, ' ', y);
     //tooltip.style.top = x + 'px';
     //tooltip.style.left = y + 'px';
-    tooltip.style.display = 'block';
-    tooltip.innerHTML = "Sector " + this.attr('id').match(/\d+/)[0];
+
 
 
 };
 
-var touchendObject = function() { console.log("touch end ", this.attr('id') );     e.stopPropagation();
-    e.preventDefault();};
+var touchendObject = function() {
+        console.log("touch end ", this.attr('id') );
+        //e.stopPropagation();
+        //e.preventDefault();
+    };
 
 var clickOnObject = function(event) {
+
     console.log("press on ", this.attr('id') );  //toggle class clickedregion - toggle blue border
     this.toggleClass("clickedregion");
     event.stopPropagation();
