@@ -112,12 +112,12 @@ console.log(top, " ",left );
     //tooltip.style.left = y + 'px';
     tooltip.style.display = 'block';
     tooltip.innerHTML = "Sector " + this.attr('id').match(/\d+/)[0];
-    e.stopPropagation();
-    e.preventDefault();
+
 
 };
 
-var touchendObject = function() { console.log("touch end ", this.attr('id') ); };
+var touchendObject = function() { console.log("touch end ", this.attr('id') );     e.stopPropagation();
+    e.preventDefault();};
 
 var clickOnObject = function(event) {
     console.log("press on ", this.attr('id') );  //toggle class clickedregion - toggle blue border
