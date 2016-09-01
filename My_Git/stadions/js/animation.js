@@ -1,7 +1,8 @@
 var selectMask,
     touchFlag = false,
     enlarging = true,//true o false. Whether enlaging of selected regions. Dont enlaging for mobile
-    offsetY = 15 //offset for tooltipe
+    MSbrowser,
+    offsetXY = 10 //offset for tooltipe
     ;
 
 function initAnimation (obj) {
@@ -33,12 +34,11 @@ function embdingSvgFile (target_, filePathName, callBack)
 
 function performOfImage () {
     var arrayOfRegions = Snap.selectAll(selectMask);
-    //console.log(arrayOfRegions);
     arrayOfRegions.forEach( function (element, j)
               {
                   element .addClass("regions regionpassive ")
-                          .hover(hoverover, hoverout)
-                          //.mousemove(()=>{console.log("!")})
+                          .mouseover(hoverover)
+                          .mouseout(hoverout)
                           .mousemove(mousemoveHandler)
                           .click (clickOnObject)
                           .touchstart(touchstartObject)
@@ -56,77 +56,32 @@ var hoverover = function() {
 };
 var hoverout = function() {
     this.toggleClass("regionpassive").toggleClass("regionactive");
-    returnsize(this)
+    returnsize(this);
 };
 
-var mousemoveHandler = function (e) {
+var mousemoveHandler = function (event) {
     if (touchFlag) return;
-    console.log("mousemoveHandler ",e);
-        tooltip.style.top = e.clientY + 10 + 'px';
-        tooltip.style.left = e.clientX + 10 + 'px';
-    //
-    //var scrolltop  = window.pageYOffset || document.documentElement.scrollTop,
-    //    scrollleft = window.pageXOffset || document.documentElement.scrollLeft;
-
-        //tooltip.style.top = scrolltop + e.clientY + offsetY + 'px';
-        //tooltip.style.left = scrollleft+ e.clientX + 'px';
-
-        //var rect = e.getBoundingClientRect();
-        //xCoordinate = e.touches[0].clientX - rect.left;
-        //yCoordinate = e.touches[0].clientY - rect.top;
-
-
+    var e = event || window.event;
+    tooltip.style.top = e.clientY + document.body.scrollTop + offsetXY + 'px';
+    tooltip.style.left = e.clientX + document.body.scrollLeft + offsetXY + 'px';
 };
-
-
-
 
 var touchstartObject = function(e) {
     touchFlag = true;
     console.log("touch start ", this.attr('id') );
     tooltip.style.display = 'block';
     tooltip.innerHTML = "Sector " + this.attr('id').match(/\d+/)[0];
-
-    var rect = this.node.getBoundingClientRect();
-    console.log(rect);
-    //var left = e.pageX - rect.left - this.clientLeft + this.scrollLeft;
-    //var top = e.pageY    - rect.top - this.clientTop + this.scrollTop;
-
-
-
-    var scrolltop  = window.pageYOffset || document.documentElement.scrollTop,
-        scrollleft = window.pageXOffset || document.documentElement.scrollLeft;
-
-    console.log("scrolltop = ",scrolltop, "  scrollleft = ",scrollleft);
-    //var left = e.pageX - rect.left - this.clientLeft + this.scrollLeft;
-    //var top = e.pageY    - rect.top - this.clientTop + this.scrollTop;
     var top =   parseInt( e.touches[0].pageY );
     var left =  parseInt( e.touches[0].pageX );
-    console.log("e.touches[0].pageY= ",e.touches[0].pageY, "  e.touches[0].pageX = ",e.touches[0].pageY);
-console.log(top, " ",left );
     tooltip.style.top = top + 'px';
     tooltip.style.left = left + 'px';
-
-
-    //enlargement(this);
-    //var x = parseInt( e.touches[0].pageX ),
-    //    y = parseInt( e.touches[0].pageY );
-    //console.log(x, ' ', y);
-    //tooltip.style.top = x + 'px';
-    //tooltip.style.left = y + 'px';
-
-
-
 };
 
 var touchendObject = function() {
         console.log("touch end ", this.attr('id') );
-        //e.stopPropagation();
-        //e.preventDefault();
     };
 
 var clickOnObject = function(event) {
-
     console.log("press on ", this.attr('id') );  //toggle class clickedregion - toggle blue border
     this.toggleClass("clickedregion");
     event.stopPropagation();
@@ -137,12 +92,11 @@ var clickOnObject = function(event) {
 var enlargement = function (element) {
     var arrayOfRegions = Snap.selectAll(selectMask);
     var last_el = arrayOfRegions[arrayOfRegions.length-1];
-    if ( enlarging ) {
+    if ( enlarging && !MSbrowser) {
             element
                 .insertAfter(last_el) // push element above of other elements
                 .animate({ "transform" : "s 1.75,1.75" },200, mina.easeinout);
         };
-
     tooltip.innerHTML = "Sector " + element.attr('id').match(/\d+/)[0];
     tooltip.style.display = 'block';
 };
@@ -150,8 +104,8 @@ var enlargement = function (element) {
 var returnsize = function (element) {
     //element.removeClass("clickedregion"); //remove class clickedregion - ramove blue border
     element.removeClass("regionactive");
-    if ( enlarging ) {
-            element.animate({ "transform" : "s 1,1" },200, mina.easeinout);
+        if ( enlarging ) {
+            element.stop().animate({ "transform" : "s 1,1" },200, mina.easeinout);
         };
     tooltip.style.display = 'none';
 };
@@ -187,14 +141,16 @@ function detectmob() {
 // Blink engine detection
         var isBlink = (isChrome || isOpera) && !!window.CSS;
 
+        MSbrowser = ( isIE || isEdge) ? true : false;
+
         var output = 'Detecting browsers : ';
-        output += isFirefox ? 'is Firefox ' : ' ';
-        output += isChrome ? 'is Chrome ' : ' ';
-        output += isSafari ? 'is Safari ' : ' ';
-        output += isOpera ? 'is Opera ' : ' ';
-        output += isIE ? 'is IE ' : ' ';
-        output += isEdge ? 'is Edge ' : ' ';
-        output += isBlink ? 'is Blink ' : ' ';
+        output += isFirefox ? 'is Firefox ' : '';
+        output += isChrome ? 'is Chrome ' : '';
+        output += isSafari ? 'is Safari ' : '';
+        output += isOpera ? 'is Opera ' : '';
+        output += isIE ? 'is IE ' : '';
+        output += isEdge ? 'is Edge ' : '';
+        output += isBlink ? 'is Blink ' : '';
         console.log(output);
 
         return false;
