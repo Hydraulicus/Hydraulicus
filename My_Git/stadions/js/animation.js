@@ -73,8 +73,11 @@ var mousemoveHandler = function (e) {
 var touchstartObject = function(e) {
     console.log("touch start ", this.attr('id') );
     enlargement(this);
-    tooltip.style.top = e.touches[0].clientY + 'px';
-    tooltip.style.left = e.touches[0].clientX + 'px';
+    var x = e.touches[0].pageX,
+        y = e.touches[0].pageY;
+    console.log(x, ' ', y);
+    tooltip.style.top = x + 'px';
+    tooltip.style.left = y + 'px';
 };
 
 var touchendObject = function() { console.log("touch end ", this.attr('id') ); returnsize(this); tooltip.style.display = 'none';};
