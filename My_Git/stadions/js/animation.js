@@ -60,7 +60,7 @@ var hoverout = function() {
 };
 
 var mousemoveHandler = function (e) {
-    //if (touchFlag) return;
+    if (touchFlag) return;
     console.log("mousemoveHandler ",e);
         tooltip.style.top = e.clientY + 10 + 'px';
         tooltip.style.left = e.clientX + 10 + 'px';
