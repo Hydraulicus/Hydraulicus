@@ -112,6 +112,7 @@ var enlargement = function (element) {
                 .insertAfter(last_el) // push element above of other elements
                 .animate({ "transform" : "s 1.75,1.75" },200, mina.easeinout);
         };
+    if ( ! tooltips ) return; //dont show tooltips
     tooltip.innerHTML = "Sector " + element.attr('id').match(/\d+/)[0];
     tooltip.style.display = 'block';
 };
