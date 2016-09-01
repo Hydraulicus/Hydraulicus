@@ -37,6 +37,7 @@ function performOfImage () {
               {
                   element .addClass("regions regionpassive ")
                           .hover(hoverover, hoverout)
+                          //.mousemove(()=>{console.log("!")})
                           .mousemove(mousemoveHandler)
                           .click(clickOnObject)//if this handler binded touchstart and touchend is reduntand
                           .touchstart(touchstartObject)
@@ -58,12 +59,12 @@ var hoverout = function() {
 };
 
 var mousemoveHandler = function (e) {
-    //console.log(e);
-    //    tooltip.style.top = e.clientY + 10 + 'px';
-    //    tooltip.style.left = e.clientX + 10 + 'px';
-
-    var scrolltop  = window.pageYOffset || document.documentElement.scrollTop,
-        scrollleft = window.pageXOffset || document.documentElement.scrollLeft;
+    console.log("mousemoveHandler ",e);
+        tooltip.style.top = e.clientY + 10 + 'px';
+        tooltip.style.left = e.clientX + 10 + 'px';
+    //
+    //var scrolltop  = window.pageYOffset || document.documentElement.scrollTop,
+    //    scrollleft = window.pageXOffset || document.documentElement.scrollLeft;
 
         //tooltip.style.top = scrolltop + e.clientY + offsetY + 'px';
         //tooltip.style.left = scrollleft+ e.clientX + 'px';
@@ -109,12 +110,14 @@ console.log(top, " ",left );
     //console.log(x, ' ', y);
     //tooltip.style.top = x + 'px';
     //tooltip.style.left = y + 'px';
-
-
+    tooltip.style.display = 'block';
+    tooltip.innerHTML = "Sector " + this.attr('id').match(/\d+/)[0];
+    e.stopPropagation();
+    e.preventDefault();
 
 };
 
-var touchendObject = function() { console.log("touch end ", this.attr('id') ); returnsize(this);};
+var touchendObject = function() { console.log("touch end ", this.attr('id') ); };
 
 var clickOnObject = function(event) {
     console.log("press on ", this.attr('id') );  //toggle class clickedregion - toggle blue border
