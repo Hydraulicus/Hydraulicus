@@ -62,8 +62,8 @@ var hoverout = function() {
 var mousemoveHandler = function (event) {
     if (touchFlag) return;
     var e = event || window.event;
-    tooltip.style.top = e.clientY + document.body.scrollTop + offsetXY + 'px';
-    tooltip.style.left = e.clientX + document.body.scrollLeft + offsetXY + 'px';
+    tooltip.style.top = e.clientY + document.body.scrollTop + document.documentElement.scrollTop + offsetXY + 'px';
+    tooltip.style.left = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft + offsetXY + 'px';
 };
 
 var touchstartObject = function(e) {
