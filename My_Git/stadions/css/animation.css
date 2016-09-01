@@ -20,7 +20,7 @@
 
 .regionactive {
     cursor: pointer;
-    stroke-width: 3px;
+    stroke-width: 2px;
 }
 
 .clickedregion {

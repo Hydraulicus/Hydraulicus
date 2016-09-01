@@ -46,11 +46,14 @@ var mousemoveHandler = function (e) {
         tooltip.style.left = e.clientX + 10 + 'px';
 };
 
-var touchstartObject = function() { console.log("touch start ", this.attr('id') ); this.addClass("clickedregion"); enlargement(this); };
+var touchstartObject = function() { console.log("touch start ", this.attr('id') ); enlargement(this); };
 
-var touchendObject = function() { console.log("touch end ", this.attr('id') );  returnsize(this) };
+var touchendObject = function() { console.log("touch end ", this.attr('id') ); returnsize(this) };
 
-var clickOnObject = function() {  console.log("press on ", this.attr('id') ); this.addClass("clickedregion");};
+var clickOnObject = function() {
+    console.log("press on ", this.attr('id') );  //toggle class clickedregion - toggle blue border
+    this.toggleClass("clickedregion");
+};
 
 var enlargement = function (element) {
     var arrayOfRegions = Snap.selectAll(selectMask);
@@ -64,9 +67,8 @@ var enlargement = function (element) {
 };
 
 var returnsize = function (element) {
-    element.removeClass("clickedregion");
+    //element.removeClass("clickedregion"); //remove class clickedregion - ramove blue border
     element.animate({ "transform" : "s 1,1" },200, mina.easeinout);
-
     tooltip.style.display = 'none';
 };
 
