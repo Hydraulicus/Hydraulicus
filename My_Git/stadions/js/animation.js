@@ -90,10 +90,14 @@ var touchstartObject = function(e) {
     var left = parseInt( e.touches[0].pageX );
     tooltip.style.top = top + 'px';
     tooltip.style.left = left + 'px';
+    event.stopPropagation();
+    event.preventDefault(); //for prevent double-tap “zoom”
 };
 
-var touchendObject = function() {
+var touchendObject = function(event) {
     console.log("touch end ", this.attr('id') );
+    event.stopPropagation();
+    event.preventDefault(); //for prevent double-tap “zoom”
 };
 
 var clickOnObject = function(event) {

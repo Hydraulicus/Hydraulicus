@@ -1,3 +1,4 @@
+;
 var rhythm = 300, //ms, of knee shacking
     timeKneeShake=10,
       //for constant animation of Abbas
@@ -19,6 +20,7 @@ var brand = [], dashi = [], secondhands = [], secondEyes = [], laptop=[], bubble
          ,path4throwing
          ,kneeR, pants, mug, leftHand, righthand, GhaziFace, GhaziSmile, GhaziMoustache, fingersOnMug0, mugSteam, GhaziSviter, GhaziElbow, GhaziSpich, GhaziFaceSet, SecondFaceSet, myMatrix, myMatrix2, Secondsmile, SecondSpeech, biN, secondsweater, throwedPaper, Bin, plant, can, flowers,waterб ,cooler,Glass,Cooler,water_into_glass,waterInGlass,_sheet, _printer, _blue_light, _red_light, _yellow_light;
 var  strawCup, mapaId, HQGroup, satellitesGroup, regionalsGroup, map4events, lampGroup, calendarPaper, servicesSet, shalfesSet, semitransparentCoversSet, phonePopupGroup;
+var data4AJAXRequest = {};
 var transitionNote = 't0,0s0.1';
 var transitionNoteEnd = 't0,0s1';
 var clocK = {cx : 1842, cy : 149};
@@ -188,6 +190,8 @@ if ( constPlay ) clockAnimation();
 
 phonePopupDraw();
 laptopEvents();
+data4AJAXRequest = { url4ajax : obj.url4ajax, getAllPortfolioData : obj.getAllPortfolioData, getallcabinetdata : obj.getallcabinetdata } ;
+// console.dir(data4AJAXRequest);
 };//end of init function
 
 function laptopEvents(){
@@ -197,7 +201,8 @@ function laptopEvents(){
 
 function laptopPortfolioAnimation(){
     $("#4splashpage").removeClass("display_none");
-    showMacbook();
+    GetAJAXdata(data4AJAXRequest.url4ajax, data4AJAXRequest.getAllPortfolioData, function(data){ getAllPortfolioData=data; showMacbook(); }, function(){ showMacbook(); });
+
 }
 
 
@@ -491,6 +496,23 @@ function fileTitle (){
       text[1] = animSvg.multitext(740, 720, getallcabinetdata["results"]['cabinetDescription'] , 500,{ "font-size": "1.5rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
       text.forEach(function(element) {element.transform("t-500,100 s0.1,0.1").animate({transform : "t0,0 s1,1"}, rhythm*3, mina.backout);})
   }
+
+  this.showWithoutAnimationHidden  = function (){
+      titlePage = true;
+      text[0] = animSvg.multitext(955, 420, getallcabinetdata["results"]['cabinetTitle'], 500,{ "font-size": "5rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" }).attr({"opacity" : 0});
+      text[1] = animSvg.multitext(740, 720, getallcabinetdata["results"]['cabinetDescription'] , 500,{ "font-size": "1.5rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" }).attr({"opacity" : 0});
+
+// text[0] = animSvg.multitext(955, 420, getallcabinetdata["results"]['cabinetTitle'], 500,{ "font-size": "5rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" }).addClass("visibility_hid");
+//       text[1] = animSvg.multitext(740, 720, getallcabinetdata["results"]['cabinetDescription'] , 500,{ "font-size": "1.5rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" }).addClass("visibility_hid");
+  }
+
+
+  this.removeHidden  = function (){
+      text.forEach(function(element) {element.animate({opacity : 1}, rhythm*12, mina.backout);})
+      // text.forEach(function(element) {element.removeClass("visibility_hid")});
+  }
+
+
   this.hide = function () {
       text.forEach(function(element) {element.animate({transform : "t-500,100 s0.1,0.1"}, rhythm*3, mina.backin, function(){this.remove()});})
   }
@@ -508,14 +530,15 @@ function portfolioPage (itemN){
   var followPage;
 
   this.show  = function (){
-      text[0] = animSvg.multitext(955, 210, getallcabinetdata["results"]['items'][itemN]['title'], 500,{ "font-size": "3rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
-      text[1] = animSvg.multitext(955, 280, getallcabinetdata["results"]['items'][itemN]['subtitle'], 500,{ "font-size": "2rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
-      text[2] = animSvg.multitext(730, 730, getallcabinetdata["results"]['items'][itemN]['description'], 520,{ "font-size": "1.2rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
+      text[0] = animSvg.multitext(955, 190, getallcabinetdata["results"]['items'][itemN]['title'], 550,{ "font-size": "3rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
+      text[1] = animSvg.multitext(955, 290, getallcabinetdata["results"]['items'][itemN]['subtitle'], 550,{ "font-size": "2rem","fill":"gold","font-family" : "Arial","text-anchor" : "middle" });
+      text[2] = animSvg.multitext(710, 710, getallcabinetdata["results"]['items'][itemN]['description'], 560,{ "font-size": "1.2rem","fill":"gold","font-family" : "Arial","text-anchor" : "start" });
       text[3] = animSvg.image(getallcabinetdata["results"]['items'][itemN]['image_url'], 688, 320, 552, 345);
       text[5] = Snap.parse('  <polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="683,374 683,315 742,315 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="684,612 684,670 742,670 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="1245,374 1245,315 1186,315 "/><polygon fill="#FFCC00" stroke="#FFCC00" stroke-width="0.566929" points="1245,612 1245,670 1186,670 "/>');
        followPage = Snap.select('#text_title').clone();
        followPage.add(text[0]).add(text[1]).add(text[2]).add(text[3]).add(text[5]);
   }
+
   this.hide = function () {
       text.forEach(function(element) {element.animate({transform : "t-500,100 s0.1,0.1"}, rhythm*3, mina.backin, function(){this.remove()});})
   }
@@ -539,11 +562,11 @@ function fileTabs(){
 this.draw = function(){
     bookmarkGroup = animSvg.paper.g().transform('t-40,0').attr({'id' : 'bookmarkgroup'}).addClass('visibility_hid');
      temp[0] = ''//closer cross here;
-     temp[1] = '<text id="text_1" class="tab1 bookmarks" x="914" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1206)">' + getallcabinetdata["results"]['items'][0]['tab_text'] + '</text>';
-     temp[2] = '<text id="text_2" class="tab2 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1365)">' + getallcabinetdata["results"]['items'][1]['tab_text'] + '</text>';
-     temp[3] = '<text id="text_3" class="tab3 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1524)">' + getallcabinetdata["results"]['items'][2]['tab_text'] + '</text>';
-     temp[4] = '<text id="text_4" class="tab4 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1683)">' + getallcabinetdata["results"]['items'][3]['tab_text'] + '</text>';
-     temp[5] = '<text id="text_5" class="tab5 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1842)">' + getallcabinetdata["results"]['items'][4]['tab_text'] + '</text>';
+     temp[1] = '<text id="text_1" class="tab1 bookmarks" x="914" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1200)">' + getallcabinetdata["results"]['items'][0]['tab_text'] + '</text>';
+     temp[2] = '<text id="text_2" class="tab2 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1368)">' + getallcabinetdata["results"]['items'][1]['tab_text'] + '</text>';
+     temp[3] = '<text id="text_3" class="tab3 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1527)">' + getallcabinetdata["results"]['items'][2]['tab_text'] + '</text>';
+     temp[4] = '<text id="text_4" class="tab4 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1686)">' + getallcabinetdata["results"]['items'][3]['tab_text'] + '</text>';
+     temp[5] = '<text id="text_5" class="tab5 bookmarks" x="923" y="540" fill="white" stroke="black" stroke-width="0.2" font-weight="bold" font-size="18.8px" font-family="Arial" text-anchor="middle" transform="matrix(2.64845E-014 -1 0.999999 2.64845E-014 790.152 1845)">' + getallcabinetdata["results"]['items'][4]['tab_text'] + '</text>';
     for (var j in tabs)
         { 
           bookmark[j]= {'tab' : Snap.parse(tabs[j]), 'text' :  Snap.parse(temp[j]), 'cover' : Snap.parse(tabcovers[j])};
@@ -553,8 +576,16 @@ this.draw = function(){
           .add(bookmark[j].cover)
           ;
         }
-        Snap.selectAll('.tabcover').forEach(function(element) { element.attr({cursor : 'pointer'}).hover(hoverIn, hoverOut).click(clickTab) })
+        Snap.selectAll('.tabcover').forEach(function(element) { element.attr({cursor : 'pointer'}).hover(hoverIn, hoverOut).click(clickTab) });
 }
+
+this.updateBookmarks = function(){
+   Snap.selectAll('.bookmarks').forEach(function(element,i) { 
+      element.node.textContent = getallcabinetdata["results"]['items'][i]['tab_text']; 
+      // console.log( element.node.textContent ); 
+    });
+}
+
 
   clickTab = function(event){
     var targetElement = event.target || event.srcElement,
@@ -599,13 +630,13 @@ this.draw = function(){
   this.hide = function(){
     bookmarkGroup.stop().animate({'transform' : 't-40,0 '},rhythm,mina.backin, function(){bookmarkGroup.addClass('visibility_hid'); });
   }
-
 };
 
 function drawerClick(element){
-   if  (clickDrawerEvent) return;
+   if (clickDrawerEvent) return; 
    clickDrawerEvent = true;
-   titleText.show();
+  
+   GetAJAXdata(data4AJAXRequest.url4ajax, data4AJAXRequest.getallcabinetdata, function(data) { getallcabinetdata=data; titleText.showWithoutAnimationHidden(); bookmarks.updateBookmarks(); }, function() { titleText.showWithoutAnimationHidden(); });
 
    var shiftout = 't0,18';
    gettegId = this.attr("id");
@@ -626,8 +657,9 @@ function drawerClick(element){
         Snap.selectAll('.filesfromdrawers').forEach(function(element, index) 
               {
                   element.removeClass('visibility_hid'); 
+                  titleText.removeHidden();
               });
-        Snap.select("#semytransparentfirstpage").animate({"d" : outerfileD, "opacity" : 0.5}, rhythm*5, mina.easeinout, function(){bookmarks.show();})
+        Snap.select("#semytransparentfirstpage").animate({"d" : outerfileD, "opacity" : 0.5}, rhythm*4, mina.easeinout, function(){bookmarks.show();})
        })
 }
 

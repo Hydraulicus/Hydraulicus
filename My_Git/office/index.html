@@ -13,6 +13,7 @@
     <title>Alexei Zababurin office animation for Ghazi Farooq</title>
         <!-- Bootstrap core CSS -->
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="css/pace-theme-minimal.css" /> <!-- include progress bar -->
     <link rel="stylesheet" type="text/css" href="css/animation.css">
 
   <style type="text/css">
@@ -22,53 +23,39 @@
   </head>
   <body class="bg">
 
-	 <div style='width:98%; height: auto; max-width:1900px; margin: auto; '><!-- cover for SVG-animation. You can setup width, height and other CSS parameters. -->
+	 <div id="svgwrapper" style='width:98%; height: auto; max-width:1900px; margin: auto; '><!-- cover for SVG-animation. You can setup width, height and other CSS parameters. -->
 	 
 		<svg id="animation"  xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0  1920 1080" preserveAspectRatio="xMidYMid meet" style=' background-color: #efefef;'></svg>
            <div id="4splashpage" class="flexcontainer display_none" style='position: absolute; top : 1px; width:99%; height: 99%; margin: auto; background-color: rgba(255, 255, 255, 0.5); border: 1px solid white; '>
               <svg id="splashMacBook" class="flexchild" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" ></svg>
-         </div>
+           </div>
+
+           <div id="4loadpage" class="display_none flexcontainer" style='position: absolute; top : 1px; width:99%; height: 99%; margin: 0 auto; background-color: rgba(255, 255, 255, 0.5); border: 1px solid white; '>
+              <svg id="loadpage" class="flexchild" xmlns="http://www.w3.org/2000/svg" version="1.20"  xmlns:xlink="http://www.w3.org/1999/xlink" ></svg>
+           </div>
 	 </div>
 
 
 <dir id="loader"></dir> <!-- cover for loader animation -->
-    <script src="js/spin.min.js"></script><!--  include loading script librery -->
-    <script type="text/javascript"> <!-- initiate loading animation -->
-    var opts = {
-        lines: 13 // The number of lines to draw
-      , length: 28 // The length of each line
-      , width: 14 // The line thickness
-      , radius: 42 // The radius of the inner circle
-      , scale: 0.25 // Scales overall size of the spinner
-      , corners: 1 // Corner roundness (0..1)
-      , color: '#191' // #rgb or #rrggbb or array of colors
-      , opacity: 0.25 // Opacity of the lines
-      , rotate: 0 // The rotation offset
-      , direction: 1 // 1: clockwise, -1: counterclockwise
-      , speed: 1 // Rounds per second
-      , trail: 60 // Afterglow percentage
-      , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
-      , zIndex: 2e9 // The z-index (defaults to 2000000000)
-      , className: 'spinner' // The CSS class to assign to the spinner
-      , top: '50%' // Top position relative to parent
-      , left: '50%' // Left position relative to parent
-      , shadow: false // Whether to render a shadow
-      , hwaccel: false // Whether to use hardware acceleration
-      , position: 'absolute' // Element positioning
-      }
-    var target = document.getElementById('loader')
-    var spinner = new Spinner(opts).spin(target);
-    document.addEventListener("DOMContentLoaded", function() { spinner.stop(target);});
-</script>
-    <!-- ================== Bootstrap core JavaScript ============================================ -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
-     <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.0.0.min.js"><\/script>')</script>
-     <!-- <script src="js/bootstrap.min.js"></script> -->
-    <!-- ========================================================================================== -->
-    	
-     
+    <script src="js/pace.min.js"></script> <!-- include progress bar -->
+         <script type="text/javascript">
+           paceOptions = {
+              elements: false
+            };
+         </script>
+   
      <script src="js/snap.svg-min.js"></script>
-     <script src="js/getallcabinetdata.js"></script>
+     <script src="js/loadpage.js"></script>
+     <script type="text/javascript">
+         initLoadPage ({
+            blck : "#loadpage" // point to SVG id
+            ,url4logoInTop : "css/logo1.svg"
+         });
+     </script>     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
+     <script>window.jQuery || document.write('<script src="js/jquery-3.0.0.min.js"><\/script>')</script>
+
+     <script src="js/getallcabinetdata.js"></script> <!-- get API data by ajax -->
      <script src="js/functions.js"></script>
      <script src="js/contours.js"></script>
      <script src="js/animation.js"></script>
@@ -76,6 +63,9 @@
        initAnimation({
         blck : "#animation" // point to SVG id
         ,rhythm : 0.3 //sec, rhythm of constant animation
+        ,url4ajax : "http://sw.ai/public_api/utility.php?task="
+        ,getallcabinetdata : "getAllCabinetData" //parameter for ajax request
+        ,getAllPortfolioData : "getAllPortfolioData" //parameter for ajax request
        });
      </script>
   </body>

@@ -8,16 +8,21 @@
           font-family: "digital-7"; 
           src: url('digital-7italic.otf');
         }
+
+       @font-face {
+          font-weight:medium;
+          font-family: "avenir"; 
+          src: url('AvenirNextLTPro-Regular.otf');
+        }
+
     .flexcontainer {
       display: flex; 
       height: 100%; 
        justify-content: center;
-
+       align-items: center;
     }
+
     .flexchild {
-      /*width: 100%;  */
-      /*height: 100%;*/
-      /*margin: auto;  */
         flex: 0 0 100%;
     }
 
@@ -38,6 +43,9 @@
     .visibility_hid{  visibility: hidden }
     .display_none{  display: none }
     .hidden_{opacity: 0;}
+
+
+    .lp {fill:none; stroke:#FF6600; stroke-width:2}
 
     .str5 {stroke:#F9CA6B;stroke-width:1}
     .str6 {stroke:#CCCCCC;stroke-width:1} 
