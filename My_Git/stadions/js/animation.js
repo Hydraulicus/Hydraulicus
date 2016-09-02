@@ -82,22 +82,23 @@ var mousemoveHandler = function (event) {
 var touchstartObject = function(e) {
     touchFlag = true;
     console.log("touch start ", this.attr('id') );
-
+    this.toggleClass("clickedregion");
     if ( ! tooltips ) return; //dont show tooltips
     tooltip.style.display = 'block';
     tooltip.innerHTML = "Sector " + this.attr('id').match(/\d+/)[0];
-    var top =   parseInt( e.touches[0].pageY );
-    var left =  parseInt( e.touches[0].pageX );
+    var top =  parseInt( e.touches[0].pageY );
+    var left = parseInt( e.touches[0].pageX );
     tooltip.style.top = top + 'px';
     tooltip.style.left = left + 'px';
 };
 
 var touchendObject = function() {
-        console.log("touch end ", this.attr('id') );
-    };
+    console.log("touch end ", this.attr('id') );
+};
 
 var clickOnObject = function(event) {
-    console.log("press on ", this.attr('id') );  //toggle class clickedregion - toggle blue border
+    if ( touchFlag ) return;
+    console.log("click on ", this.attr('id') );  //toggle class clickedregion - toggle blue border
     this.toggleClass("clickedregion");
     event.stopPropagation();
     event.preventDefault();
@@ -105,10 +106,11 @@ var clickOnObject = function(event) {
 };
 
 var enlargement = function (element) {
-    var arrayOfRegions = Snap.selectAll(selectMask);
-    var last_el = arrayOfRegions[arrayOfRegions.length-1];
+
     if ( enlarging && !MSbrowser) {
-            element
+        var arrayOfRegions = Snap.selectAll(selectMask);
+        var last_el = arrayOfRegions[arrayOfRegions.length-1];
+        element
                 .insertAfter(last_el) // push element above of other elements
                 .animate({ "transform" : "s 1.75,1.75" },200, mina.easeinout);
         };
