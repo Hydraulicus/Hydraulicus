@@ -1,0 +1,73 @@
+.visibility_hid{ visibility: hidden }
+.bg { background-color: #ffffef; }
+
+.flex-container {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+.flex-items-default {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 20rem;
+    margin: 0.25rem;
+
+}
+
+.flex-sub-container {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: stretch;
+}
+.flex-sub-items-circle {
+    flex-grow: 3;
+    flex-shrink: 0;
+    flex-basis: 15rem;
+    margin: 0.25rem;
+    max-width: 400px;
+}
+.flex-sub-items-txt {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 10rem;
+    margin: 0.5rem;
+}
+#totalcal {
+    color: #E78700;
+    font: 3rem 'Nunito', sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.centerblock {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.enterinv {
+    width: 100%;
+    font: 1.5rem 'Nunito', sans-serif;
+}
+.text {
+    margin: 0.1rem;
+    font: 2.5rem 'Nunito', sans-serif;
+}
+.procents {
+    font: 4rem 'Nunito', sans-serif;
+}
+.protein {
+    color: #6CA8AF;
+}
+.carb {
+    color: #9F8616;
+}
+.fat {
+    color: #E88700;
+}
