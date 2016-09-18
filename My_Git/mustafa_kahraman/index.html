@@ -3,7 +3,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta name="author" content="Alexei Zababurin" />
     <meta name="description" content=" JS. SVG. animation.  SVG-animation. "/>
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -13,58 +12,36 @@
     <title>Alexei Zababurin infographic for Mustafa Kahraman</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">  <!--Nunito is an excellent match to Avenir. http://joelcrawfordsmith.com/closest-font/font/avenir-->
     <link rel="stylesheet" type="text/css" href="css/animation.css">
-
-
 </head>
 <body class="bg">
+<div class=""><h3 id="totalcal">Total callories: </h3></div>
 
-<div class=""><h1 id="totalcal">Total callories: </h1></div>
+
 <div class="flex-container">
-
     <div class="flex-items-default">
         <div class="centerblock">
             <p class="enterinv protein">Enter protein, gram: </p>
-            <input id="inputprotein" type="range" min="0" max="100" value="10" step="5">
+            <input id="inputprotein" class="inputstyle protein" type="number" min="0" value="10" step="5">
         </div>
-
         <div class="flex-sub-container">
-            <svg id="fillgauge1" class="flex-sub-items-circle" width="100%" height="100%" viewBox="0 0 120 120"  preserveAspectRatio="xMinYMin meet" ></svg>
-            <div class="flex-sub-items-txt">
-                <h1 id="grams1" class="protein text">Protein</h1>
-                <h1 id="" class="protein text">Protein</h1>
-                <h1 id="proc1" class="protein procents">50%</h1>
-            </div>
+            <svg id="fillgauge1" class="flex-sub-items-circle" width="100%" height="100%" viewBox="0 0 190 120"  preserveAspectRatio="xMinYMin meet" ></svg>
         </div>
     </div>
-
-
 
     <div class="flex-items-default">
-        <div class="centerblock"><p class="enterinv carb">Enter carb, gram: </p> <input id="inputcarb" type="range" min="0" max="100" value="20" step="5"  ></div>
+        <div class="centerblock"><p class="enterinv carb">Enter carb, gram: </p> <input id="inputcarb" class="inputstyle carb" type="number" min="0"value="20" step="5"></div>
         <div class="flex-sub-container">
-            <svg id="fillgauge2" class="flex-sub-items-circle" width="100%" height="100%" viewBox="0 0 120 120"  preserveAspectRatio="xMinYMin meet" ></svg>
-            <div class="flex-sub-items-txt">
-                <h1 id="grams2" class="carb text">Carb</h1>
-                <h1 id="" class="carb text">Carb</h1>
-                <h1 id="proc2" class="carb procents">50%</h1>
-            </div>
+            <svg id="fillgauge2" class="flex-sub-items-circle" width="100%" height="100%" viewBox="0 0 190 120"  preserveAspectRatio="xMinYMin meet" ></svg>
         </div>
-
-
-
     </div>
+
     <div class="flex-items-default">
-        <div class="centerblock"><p class="enterinv fat">Enter fat, gram: </p> <input id="inputfat" type="range" min="0" max="100" value="30" step="5"  ></div>
+        <div class="centerblock"><p class="enterinv fat">Enter fat, gram: </p> <input id="inputfat" class="inputstyle fat" type="number" min="0"  value="30" step="5"  ></div>
         <div class="flex-sub-container">
-            <svg id="fillgauge3" class="flex-sub-items-circle" width="100%" height="100%" viewBox="0 0 120 120"  preserveAspectRatio="xMinYMin meet" ></svg>
-            <div class="flex-sub-items-txt">
-                <h1 id="grams3" class="fat text">Fat</h1>
-                <h1 id="" class="fat text">Fat</h1>
-                <h1 id="proc3" class="fat procents">50%</h1>
-            </div>
+            <svg id="fillgauge3" class="flex-sub-items-circle" width="100%" height="100%" viewBox="0 0 190 120"  preserveAspectRatio="xMinYMin meet" ></svg>
         </div>
-
     </div>
+
 </div>
 
 <script src="js/snap.svg-min.js"></script>
@@ -73,7 +50,8 @@
     interactBalance({
         protein_gram : 10,// fetch raw values from database
         carb_gram : 20,
-        fat_gram : 30
+        fat_gram : 30,
+        staedyAnim : true //wether show steady animation.
     });
 </script>
 </body>
