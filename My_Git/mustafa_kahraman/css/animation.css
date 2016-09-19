@@ -11,8 +11,8 @@
 .flex-items-default {
     flex-grow: 1;
     flex-shrink: 1;
-    flex-basis: 30rem;
-    max-width: 205px;
+    flex-basis: 30%;
+    min-width: 200px;
 }
 
 .flex-sub-container {
@@ -23,12 +23,6 @@
     align-content: center;
     align-items: stretch;
     margin-top: 1rem;
-}
-.flex-sub-items-circle {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 15rem;
-    max-width: 205px;
 }
 
 #totalcal {
