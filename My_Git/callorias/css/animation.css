@@ -1,0 +1,65 @@
+.visibility_hid{ visibility: hidden }
+.bg { background-color: #ffffef; }
+.flex-container {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+.flex-items-default {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 30%;
+    min-width: 200px;
+    margin: 2rem auto;
+}
+
+.flex-sub-container {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    align-items: stretch;
+    margin-top: 1rem;
+}
+
+#totalcal {
+    color: #E78700;
+    font: 1.25rem 'Nunito', sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.centerblock {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.enterinv {
+    width: 100%;
+    font: 1rem 'Nunito', sans-serif;
+}
+.text {
+    margin: 0.1rem;
+    font: 1.5rem 'Nunito', sans-serif;
+}
+.protein {
+    color: #6CA8AF;
+}
+.carb {
+    color: #9F8616;
+}
+.fat {
+    color: #E88700;
+}
+
+.inputstyle {
+    border:2px solid #999;
+    border-radius: 5px;
+    font: 0.75rem 'Nunito', sans-serif;
+    background: #fefedf;
+}

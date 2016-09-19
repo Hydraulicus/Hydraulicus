@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Alexei Zababurin" />
+    <meta name="description" content=" JS. SVG. animation.  SVG-animation. "/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta property="og:title" content="Alexei Zababurin infographic for Mustafa Kahraman"/>
+    <meta property="og:site_name" content="Alexei Zababurin infographic for Mustafa Kahraman"/>
+    <meta property="og:description" content="Alexei Zababurin infographic for Mustafa Kahraman"/>
+    <title>Alexei Zababurin infographic for Mustafa Kahraman</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">  <!--Nunito is an excellent match to Avenir. http://joelcrawfordsmith.com/closest-font/font/avenir-->
+    <link rel="stylesheet" type="text/css" href="css/animation.css">
+    <style>
+        @font-face {
+            font-family:'Avenir';
+            src: url('AvenirLTStd-Medium.otf') format('otf'),  url('Avenir-Medium-webfont.woff') format('truetype');
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body class="bg">
+
+<div class="flex-container">
+    <div class="flex-items-default">
+        <div class="centerblock">
+            <p class="enterinv protein">Enter protein, gram: </p>
+            <input id="inputprotein" class="inputstyle protein" type="number" min="0" value="10" step="5">
+        </div>
+    </div>
+
+    <div class="flex-items-default">
+        <div class="centerblock"><p class="enterinv carb">Enter carb, gram: </p> <input id="inputcarb" class="inputstyle carb" type="number" min="0"value="20" step="5"></div>
+    </div>
+
+    <div class="flex-items-default">
+        <div class="centerblock"><p class="enterinv fat">Enter fat, gram: </p> <input id="inputfat" class="inputstyle fat" type="number" min="0"  value="30" step="5"  ></div>
+    </div>
+
+    <svg id="infographic"  width="90%" height="100%" viewBox="0 0 517 137"  preserveAspectRatio="xMinYMin meet" ></svg>
+
+</div>
+
+<script src="js/snap.svg-min.js"></script>
+<script src="js/animation.js"></script>
+<script type="text/javascript">
+    interactBalance({
+        externalSVG : "liquid_fill_no_bg.svg", //file name of external SVG with layout
+        protein_gram : 10,// fetch raw values from database
+        carb_gram : 20,
+        fat_gram : 30,
+        SVG_place : "infographic",
+        staedyAnim : true //whether show steady animation
+    });
+</script>
+</body>
+  
