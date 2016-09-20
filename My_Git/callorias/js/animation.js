@@ -20,16 +20,17 @@ function interactBalance(par) {
 
     var infographicSvg = Snap("#" + par.SVG_place);
 
-    let promise_ = new Promise( function (resolve, reject)  {
+// turn off "promises" - momment line 24, 26-29, 31-33
+//    let promise_ = new Promise( function (resolve, reject)  {
     infographicSvg.add(Snap.parse(SVGFILE));
-        resolve("result");
-});
-    promise_.then(
-             function () {
+        //resolve("result");
+//});
+//    promise_.then(
+//             function () {
                  performOfImage ();
-             },
-            function() {console.log("error parsing embed SVG");    }
-);
+             //},
+            //function() {console.log("error parsing embed SVG");    }
+//);
 
 
 
