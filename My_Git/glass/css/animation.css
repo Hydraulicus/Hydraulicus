@@ -19,13 +19,12 @@
     justify-content: center;
     align-content: center;
     align-items: center;
-    height: 70rem;
 }
 .flex-items-default {
     flex-grow: 0;
     flex-shrink: 0;
-    flex-basis: 50rem;
-    margin: 2rem auto;
+    flex-basis: 50%;
+    margin: 10rem auto;
 }
 
 .scroll-indicator {
