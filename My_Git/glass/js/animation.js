@@ -67,7 +67,7 @@ function firstStage () {
     }
 
     function letterMove(){
-        capitalletter.animate({"transform" : "t -88.5,0"}, animTime*0.5, mina.backout, function(){
+        capitalletter.animate({"transform" : "t -88.5,0"}, animTime*0.5, mina.easeinout, function(){
             contour
                 .attr({"opacity" : 1})
                 .stop().animate({strokeDashoffset: 0}, animTime*0.5, mina.easeinout);
@@ -81,7 +81,7 @@ function returnAnimaton () {
     var timeKvant = animTime / pathTag.length;
     contour.stop().animate({strokeDashoffset: Snap.path.getTotalLength(contour)}, animTime*0.5, mina.easeinout, function () {
         contour.attr({"opacity" : 0});
-        capitalletter.stop().animate({"transform" : "t 0,0"}, animTime*0.5, mina.backout, function(){
+        capitalletter.stop().animate({"transform" : "t 0,0"}, animTime*0.5, mina.easeinout, function(){
             pathTag.forEach( function(element, n) {
                 setTimeout( function() {
                     element.animate({strokeDashoffset: 0}, animTime, function(){});
