@@ -16,7 +16,7 @@
         } else {
             $('#page').removeClass('header-white');
         }
-        
+
         if(mainHeaderPos < headerPos) {
             $mainHeader.addClass('fix-logo');
             $mainHeaderLogo.css('width', 123);

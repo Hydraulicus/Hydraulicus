@@ -365,18 +365,19 @@ UNUSED.nprogress-custom-parent #nprogress .bar {
     -webkit-transform: translateX(0);
     -ms-transform: translateX(0);
     transform: translateX(0);
-    transition: -webkit-transform 0.5s;
-    transition: transform 0.5s;
-    transition: transform 0.5s, -webkit-transform 0.5s;
+    transition: -webkit-transform 0.5s  1.0s;
+    transition: transform 0.5s 1.0s;
+    transition: transform 0.5s 1.0s, -webkit-transform 0.5s 1.0s;
 }
 
 .shrink-logo .logo-box{
     stroke: rgba(255, 255, 255, 1);
     stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1.1s 1.4s;
 }
 
 .logo-box {
-    transition: stroke-dashoffset 1.1s 0s;
+    transition: stroke-dashoffset 1.1s ;
     stroke-dashoffset: 280;
     stroke-dasharray: 280;
 }
@@ -385,62 +386,102 @@ UNUSED.nprogress-custom-parent #nprogress .bar {
     -webkit-transform: translateX(-88.5px);
     -ms-transform: translateX(-88.5px);
     transform: translateX(-88.5px);
-    transition: -webkit-transform 0.5s 0.6s;
-    transition: transform 0.5s 0.6s;
-    transition: transform 0.5s 0.6s, -webkit-transform 0.5s 0.6s;
+    transition: -webkit-transform 0.5s 1s;
+    transition: transform 0.5s 1s;
+    transition: transform 0.5s 1s, -webkit-transform 0.5s 1s;
 }
 
 .logo-l, .logo-a, .logo-ss, .logo-s, .logo-rr, .logo-y, .logo-e, .logo-r {
     stroke-dasharray: 1000;
 }
-
+/*========= The letter disappear at the same time =============*/
 .logo-rr {
-    transition: fill 2s 0.1s, stroke-dashoffset 0.5s 0.1s;
+    transition: fill 2s 1.4s, stroke-dashoffset 0.5s 1.4s;
     stroke-dashoffset: 830;
 }
 
 .logo-y {
-    transition: fill 2s 0.2s, stroke-dashoffset 0.5s 0.2s;
+    transition: fill 2s 1.4s, stroke-dashoffset 0.5s 1.4s;
     stroke-dashoffset: 700;
 }
 
 .logo-e {
-    transition: fill 2s 0.3s, stroke-dashoffset 0.5s 0.3s;
+    transition: fill 2s 1.4s, stroke-dashoffset 0.5s 1.4s;
     stroke-dashoffset: 760;
 }
 
 .logo-r {
-    transition: fill 2s 0.4s, stroke-dashoffset 0.5s 0.4s;
+    transition: fill 2s 1.4s, stroke-dashoffset 0.5s 1.4s;
     stroke-dashoffset: 790;
 }
 
 .logo-l {
-    transition: fill 2s 0.5s, stroke-dashoffset 0.5s 0.5s;
+    transition: fill 2s 1.4s, stroke-dashoffset 0.5s  1.4s;
     stroke-dashoffset: 830;
 }
 
 .logo-a {
-    transition: fill 2s 0.6s, stroke-dashoffset 0.5s 0.6s;
+    transition: fill 2s 1.4s, stroke-dashoffset 0.5s  1.4s;
     stroke-dashoffset: 700;
 }
 
 .logo-ss {
-    transition: fill 2s 0.7s, stroke-dashoffset 0.5s 0.7s;
+    transition: fill 2s 1.4s, stroke-dashoffset 0.5s  1.4s;
     stroke-dashoffset: 760;
 }
 
 .logo-s {
-    transition: fill 2s 0.8s, stroke-dashoffset 0.5s 0.8s;
+    transition: fill 1s 1.4s, stroke-dashoffset 0.5s  1.4s;
     stroke-dashoffset: 790;
 }
+/* ============ The letter disappear right to left ================  */
+/*.logo-rr {*/
+    /*transition: fill 2s 0.1s, stroke-dashoffset 0.5s 0.1s;*/
+    /*stroke-dashoffset: 830;*/
+/*}*/
+
+/*.logo-y {*/
+    /*transition: fill 2s 0.2s, stroke-dashoffset 0.5s 0.2s;*/
+    /*stroke-dashoffset: 700;*/
+/*}*/
+
+/*.logo-e {*/
+    /*transition: fill 2s 0.3s, stroke-dashoffset 0.5s 0.3s;*/
+    /*stroke-dashoffset: 760;*/
+/*}*/
+
+/*.logo-r {*/
+    /*transition: fill 2s 0.4s, stroke-dashoffset 0.5s 0.4s;*/
+    /*stroke-dashoffset: 790;*/
+/*}*/
+
+/*.logo-l {*/
+    /*transition: fill 2s 0.5s, stroke-dashoffset 0.5s 0.5s;*/
+    /*stroke-dashoffset: 830;*/
+/*}*/
+
+/*.logo-a {*/
+    /*transition: fill 2s 0.6s, stroke-dashoffset 0.5s 0.6s;*/
+    /*stroke-dashoffset: 700;*/
+/*}*/
+
+/*.logo-ss {*/
+    /*transition: fill 2s 0.7s, stroke-dashoffset 0.5s 0.7s;*/
+    /*stroke-dashoffset: 760;*/
+/*}*/
+
+/*.logo-s {*/
+    /*transition: fill 2s 0.8s, stroke-dashoffset 0.5s 0.8s;*/
+    /*stroke-dashoffset: 790;*/
+/*}*/
 
 .shrink-logo .logo-g, UNUSED.shrink-logo-perm .logo-g, UNUSED.page-template-properties .logo-g, UNUSED.page-template-default.not-home .logo-g, UNUSED.error404 .logo-g {
     -webkit-transform: translateX(-88.5px);
     -ms-transform: translateX(-88.5px);
     transform: translateX(-88.5px);
-    transition: -webkit-transform 0.5s 0.6s;
-    transition: transform 0.5s 0.6s;
-    transition: transform 0.5s 0.6s, -webkit-transform 0.5s 0.6s;
+    transition: -webkit-transform 0.5s 1s;
+    transition: transform 0.5s 1s;
+    transition: transform 0.5s 1s, -webkit-transform 0.5s 1s;
 }
 
 .shrink-logo .logo-l, .shrink-logo .logo-a, .shrink-logo .logo-ss, .shrink-logo .logo-s, .shrink-logo .logo-rr, .shrink-logo .logo-y, .shrink-logo .logo-e, .shrink-logo .logo-r, UNUSED.shrink-logo-perm .logo-l, UNUSED.shrink-logo-perm .logo-a, UNUSED.shrink-logo-perm .logo-ss, UNUSED.shrink-logo-perm .logo-s, UNUSED.page-template-properties .logo-l, UNUSED.page-template-properties .logo-a, UNUSED.page-template-properties .logo-ss, UNUSED.page-template-properties .logo-s, UNUSED.page-template-default.not-home .logo-l, UNUSED.page-template-default.not-home .logo-a, UNUSED.page-template-default.not-home .logo-ss, UNUSED.page-template-default.not-home .logo-s, UNUSED.error404 .logo-l, UNUSED.error404 .logo-a, UNUSED.error404 .logo-ss, UNUSED.error404 .logo-s {
@@ -448,71 +489,82 @@ UNUSED.nprogress-custom-parent #nprogress .bar {
     stroke-dashoffset: 1000;
 }
 
-
+/* ============ The letter disappear right to left ================  */
 .shrink-logo .logo-rr, .shrink-logo-perm .logo-rr, .page-template-properties .logo-rr, .page-template-default.not-home .logo-rr, .error404 .logo-rr {
-    transition: fill 0.5s 0.7s, stroke-dashoffset 0.5s 0.8s;
+    transition: fill 1s, stroke-dashoffset 0.5s;
 }
 
 .shrink-logo .logo-y, .shrink-logo-perm .logo-y, .page-template-properties .logo-y, .page-template-default.not-home .logo-y, .error404 .logo-y {
-    transition: fill 0.5s 0.6s, stroke-dashoffset 0.5s 0.7s;
+    transition: fill 1s, stroke-dashoffset 0.5s;
 }
 
 .shrink-logo .logo-e, .shrink-logo-perm .logo-e, .page-template-properties .logo-e, .page-template-default.not-home .logo-e, .error404 .logo-e {
-    transition: fill 0.5s 0.5s, stroke-dashoffset 0.5s 0.6s;
+    transition: fill 1s, stroke-dashoffset 0.5s;
 }
 
 .shrink-logo .logo-r, .shrink-logo-perm .logo-r, .page-template-properties .logo-r, .page-template-default.not-home .logo-r, .error404 .logo-r {
-    transition: fill 0.5s 0.4s, stroke-dashoffset 0.5s 0.5s;
+    transition: fill 1s, stroke-dashoffset 0.5s;
 }
 
 .shrink-logo .logo-l, .shrink-logo-perm .logo-l, .page-template-properties .logo-l, .page-template-default.not-home .logo-l, .error404 .logo-l {
-    transition: fill 0.5s 0.3s, stroke-dashoffset 0.5s 0.4s;
+    transition: fill 1s, stroke-dashoffset 0.5s;
 }
 
 .shrink-logo .logo-a, .shrink-logo-perm .logo-a, .page-template-properties .logo-a, .page-template-default.not-home .logo-a, .error404 .logo-a {
-    transition: fill 0.5s 0.2s, stroke-dashoffset 0.5s 0.3s;
+    transition: fill 1s, stroke-dashoffset 0.5s;
 }
 
 .shrink-logo .logo-ss, .shrink-logo-perm .logo-ss, .page-template-properties .logo-ss, .page-template-default.not-home .logo-ss, .error404 .logo-ss {
-    transition: fill 0.5s 0.1s, stroke-dashoffset 0.5s 0.2s;
+    transition: fill 1s, stroke-dashoffset 0.5s ;
 }
 
 .shrink-logo .logo-s, .shrink-logo-perm .logo-s, .page-template-properties .logo-s, .page-template-default.not-home .logo-s, .error404 .logo-s {
-    transition: fill 0.5s, stroke-dashoffset 0.5s 0.1s;
+    transition: fill 1s, stroke-dashoffset 0.5s ;
 }
-
-/*UNUSED.shrink-logo .main-logo-backup-o, UNUSED.shrink-logo .main-logo-backup-u, UNUSED.shrink-logo .main-logo-backup-s, UNUSED.shrink-logo .main-logo-backup-e, UNUSED.shrink-logo-perm .main-logo-backup-o, UNUSED.shrink-logo-perm .main-logo-backup-u, UNUSED.shrink-logo-perm .main-logo-backup-s, UNUSED.shrink-logo-perm .main-logo-backup-e, UNUSED.page-template-properties .main-logo-backup-o, UNUSED.page-template-properties .main-logo-backup-u, UNUSED.page-template-properties .main-logo-backup-s, UNUSED.page-template-properties .main-logo-backup-e, UNUSED.page-template-default.not-home .main-logo-backup-o, UNUSED.page-template-default.not-home .main-logo-backup-u, UNUSED.page-template-default.not-home .main-logo-backup-s, UNUSED.page-template-default.not-home .main-logo-backup-e, UNUSED.error404 .main-logo-backup-o, UNUSED.error404 .main-logo-backup-u, UNUSED.error404 .main-logo-backup-s, UNUSED.error404 .main-logo-backup-e {*/
-    /*opacity: 0;*/
+/* ============ The letter disappear right to left ================  */
+/*.shrink-logo .logo-rr, .shrink-logo-perm .logo-rr, .page-template-properties .logo-rr, .page-template-default.not-home .logo-rr, .error404 .logo-rr {*/
+    /*transition: fill 0.5s 0.7s, stroke-dashoffset 0.5s 0.8s;*/
 /*}*/
 
-/*UNUSED.shrink-logo .main-logo-backup-h, UNUSED.shrink-logo-perm .main-logo-backup-h, UNUSED.page-template-properties .main-logo-backup-h, UNUSED.page-template-default.not-home .main-logo-backup-h, UNUSED.error404 .main-logo-backup-h {*/
-    /*transition: width 0.75s, height 0.75s;*/
+/*.shrink-logo .logo-y, .shrink-logo-perm .logo-y, .page-template-properties .logo-y, .page-template-default.not-home .logo-y, .error404 .logo-y {*/
+    /*transition: fill 0.5s 0.6s, stroke-dashoffset 0.5s 0.7s;*/
 /*}*/
 
-/*.shrink-logo .main-logo-backup-o, .shrink-logo-perm .main-logo-backup-o, .page-template-properties .main-logo-backup-o, .page-template-default.not-home .main-logo-backup-o, .error404 .main-logo-backup-o {*/
-    /*transition: width 0.75s, height 0.75s, opacity 0.5s 0.4s;*/
+/*.shrink-logo .logo-e, .shrink-logo-perm .logo-e, .page-template-properties .logo-e, .page-template-default.not-home .logo-e, .error404 .logo-e {*/
+    /*transition: fill 0.5s 0.5s, stroke-dashoffset 0.5s 0.6s;*/
 /*}*/
 
-/*.shrink-logo .main-logo-backup-u, .shrink-logo-perm .main-logo-backup-u, .page-template-properties .main-logo-backup-u, .page-template-default.not-home .main-logo-backup-u, .error404 .main-logo-backup-u {*/
-    /*transition: width 0.75s, height 0.75s, opacity 0.5s 0.3s;*/
+/*.shrink-logo .logo-r, .shrink-logo-perm .logo-r, .page-template-properties .logo-r, .page-template-default.not-home .logo-r, .error404 .logo-r {*/
+    /*transition: fill 0.5s 0.4s, stroke-dashoffset 0.5s 0.5s;*/
 /*}*/
 
-/*.shrink-logo .main-logo-backup-s, .shrink-logo-perm .main-logo-backup-s, .page-template-properties .main-logo-backup-s, .page-template-default.not-home .main-logo-backup-s, .error404 .main-logo-backup-s {*/
-    /*transition: width 0.75s, height 0.75s, opacity 0.5s 0.2s;*/
+/*.shrink-logo .logo-l, .shrink-logo-perm .logo-l, .page-template-properties .logo-l, .page-template-default.not-home .logo-l, .error404 .logo-l {*/
+    /*transition: fill 0.5s 0.3s, stroke-dashoffset 0.5s 0.4s;*/
 /*}*/
 
-/*.shrink-logo .main-logo-backup-e, .shrink-logo-perm .main-logo-backup-e, .page-template-properties .main-logo-backup-e, .page-template-default.not-home .main-logo-backup-e, .error404 .main-logo-backup-e {*/
-    /*transition: width 0.75s, height 0.75s, opacity 0.5s 0.1s;*/
+/*.shrink-logo .logo-a, .shrink-logo-perm .logo-a, .page-template-properties .logo-a, .page-template-default.not-home .logo-a, .error404 .logo-a {*/
+    /*transition: fill 0.5s 0.2s, stroke-dashoffset 0.5s 0.3s;*/
 /*}*/
 
-UNUSED.shrink-logo .main-logo-backup-dot, UNUSED.shrink-logo-perm .main-logo-backup-dot, UNUSED.page-template-properties .main-logo-backup-dot, UNUSED.page-template-default.not-home .main-logo-backup-dot, UNUSED.error404 .main-logo-backup-dot {
-    -webkit-transform: translateX(-1920%);
-    -ms-transform: translateX(-1920%);
-    transform: translateX(-1920%);
-    transition: width 0.75s, height 0.75s, -webkit-transform 0.5s 0.6s;
-    transition: width 0.75s, height 0.75s, transform 0.5s 0.6s;
-    transition: width 0.75s, height 0.75s, transform 0.5s 0.6s, -webkit-transform 0.5s 0.6s;
-}
+/*.shrink-logo .logo-ss, .shrink-logo-perm .logo-ss, .page-template-properties .logo-ss, .page-template-default.not-home .logo-ss, .error404 .logo-ss {*/
+    /*transition: fill 0.5s 0.1s, stroke-dashoffset 0.5s 0.2s;*/
+/*}*/
+
+/*.shrink-logo .logo-s, .shrink-logo-perm .logo-s, .page-template-properties .logo-s, .page-template-default.not-home .logo-s, .error404 .logo-s {*/
+    /*transition: fill 0.5s, stroke-dashoffset 0.5s 0.1s;*/
+/*}*/
+
+
+
+
+/*UNUSED.shrink-logo .main-logo-backup-dot, UNUSED.shrink-logo-perm .main-logo-backup-dot, UNUSED.page-template-properties .main-logo-backup-dot, UNUSED.page-template-default.not-home .main-logo-backup-dot, UNUSED.error404 .main-logo-backup-dot {*/
+    /*-webkit-transform: translateX(-1920%);*/
+    /*-ms-transform: translateX(-1920%);*/
+    /*transform: translateX(-1920%);*/
+    /*transition: width 0.75s, height 0.75s, -webkit-transform 0.5s 0.6s;*/
+    /*transition: width 0.75s, height 0.75s, transform 0.5s 0.6s;*/
+    /*transition: width 0.75s, height 0.75s, transform 0.5s 0.6s, -webkit-transform 0.5s 0.6s;*/
+/*}*/
 
 #menu-btn:hover #menu-open span {
     -webkit-animation-iteration-count: infinite;
