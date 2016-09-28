@@ -1,0 +1,39 @@
+  <!DOCTYPE HTML>	
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="author" content="Alexei Zababurin" />
+    <meta name="description" content=" JS. SVG. animation.  SVG-animation. "/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta property="og:title" content="Alexei Zababurin animation for James Glass"/>
+    <meta property="og:site_name" content="Alexei Zababurin animation for James Glass"/>
+    <meta property="og:description" content="Alexei Zababurin animation for James Glass"/>
+    <title>Alexei Zababurin animation for James Glass</title>
+
+    <link rel="stylesheet" type="text/css" href="css/animation.css">
+
+  </head>
+  <body class="bg">
+    <h1 class="inv">Please, scroll down</h1>
+     <div class="flex-container">
+         <div id="main-header-logo" class="flex-items-default"><!-- wrapper for SVG-animation. You can setup width, height and other CSS parameters. -->
+         </div>
+	 </div>
+    <p id="showScroll" class="scroll-indicator"></p>
+     <script src="js/snap.svg-min.js"></script>
+     <script src="js/animation.js"></script>
+     <script type="text/javascript">
+       initAnimation({
+            logoWrap : "#main-header-logo" //id of logo block
+            , pathTosvgFile : "svg/logo.svg"
+            , AnimTime : 625 //ms, time of animation
+            , limits : { //limits of scrolling when animation is started
+                topshift : 20 //px from top
+            }
+       });
+     </script>
+  </body>
+  
+
