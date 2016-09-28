@@ -20,7 +20,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
     font-family: 'Open Sans', sans-serif;
-    line-height: 1;
+    /*line-height: 1;*/
     letter-spacing: 0.2em;
 }
 
@@ -352,11 +352,11 @@ UNUSED.nprogress-custom-parent #nprogress .bar {
 
 #main-header-logo svg {
     width: auto;
-    height: 42px;
+    /*height: 42px;*/
     display: inline-block;
     overflow: visible;
     stroke: #fff;
-    stroke-width: 1px;
+    /*stroke-width: 1px;*/
     fill: #fff;
     transition: height 0.5s, fill 0.5s, stroke 0.5s;
 }
@@ -839,11 +839,6 @@ UNUSED.page-template-contact #page, UNUSED.page-template-contact #main-content, 
     pointer-events: auto;
 }
 
-UNUSED.page-template-properties #main-content, UNUSED.page-template-default.not-home #main-content, UNUSED.error404 #main-content {
-    background-image: url(images/bg-texture-grey.jpg);
-    background-color: #f1f1f1;
-}
-
 UNUSED.page-template-properties #main-content > .container, UNUSED.page-template-default.not-home #main-content > .container, UNUSED.error404 #main-content > .container {
     padding-top: 66px;
     position: relative;
@@ -863,13 +858,13 @@ UNUSED.page-template-properties #main-header #main-header-logo, UNUSED.page-temp
 }
 
 UNUSED.page-template-properties #main-header #main-header-logo svg, UNUSED.page-template-default.not-home #main-header #main-header-logo svg, UNUSED.page-template-video.not-home #main-header #main-header-logo svg, UNUSED.error404 #main-header #main-header-logo svg {
-    height: 32px;
+    /*height: 32px;*/
     fill: #4d4845;
     stroke: #4d4845;
 }
 
 UNUSED.page-template-properties #main-header #main-logo-backup span, UNUSED.page-template-default.not-home #main-header #main-logo-backup span, UNUSED.page-template-video.not-home #main-header #main-logo-backup span, UNUSED.error404 #main-header #main-logo-backup span {
-    height: 31px;
+    /*height: 32px;*/
 }
 
 UNUSED.page-template-properties #main-header #main-logo-backup-grey, UNUSED.page-template-default.not-home #main-header #main-logo-backup-grey, UNUSED.page-template-video.not-home #main-header #main-logo-backup-grey, UNUSED.error404 #main-header #main-logo-backup-grey {
@@ -1905,6 +1900,12 @@ UNUSED.area-map__mobile{
 }
 
 
+.st0{opacity: 0 }
 .st1{fill:#FFFFFF; stroke:#fff;stroke-miterlimit:1;stroke-width:0.5}
 .st2{fill:#FFFFFF;stroke-width:0.5}
-.st3{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:butt}
+.st3{
+    fill:none;
+    stroke:#fff;
+    stroke-width:3px;
+    stroke-linecap:butt
+}
