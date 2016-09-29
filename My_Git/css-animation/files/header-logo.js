@@ -26,6 +26,7 @@
         }
 
         if(winTopPos > 0) {
+            console.log("scroll!");
             $mainHeaderLogo.addClass('shrink-logo');
         } else {
             $mainHeaderLogo.removeClass('shrink-logo');

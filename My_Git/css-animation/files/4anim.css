@@ -394,44 +394,46 @@ UNUSED.nprogress-custom-parent #nprogress .bar {
 .logo-l, .logo-a, .logo-ss, .logo-s, .logo-rr, .logo-y, .logo-e, .logo-r {
     stroke-dasharray: 1000;
 }
+/*========= growing animation ===============*/
 /*========= The letter disappear at the same time =============*/
+/* <transition> = <transition-property> <transition-duration> <transition-timing-function> <transition-delay> */
 .logo-rr {
-    transition: fill 2s 1.4s, stroke-dashoffset 0.5s 1.4s;
+    transition: fill 2s 1.4s, stroke-dashoffset 1s 1.4s;
     stroke-dashoffset: 830;
 }
 
 .logo-y {
-    transition: fill 2s 1.4s, stroke-dashoffset 0.5s 1.4s;
+    transition: fill 2s 1.4s, stroke-dashoffset 1s 1.4s;
     stroke-dashoffset: 700;
 }
 
 .logo-e {
-    transition: fill 2s 1.4s, stroke-dashoffset 0.5s 1.4s;
+    transition: fill 2s 1.4s, stroke-dashoffset 1s 1.4s;
     stroke-dashoffset: 760;
 }
 
 .logo-r {
-    transition: fill 2s 1.4s, stroke-dashoffset 0.5s 1.4s;
+    transition: fill 2s 1.4s, stroke-dashoffset 1s 1.4s;
     stroke-dashoffset: 790;
 }
 
 .logo-l {
-    transition: fill 2s 1.4s, stroke-dashoffset 0.5s  1.4s;
+    transition: fill 2s 1.4s, stroke-dashoffset 1s  1.4s;
     stroke-dashoffset: 830;
 }
 
 .logo-a {
-    transition: fill 2s 1.4s, stroke-dashoffset 0.5s  1.4s;
+    transition: fill 2s 1.4s, stroke-dashoffset 1s  1.4s;
     stroke-dashoffset: 700;
 }
 
 .logo-ss {
-    transition: fill 2s 1.4s, stroke-dashoffset 0.5s  1.4s;
+    transition: fill 2s 1.4s, stroke-dashoffset 1s  1.4s;
     stroke-dashoffset: 760;
 }
 
 .logo-s {
-    transition: fill 1s 1.4s, stroke-dashoffset 0.5s  1.4s;
+    transition: fill 2s 1.4s, stroke-dashoffset 1s  1.4s;
     stroke-dashoffset: 790;
 }
 /* ============ The letter disappear right to left ================  */
@@ -488,38 +490,38 @@ UNUSED.nprogress-custom-parent #nprogress .bar {
     fill: rgba(255, 255, 255, 0);
     stroke-dashoffset: 1000;
 }
-
+/* ============ shrink animation ======================*/
 /* ============ The letter disappear right to left ================  */
 .shrink-logo .logo-rr, .shrink-logo-perm .logo-rr, .page-template-properties .logo-rr, .page-template-default.not-home .logo-rr, .error404 .logo-rr {
-    transition: fill 1s, stroke-dashoffset 0.5s;
+    transition: fill 1s, stroke-dashoffset 1s;
 }
 
 .shrink-logo .logo-y, .shrink-logo-perm .logo-y, .page-template-properties .logo-y, .page-template-default.not-home .logo-y, .error404 .logo-y {
-    transition: fill 1s, stroke-dashoffset 0.5s;
+    transition: fill 1s, stroke-dashoffset 1s;
 }
 
 .shrink-logo .logo-e, .shrink-logo-perm .logo-e, .page-template-properties .logo-e, .page-template-default.not-home .logo-e, .error404 .logo-e {
-    transition: fill 1s, stroke-dashoffset 0.5s;
+    transition: fill 1s, stroke-dashoffset 1s;
 }
 
 .shrink-logo .logo-r, .shrink-logo-perm .logo-r, .page-template-properties .logo-r, .page-template-default.not-home .logo-r, .error404 .logo-r {
-    transition: fill 1s, stroke-dashoffset 0.5s;
+    transition: fill 1s, stroke-dashoffset 1s;
 }
 
 .shrink-logo .logo-l, .shrink-logo-perm .logo-l, .page-template-properties .logo-l, .page-template-default.not-home .logo-l, .error404 .logo-l {
-    transition: fill 1s, stroke-dashoffset 0.5s;
+    transition: fill 1s, stroke-dashoffset 1s;
 }
 
 .shrink-logo .logo-a, .shrink-logo-perm .logo-a, .page-template-properties .logo-a, .page-template-default.not-home .logo-a, .error404 .logo-a {
-    transition: fill 1s, stroke-dashoffset 0.5s;
+    transition: fill 1s, stroke-dashoffset 1s;
 }
 
 .shrink-logo .logo-ss, .shrink-logo-perm .logo-ss, .page-template-properties .logo-ss, .page-template-default.not-home .logo-ss, .error404 .logo-ss {
-    transition: fill 1s, stroke-dashoffset 0.5s ;
+    transition: fill 1s, stroke-dashoffset 1s ;
 }
 
 .shrink-logo .logo-s, .shrink-logo-perm .logo-s, .page-template-properties .logo-s, .page-template-default.not-home .logo-s, .error404 .logo-s {
-    transition: fill 1s, stroke-dashoffset 0.5s ;
+    transition: fill 1s, stroke-dashoffset 1s ;
 }
 /* ============ The letter disappear right to left ================  */
 /*.shrink-logo .logo-rr, .shrink-logo-perm .logo-rr, .page-template-properties .logo-rr, .page-template-default.not-home .logo-rr, .error404 .logo-rr {*/
@@ -1418,9 +1420,6 @@ UNUSED.area-map__mobile{
         height: 38px;
         border-width: 3px;
     }
-
-
-
     .page-id-280 h1.entry-title{
         position: absolute;
         top:180px;
