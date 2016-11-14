@@ -1,0 +1,34 @@
+  <!DOCTYPE HTML>	
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="author" content="Alexei Zababurin" />
+    <meta name="description" content=" JS. SVG. animation.  SVG-animation. "/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta property="og:title" content="Alexei Zababurin animation for Walid Ammar"/>
+    <meta property="og:site_name" content="Alexei Zababurin animation for Walid Ammar"/>
+    <meta property="og:description" content="Alexei Zababurin animation for Walid Ammar"/>
+    <title>Alexei Zababurin animation for Walid Ammar</title>
+
+    <!--<link rel="stylesheet" type="text/css" href="css/MAP-03_1.css">-->
+
+  </head>
+  <body class="bg">
+         <div id="main-svg-wrapper" >
+         </div>
+     <script src="js/snap.svg-min.js"></script>
+     <script src="js/animation.js"></script>
+     <script type="text/javascript">
+       initAnimation({
+            svgWrap : "#main-svg-wrapper"
+            , pathTosvgFile : "svg/MAP-03_1.svg"
+            , AnimTime : [300, 500, 600] //ms, time of animation
+            , limits : {
+            }
+       });
+     </script>
+  </body>
+  
+
