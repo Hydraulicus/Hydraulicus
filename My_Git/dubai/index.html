@@ -10,57 +10,41 @@
     <meta property="og:title" content="Alexei Zababurin animation for Walid Ammar"/>
     <meta property="og:site_name" content="Alexei Zababurin animation for Walid Ammar"/>
     <meta property="og:description" content="Alexei Zababurin animation for Walid Ammar"/>
+      <link rel="stylesheet" href="css/style.css">
+
     <title>Alexei Zababurin animation for Walid Ammar</title>
     <style>
-        .flex-container{
-            padding: 0;
-            margin: 0;
-            list-style: none;
 
-            display: -webkit-box;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-
-            -webkit-flex-flow: row nowrap;
-            justify-content: space-around;
-        }
-        .flex-item {
-            padding: 5px;
-            margin-top: 10px;
-            flex: 1 100%;
-        }
     </style>
   </head>
   <body>
-  <h4>Map animation. </h4>
-  <p>Click on second map for animation.</p>
-  <p>For each map an animation can be activated when your need by calling related function. Please see comments inside index.html </p>
-  <hr>
-  <div class="flex-container">
-         <div id="first_map" class="flex-item" ></div>
-         <div id="close_up"  class="flex-item" onclick="performOfCloseMap ()" style="cursor: pointer;"></div>
+  <div class="">
+      <div class="dubainavo">
+          <!--<div id="closebutton" class="viewbutton activeviewbutton">Close view</div>-->
+          <button id="closebutton" class="viewbutton activeviewbutton">Close view</button>
+      </div>
+      <div id="dubai" class="limits opacityanimation " ></div>
+      <div id="close_up" class="limits opacityanimation invisible"></div>
   </div>
-  <hr>
      <script src="js/snap.svg-min.js"></script>
      <script src="js/animation.js"></script>
      <script type="text/javascript">
        initAnimation([
            {
-               svgWrap : "#first_map"
+               svgWrap : "#dubai"
                , pathTosvgFile : "svg/map-03_2.svg"
                , AnimTime : [500, 1000, 1200] //ms, time of tracks animation
-               , animated : true // true or false. if true animation plays right after map drawing. Or you can actuate animation by calling function "performOfWhallMap()" when you need.
+               , animated : true // true or false. if true animation plays right after map drawing. Or you can actuate animation by calling function "performOfWhollMap()" when you need.
            },
 
        {
              svgWrap : "#close_up"
-           , pathTosvgFile : "svg/close_up.svg"
+           , pathTosvgFile : "svg/close_up_.svg"
            , AnimTime : [800, 1000, 2200, 300] //ms, time of tracks animation
-           , animated : false // true or false. if true animation plays right after map drawing. Or you can actuate animation by calling function "performOfCloseMap()" when you need.
+           , animated : false
        }
        ])
+         buttonInit("closebutton");
      </script>
   </body>
   

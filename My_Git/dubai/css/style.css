@@ -1,0 +1,87 @@
+/*.flex-container{*/
+    /*padding: 0;*/
+    /*margin: 0;*/
+    /*list-style: none;*/
+
+    /*display: -webkit-box;*/
+    /*display: -moz-box;*/
+    /*display: -ms-flexbox;*/
+    /*display: -webkit-flex;*/
+    /*display: flex;*/
+
+    /*-webkit-flex-flow: row nowrap;*/
+    /*justify-content: space-around;*/
+/*}*/
+/*.flex-item {*/
+    /*padding: 5px;*/
+    /*margin-top: 10px;*/
+    /*flex: 1 100%;*/
+/*}*/
+.closebutton{
+    width:16rem;
+    height: 2.5rem;
+}
+.dubainavo {
+    z-index: 9999;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+}
+.viewbutton {
+    position: fixed;
+    top: 60px;
+    z-index: 31;
+    left: 80px;
+    display: block;
+    background-color: #c9c6c3;
+    color: #3f424d;
+    vertical-align: middle;
+    padding: 5px 10px;
+    font-size: 22px;
+    width: 150px;
+    cursor: pointer;
+    border: 0px;
+}
+.activeviewbutton {
+    background-color: #e84353;
+    color: #c9c7c3;
+    font-family: 'kelson_sansregular',sans-serif;
+}
+#close_up {
+    z-index: 25;
+    position: absolute;
+    top: 25px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+}
+#dubai {
+    z-index: 21;
+    position: absolute;
+    top: 25px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+}
+.limits{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.opacityanimation {
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.invisible {
+     opacity: 0;
+ }

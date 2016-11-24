@@ -1,8 +1,40 @@
+function buttonInit(par){
+    var dubaiMap= document.getElementById("dubai");
+    var close_upMap= document.getElementById("close_up");
+
+    var button_ = document.getElementById(par);
+    button_.addEventListener("click", closer);
+
+     function closer () {
+         dubaiMap.className += " invisible";
+         removeClass(close_upMap, "invisible");
+        setTimeout( function(){performOfCloseMap ();}, 1000 );
+         button_.removeEventListener("click", closer);
+         button_.addEventListener("click", Dubai_);
+         button_.innerText="Prev view";
+    };
+
+    function Dubai_ () {
+        close_upMap.className += " invisible";
+        removeClass(dubaiMap, "invisible");
+        button_.addEventListener("click", closer);
+        button_.removeEventListener("click", Dubai_);
+        button_.innerText="Close view";
+    };
+
+    function removeClass(el, className) {
+        //http://stackoverflow.com/questions/2155737/remove-css-class-from-element-with-javascript-no-jquery
+        el.className =
+            el.className
+                .replace(new RegExp('(?:^|\\s)'+ className + '(?:\\s|$)'), ' ');
+    }
+}
+
 var animTime = [], closeAnimTime = [];
 function initAnimation (obj) {
 
     animTime = obj[0].AnimTime;
-    embdingSvgFileByAJAX ( obj[0].svgWrap , obj[0].pathTosvgFile, function() { initCloseUp (obj[1]); if ( obj[0].animated)  performOfWhallMap ()});
+    embdingSvgFileByAJAX ( obj[0].svgWrap , obj[0].pathTosvgFile, function() { initCloseUp (obj[1]); if ( obj[0].animated)  performOfWhollMap ()});
 };//end of init function
 
 function initCloseUp (obj) {
@@ -27,6 +59,8 @@ function embdingSvgFileByAJAX (target_tag, filePathName, callBack) {
 }
 
 function performOfCloseMap () {
+    var citygatetower = Snap.select( "#citygatetower" );
+
     var s = Snap("#closemap");
     var p1 = new Drawing( "#track1_1", "", closeAnimTime[0], s, 0.5 );
     var p2 = new Drawing( "#track1_2", "", closeAnimTime[1], s, 0.5 );
@@ -35,23 +69,31 @@ function performOfCloseMap () {
     p1.initDraw();
     p1.callOnFinished = function() {
         dotting("#track1_1");
+        shift_citygatetower ();
         p2.initDraw();
     };
 
     p2.callOnFinished = function() {
         dotting("#track1_2");
+        shift_citygatetower ();
         p3.initDraw();
     };
     p3.callOnFinished = function() {
         dotting("#track1_3");
+        shift_citygatetower ();
         p4.initDraw();
     };
     p4.callOnFinished = function() {
         dotting("#track1_4");
     }
+
+    function shift_citygatetower () {
+        citygatetower.stop().animate({"transform" : "t0,-20 s1.25"}, 350, mina.backin,
+           function () { citygatetower.animate({"transform" : "t0,0 s1"}, 350, mina.backout) })
+    }
 }
 
-function performOfWhallMap () {
+function performOfWhollMap () {
     var s = Snap("#maps4anim");
     var p1 = new Drawing( "#track1", "", animTime[0], s );
     var p2 = new Drawing( "#track2", "", animTime[1], s );
@@ -77,12 +119,15 @@ function performOfWhallMap () {
         Snap.selectAll(".animationstage3").forEach( function (element) {element.attr({"opacity" : 1})}  );
         setTimeout(function(){
                 var target = Snap.select("#pin");
-                target.animate({transform: "s1.25 t0,-25"}, 500, mina.easeout(), function(){
-                    target.animate({transform: "s1 t0,0"}, 500, mina.elastic);
+                target.stop().animate({transform: "s1.25 t0,-25"}, 500, mina.easeout(), function(){
+                    target.stop().animate({transform: "s1 t0,0"}, 500, mina.elastic);
                 });
             }, animTime[2] + 200 );
     };
 }
+
+
+
 
 function dotting(Id, canva){
     var target = Snap.select(Id);
@@ -106,7 +151,6 @@ console.log(target);
 
 function Drawing( svgString, transformString, timeBetweenDraws, s, opacity ) {
     this.opacity = opacity || 1;
-    //this.fragment = Snap.parse( svgString );
     this.fragment = s.select( svgString );
     this.pathArray = [this.fragment];
     this.group = s.g().transform( transformString );
@@ -161,7 +205,7 @@ Drawing.prototype.draw = function() {         // this is the main animation bit
 
     this.currentPathIndex++;
 
-    myPath.animate({"stroke-dashoffset": 0}, this.timeBetweenDraws, mina.easeinout, this.draw.bind( this ) );
+    myPath.stop().animate({"stroke-dashoffset": 0}, this.timeBetweenDraws, mina.easeinout, this.draw.bind( this ) );
 
 };
 
