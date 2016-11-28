@@ -1,0 +1,27 @@
+body {
+  font-size: 12px; }
+
+body {
+  background-color: lightgray;
+  color: darkblue;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: sans-serif; }
+
+.invisible {
+  display: none; }
+
+.screens {
+  margin: 0.5em;
+  position: fixed;
+  width: 100%;
+  height: 640px; }
+
+.coordmarker {
+  margin: 0.5em;
+  position: fixed; }
+
+.longwraper {
+  height: 3300px; }

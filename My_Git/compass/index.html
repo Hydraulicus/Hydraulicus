@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/libs.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="wraper" class="longwraper">
+    <div id="screens" class="screens">
+    </div>
+    <p id="scrollvol" class="coordmarker">0</p>
+</div>
+<script src="js/libs.min.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+    initAnimation ([
+        {
+            number: 1
+            , targetDiv: "screens"
+            , pathTosvgFile: "img/svg/screen1-6.ver2.svg"
+            , viewBox: "1160 40 2600 1450"
+            , sizeOfScroll: 0 //0 - this screen is fixed
+            , minscrollimit: 0
+            , maxscrollimit: 200
+            , animObj: {} //objects which should be moved
+        },
+        {
+            number: 3
+            , targetDiv: "screens"
+            , pathTosvgFile: "img/svg/screen3-4/screen3-4.svg"
+            , viewBox: "555 500 1400 1040"
+            , sizeOfScroll: 1600 //px, size of move according global scroll
+            , minscrollimit: 1500
+            , maxscrollimit: 4000
+    }
+    ]);
+</script>
+
+</body>
+</html>
