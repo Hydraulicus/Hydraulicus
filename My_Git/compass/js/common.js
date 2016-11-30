@@ -1,7 +1,7 @@
 'use strict'
 
 function initAnimation(obj) {
-    console.clear();
+
     var SnapSVG = Snap("#" + obj[0].targetDiv);
     var scrollCounter = document.querySelector("#scrollvol");
     window.onscroll = function () {
