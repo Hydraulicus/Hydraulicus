@@ -14,14 +14,16 @@ body {
   display: none; }
 
 .screens {
-  margin: 0.5em;
+  margin: 0px;
   position: fixed;
   width: 100%;
-  height: 640px; }
+  height: 100%; }
 
 .coordmarker {
   margin: 0.5em;
   position: fixed; }
 
 .longwraper {
-  height: 3300px; }
+  height: 3300px;
+  margin: 0px;
+  padding: 0px; }

@@ -7,32 +7,40 @@
 </head>
 <body>
 <div id="wraper" class="longwraper">
-    <div id="screens" class="screens">
-    </div>
+    <svg id="screens" class="screens"></svg>>
+    <!--<div id="screens" class="screens"></div>-->
+    <!--<div id="screen1" class="screens"></div>-->
+    <!--<div id="screen2" class="screens"></div>-->
+    <!--<div id="screen3" class="screens"></div>-->
     <p id="scrollvol" class="coordmarker">0</p>
 </div>
 <script src="js/libs.min.js"></script>
+<script src="js/functions.js"></script>
 <script src="js/common.js"></script>
+
 <script type="text/javascript">
     initAnimation ([
         {
             number: 1
             , targetDiv: "screens"
-            , pathTosvgFile: "img/svg/screen1-6.ver2.svg"
-            , viewBox: "1160 40 2600 1450"
+            , pathTosvgFile: "img/svg/screen1/screen_1.svg"
             , sizeOfScroll: 0 //0 - this screen is fixed
             , minscrollimit: 0
-            , maxscrollimit: 200
-            , animObj: {} //objects which should be moved
+            , maxscrollimit: 300
+            , animObj: [{ id : "", path : "", transform : ""}] //objects which should be moved
+            , fade_in: [{opacity: 1}] //action when screen appearing
+            , fade_out: [{opacity: 0}] //action when screen have to disappear
         },
         {
             number: 3
             , targetDiv: "screens"
-            , pathTosvgFile: "img/svg/screen3-4/screen3-4.svg"
-            , viewBox: "555 500 1400 1040"
-            , sizeOfScroll: 1600 //px, size of move according global scroll
-            , minscrollimit: 1500
-            , maxscrollimit: 4000
+            , pathTosvgFile: "img/svg/screen3/screen_3.svg"
+            , sizeOfScroll: 2999 //px, size of move according global scroll
+            , minscrollimit: 301
+            , maxscrollimit: 2300
+            , animObj: [{ id : "", path : "", transform : ""}] //objects which should be moved
+            , fade_in: [{opacity: 1}] //action when screen appearing
+            , fade_out: [{opacity: 0}] //action when screen have to disappear
     }
     ]);
 </script>
