@@ -1,55 +1,54 @@
-  <!DOCTYPE HTML>	
-  <head>
+<!DOCTYPE HTML>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="author" content="Alexei Zababurin" />
+    <meta name="author" content="Alexei Zababurin"/>
     <meta name="description" content=" JS. SVG. animation.  SVG-animation. "/>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta property="og:title" content="Alexei Zababurin animation for Walid Ammar"/>
     <meta property="og:site_name" content="Alexei Zababurin animation for Walid Ammar"/>
     <meta property="og:description" content="Alexei Zababurin animation for Walid Ammar"/>
-      <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <title>Alexei Zababurin animation for Walid Ammar</title>
     <style>
 
     </style>
-  </head>
-  <body>
-  <div class="">
+</head>
+<body>
+<div class="">
 
-      <div id="dubai" class="limits opacityanimation " ></div>
-      <div id="close_up" class="limits opacityanimation invisible"></div>
-      <div class="dubainavo">
-          <div id="closebutton" class="viewbutton activeviewbutton">
-              <span>Close view</span>
-          </div>
-          <!--<button id="closebutton" class="viewbutton activeviewbutton">Close view</button>-->
-      </div>
+    <div id="dubai" class="limits opacityanimation "></div>
+    <div id="close_up" class="limits opacityanimation invisible"></div>
+    <div class="dubainavo">
+        <div id="closebutton" class="viewbutton activeviewbutton">
+            <span>Close view</span>
+        </div>
+    </div>
 
-  </div>
-     <script src="js/snap.svg-min.js"></script>
-     <script src="js/animation.js"></script>
-     <script type="text/javascript">
-       initAnimation([
-           {
-               svgWrap : "#dubai"
-               , pathTosvgFile : "svg/map-03_2.svg"
-               , AnimTime : [500, 1000, 1200] //ms, time of tracks animation
-               , animated : true // true or false. if true animation plays right after map drawing. Or you can actuate animation by calling function "performOfWhollMap()" when you need.
-           },
+</div>
+<script src="js/snap.svg-min.js"></script>
+<script src="js/animation.js"></script>
+<script type="text/javascript">
+    initAnimation([
+        {
+            svgWrap: "#dubai"
+            , pathTosvgFile: "svg/map-03_2.svg"
+            , AnimTime: [500, 1000, 1200] //ms, time of tracks animation
+            , animated: true // true or false. if true animation plays right after map drawing. Or you can actuate animation by calling function "performOfWhollMap()" when you need.
+        },
 
-       {
-             svgWrap : "#close_up"
-           , pathTosvgFile : "svg/close_up_.svg"
-           , AnimTime : [800, 1000, 2200, 300] //ms, time of tracks animation
-           , animated : false
-       }
-       ])
-         buttonInit("closebutton");
-     </script>
-  </body>
+        {
+            svgWrap: "#close_up"
+            , pathTosvgFile: "svg/close_up_.svg"
+            , AnimTime: [800, 1000, 2200, 300] //ms, time of tracks animation
+            , animated: false
+        }
+    ])
+    buttonInit("closebutton");
+</script>
+</body>
   
 

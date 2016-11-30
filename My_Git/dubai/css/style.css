@@ -1,21 +1,23 @@
-.closebutton{
-    width:16rem;
+.closebutton {
+    width: 16rem;
     height: 2.5rem;
 }
+
 .dubainavo {
     z-index: 9999;
     position: absolute;
     top: 0px;
     left: 0px;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
+
 .viewbutton {
     z-index: 9990;
     display: block;
     /*position: fixed;*/
     /*top: 60px;*/
     /*left: 80px;*/
-    margin-top: 60px;
+    margin-top: 35px;
     margin-left: 80px;
     background-color: #c9c6c3;
     color: #3f424d;
@@ -27,31 +29,35 @@
     border: 0px;
     text-align: center;
 }
+
 .activeviewbutton {
     background-color: #e84353;
     color: #c9c7c3;
-    font-family: 'kelson_sansregular',sans-serif;
+    font-family: 'kelson_sansregular', sans-serif;
 }
+
 #close_up {
     z-index: 25;
     position: absolute;
-    top: 25px;
+    top: 0px;
     left: 0px;
     bottom: 0px;
     right: 0px;
 }
+
 #dubai {
     z-index: 21;
     position: absolute;
-    top: 25px;
+    top: 0px;
     left: 0px;
     bottom: 0px;
     right: 0px;
 }
-.limits{
+
+.limits {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .opacityanimation {
@@ -67,5 +73,5 @@
 }
 
 .invisible {
-     opacity: 0;
- }
+    opacity: 0;
+}
