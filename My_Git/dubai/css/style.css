@@ -1,22 +1,3 @@
-/*.flex-container{*/
-    /*padding: 0;*/
-    /*margin: 0;*/
-    /*list-style: none;*/
-
-    /*display: -webkit-box;*/
-    /*display: -moz-box;*/
-    /*display: -ms-flexbox;*/
-    /*display: -webkit-flex;*/
-    /*display: flex;*/
-
-    /*-webkit-flex-flow: row nowrap;*/
-    /*justify-content: space-around;*/
-/*}*/
-/*.flex-item {*/
-    /*padding: 5px;*/
-    /*margin-top: 10px;*/
-    /*flex: 1 100%;*/
-/*}*/
 .closebutton{
     width:16rem;
     height: 2.5rem;
@@ -29,11 +10,13 @@
     overflow: hidden;
 }
 .viewbutton {
-    position: fixed;
-    top: 60px;
-    z-index: 31;
-    left: 80px;
+    z-index: 9990;
     display: block;
+    /*position: fixed;*/
+    /*top: 60px;*/
+    /*left: 80px;*/
+    margin-top: 60px;
+    margin-left: 80px;
     background-color: #c9c6c3;
     color: #3f424d;
     vertical-align: middle;
