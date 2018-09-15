@@ -1,0 +1,68 @@
+<svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-colorable="special_text" viewBox="107.5 19 238.5 128" preserveAspectRatio="xMidYMid meet" style="background-color:#fff;">
+	<style type="text/css">
+			<![CDATA[
+					@font-face {
+					    font-family: 'swiss_condensed';
+					    src: url('http://richardsoncap.magentostaging.com/customizer/fonts/swz721bc.woff2') format('woff2'),
+					         url('http://richardsoncap.magentostaging.com/customizer/fonts/swz721bc.woff') format('woff'),
+					         url('http://richardsoncap.magentostaging.com/customizer/fonts/swz721bc.ttf') format('truetype');
+					    font-weight: normal;
+					    font-style: normal;
+					}
+					@font-face {
+					    font-family: 'condensed_block';
+					    src: url('http://richardsoncap.magentostaging.com/customizer/fonts/aoalpha0.woff2') format('woff2'),
+					         url('http://richardsoncap.magentostaging.com/customizer/fonts/aoalpha0.woff') format('woff');
+					    font-weight: normal;
+					    font-style: normal;
+					}
+					#layout svg {
+					overflow: visible;
+				}
+					]]>
+	</style>
+
+
+	<svg id="graphic-wrapper" viewBox="0 0 215 140" x="119px" y="13px" width="215px" height="140px" >
+
+		<svg id="graphic-1" x="0px" y="0px" viewBox="0 37 215 10"  xml:space="preserve" data-colorable="mascot" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+					<!--<rect x="0" y="0" width="100%" height="100%" stroke="gold" fill="rgba(250,100,20,0.5)" />-->
+					<path id="color-1" class="drag-target color-1" fill="#0B162E" d="M215.1,10.3H0.5v2.4h214.6V6.4z"/>
+					<path id="color-2" class="drag-target color-2" fill="#B82026" d="M215.1,5H0.5v2.4h214.6V1.1z"/>
+        </svg>
+
+		<svg id="graphic-2" x="0px" y="69px" viewBox="0 37 215 8" xml:space="preserve" data-colorable="mascot" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+
+			<path id="color-1" class="drag-target color-1" fill="#0B162E" d="M215,2.4H0.5v-2.4h214.6V0.8z"/>
+			<path id="color-2" class="drag-target color-2" fill="#B82026" d="M215,7.9H0.5v-2.4h214.6V6.1z"/>
+
+        </svg>
+
+	</svg>
+
+	<!--<svg id="graphic-wrapper" viewBox="0 0 116 80" x="147px" y="46px" width="159px" height="73px">-->
+		<!--&lt;!&ndash;<rect x="0" y="0" width="100%" height="100%" stroke="purple" opacity="0.5"  fill="transparent" />&ndash;&gt;-->
+		<!--<svg id="graphic" x="0px" y="0px" viewBox="0 0 215 73" preserveAspectRatio="xMidYMid slice" xml:space="preserve" data-colorable="mascot" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">-->
+
+
+			<!--<path id="color-1" class="drag-target color-1" fill="cyan" opacity="0.5" d="M215.1,2.4H0.5v-2.4h214.6V50.8z M215.1,70.3H0.5v2.4h214.6V116.4z"/>-->
+			<!--<path id="color-2" class="drag-target color-2" fill="magenta" opacity="0.5" d="M215.1,7.9H0.5v-2.4h214.6V56.1z M215.1,65H0.5v2.4h214.6V111.1z"/>-->
+
+        <!--</svg>-->
+	<!--</svg>-->
+
+
+
+	<svg id="top_text-wrapper" class="draggable" preserveAspectRatio="xMidYMax meet">
+		<text id="top_text" data-name="top_text" data-text-max="10" class="top_text text drag-target" x="227" y="41.8" text-anchor="middle" fill="#0B162E" font-family="swiss_condensed" stroke="#0B162E" stroke-width="0px" font-size="28px" letter-spacing="0.3">FREMONT</text>
+	</svg>
+
+	<svg id="main_text-wrapper" class="draggable" preserveAspectRatio="xMidYMin meet">
+		<text id="main_text" data-name="main_text" data-text-max="6" class="main_text text drag-target" x="226.5" y="107.4" text-anchor="middle" fill="#0B162E" font-family="condensed_block" font-size="53.9px" letter-spacing="1">TIGERS</text>
+	</svg>
+
+	<svg id="bottom_text-wrapper" class="draggable" preserveAspectRatio="xMidYMin meet">
+		<text id="bottom_text" data-name="bottom_text" data-text-max="8" class="bottom_text text drag-target" x="227" y="144.3" text-anchor="middle" fill="#0B162E" font-family="swiss_condensed" font-size="28px">FOOTBALL</text>
+	</svg>
+
+</svg>

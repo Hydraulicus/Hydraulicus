@@ -1,0 +1,45 @@
+<svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-colorable="special_text" viewBox="115 15 219 132" preserveAspectRatio="xMidYMid meet" style="background-color:#fff;">
+	<defs>
+		<style type="text/css">
+			<![CDATA[
+			#layout svg {
+					overflow: visible;
+				}
+				@font-face {
+					font-family: 'pro_block';
+					src: 
+						url('http://richardsoncap.magentostaging.com/customizer/fonts/pro_block.ttf') format('truetype'),
+						url('http://richardsoncap.magentostaging.com/customizer/fonts/pro_block.woff2') format('woff2'),
+						url('http://richardsoncap.magentostaging.com/customizer/fonts/pro_block.woff') format('woff2');
+					font-weight: regular;
+					}
+				@font-face {
+					    font-family: 'plain';
+					    src: 
+							url('http://richardsoncap.magentostaging.com/customizer/fonts/plain.woff2') format('woff2'),
+							url('http://richardsoncap.magentostaging.com/customizer/fonts/plain.woff') format('woff2');
+					    font-weight: normal;
+					    font-style: normal;
+					}
+]]>
+		</style>
+	</defs>
+
+	<svg id="graphic-wrapper" viewBox="0 0 215 20" x="0px" y="115px" width="215px" height="20px">
+		<svg id="graphic" x="0px" y="0px" viewBox="0 115 215 20" preserveAspectRatio="xMidYMid meet" xml:space="preserve" data-colorable="graphic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+ 			<path id="color-1" class="drag-target color-1" fill="#0B162E" d="M135.6,111.2c30.4,0,60.8,0,91.1,0s60.8,0,91.1,0c-1,1-2,2-2.9,2.9s-1.9,2-2.9,2.9c-28.5,0-57,0-85.4,0c-28.4,0-56.8,0-85.3,0c-1-1-1.9-2-2.9-2.9C137.5,113.1,136.6,112.1,135.6,111.2L135.6,111.2z"/>
+        </svg>
+	</svg>
+
+	<svg id="main_text-wrapper" class="draggable" x="107" y="71" width="245px" height="45px" preserveAspectRatio="xMidYMin meet" >
+		<text id="main_text" data-name="main_text" data-text-max="10" class="main_text text drag-target" x="121.5" y="32" text-anchor="middle" stroke-width="4" stroke="#F5831E" font-family="pro_block" font-size="107.5" fill="#040404" letter-spacing="5">CHS</text>
+	</svg>
+
+	<svg id="bottom_text-wrapper" class="draggable" x="107" y="112.2" width="245px" height="45px" preserveAspectRatio="xMidYMin meet" >
+		<text id="bottom_text" data-name="bottom_text" data-text-max="10" class="bottom_text text drag-target" x="118.1" y="32" text-anchor="middle" stroke-width="0" stroke="#040404" fill="#040404" font-family="plain" font-size="20.2px" letter-spacing="3.1">BULLDOGS</text>
+	</svg>
+
+</svg>
+
+
+

@@ -1,0 +1,62 @@
+<svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     data-colorable="special_text" viewBox="62 19 330 134" preserveAspectRatio="xMidYMid meet"
+     style="background-color:#fff;">
+    <defs>
+        <style type="text/css">
+            <![CDATA[
+            #layout svg {
+					overflow: visible;
+				}
+				 @font-face {
+							font-family: 'city_block';
+							src: url('http://richardsoncap.magentostaging.com/customizer/fonts/cityb.woff') format('woff'),
+								 url('http://richardsoncap.magentostaging.com/customizer/fonts/cityb.woff2') format('woff2'),
+								 url('cityb.woff') format('woff'),
+								 url('cityb.woff2') format('woff2');
+							font-weight: bold;
+							}
+			]]>
+        </style>
+        <!--<path id="SVGID_x5F_1_x5F_" fill="none" stroke="red" stroke-width="1px"-->
+              <!--d="M51.772,109.259c24.287-28.466,95.802-47.933,176.085-47.933 c77.819,0,147.667,18.291,173.915,45.544"/>-->
+    </defs>
+
+    <svg id="mascot-wrapper" viewBox="10 19 310 134" x="66.5px" y="25.5px" width="330px" height="145px">
+        <svg id="mascot-1" class="draggable" viewBox="68 0 285 40" x="0" y="0" width="100%" height="100%">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="mascot-1" x="62px" y="0px" width="330px" height="54px" viewBox="50 59 380 54"  preserveAspectRatio="xMidYMid meet" xml:space="preserve" data-colorable="mascot">
+			<path id="color-1" fill="#B82026" stroke="#B82026" stroke-width="0px" d="M170.2,75.3l-3.4,10.2c2.6-0.3,4.8-0.6,6.6-0.8l0.6,4.2v0.3l0.2,0.9v0.1l0.8,5.6c-2.9,0.3-5.4,0.6-7.3,0.8
+		l-0.7,0.1l3.7,8.2c-4.4,0.6-8.6,1.1-12.7,1.8l-5.7-12.7l-0.8-1.8l0.7-1.9l4.4-13.1C161.1,76.5,165.7,75.8,170.2,75.3L170.2,75.3z
+		 M300.4,87.4c32.2,5.5,60.7,14.4,83.5,25.8c-25.1-7-53.6-12.4-84.4-15.7l-4,9.1c-4.2-0.7-8.5-1.2-12.7-1.8l6-13.3l-5.6-16.3
+		c4.7,0.6,9.3,1.2,13.8,1.9L300.4,87.4z M193.6,82.9l0.3-0.1c2.3-0.1,4.9-0.2,7.8-0.4l0.3,5.6v5.7c-2.2,0.1-4.6,0.2-7.3,0.4l-1.2,0.1
+		l2,8.4c-4.2,0.2-8.4,0.6-12.5,1l-3-12.7l-0.2-0.9l0.1-1l2.6-15c4.2-0.4,8.5-0.8,12.7-1L193.6,82.9z M220.5,81.7l0.4-0.1
+		c2.1,0,4.2,0,6.4,0v11.2c-2,0-4,0-6.2,0.1h-0.7v8.6c-4.2,0.1-8.4,0.2-12.5,0.3V72.2c4.1-0.2,8.3-0.3,12.5-0.3V81.7z M245.7,82l2,0.1
+		c2.2,0,4.4,0.1,6.4,0.2l1,5.7l-0.2,2.5l-0.7,3.1c-2.6-0.1-4.9-0.2-7-0.3l-1.5-0.1v8.7c-4.2-0.1-8.4-0.2-12.6-0.3V71.9
+		c4.2,0,8.4,0.1,12.6,0.3V82z M272.7,83.6c1.2,0.1,2.3,0.2,3.4,0.3c1.3,0.1,2.9,0.3,4.7,0.6l2,5.8l-0.2,1.6l-1.7,3.9
+		c-1.8-0.2-3.8-0.4-6.2-0.7l-2.1-0.2l-1.9,8.6c-4.1-0.3-8.4-0.7-12.5-1l2.9-13l-3-16.7c4.4,0.2,8.6,0.6,12.9,1L272.7,83.6z
+		 M146.6,98.4c-28,3.4-53.9,8.4-77.1,14.9c21.2-10.7,47.5-19.1,77.1-24.7l-0.4,2.5l-0.6,3.2l0.8,3.1L146.6,98.4z"/>
+
+		</svg>
+        </svg>
+    </svg>
+
+    <svg id="top_text-wrapper" class="draggable" preserveAspectRatio="xMidYMax meet" x="50.5px" y="5px" width="330px"
+         height="120px" viewBox="50 21 330 104">
+        <defs>
+            <path id="text_curve" stroke-width="1.5px" stroke="red" fill="none"
+                  d="M51.772,109.259c24.287-28.466,95.802-47.933,176.085-47.933 c77.819,0,147.667,18.291,173.915,45.544"/>
+        </defs>
+        <text text-anchor="middle">
+            <textPath id="top_text" data-name="top_text" data-text-max="12" class="top_text text drag-target"
+                      xlink:href="#text_curve" fill="#040404" font-family="city_block" stroke="#040404"
+                      stroke-width="0px" font-size="55px" text-anchor="middle" startOffset="50%" letter-spacing="1"
+                      stroke-miterlimit="10">BLUE RIDGE
+            </textPath>
+        </text>
+    </svg>
+
+
+    <svg id="bottom_text-wrapper" class="draggable" x="103" y="104" viewBox="62 19 330 50" preserveAspectRatio="xMidYMin meet">
+        <text id="bottom_text" data-name="bottom_text" data-text-max="12" class="bottom_text text drag-target"  x="184" y="65.7" fill="#040404" font-family="city_block" stroke="#040404" stroke-width="0px" font-size="49.13px" text-anchor="middle" letter-spacing="0.5">FOOTBALL</text>
+    </svg>
+
+</svg>

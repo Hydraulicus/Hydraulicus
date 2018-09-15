@@ -1,0 +1,40 @@
+<svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-colorable="special_text" viewBox="93 10 266 150" preserveAspectRatio="xMidYMid meet" style="background-color:#fff;">
+	 <defs>
+		<style type="text/css">
+			<![CDATA[
+				#layout svg {
+					overflow: visible;
+				}
+						@font-face {
+						    font-family: 'heritage';
+						    src: url('http://richardsoncap.magentostaging.com/customizer/fonts/BebasKai-Regular.otf') format('otf'),
+						    	 url('http://richardsoncap.magentostaging.com/customizer/fonts/bebaskai-regular.woff2') format('woff2'),
+						    	 url('http://richardsoncap.magentostaging.com/customizer/fonts/bebaskai-regular.woff') format('woff');
+						    font-weight: normal;
+						    font-style: normal;
+						}
+		]]>
+		</style>
+</defs>
+
+	<svg id="top_text-wrapper" class="draggable" x="107.7" y="17.6" width="245px" height="45px" preserveAspectRatio="xMidYMin meet" >
+		<text id="top_text" data-name="top_text" data-text-max="10" class="top_text text drag-target" x="118.1" y="32" text-anchor="middle" fill="#0B162E" font-family="heritage" font-size="28.12px" letter-spacing="2">MARYVILLE</text>
+	</svg>
+
+	<svg id="top_text-wrapper" class="draggable" x="107.7" y="74.2" width="245px" height="45px" preserveAspectRatio="xMidYMin meet" >
+		<text id="top_text" data-name="top_text" data-text-max="10" class="top_text text drag-target" x="116.5" y="32" text-anchor="middle" fill="#B82026" font-family="heritage" font-size="65.6px" letter-spacing="5.2">BULLDOGS</text>
+	</svg>
+
+	<svg id="bottom_text-wrapper" class="draggable" x="107.7" y="108.7" width="245px" height="45px" preserveAspectRatio="xMidYMin meet" >
+		<text id="bottom_text" data-name="bottom_text" data-text-max="10" class="bottom_text text drag-target" x="118.1" y="32" text-anchor="middle" fill="#0B162E" font-family="heritage" font-size="28.12px" letter-spacing="2.2">SINCE 1954</text>
+	</svg>
+
+	<svg id="graphic-wrapper" viewBox="0 0 215 73" x="0px" y="0px" width="215px" height="100px">
+		<svg id="graphic" x="0px" y="0px" viewBox="0 13.5 215 73" preserveAspectRatio="xMidYMid meet" xml:space="preserve" data-colorable="graphic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+ 			<path id="color-1" class="drag-target color-1" fill="#0B162E" d="M344.9,123.6v14.1c0,7.2-5.8,12.4-12.6,13.4c-35,4.9-70.1,7.7-105.5,7.7s-70.4-2.7-105.3-7.7 	c-6.8-0.9-12.8-6.2-12.8-13.4v-14.1l7-1v15.1c0,3.2,2.9,5.9,6.7,6.5c36.1,5.1,70.2,7.5,104.4,7.5s68.3-2.4,104.5-7.6 c3.9-0.5,6.7-3.2,6.7-6.4v-15.1L344.9,123.6z"/>
+			<path id="color-2" class="drag-target color-2" fill="#B82026" d="M332.2,19c6.8,0.9,12.7,6.2,12.7,13.4v14.1l-7,1V32.4c0-3.2-2.9-5.9-6.7-6.5c-36.1-5.1-70.2-7.6-104.4-7.6 	s-68.3,2.5-104.5,7.6c-3.9,0.6-6.7,3.3-6.7,6.5v15.1l-7-1V32.4c0-7.2,5.8-12.5,12.6-13.4c35-5,70.1-7.7,105.5-7.7S297.2,14,332.2,19	L332.2,19z"/>
+        </svg>
+	</svg>
+
+
+</svg>

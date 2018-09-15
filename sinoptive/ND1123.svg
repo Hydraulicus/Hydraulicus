@@ -1,0 +1,28 @@
+<svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-colorable="special_text" viewBox="97 31 246 113" preserveAspectRatio="xMidYMid meet" style="background-color:#fff;">
+	 <defs>
+		<style type="text/css">
+			<![CDATA[
+				#layout svg {
+					overflow: visible;
+				}
+				@font-face {
+						    font-family: 'heritage';
+						    src: url('http://richardsoncap.magentostaging.com/customizer/fonts/BebasKai-Regular.otf') format('otf'),
+						    	 url('http://richardsoncap.magentostaging.com/customizer/fonts/bebaskai-regular.woff2') format('woff2'),
+						    	 url('http://richardsoncap.magentostaging.com/customizer/fonts/bebaskai-regular.woff') format('woff');
+						    font-weight: normal;
+						    font-style: normal;
+						}	
+				]]>
+	</style>
+</defs>
+	<svg id="main_text-wrapper" class="draggable" x="108.4" y="17.5" width="145px" height="55px" preserveAspectRatio="xMidYMin meet" >
+		<text id="main_text" data-name="main_text" data-text-max="10" class="main_text text drag-target" x="0" y="40" text-anchor="start" fill="#0B162E" font-family="heritage" font-size="33.7px" letter-spacing="0.5">MAVERICKS</text>
+	</svg>
+	<svg id="main_text-wrapper" class="draggable" x="106.2" y="36" width="245px" height="85px" preserveAspectRatio="xMidYMin meet" >
+		<text id="main_text" data-name="main_text" data-text-max="10" class="main_text text drag-target" x="0" y="75" text-anchor="start" fill="#B82026" font-family="heritage" font-size="67.61px" letter-spacing="0.1">BULLDOGS</text>
+	</svg>
+	<svg id="bottom_text-wrapper" class="draggable" x="108.4" y="109.4" width="245px" height="45px" preserveAspectRatio="xMidYMin meet" >
+		<text id="bottom_text" data-name="bottom_text" data-text-max="14" class="bottom_text text drag-target" x="0" y="32" text-anchor="start" fill="#0B162E" font-family="heritage" font-size="33.7px" letter-spacing="0.3">EST. 1879</text>
+	</svg>
+</svg>

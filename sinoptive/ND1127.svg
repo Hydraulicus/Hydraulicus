@@ -1,0 +1,28 @@
+<svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-colorable="special_text" viewBox="92 15 269 150" preserveAspectRatio="xMidYMid meet" style="background-color:#fff;">
+	 <defs>
+		<style type="text/css">
+			<![CDATA[
+			#layout svg {
+					overflow: visible;
+				}
+				 @font-face {
+							font-family: 'city_block';
+							src: url('http://richardsoncap.magentostaging.com/customizer/fonts/cityb.woff') format('woff'),
+								 url('http://richardsoncap.magentostaging.com/customizer/fonts/cityb.woff2') format('woff2');
+							font-weight: bold;
+							}
+			]]>
+		</style>
+</defs>
+	<svg id="letter_text-wrapper" class="draggable" x="223" y="-46" width="245px" height="245px" preserveAspectRatio="xMidYMin meet" >
+		<text id="letter_text" data-name="letter_text" data-outline="true" data-text-max="1" class="letter_text text drag-target" x="0" y="200" stroke-miterlimit="10" fill="none" font-family="city_block" stroke="#BDBDC0" stroke-width="7px" font-size="191.8px" text-anchor="middle" letter-spacing="2">W</text>
+	</svg>
+	<svg id="main_text-wrapper" class="draggable" preserveAspectRatio="xMidYMax meet">
+		<defs>
+			<path id="text_curve" stroke-width="1.5px" stroke="red" fill="none" d="M78.804,149.254c20.536-24.068,81.004-40.529,148.885-40.529c65.798,0,124.857,15.466,147.051,38.508"/>
+		</defs>
+		<text text-anchor="middle">
+			<textPath id="main_text" data-name="main_text" data-text-max="12" class="main_text text drag-target" xlink:href="#text_curve" fill="#B82026" font-family="city_block" stroke="#0B162E" stroke-width="3px" font-size="73.7px" text-anchor="middle" startOffset="50%" letter-spacing="1" stroke-miterlimit="10" >TIGERS</textPath>
+		</text>
+	</svg>
+</svg>

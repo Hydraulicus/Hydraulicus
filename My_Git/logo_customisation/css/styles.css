@@ -1,0 +1,49 @@
+.visibility_hid {
+    visibility: hidden
+}
+
+@font-face {
+    font-family: 'GrandHotel-Regular';
+    src: url(./../fonts/GrandHotel-Regular.ttf) format('truetype');
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'AtomicAge-Regular';
+    src: url(./../fonts/AtomicAge-Regular.ttf) format('truetype');
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'Bahiana-Regular';
+    src: url(./../fonts/Bahiana-Regular.ttf) format('truetype');
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'BerkshireSwash-Regular';
+    src: url(./../fonts/BerkshireSwash-Regular.ttf) format('truetype');
+    font-weight: normal;
+}
+
+.bg {
+    font-size: 12px;
+    font-family: arial, roboto;
+    background-color: #aaa;
+}
+
+.svgwapper {
+    width: 90%;
+    height: auto;
+    max-width: 1920px;
+    margin: 1% auto;
+}
+
+.container {
+    display: flex;
+}
+
+.flex-item {
+    margin: 10px;
+    padding: 5px;
+    background: #eee;
+    border-radius: 8px;
+    border: 2px solid #FFF;
+}

@@ -1,0 +1,44 @@
+<svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 203.5 130.1" xml:space="preserve"  preserveAspectRatio="xMidYMid meet">
+	 <defs>
+        <style type="text/css">
+            <![CDATA[
+				#layout svg {
+					overflow: visible;
+				}
+					@font-face {
+						font-family: 'pro_block';
+						src:
+						    url('http://richardsoncap.magentostaging.com/customizer/fonts/pro_block.ttf') format('truetype'),
+						    url('http://richardsoncap.magentostaging.com/customizer/fonts/pro_block.woff2') format('woff2'),
+						    url('http://richardsoncap.magentostaging.com/customizer/fonts/pro_block.woff') format('woff2');
+						font-weight: regular;
+					}
+					@font-face {
+				    font-family: 'heritage';
+				    src: url('http://richardsoncap.magentostaging.com/customizer/fonts/BebasKai-Regular.otf') format('otf'),
+				    	 url('http://richardsoncap.magentostaging.com/customizer/fonts/bebaskai-regular.woff2') format('woff2'),
+				    	 url('http://richardsoncap.magentostaging.com/customizer/fonts/bebaskai-regular.woff') format('woff');
+				    font-weight: normal;
+				    font-style: normal;
+				}
+			]]>
+        </style>
+    </defs>
+
+    <svg id="letter_text-wrapper" class="draggable"  >
+		<text id="letter_text" data-name="letter_text" data-outline="true" data-text-max="1" class="letter_text text drag-target" x="104" y="124" stroke-miterlimit="10" font-family="pro_block" fill="#DD2825" stroke="#0B162E" stroke-width="3.1" font-size="82.5px" text-anchor="middle" letter-spacing="2">E</text>
+	</svg>
+
+      <svg id="top_text-wrapper" class="draggable" preserveAspectRatio="xMidYMax meet" >
+          <defs>
+           <path id="text_curve" stroke-width="1.5px" stroke="black" fill="none" d="M-7,109.4c10.2-88.3,208-88.2,218,0" />
+          </defs>
+        <text text-anchor="middle">
+            <textPath id="top_text" data-name="top_text" data-text-max="8" class="top_text text drag-target"
+                      xlink:href="#text_curve" fill="#DD2825" font-family="heritage" stroke="#DD2825"
+                      stroke-width="0px" font-size="55.8px"  startOffset="50%" letter-spacing="0"
+                      stroke-miterlimit="10">FREMONT</textPath></text>
+    </svg>
+
+</svg>

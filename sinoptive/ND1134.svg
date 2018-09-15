@@ -1,0 +1,49 @@
+<svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     data-colorable="special_text" viewBox="75 4 303 157" preserveAspectRatio="xMidYMid meet"
+     style="background-color:#fff;">
+    <defs>
+        <style type="text/css">
+            <![CDATA[
+						#layout svg {
+					overflow: visible;
+				}
+				 @font-face {
+							font-family: 'city_block';
+							src: url('http://richardsoncap.magentostaging.com/customizer/fonts/cityb.woff') format('woff'),
+								 url('http://richardsoncap.magentostaging.com/customizer/fonts/cityb.woff2') format('woff2'),
+								 url('cityb.woff') format('woff'),
+								 url('cityb.woff2') format('woff2');
+							font-weight: bold;
+							}
+				 @font-face {
+							font-family: 'accelerator';
+			            	src: url('http://richardsoncap.magentostaging.com/customizer/fonts/accelerator_richardson.woff2') format('woff2'),
+				            	url('http://richardsoncap.magentostaging.com/customizer/fonts/accelerator_richardson.woff') format('woff'),
+								url('accelerator_ricahrdson.woff2') format('woff2'),
+	         					url('accelerator_ricahrdson.woff') format('woff');
+							font-weight: bold;
+							}
+}
+			]]>
+        </style>
+    </defs>
+
+    <svg id="letter_text-wrapper" class="draggable" x="223" y="-46" width="245px" height="245px"
+         preserveAspectRatio="xMidYMin meet">
+        <text id="main_text" data-name="letter_text" data-outline="true" data-text-max="1"
+              class="letter_text text drag-target" transform="matrix(1.1258 1.223810e-002 -0.3586 0.9335 0 0)"
+              x="50.5" y="211.5" stroke-miterlimit="10" fill="none" font-family="city_block" stroke="#CB9E59"
+              stroke-width="8px" font-size="224.2px" text-anchor="middle"
+              letter-spacing="2">D
+        </text>
+    </svg>
+
+    <svg id="main_text-wrapper" class="draggable" x="227" y="103" preserveAspectRatio="xMidYMin meet">
+        <text id="main_text" data-name="main_text" data-text-max="12" class="main_text text drag-target" fill="#0B162E"
+              font-family="accelerator" stroke-width="0px" font-size="39.4px" text-anchor="middle" letter-spacing="1">
+            AGGIES
+        </text>
+    </svg>
+</svg>
+
+

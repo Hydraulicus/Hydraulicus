@@ -1,0 +1,36 @@
+<svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     height="100%" width="100%" viewBox="0 0 800 800"
+     preserveAspectRatio="xMidYMid slice"
+     style="background-color:#fff;">
+    <defs>
+        <path id="SVGID_x5F_1_x5F_" stroke="red" d="M0 650 C 100 750, 700 750, 800 650" />
+    </defs>
+    <g id="SVG_LOGO_CONTOURE_PLACE"></g>
+    <g id="TEXT_PLACE">
+        <text text-anchor="middle">
+            <textPath id="text-11" class="patternText" xlink:href="#SVGID_x5F_1_x5F_" startOffset="50%" text-anchor="middle" font-family="GrandHotel-Regular"
+                      font-size="190"
+                      stroke="#999"
+                      stroke-width="20px"
+                      fill="#222">Elephants</textPath>
+        </text>
+        <text text-anchor="middle">
+            <textPath id="text-12" class="patternText" xlink:href="#SVGID_x5F_1_x5F_" startOffset="50%" text-anchor="middle" font-family="GrandHotel-Regular"
+                      font-size="190"
+                      stroke="#999"
+                      stroke-width="4px"
+                      fill="#222">Elephants</textPath>
+        </text>
+        <!--<path stroke="red" stroke-width="4px" opacity="0.23" fill="none" d="M0 650 C 100 750, 700 750, 800 650" />-->
+        <text id="text-2" class="patternText text-2"
+              x="400" y="80"
+              text-anchor="middle"
+              dominant-baseline = "central"
+              font-family="GrandHotel-Regular"
+              font-size="120"
+              stroke="#999"
+              stroke-width="2px"
+              fill="#222">Hannibal</text>
+    </g>
+    <g id="SVG_LOGO_PLACE"></g>
+</svg>

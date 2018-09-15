@@ -1,0 +1,39 @@
+<svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-colorable="special_text" viewBox="128 25 192 123" preserveAspectRatio="xMidYMid meet" style="background-color:#fff;">
+	 <defs>
+		<style type="text/css">
+			<![CDATA[
+				#layout svg {
+					overflow: visible;
+				}
+		@font-face {
+				    font-family: 'heritage';
+				    src: url('http://richardsoncap.magentostaging.com/customizer/fonts/BebasKai-Regular.otf') format('otf'),
+				    	 url('http://richardsoncap.magentostaging.com/customizer/fonts/bebaskai-regular.woff2') format('woff2'),
+				    	 url('http://richardsoncap.magentostaging.com/customizer/fonts/bebaskai-regular.woff') format('woff');
+				    font-weight: normal;
+				    font-style: normal;
+				}	
+		]]>
+		</style>
+</defs>
+
+	<svg id="graphic-wrapper" viewBox="0 0 170 13" x="137.2px" y="76px" width="170px" height="13px">
+		<svg id="graphic"  class="draggable" x="0px" y="0px" viewBox="0 0 170 13" preserveAspectRatio="xMidYMid meet" xml:space="preserve" data-colorable="graphic" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+			<path id="color-1" class="drag-target color-1" fill="#0B162E" d="M55.5,4.1h-55.5v6.1h55.5V80.1z M170,10.2h-55.5v-6.1h55.5V86.2z"/>
+        </svg>
+	</svg>
+
+	<svg id="top_text-wrapper" class="draggable" x="110.9" y="8" width="245px" height="70px" preserveAspectRatio="xMidYMin meet" >
+		<text id="top_text" data-name="top_text" data-text-max="10" class="top_text text drag-target" x="110.9" y="60" text-anchor="middle" fill="#B82026" font-family="heritage" font-size="56.06px" letter-spacing="0.6">FREMONT</text>
+	</svg>
+
+	<svg id="year_text-wrapper" class="draggable" x="191" y="70.5" preserveAspectRatio="xMidYMin meet" width="70px" height="24px">
+		<text id="year_text" data-name="year_text" data-text-max="4" class="year_text text drag-target" x="31" y="20" text-anchor="middle" fill="#0B162E" font-family="heritage" font-size="22.3px" letter-spacing="2">1894</text>
+	</svg>
+
+	<svg id="bottom_text-wrapper" class="draggable" x="110.9" y="75" width="245px" height="75px" preserveAspectRatio="xMidYMin meet" >
+		<text id="bottom_text" data-name="bottom_text" data-text-max="10" class="bottom_text text drag-target" x="96" y="70" text-anchor="middle" transform="matrix(1.16 0 0 1 0 0)" fill="#B82026" font-family="heritage" font-size="66.14px" letter-spacing="0.6">TIGERS</text>
+	</svg>
+
+
+</svg>

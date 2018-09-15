@@ -1,0 +1,39 @@
+<svg version="1.1" id="layout" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-colorable="special_text" viewBox="109 17 237 128" preserveAspectRatio="xMidYMid meet">
+	 <defs>
+		<style type="text/css">
+			<![CDATA[
+				#layout svg {
+					overflow: visible;
+				}
+				@font-face {
+				    font-family: 'heritage';
+				    src: url('http://richardsoncap.magentostaging.com/customizer/fonts/BebasKai-Regular.otf') format('otf'),
+				    	 url('http://richardsoncap.magentostaging.com/customizer/fonts/bebaskai-regular.woff2') format('woff2'),
+				    	 url('http://richardsoncap.magentostaging.com/customizer/fonts/bebaskai-regular.woff') format('woff');
+				    font-weight: normal;
+				    font-style: normal;
+				}
+		]]>
+		</style>
+</defs>
+	<svg id="top_text-wrapper" class="draggable" preserveAspectRatio="xMidYMax meet" x="109px" y="17px" viewBox="109 17 237 128" >
+		<defs>
+			<path id="text_curve" fill="none" stroke="#0B162E" stroke-width="1" d="M161.1,62.859c9.37-10.982,36.961-18.493,67.934-18.493c30.023,0,56.971,7.057,67.097,17.571" />
+		</defs>
+		<text class="drag-target font_adjust">
+			<textPath id="top_text" data-text-max="7" data-name="top_text" class="top_text text" xlink:href="#text_curve" startOffset="50%" fill="#0B162E" font-family="heritage" font-size="30px" letter-spacing="1" text-anchor="middle">BUFFALO</textPath>
+		</text>
+	</svg>
+
+	<svg id="year_text-wrapper" class="draggable" x="191" y="48.7" preserveAspectRatio="xMidYMin meet" width="70px" height="24px">
+		<text id="year_text" data-name="year_text" data-text-max="4" class="year_text text drag-target" x="35" y="20" text-anchor="middle" fill="#0B162E" font-family="heritage" font-size="22.7px" letter-spacing="2">1894</text>
+	</svg>
+
+	<svg id="main_text-wrapper" class="draggable" x="109.2" y="42.1" width="245px" height="85px" preserveAspectRatio="xMidYMin meet" >
+		<text id="main_text" data-name="main_text" data-text-max="10" class="main_text text drag-target" x="116.5" y="75" text-anchor="middle" fill="#0B162E" font-family="heritage" font-size="56px" letter-spacing="2">MAVERICKS</text>
+	</svg>
+
+	<svg id="bottom_text-wrapper" class="draggable" x="109.2" y="111.1" width="245px" height="45px" preserveAspectRatio="xMidYMin meet" >
+		<text id="bottom_text" data-name="bottom_text" data-text-max="10" class="bottom_text text drag-target" x="116.5" y="32" text-anchor="middle" fill="#0B162E" font-family="heritage" font-size="23.56px" letter-spacing="2">GO.FIGHT.WIN</text>
+	</svg>
+</svg>
