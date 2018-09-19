@@ -1,6 +1,6 @@
 
-let inputBottomText;
-let inputTopText;
+let inputText1;
+let inputText2;
 let targetTopTxt;
 let targetTopTxtOutLine;
 let targetBottomTxt;
@@ -11,10 +11,48 @@ let SVGlogoPlace;
 let SVGlogoContour;
 let SVGlogoContourPlace;
 let SVGlogoContourClone;
-let outLineColor;
+let outLine1InnerColor;
+let outLine2OuterColor;
 let outLineSizeFactor;
 
-outLineColor = "SkyBlue";
+
+const text1 = {
+	id: "text-11",
+	stroke: "",
+	fill: "",
+	outlineColor: "",//id = text1OutlineColor
+	outlineSize: "",
+	text: "",
+	fontSize: "normal",
+};
+const text2 = {
+	id: "text-2",
+	stroke: "",
+	fill: "",
+	outlineColor: "",//id = text2OutlineColor
+	outlineSize: "",
+	text: "",
+	fontSize: "normal",
+};
+const mascot = {
+	id: "",
+	stroke: "",
+	fill: "",
+	outlineColor: "",//id = mascotOutlineColor
+	outlineSize: "",
+	text: "",
+	fontSize: "normal",
+};
+
+const mainOutline = {
+	ids: ["text-12",],
+	class: "mainOutline",
+	fill: "",
+	stroke: "",
+	size: "normal",
+};
+
+outLine2OuterColor = "SkyBlue";
 startOutLineSize = 20;
 outLineSizeFactor = 1;
 
@@ -34,12 +72,34 @@ function choiceFontSize(newFontSizeFactor) {
 	targetTopTxtOutLine.setAttribute("font-size", `${textHeight}px`);
 }
 
-function choiceOutLineColor(newOutLineColor) {
-	outLineColor = newOutLineColor;
-	SVGlogoContourClone.setAttribute("stroke", outLineColor);
-
-	targetTopTxt.setAttribute("stroke", outLineColor);
+function choiceColor({value, targetId}) {
+	outLine2OuterColor = value;
+	// console.log(targetId);
+	const target =  document.getElementById(targetId);
+	target.setAttribute("fill", outLine2OuterColor);
 }
+
+function choiceOutLine1Color(newOutLineColor) {
+	outLine1InnerColor = newOutLineColor;
+
+	console.log(newOutLineColor);
+	// SVGlogoContourClone.setAttribute("stroke", outLine1InnerColor);
+
+	// targetTopTxt.setAttribute("stroke", outLine1InnerColor);
+	targetBottomTxt.setAttribute("stroke", outLine1InnerColor);
+	targetTopTxtOutLine.setAttribute("stroke", outLine1InnerColor);
+}
+
+function choiceOutLine2Color(newOutLineColor) {
+	outLine2OuterColor = newOutLineColor;
+
+	console.log(newOutLineColor);
+	SVGlogoContourClone.setAttribute("stroke", outLine2OuterColor);
+
+	targetTopTxt.setAttribute("stroke", outLine2OuterColor);
+	targetTopTxtOutLine.setAttribute("fill", outLine2OuterColor);
+}
+
 
 async function choiceLogo(newLogo) {
 	const SVGlogo = await loadSVG({
@@ -53,7 +113,7 @@ async function choiceLogo(newLogo) {
 	SVGlogoContour = document.getElementById("SVG_LOGO_CONTOURE").cloneNode(true);
 	SVGlogoContourPlace.appendChild(SVGlogoContour);
 	SVGlogoContourClone = SVGlogoContourPlace.firstChild;
-	SVGlogoContourClone.setAttribute("stroke", outLineColor);
+	SVGlogoContourClone.setAttribute("stroke", outLine2OuterColor);
 	SVGlogoContourClone.setAttribute("stroke-width", `${outLineSizeFactor * startOutLineSize}px`);
 }
 
@@ -75,8 +135,8 @@ async function initialisation ({patternName, logoName}) {// async function loadS
 	SVGlogoContour = document.getElementById("SVG_LOGO_CONTOURE").cloneNode(true);
 	SVGlogoContourPlace = document.getElementById("SVG_LOGO_CONTOURE_PLACE");
 
-	inputBottomText = document.getElementsByTagName('input')[0];
-	inputTopText = document.getElementsByTagName('input')[1];
+
+
 	targetTopTxt = document.getElementById('text-11');
 	targetTopTxtOutLine = document.getElementById('text-12');
 	targetBottomTxt = document.getElementById('text-2');
@@ -86,20 +146,23 @@ async function initialisation ({patternName, logoName}) {// async function loadS
 
 	SVGlogoContourPlace.appendChild(SVGlogoContour);
 	SVGlogoContourClone = SVGlogoContourPlace.firstChild;
-	SVGlogoContourClone.setAttribute("stroke", outLineColor);
+	SVGlogoContourClone.setAttribute("stroke", outLine1InnerColor);
 	SVGlogoContourClone.setAttribute("stroke-width", `${outLineSizeFactor * startOutLineSize}px`);
 
-	targetTopTxt.setAttribute("stroke", outLineColor);
+	targetTopTxt.setAttribute("stroke", outLine2OuterColor);
 
-	inputTopText.onkeyup = function() {
+
+	inputText1 = document.getElementById('inputtxt1');
+	inputText1.onkeyup = function() {
+		var txt = this.value;
+		targetBottomTxt.textContent = txt;
+	};
+
+	inputText2 = document.getElementById('inputtxt2');
+	inputText2.onkeyup = function() {
 		var txt = this.value;
 		targetTopTxt.textContent = txt;
 		targetTopTxtOutLine.textContent = txt;
-	};
-
-	inputBottomText.onkeyup = function() {
-		var txt = this.value;
-		targetBottomTxt.textContent = txt;
 	};
 }
 

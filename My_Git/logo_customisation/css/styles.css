@@ -47,3 +47,8 @@
     border-radius: 8px;
     border: 2px solid #FFF;
 }
+
+.flex-item2 {
+    margin: 2px;
+    padding: 5px;
+}

@@ -18,7 +18,7 @@
             <textPath id="text-12" class="patternText" xlink:href="#SVGID_x5F_1_x5F_" startOffset="50%" text-anchor="middle" font-family="GrandHotel-Regular"
                       font-size="190"
                       stroke="#999"
-                      stroke-width="4px"
+                      stroke-width="6px"
                       fill="#222">Elephants</textPath>
         </text>
         <!--<path stroke="red" stroke-width="4px" opacity="0.23" fill="none" d="M0 650 C 100 750, 700 750, 800 650" />-->
@@ -27,9 +27,9 @@
               text-anchor="middle"
               dominant-baseline = "central"
               font-family="GrandHotel-Regular"
-              font-size="120"
+              font-size="130"
               stroke="#999"
-              stroke-width="2px"
+              stroke-width="5px"
               fill="#222">Hannibal</text>
     </g>
     <g id="SVG_LOGO_PLACE"></g>

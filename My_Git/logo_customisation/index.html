@@ -12,39 +12,117 @@
 <div class="container">
 
     <div class="flex-item">
-        <p>Enter top text:
-            <input id='topinput' type="text" placeholder="Hannibal" value="Hannibal"></p>
-        <p>Enter bottom text:
-            <input id='bottominput' type="text" placeholder="Elephants" value="Elephants"></p>
-        <p>Choice relative font size:
-            <select id="choiceFontSize" size="5" multiple name="size[]" onchange="choiceFontSize(this.value)">
-                <option value="0.75">Small</option>
-                <option value="0.9">Smaller</option>
-                <option selected value="1">Normal</option>
-                <option value="1.08">Bigger</option>
-                <option value="1.25">Big</option>
-            </select>
-        </p>
-        <p>Choice outline thickness:
-            <select id="choiceOutLineSize" size="5" multiple name="outlineSize[]" onchange="choiceOutLineSize(this.value)">
-                <option value="0.5">Narrow</option>
-                <option selected value="1">Normal</option>
-                <option value="1.5">Thickish</option>
-                <option value="2.5">Paunchy</option>
-            </select>
-        </p>
+        <div class="container">
+            <div class="flex-item2">
+                <p>Top text:
+                    <input id='inputtxt1' type="text" placeholder="Hannibal" value="Hannibal"></p>
+                <p>Font
+                    <select id="choiceFont1" size="1" name="font[]" onchange="choiceFont(this.value)">
+                        <option selected value="GrandHotel-Regular">GrandHotel-Regular</option>
+                        <option value="AtomicAge-Regular">AtomicAge-Regular</option>
+                        <option value="Bahiana-Regular">Bahiana-Regular</option>
+                        <option value="BerkshireSwash-Regular">BerkshireSwash-Regular</option>
+                    </select>
+                </p>
+            </div>
+            <div class="flex-item2">
+                <p>Color
+                    <input type="color" id="colortext1" name="color"
+                           value="#ee4940"
+                           onchange="choiceColor({value: this.value, targetId: 'text-2'})"/>
+                </p>
+            </div>
+        </div>
+        <hr />
 
-        <p>Choice color of outerline:
-            <select id="choiceOutLineColor" size="5" multiple name="outLineColor[]" onchange="choiceOutLineColor(this.value)">
-                <option value="Orange">Orange</option>
-                <option value="Red">Red</option>
-                <option value="Salmon">Salmon</option>
-                <option value="Magenta">Magenta</option>
-                <option selected value="SkyBlue ">SkyBlue</option>
-                <option value="Blue">Blue</option>
-                <option value="Green">Green</option>
-            </select>
-        </p>
+        <div class="container">
+            <div  class="flex-item2">
+                <p>Bottom text:
+                    <input id='inputtxt2' type="text" placeholder="Elephants" value="Elephants"></p>
+                <p>Font
+                    <select id="choiceFont2" size="1" name="font[]" onchange="choiceFont(this.value)">
+                        <option selected value="GrandHotel-Regular">GrandHotel-Regular</option>
+                        <option value="AtomicAge-Regular">AtomicAge-Regular</option>
+                        <option value="Bahiana-Regular">Bahiana-Regular</option>
+                        <option value="BerkshireSwash-Regular">BerkshireSwash-Regular</option>
+                    </select>
+                </p>
+            </div>
+            <div class="flex-item2">
+                <p>Color
+                    <input type="color" id="colortext2" name="color"
+                           value="#ffffff"
+                           onchange="choiceColor({value: this.value, targetId: 'text-12'})"/>
+                </p>
+            </div>
+        </div>
+        <hr />
+        <!--<p>Choice relative font size:-->
+        <!--<select id="choiceFontSize" size="5" multiple name="size[]" onchange="choiceFontSize(this.value)">-->
+        <!--<option value="0.75">Small</option>-->
+        <!--<option value="0.9">Smaller</option>-->
+        <!--<option selected value="1">Normal</option>-->
+        <!--<option value="1.08">Bigger</option>-->
+        <!--<option value="1.25">Big</option>-->
+        <!--</select>-->
+        <!--</p>-->
+
+
+        <div class="container">
+            <div  class="flex-item2">
+                <p>Choice outline1 thickness:
+                    <select id="choiceOutLineSize1" size="1"  name="outlineSize[]" onchange="choiceOutLineSize(this.value)">
+                        <option value="0.5">Narrow</option>
+                        <option selected value="1">Normal</option>
+                        <option value="1.5">Thickish</option>
+                        <option value="2.5">Paunchy</option>
+                    </select>
+                </p>
+            </div>
+            <div class="flex-item2">
+                <p>Color
+                    <input type="color" id="choiceOutLine1Color" name="color"
+                           value="#112233"
+                           onchange="choiceOutLine1Color(this.value)"/>
+                </p>
+            </div>
+        </div>
+        <hr />
+
+
+        <div class="container">
+            <div  class="flex-item2">
+                <p>Choice outline2 thickness:
+                    <select id="choiceOutLineSize2" size="1"  name="outlineSize[]" onchange="choiceOutLineSize(this.value)">
+                        <option value="0.5">Narrow</option>
+                        <option selected value="1">Normal</option>
+                        <option value="1.5">Thickish</option>
+                        <option value="2.5">Paunchy</option>
+                    </select>
+                </p>
+            </div>
+            <div class="flex-item2">
+                <p>Color
+                    <input type="color" id="choiceOutLineColor2" name="color"
+                           value="#ffffff"
+                           onchange="choiceOutLine2Color(this.value)"/>
+                </p>
+            </div>
+        </div>
+        <hr />
+
+
+        <!--<p>Choice color of outerline:-->
+        <!--<select id="choiceOutLineColor" size="5" multiple name="outLineColor[]" onchange="choiceOutLineColor(this.value)">-->
+        <!--<option value="Orange">Orange</option>-->
+        <!--<option value="Red">Red</option>-->
+        <!--<option value="Salmon">Salmon</option>-->
+        <!--<option value="Magenta">Magenta</option>-->
+        <!--<option selected value="SkyBlue ">SkyBlue</option>-->
+        <!--<option value="Blue">Blue</option>-->
+        <!--<option value="Green">Green</option>-->
+        <!--</select>-->
+        <!--</p>-->
 
         <p>Choice Logo:
             <select id="choiceLogo" size="3" multiple name="logo[]" onchange="choiceLogo(this.value)">
@@ -54,14 +132,7 @@
             </select>
         </p>
 
-        <p>Choice font:
-            <select id="choiceFont" size="4" multiple name="font[]" onchange="choiceFont(this.value)">
-                <option selected value="GrandHotel-Regular">GrandHotel-Regular</option>
-                <option value="AtomicAge-Regular">AtomicAge-Regular</option>
-                <option value="Bahiana-Regular">Bahiana-Regular</option>
-                <option value="BerkshireSwash-Regular">BerkshireSwash-Regular</option>
-            </select>
-        </p>
+
     </div>
     <div id="svgwapper" class="svgwapper flex-item"></div>
 </div>
