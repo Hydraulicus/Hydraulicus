@@ -17,7 +17,7 @@
                 <p>Top text:
                     <input id='inputtxt1' type="text" placeholder="Hannibal" value="Hannibal"></p>
                 <p>Font
-                    <select id="choiceFont1" size="1" name="font[]" onchange="choiceFont(this.value)">
+                    <select id="choiceFont1" size="1" name="font[]" onchange="choiceFont({newFont: this.value, className: 'text-2'})">
                         <option selected value="GrandHotel-Regular">GrandHotel-Regular</option>
                         <option value="AtomicAge-Regular">AtomicAge-Regular</option>
                         <option value="Bahiana-Regular">Bahiana-Regular</option>
@@ -28,7 +28,7 @@
             <div class="flex-item2">
                 <p>Color
                     <input type="color" id="colortext1" name="color"
-                           value="#ee4940"
+                           value="#333333"
                            onchange="choiceColor({value: this.value, targetId: 'text-2'})"/>
                 </p>
             </div>
@@ -40,7 +40,7 @@
                 <p>Bottom text:
                     <input id='inputtxt2' type="text" placeholder="Elephants" value="Elephants"></p>
                 <p>Font
-                    <select id="choiceFont2" size="1" name="font[]" onchange="choiceFont(this.value)">
+                    <select id="choiceFont2" size="1" name="font[]" onchange="choiceFont({newFont: this.value, className: 'text-1'})">
                         <option selected value="GrandHotel-Regular">GrandHotel-Regular</option>
                         <option value="AtomicAge-Regular">AtomicAge-Regular</option>
                         <option value="Bahiana-Regular">Bahiana-Regular</option>
@@ -51,7 +51,7 @@
             <div class="flex-item2">
                 <p>Color
                     <input type="color" id="colortext2" name="color"
-                           value="#ffffff"
+                           value="#333333"
                            onchange="choiceColor({value: this.value, targetId: 'text-12'})"/>
                 </p>
             </div>
@@ -71,7 +71,7 @@
         <div class="container">
             <div  class="flex-item2">
                 <p>Choice outline1 thickness:
-                    <select id="choiceOutLineSize1" size="1"  name="outlineSize[]" onchange="choiceOutLineSize(this.value)">
+                    <select id="choiceOutLineSize1" size="1"  name="outlineSize[]" onchange="choiceOutLine1Size(this.value)">
                         <option value="0.5">Narrow</option>
                         <option selected value="1">Normal</option>
                         <option value="1.5">Thickish</option>
@@ -82,7 +82,7 @@
             <div class="flex-item2">
                 <p>Color
                     <input type="color" id="choiceOutLine1Color" name="color"
-                           value="#112233"
+                           value="#999999"
                            onchange="choiceOutLine1Color(this.value)"/>
                 </p>
             </div>
@@ -93,7 +93,7 @@
         <div class="container">
             <div  class="flex-item2">
                 <p>Choice outline2 thickness:
-                    <select id="choiceOutLineSize2" size="1"  name="outlineSize[]" onchange="choiceOutLineSize(this.value)">
+                    <select id="choiceOutLineSize2" size="1"  name="outlineSize[]" onchange="choiceOutLine2Size(this.value)">
                         <option value="0.5">Narrow</option>
                         <option selected value="1">Normal</option>
                         <option value="1.5">Thickish</option>
@@ -124,13 +124,18 @@
         <!--</select>-->
         <!--</p>-->
 
-        <p>Choice Logo:
-            <select id="choiceLogo" size="3" multiple name="logo[]" onchange="choiceLogo(this.value)">
-                <option selected value="elephant">Elephant</option>
-                <option value="horse">Horse</option>
-                <option value="rooster">Rooster</option>
-            </select>
+        <p>Background color:
+            <input type="color" id="patternBackgroundcolor" name="color"
+                   value="#223344"
+                   onchange="choicePatternBackgroundColor(this.value)"/>
         </p>
+        <!--<p>Choice Logo:-->
+            <!--<select id="choiceLogo" size="3" multiple name="logo[]" onchange="choiceLogo(this.value)">-->
+                <!--<option selected value="elephant">Elephant</option>-->
+                <!--<option value="horse">Horse</option>-->
+                <!--<option value="rooster">Rooster</option>-->
+            <!--</select>-->
+        <!--</p>-->
 
 
     </div>

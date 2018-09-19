@@ -4,12 +4,14 @@ let inputText2;
 let targetTopTxt;
 let targetTopTxtOutLine;
 let targetBottomTxt;
+let targetBottomTxtOutLine;
 let startTopTextHeihgt;
 let startBottomTextHeihgt;
 let startOutLineSize;
 let SVGlogoPlace;
 let SVGlogoContour;
 let SVGlogoContourPlace;
+let SVGlogoContour1;
 let SVGlogoContourClone;
 let outLine1InnerColor;
 let outLine2OuterColor;
@@ -20,8 +22,11 @@ const text1 = {
 	id: "text-11",
 	stroke: "",
 	fill: "",
-	outlineColor: "",//id = text1OutlineColor
-	outlineSize: "",
+	outLineColor: "",//id = text1OutlineColor
+	outLine1Size: 6,
+	outLine2Size: 20,
+	outLine1SizeFactor: 1,
+	outLine2SizeFactor: 1,
 	text: "",
 	fontSize: "normal",
 };
@@ -29,8 +34,11 @@ const text2 = {
 	id: "text-2",
 	stroke: "",
 	fill: "",
-	outlineColor: "",//id = text2OutlineColor
-	outlineSize: "",
+	outLineColor: "",//id = text2OutlineColor
+	outLine1Size: 10,
+	outLine2Size: 20,
+	outLine1SizeFactor: 1,
+	outLine2SizeFactor: 1,
 	text: "",
 	fontSize: "normal",
 };
@@ -38,8 +46,11 @@ const mascot = {
 	id: "",
 	stroke: "",
 	fill: "",
-	outlineColor: "",//id = mascotOutlineColor
-	outlineSize: "",
+	outLineColor: "",//id = mascotOutlineColor
+	outLine1Size: 10,
+	outLine2Size: 20,
+	outLine1SizeFactor: 1,
+	outLine2SizeFactor: 1,
 	text: "",
 	fontSize: "normal",
 };
@@ -51,17 +62,43 @@ const mainOutline = {
 	stroke: "",
 	size: "normal",
 };
+const pattern = {
+	id: "PATTERN",
+	backgroundColor: "223344",
+};
 
-outLine2OuterColor = "SkyBlue";
+const choicePatternBackgroundColor = color => {
+	const target =  document.getElementById(pattern.id);
+	pattern.backgroundColor = color;
+	// console.log(color, target);
+	target.setAttribute('style', `background-color:${pattern.backgroundColor}`);
+};
+
+outLine1OuterColor = "SkyBlue";
+outLine2OuterColor = "#ffffff";
 startOutLineSize = 20;
 outLineSizeFactor = 1;
 
-function choiceOutLineSize(newOutLineSizeFactor) {
-	const outLineSize = newOutLineSizeFactor * startOutLineSize;
-	outLineSizeFactor = newOutLineSizeFactor;
-	targetTopTxt.setAttribute("stroke-width", `${outLineSize}px`);
-	SVGlogoContourClone.setAttribute("stroke-width", `${outLineSize}px`);
+function choiceOutLine1Size(newOutLineSizeFactor) {
+	// console.log("choiceOutLine1Size =", newOutLineSizeFactor);
+	// const outLineSize = newOutLineSizeFactor * startOutLineSize;
+	text1.outLine1SizeFactor = newOutLineSizeFactor;
+	text2.outLine1SizeFactor = newOutLineSizeFactor;
+	mascot.outLine1SizeFactor = newOutLineSizeFactor;
+	targetBottomTxt.setAttribute("stroke-width", `${newOutLineSizeFactor * text1.outLine1Size}px`);
+	targetTopTxtOutLine.setAttribute("stroke-width", `${newOutLineSizeFactor * text2.outLine1Size}px`);
+	SVGlogoContour1.setAttribute("stroke-width", `${2.5 * newOutLineSizeFactor * mascot.outLine1Size}px`);
+}
 
+function choiceOutLine2Size(newOutLineSizeFactor) {
+	// console.log("choiceOutLine2Size =", newOutLineSizeFactor);
+	// const outLineSize = newOutLineSizeFactor * startOutLineSize;
+	text1.outLine2SizeFactor = newOutLineSizeFactor;
+	text2.outLine2SizeFactor = newOutLineSizeFactor;
+	mascot.outLine2SizeFactor = newOutLineSizeFactor;
+	targetBottomTxtOutLine.setAttribute("stroke-width", `${newOutLineSizeFactor * text1.outLine2Size}px`);
+	targetTopTxt.setAttribute("stroke-width", `${newOutLineSizeFactor * text1.outLine2Size}px`);
+	SVGlogoContourClone.setAttribute("stroke-width", `${2.5 * newOutLineSizeFactor * mascot.outLine2Size}px`);
 }
 
 function choiceFontSize(newFontSizeFactor) {
@@ -81,23 +118,16 @@ function choiceColor({value, targetId}) {
 
 function choiceOutLine1Color(newOutLineColor) {
 	outLine1InnerColor = newOutLineColor;
-
-	console.log(newOutLineColor);
-	// SVGlogoContourClone.setAttribute("stroke", outLine1InnerColor);
-
-	// targetTopTxt.setAttribute("stroke", outLine1InnerColor);
 	targetBottomTxt.setAttribute("stroke", outLine1InnerColor);
 	targetTopTxtOutLine.setAttribute("stroke", outLine1InnerColor);
+	SVGlogoContour1.setAttribute("stroke", outLine1InnerColor);
 }
 
 function choiceOutLine2Color(newOutLineColor) {
 	outLine2OuterColor = newOutLineColor;
-
-	console.log(newOutLineColor);
 	SVGlogoContourClone.setAttribute("stroke", outLine2OuterColor);
-
 	targetTopTxt.setAttribute("stroke", outLine2OuterColor);
-	targetTopTxtOutLine.setAttribute("fill", outLine2OuterColor);
+	targetBottomTxtOutLine.setAttribute("stroke", outLine2OuterColor);
 }
 
 
@@ -114,7 +144,8 @@ async function choiceLogo(newLogo) {
 	SVGlogoContourPlace.appendChild(SVGlogoContour);
 	SVGlogoContourClone = SVGlogoContourPlace.firstChild;
 	SVGlogoContourClone.setAttribute("stroke", outLine2OuterColor);
-	SVGlogoContourClone.setAttribute("stroke-width", `${outLineSizeFactor * startOutLineSize}px`);
+	SVGlogoContourClone.setAttribute("stroke-width", `${2.5 * outLineSizeFactor * startOutLineSize}px`);
+	SVGlogoContour1.setAttribute("stroke", outLine1OuterColor);
 }
 
 async function initialisation ({patternName, logoName}) {// async function loadSVG () {
@@ -132,6 +163,8 @@ async function initialisation ({patternName, logoName}) {// async function loadS
 	});
 	SVGlogoPlace.innerHTML = SVGlogo;
 
+	SVGlogoContour1 = document.getElementById("SVG_LOGO_CONTOURE1");
+
 	SVGlogoContour = document.getElementById("SVG_LOGO_CONTOURE").cloneNode(true);
 	SVGlogoContourPlace = document.getElementById("SVG_LOGO_CONTOURE_PLACE");
 
@@ -139,17 +172,20 @@ async function initialisation ({patternName, logoName}) {// async function loadS
 
 	targetTopTxt = document.getElementById('text-11');
 	targetTopTxtOutLine = document.getElementById('text-12');
-	targetBottomTxt = document.getElementById('text-2');
+	targetBottomTxtOutLine = document.getElementById('text-21');
+	targetBottomTxt = document.getElementById('text-22');
 
 	startTopTextHeihgt = targetTopTxt.getAttribute("font-size").match(/\d+/)[0];
 	startBottomTextHeihgt = targetBottomTxt.getAttribute("font-size").match(/\d+/)[0];
 
 	SVGlogoContourPlace.appendChild(SVGlogoContour);
 	SVGlogoContourClone = SVGlogoContourPlace.firstChild;
-	SVGlogoContourClone.setAttribute("stroke", outLine1InnerColor);
-	SVGlogoContourClone.setAttribute("stroke-width", `${outLineSizeFactor * startOutLineSize}px`);
+	SVGlogoContourClone.setAttribute("stroke", outLine2OuterColor);
+	// SVGlogoContourClone.setAttribute("stroke", "blue");
+	SVGlogoContourClone.setAttribute("stroke-width", `${2.5*outLineSizeFactor * startOutLineSize}px`);
 
 	targetTopTxt.setAttribute("stroke", outLine2OuterColor);
+	targetBottomTxtOutLine.setAttribute("stroke", outLine2OuterColor);
 
 
 	inputText1 = document.getElementById('inputtxt1');
@@ -172,8 +208,9 @@ async function loadSVG ({path, name,}) {
 		.catch(console.error.bind(console));
 }
 
-function choiceFont(newFont) {
-	const patternTexts = document.getElementsByClassName("patternText");
+function choiceFont({newFont, className}) {
+	const patternTexts = document.getElementsByClassName(className);
+	// console.log(className, patternTexts);
 	[].forEach.call(patternTexts, el => {
 		el.setAttribute("font-family", newFont);
 	})
