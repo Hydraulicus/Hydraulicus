@@ -70,7 +70,6 @@ const pattern = {
 const choicePatternBackgroundColor = color => {
 	const target =  document.getElementById(pattern.id);
 	pattern.backgroundColor = color;
-	// console.log(color, target);
 	target.setAttribute('style', `background-color:${pattern.backgroundColor}`);
 };
 
@@ -80,8 +79,6 @@ startOutLineSize = 20;
 outLineSizeFactor = 1;
 
 function choiceOutLine1Size(newOutLineSizeFactor) {
-	// console.log("choiceOutLine1Size =", newOutLineSizeFactor);
-	// const outLineSize = newOutLineSizeFactor * startOutLineSize;
 	text1.outLine1SizeFactor = newOutLineSizeFactor;
 	text2.outLine1SizeFactor = newOutLineSizeFactor;
 	mascot.outLine1SizeFactor = newOutLineSizeFactor;
@@ -91,8 +88,6 @@ function choiceOutLine1Size(newOutLineSizeFactor) {
 }
 
 function choiceOutLine2Size(newOutLineSizeFactor) {
-	// console.log("choiceOutLine2Size =", newOutLineSizeFactor);
-	// const outLineSize = newOutLineSizeFactor * startOutLineSize;
 	text1.outLine2SizeFactor = newOutLineSizeFactor;
 	text2.outLine2SizeFactor = newOutLineSizeFactor;
 	mascot.outLine2SizeFactor = newOutLineSizeFactor;
@@ -111,7 +106,6 @@ function choiceFontSize(newFontSizeFactor) {
 
 function choiceColor({value, targetId}) {
 	outLine2OuterColor = value;
-	// console.log(targetId);
 	const target =  document.getElementById(targetId);
 	target.setAttribute("fill", outLine2OuterColor);
 }
@@ -168,8 +162,6 @@ async function initialisation ({patternName, logoName}) {// async function loadS
 	SVGlogoContour = document.getElementById("SVG_LOGO_CONTOURE").cloneNode(true);
 	SVGlogoContourPlace = document.getElementById("SVG_LOGO_CONTOURE_PLACE");
 
-
-
 	targetTopTxt = document.getElementById('text-11');
 	targetTopTxtOutLine = document.getElementById('text-12');
 	targetBottomTxtOutLine = document.getElementById('text-21');
@@ -181,7 +173,6 @@ async function initialisation ({patternName, logoName}) {// async function loadS
 	SVGlogoContourPlace.appendChild(SVGlogoContour);
 	SVGlogoContourClone = SVGlogoContourPlace.firstChild;
 	SVGlogoContourClone.setAttribute("stroke", outLine2OuterColor);
-	// SVGlogoContourClone.setAttribute("stroke", "blue");
 	SVGlogoContourClone.setAttribute("stroke-width", `${2.5*outLineSizeFactor * startOutLineSize}px`);
 
 	targetTopTxt.setAttribute("stroke", outLine2OuterColor);
@@ -233,32 +224,12 @@ function saveSVG(name) {
 
 function savePNG(name) {
 	var html = document.getElementById("PATTERN").parentNode.innerHTML;
-	// var imgsrc = 'data:image/svg+xml;base64,' + btoa(html);
-	// var canvas = document.querySelector("canvas"),
-	// 	context = canvas.getContext("2d");
-	// canvas.setAttribute('width', 800);
-	// canvas.setAttribute('height', 800);
-	//
-	// var image = new Image;
-	// image.src = imgsrc;
-	// image.onload = function () {
-	// 	context.drawImage(image, 0, 0);
-	// 	var canvasdata = canvas.toDataURL("image/png");
-	// 	var a = document.createElement("a");
-	// 	a.textContent = "save";
-	// 	a.download = name + Date.now() + ".png";
-	// 	a.href = canvasdata;
-	// 	document.body.appendChild(a);
-	// 	canvas.parentNode.removeChild(canvas);
-	// };
-
-
 
 	var imgsrc = 'data:image/svg+xml;base64,'+ btoa(html);
 	var canvas = document.querySelector("canvas"),
 		context = canvas.getContext("2d");
-	canvas.setAttribute('width', 800);
-	canvas.setAttribute('height', 800);
+	canvas.setAttribute('width', 4000);
+	canvas.setAttribute('height', 4000);
 
 	var DOMURL = window.URL || window.webkitURL || window;
 
