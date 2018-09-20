@@ -215,3 +215,72 @@ function choiceFont({newFont, className}) {
 		el.setAttribute("font-family", newFont);
 	})
 }
+
+function saveSVG(name) {
+	svgEl = document.getElementById("PATTERN");
+	svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+	var svgData = svgEl.outerHTML;
+	var preface = '<?xml version="1.0" standalone="no"?>\r\n';
+	var svgBlob = new Blob([preface, svgData], {type:"image/svg+xml;charset=utf-8"});
+	var svgUrl = URL.createObjectURL(svgBlob);
+	var downloadLink = document.createElement("a");
+	downloadLink.href = svgUrl;
+	downloadLink.download = name + Date.now() + ".svg";
+	document.body.appendChild(downloadLink);
+	downloadLink.click();
+	document.body.removeChild(downloadLink);
+}
+
+function savePNG(name) {
+	var html = document.getElementById("PATTERN").parentNode.innerHTML;
+	// var imgsrc = 'data:image/svg+xml;base64,' + btoa(html);
+	// var canvas = document.querySelector("canvas"),
+	// 	context = canvas.getContext("2d");
+	// canvas.setAttribute('width', 800);
+	// canvas.setAttribute('height', 800);
+	//
+	// var image = new Image;
+	// image.src = imgsrc;
+	// image.onload = function () {
+	// 	context.drawImage(image, 0, 0);
+	// 	var canvasdata = canvas.toDataURL("image/png");
+	// 	var a = document.createElement("a");
+	// 	a.textContent = "save";
+	// 	a.download = name + Date.now() + ".png";
+	// 	a.href = canvasdata;
+	// 	document.body.appendChild(a);
+	// 	canvas.parentNode.removeChild(canvas);
+	// };
+
+
+
+	var imgsrc = 'data:image/svg+xml;base64,'+ btoa(html);
+	var canvas = document.querySelector("canvas"),
+		context = canvas.getContext("2d");
+	canvas.setAttribute('width', 800);
+	canvas.setAttribute('height', 800);
+
+	var DOMURL = window.URL || window.webkitURL || window;
+
+	var img = new Image();
+	var svg = new Blob([html], {type: 'image/svg+xml;charset=utf-8'});
+	var url = DOMURL.createObjectURL(svg);
+
+	img.onload = function () {
+		context.drawImage(img, 0, 0);
+		DOMURL.revokeObjectURL(url);
+		var canvasdata = canvas.toDataURL("image/png");
+		var a = document.createElement("a");
+		a.textContent = "save";
+		a.id = "temp_save_button";
+		a.style.display = "none";
+		a.download = "export_"+Date.now()+".png";
+		a.href = canvasdata;
+		document.body.appendChild(a);
+		a.click();
+		canvas.parentNode.removeChild(canvas);
+		a.parentNode.removeChild(a);
+	}
+
+	img.src = url;
+}

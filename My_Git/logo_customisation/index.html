@@ -89,7 +89,6 @@
         </div>
         <hr />
 
-
         <div class="container">
             <div  class="flex-item2">
                 <p>Choice outline2 thickness:
@@ -137,10 +136,17 @@
             <!--</select>-->
         <!--</p>-->
 
+        <hr />
+
+        <p style="text-align: center"><input type="button" value="Download as SVG" onclick="saveSVG('logo')"></p>
+        <p style="text-align: center"><input type="button" value="Download as PNG" onclick="savePNG('logo')"></p>
 
     </div>
     <div id="svgwapper" class="svgwapper flex-item"></div>
 </div>
+
+<!--canvas need for export to PNG-->
+<canvas></canvas>
 
 <script src="js/engine.js"></script>
 
