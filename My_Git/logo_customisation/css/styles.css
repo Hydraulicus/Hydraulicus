@@ -2,26 +2,61 @@
     visibility: hidden
 }
 
-@font-face {
-    font-family: 'GrandHotel-Regular';
-    src: url(./../fonts/GrandHotel-Regular.ttf) format('truetype');
-    font-weight: normal;
-}
-@font-face {
-    font-family: 'AtomicAge-Regular';
-    src: url(./../fonts/AtomicAge-Regular.ttf) format('truetype');
-    font-weight: normal;
-}
-@font-face {
-    font-family: 'Bahiana-Regular';
-    src: url(./../fonts/Bahiana-Regular.ttf) format('truetype');
-    font-weight: normal;
-}
-@font-face {
-    font-family: 'BerkshireSwash-Regular';
-    src: url(./../fonts/BerkshireSwash-Regular.ttf) format('truetype');
-    font-weight: normal;
-}
+/*@font-face {*/
+    /*font-family: 'Arvo-Bold';*/
+    /*src: url(./../fonts/Arvo-Bold.ttf) format('truetype');*/
+    /*font-weight: normal;*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'AtomicAge-Regular';*/
+    /*src: url(./../fonts/AtomicAge-Regular.ttf) format('truetype');*/
+    /*font-weight: normal;*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'Bahiana-Regular';*/
+    /*src: url(./../fonts/Bahiana-Regular.ttf) format('truetype');*/
+    /*font-weight: normal;*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'BerkshireSwash-Regular';*/
+    /*src: url(./../fonts/BerkshireSwash-Regular.ttf) format('truetype');*/
+    /*font-weight: normal;*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'BlendaScript';*/
+    /*src: url(./../fonts/BlendaScript.otf) format('otf');*/
+    /*font-weight: normal;*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'LilitaOne-Regular';*/
+    /*src: url(./../fonts/LilitaOne-Regular.ttf) format('truetype');*/
+    /*font-weight: normal;*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'GrandHotel-Regular';*/
+    /*src: url(./../fonts/GrandHotel-Regular.ttf) format('truetype');*/
+    /*font-weight: normal;*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'BerkshireSwash-Regular';*/
+    /*src: url(./../fonts/BerkshireSwash-Regular.ttf) format('truetype');*/
+    /*font-weight: normal;*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'MedulaOne-Regular';*/
+    /*src: url(./../fonts/MedulaOne-Regular.ttf) format('truetype');*/
+    /*font-weight: normal;*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'PirataOne-Regular';*/
+    /*src: url(./../fonts/PirataOne-Regular.ttf) format('truetype');*/
+    /*font-weight: normal;*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'Teko-Regular';*/
+    /*src: url(./../fonts/Teko-Regular.ttf) format('truetype');*/
+    /*font-weight: normal;*/
+/*}*/
 
 .bg {
     font-size: 12px;

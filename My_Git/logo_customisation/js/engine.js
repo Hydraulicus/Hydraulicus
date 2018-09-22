@@ -249,7 +249,7 @@ function savePNG(name) {
 		a.href = canvasdata;
 		document.body.appendChild(a);
 		a.click();
-		canvas.parentNode.removeChild(canvas);
+		// canvas.parentNode.removeChild(canvas);
 		a.parentNode.removeChild(a);
 	}
 
