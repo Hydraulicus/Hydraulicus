@@ -124,7 +124,6 @@ function choiceOutLine2Color(newOutLineColor) {
 	targetBottomTxtOutLine.setAttribute("stroke", outLine2OuterColor);
 }
 
-
 async function choiceLogo(newLogo) {
 	const SVGlogo = await loadSVG({
 		path: "logos/fullSize/",
@@ -255,3 +254,42 @@ function savePNG(name) {
 
 	img.src = url;
 }
+function saveTransparentBckgrndPNG(name) {
+	const patternBackgroundColor = pattern.backgroundColor;
+	choicePatternBackgroundColor("rgba(0,0,0,0)");
+
+
+	var html = document.getElementById("PATTERN").parentNode.innerHTML;
+
+	var imgsrc = 'data:image/svg+xml;base64,'+ btoa(html);
+	var canvas = document.querySelector("canvas"),
+		context = canvas.getContext("2d");
+	canvas.setAttribute('width', 4000);
+	canvas.setAttribute('height', 4000);
+
+	var DOMURL = window.URL || window.webkitURL || window;
+
+	var img = new Image();
+	var svg = new Blob([html], {type: 'image/svg+xml;charset=utf-8'});
+	var url = DOMURL.createObjectURL(svg);
+
+	img.onload = function () {
+		context.drawImage(img, 0, 0);
+		DOMURL.revokeObjectURL(url);
+		var canvasdata = canvas.toDataURL("image/png");
+		var a = document.createElement("a");
+		a.textContent = "save";
+		a.id = "temp_save_button";
+		a.style.display = "none";
+		a.download = "export_"+Date.now()+".png";
+		a.href = canvasdata;
+		document.body.appendChild(a);
+		a.click();
+		// canvas.parentNode.removeChild(canvas);
+		a.parentNode.removeChild(a);
+	};
+
+	img.src = url;
+	choicePatternBackgroundColor(patternBackgroundColor);
+}
+
