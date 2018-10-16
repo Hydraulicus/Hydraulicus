@@ -27,7 +27,8 @@
 .st2 {fill:#555555;}
 
 .topTravers-forging {
-    animation: topTranslating 2s ease-in infinite;
+    /*animation: topTranslating 2s cubic-bezier(.0,1.7,0.7,.75) infinite;*/
+    animation: topTranslating 2s cubic-bezier(.5,1.7,0.6,.4) infinite;
 
     -webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;
@@ -81,19 +82,16 @@
     0% {-webkit-transform:translate(0, 10px);
         -moz-transform:translate(0, 10px);
         -o-transform:translate(0, 10px);
-        transform:translate(0, 10px);}
-    90% {-webkit-transform:translate(0, -20px);
+        transform:translate(3px, 10px) scale(1.15, 1);}
+
+    100% {-webkit-transform:translate(0, -20px);
         -moz-transform:translate(0, -20px);
         -o-transform:translate(0, -20px);
-        transform:translate(0, -20px);}
-    100% {-webkit-transform:translate(0, 0px);
-        -moz-transform:translate(0, 0px);
-        -o-transform:translate(0, 0px);
-        transform:translate(0, 0px);}
+        transform:translate(0, -20px) scale(1, 1);}
 }
 
 .bottomTravers-forging {
-    animation: bottomTranslating 2s ease-in infinite;
+    animation: bottomTranslating 2s cubic-bezier(.5,1.7,0.6,.4) infinite;
 
     -webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;
@@ -147,15 +145,12 @@
     0% {-webkit-transform:translate(0, -10px);
         -moz-transform:translate(0, -10px);
         -o-transform:translate(0, -10px);
-        transform:translate(0, -10px);}
-    90% {-webkit-transform:translate(0, 20px);
+        transform:translate(3px, -10px) scale(1.15, 1);}
+
+    100% {-webkit-transform:translate(0, 20px);
         -moz-transform:translate(0, 20px);
         -o-transform:translate(0, 20px);
-        transform:translate(0, 20px);}
-    100% {-webkit-transform:translate(0, 0px);
-        -moz-transform:translate(0, 0px);
-        -o-transform:translate(0, 0px);
-        transform:translate(0, 0px);}
+        transform:translate(0, 20px) scale(1, 1);}
 }
 .cell {
     animation: cellMoving 2s linear infinite;
