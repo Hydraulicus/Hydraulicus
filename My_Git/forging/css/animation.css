@@ -35,9 +35,37 @@
     fill:#555555;
 }
 
+.connection0 {
+    -webkit-animation-delay: 2.25s !important;
+    -moz-animation-delay: 2.25s !important;
+    -o-animation-delay: 2.25s !important;
+    animation-delay: 2.25s !important;
+}
+
+.connection1 {
+    -webkit-animation-delay: 3.5s !important;
+    -moz-animation-delay: 3.5s !important;
+    -o-animation-delay: 3.5s !important;
+    animation-delay: 3.5s !important;
+}
+
+.connection2 {
+    -webkit-animation-delay: 4.75s !important;
+    -moz-animation-delay: 4.75s !important;
+    -o-animation-delay: 4.75s !important;
+    animation-delay: 4.75s !important;
+}
+
+.connection3 {
+    -webkit-animation-delay: 6s !important;
+    -moz-animation-delay: 6s !important;
+    -o-animation-delay: 6s !important;
+    animation-delay: 6s !important;
+}
+
 .topTravers-forging {
     animation: topAppearence 1s ease-in forwards,
-            topTranslating 2s 1s cubic-bezier(.5,1.7,0.6,.4) infinite;
+            topTranslating 1.25s 1s cubic-bezier(0.1, -0.6, 0.2, 0) infinite;
 
     -webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;
@@ -46,10 +74,10 @@
 }
 
 @-webkit-keyframes topTranslating {
-    0% {-webkit-transform:translate(3px, 10px) scale(1.15, 1);
-        -moz-transform:translate(3px, 10px) scale(1.15, 1);
-        -o-transform:translate(3px, 10px) scale(1.15, 1);
-        transform:translate(3px, 10px) scale(1.15, 1);}
+    0% {-webkit-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        -moz-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        -o-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        transform:translate(2.3px, 1.5px) scale(1.15, 1);}
 
     100% {-webkit-transform:translate(0, -20px) scale(1, 1);
         -moz-transform:translate(0, -20px) scale(1, 1);
@@ -57,10 +85,10 @@
         transform:translate(0, -20px) scale(1, 1);}
 }
 @-moz-keyframes topTranslating {
-    0% {-webkit-transform:translate(3px, 10px) scale(1.15, 1);
-        -moz-transform:translate(3px, 10px) scale(1.15, 1);
-        -o-transform:translate(3px, 10px) scale(1.15, 1);
-        transform:translate(3px, 10px) scale(1.15, 1);}
+    0% {-webkit-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        -moz-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        -o-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        transform:translate(2.3px, 1.5px) scale(1.15, 1);}
 
     100% {-webkit-transform:translate(0, -20px) scale(1, 1);
         -moz-transform:translate(0, -20px) scale(1, 1);
@@ -68,10 +96,10 @@
         transform:translate(0, -20px) scale(1, 1);}
 }
 @-o-keyframes topTranslating {
-    0% {-webkit-transform:translate(3px, 10px) scale(1.15, 1);
-        -moz-transform:translate(3px, 10px) scale(1.15, 1);
-        -o-transform:translate(3px, 10px) scale(1.15, 1);
-        transform:translate(3px, 10px) scale(1.15, 1);}
+    0% {-webkit-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        -moz-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        -o-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        transform:translate(2.3px, 1.5px) scale(1.15, 1);}
 
     100% {-webkit-transform:translate(0, -20px) scale(1, 1);
         -moz-transform:translate(0, -20px) scale(1, 1);
@@ -79,10 +107,10 @@
         transform:translate(0, -20px) scale(1, 1);}
 }
 @keyframes topTranslating {
-    0% {-webkit-transform:translate(3px, 10px) scale(1.15, 1);
-        -moz-transform:translate(3px, 10px) scale(1.15, 1);
-        -o-transform:translate(3px, 10px) scale(1.15, 1);
-        transform:translate(3px, 10px) scale(1.15, 1);}
+    0% {-webkit-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        -moz-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        -o-transform:translate(2.3px, 1.5px) scale(1.15, 1);
+        transform:translate(2.3px, 1.5px) scale(1.15, 1);}
 
     100% {-webkit-transform:translate(0, -20px) scale(1, 1);
         -moz-transform:translate(0, -20px) scale(1, 1);
@@ -91,10 +119,10 @@
 }
 
 @keyframes topAppearence {
-    0% {-webkit-transform:translate(3px, 10px) scale(3, 3); opacity: 0;
-        -moz-transform:translate(3px, 10px) scale(3, 3); opacity: 0;
-        -o-transform:translate(3px, 10px) scale(3, 3); opacity: 0;
-        transform:translate(3px, 10px) scale(3, 3); opacity: 0;}
+    0% {-webkit-transform:translate(2.3px, 1.5px) scale(3, 3); opacity: 0;
+        -moz-transform:translate(2.3px, 1.5px) scale(3, 3); opacity: 0;
+        -o-transform:translate(2.3px, 1.5px) scale(3, 3); opacity: 0;
+        transform:translate(2.3px, 1.5px) scale(3, 3); opacity: 0;}
 
     100% {-webkit-transform:translate(0, -20px) scale(1, 1);
         -moz-transform:translate(0, -20px) scale(1, 1);
@@ -104,7 +132,7 @@
 
 .bottomTravers-forging {
     animation: bottomAppearence 1s ease-in forwards,
-            bottomTranslating 2s 1s cubic-bezier(.5,1.7,0.6,.4) infinite;
+            bottomTranslating 1.25s 1s cubic-bezier(0.1, -0.6, 0.2, 0) infinite;
 
     -webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;
@@ -113,10 +141,10 @@
 }
 
 @-webkit-keyframes bottomTranslating {
-    0% {-webkit-transform:translate(3px, -10px) scale(1.15, 1);
-        -moz-transform:translate(3px, -10px) scale(1.15, 1);
-        -o-transform:translate(3px, -10px) scale(1.15, 1);
-        transform:translate(3px, -10px) scale(1.15, 1);}
+    0% {-webkit-transform:translate(2.3px, -2px) scale(1.15, 1);
+        -moz-transform:translate(2.3px, -2px) scale(1.15, 1);
+        -o-transform:translate(2.3px, -2px) scale(1.15, 1);
+        transform:translate(2.3px, -2px) scale(1.15, 1);}
 
     100% {-webkit-transform:translate(0, 20px) scale(1, 1);
         -moz-transform:translate(0, 20px) scale(1, 1);
@@ -124,10 +152,10 @@
         transform:translate(0, 20px) scale(1, 1);}
 }
 @-moz-keyframes bottomTranslating {
-    0% {-webkit-transform:translate(3px, -10px) scale(1.15, 1);
-        -moz-transform:translate(3px, -10px) scale(1.15, 1);
-        -o-transform:translate(3px, -10px) scale(1.15, 1);
-        transform:translate(3px, -10px) scale(1.15, 1);}
+    0% {-webkit-transform:translate(2.3px, -2px) scale(1.15, 1);
+        -moz-transform:translate(2.3px, -2px) scale(1.15, 1);
+        -o-transform:translate(2.3px, -2px) scale(1.15, 1);
+        transform:translate(2.3px, -2px) scale(1.15, 1);}
 
     100% {-webkit-transform:translate(0, 20px) scale(1, 1);
         -moz-transform:translate(0, 20px) scale(1, 1);
@@ -135,10 +163,10 @@
         transform:translate(0, 20px) scale(1, 1);}
 }
 @-o-keyframes bottomTranslating {
-    0% {-webkit-transform:translate(3px, -10px) scale(1.15, 1);
-        -moz-transform:translate(3px, -10px) scale(1.15, 1);
-        -o-transform:translate(3px, -10px) scale(1.15, 1);
-        transform:translate(3px, -10px) scale(1.15, 1);}
+    0% {-webkit-transform:translate(2.3px, -2px) scale(1.15, 1);
+        -moz-transform:translate(2.3px, -2px) scale(1.15, 1);
+        -o-transform:translate(2.3px, -2px) scale(1.15, 1);
+        transform:translate(2.3px, -2px) scale(1.15, 1);}
 
     100% {-webkit-transform:translate(0, 20px) scale(1, 1);
         -moz-transform:translate(0, 20px) scale(1, 1);
@@ -146,10 +174,10 @@
         transform:translate(0, 20px) scale(1, 1);}
 }
 @keyframes bottomTranslating {
-    0% {-webkit-transform:translate(3px, -10px) scale(1.15, 1);
-        -moz-transform:translate(3px, -10px) scale(1.15, 1);
-        -o-transform:translate(3px, -10px) scale(1.15, 1);
-        transform:translate(3px, -10px) scale(1.15, 1);}
+    0% {-webkit-transform:translate(2.3px, -2px) scale(1.15, 1);
+        -moz-transform:translate(2.3px, -2px) scale(1.15, 1);
+        -o-transform:translate(2.3px, -2px) scale(1.15, 1);
+        transform:translate(2.3px, -2px) scale(1.15, 1);}
 
     100% {-webkit-transform:translate(0, 20px) scale(1, 1);
         -moz-transform:translate(0, 20px) scale(1, 1);
@@ -158,10 +186,10 @@
 }
 
 @keyframes bottomAppearence {
-    0% {-webkit-transform:translate(3px, -10px) scale(3, 3); opacity: 0;
-        -moz-transform:translate(3px, -10px) scale(3, 3); opacity: 0;
-        -o-transform:translate(3px, -10px) scale(3, 3); opacity: 0;
-        transform:translate(3px, -10px) scale(3, 3);  opacity: 0;}
+    0% {-webkit-transform:translate(2.3px, -1px) scale(3, 3); opacity: 0;
+        -moz-transform:translate(2.3px, -1px) scale(3, 3); opacity: 0;
+        -o-transform:translate(2.3px, -1px) scale(3, 3); opacity: 0;
+        transform:translate(2.3px, -1px) scale(3, 3);  opacity: 0;}
 
     100% {-webkit-transform:translate(0, 20px) scale(1, 1); opacity: 1;
         -moz-transform:translate(0, 20px) scale(1, 1); opacity: 1;
@@ -170,7 +198,7 @@
 }
 
 .cell {
-    animation: cellMoving 2s 1s linear infinite;
+    animation: cellMoving 1.25s 1.25s ease-out infinite;
 
     -webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;
@@ -189,41 +217,40 @@
         transform:translate(34px, 0px);}
 }
 
-
 .brick0 {
     opacity: 0;
     animation:
-            cellMoving 2s 1s linear infinite,
-            brick_appeare 0s 1s linear 1 forwards;
+            cellMoving 1.25s 1s ease-out infinite,
+            brick_appeare 0.5s 1s linear 1 forwards;
 }
 
 .brick1 {
     opacity: 0;
     animation:
-            cellMoving 2s 1s linear infinite,
-            brick_appeare 0s 3s linear 1 forwards;
+            cellMoving 1.25s 1s ease-out infinite,
+            brick_appeare 0s 2.25s linear 1 forwards;
 }
 
 .brick2 {
     opacity: 0;
     animation:
-            cellMoving 2s 1s linear infinite,
-            brick_appeare 0s 5s linear 1 forwards;
+            cellMoving 1.25s 1s ease-out infinite,
+            brick_appeare 0s 3.5s linear 1 forwards;
 }
 
 .brick3 {
     opacity: 0;
     animation:
-            cellMoving 2s 1s linear infinite,
-            brick_appeare 0s 7s linear 1 forwards;
+            cellMoving 1.25s 1s ease-out infinite,
+            brick_appeare 0s 4.75s linear 1 forwards;
 }
 
 .brick4 {
     opacity: 0;
     animation:
-            cellMoving 2s 1s linear infinite,
-            brick_appeare 0s 9s linear infinite forwards,
-            brick4_disappeare 2s 9s linear infinite forwards;
+            cellMoving 1.25s 1s ease-out infinite,
+            brick_appeare 0s 6.25s linear infinite forwards,
+            brick4_disappeare 1.25s 6s linear infinite forwards;
 }
 
 @keyframes brick_appeare {
@@ -245,7 +272,7 @@
 }
 
 .forging-block-enlaged {
-    transform: scale(1.625, 1.625);
+    transform: translate(0px, 14px) scale(1.625, 1.625);
     -webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;
     -o-transform-origin: 50% 50%;
@@ -264,9 +291,9 @@
 
 @keyframes stopAnimation  {
  0% {
-     transform: scale(1.62, 1.62);
+     transform: scale(1.625, 1.625);
  }100% {
-     transform: scale(1, 1);
+     transform: translate(0px, 0px) scale(1, 1);
  }
 }
 
