@@ -15,6 +15,23 @@
           src: url('AvenirNextLTPro-Regular.otf');
         }
 
+       .Absolute-Center {
+           width: 100%;
+           height: 100%;
+           overflow: auto;
+           margin: auto;
+           position: absolute;
+           top: 0; left: 0; bottom: 0; right: 0;
+       }
+
+       .svg {
+           display: block;
+           margin: 0 auto;
+           position: absolute;
+           background-image: radial-gradient(circle, #fffffe, #cccccc);
+           /*background-image: linear-gradient(to top, #ffffff, #cccccc);*/
+       }
+
     .flexcontainer {
       display: flex; 
       height: 100%; 
@@ -89,15 +106,18 @@
 
 .buildings {fill:#A7D6E2;fill-rule:nonzero} 
 .sky {fill:#DFF2F6;fill-rule:nonzero} 
-.floor {fill:#CCCCCC;fill-rule:nonzero} 
+
+       /*.floor {fill-rule:nonzero}*/
+       .floor {fill:rgba(180,190,190,0.25);fill-rule:nonzero}
+       /*.floor {fill:radial-gradient(circle, #000000, #cccccc);fill-rule:nonzero}*/
+
 .bin {fill:#927A6C}
 .black_{fill:black}
 .pen1{fill:#EDC80A}
 .pen2{fill:#D1AE15}
 .ruber {fill:#F29785}
-.bg { background-color: #bbb; }
+.bg { background-color: #ccc; }
 .throwPaper1 {fill:white; stroke:#E6E6E6; stroke-width:1.5}
-
 
 .clouds1 {
   -webkit-animation: cloudsfly 33s normal linear infinite;

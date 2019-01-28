@@ -31,7 +31,13 @@ function initAnimation (obj) {
 
     animSvg.add(Snap.parse(floor));//add underwindow and floor
     animSvg.add(Snap.parse(windw));//add underwindow and floor
-  
+
+  floorGradient = animSvg.gradient("r(0.5, 0, 0.75)rgba(180,170,170,0.875)-rgba(185,180,180,0.25)-rgba(255, 255, 255, 0)");
+  // floorGradient = animSvg.gradient("r(0.5, 0.5, 0.5)#eb0000-#cccccc");
+  steamGradient = animSvg.gradient("l(0, 0, 1, 1)#ffffff-#ebebeb-#ffffff");
+
+  const floor_ = animSvg.polygon({points: "0,1080 1920,1080 1920,779 0,779"}).attr({fill:floorGradient});
+
 
  carpet = animSvg.path(carpetD).attr({fill:'#A2C3BE'});/*carpet*/
  brand[0] = animSvg.path(brandNameD).transform("t0,-5").attr({fill:'#8FB4B4'});/*brandName*/
@@ -87,7 +93,6 @@ GhaziSmile = animSvg.path('M723 473c1,0 2,1 1,2 -5,2 -12,2 -17,0 -1,-1 0,-2 1,-2
 GhaziFaceSet.add(GhaziSmile); 
 leftDrinkHand = animSvg.line(632, 625, 832, 625).attr({"stroke-width" : 36, "stroke" : "#EF977C", "stroke-linecap" : "round"}).addClass("visibility_hid");
 
-steamGradient = animSvg.gradient("l(0, 0, 1, 1)#efefef-#fff-#efefef");
 mugSteam = animSvg.path(steam[0]+steam[1]+steam[2]+steam[3]).attr({opacity : 1, fill : steamGradient});
 mug = animSvg.path(mugD).attr({stroke:'#1FB1E9', 'stroke-width':1, fill : '#1FB1E9', 'fill-rule' : "evenodd"});
 mugInsude = animSvg.ellipse(907, 593, 19, 2).attr({'stroke-width' : 0, fill:"#4B89B6"});
